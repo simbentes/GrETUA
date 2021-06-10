@@ -6,7 +6,15 @@
     <title>GrETUA</title>
 </head>
 <body>
-<section class="container pt-3 px-0">
+<div class="botaomaquina">
+    <button type="button" class="btn btn-transparente" id="botaomaquina">
+        <i class="bi bi-three-dots-vertical h2"></i>
+    </button>
+</div>
+<div class="position-relative">
+
+
+<section class="container pt-responsive px-0">
     <div class="memorias text-black-50">
         <a href="memoria.php">
             <div class="memoria primeiro">
@@ -193,34 +201,19 @@
         </svg>
     </div>
 </section>
-<section class="fixed-bottom">
-    <section class="maquina container pt-4">
-        <h4 class="pt-2 text-center mb-0">máquina do tempo</h4>
-        <form id="formTempo">
-            <div class="row g-0 justify-content-center">
-                <div class="col-auto">
-                    <select id="tamanhoroupa" class="form-control maquinatempo" required>
-                        <option selected disabled>18</option>
-                    </select>
-                </div>
-                <div class="col-auto">
-                    <select id="tamanhoroupa2" class="form-control maquinatempo" required>
-                        <option selected disabled>maio</option>
-                    </select>
-                </div>
-                <div class="col-auto">
-                    <select id="tamanhoroupa3" class="form-control maquinatempo" required>
-                        <option selected disabled>2021</option>
-                    </select>
-                </div>
-            </div>
-        </form>
-    </section>
+</div>
 
-    <?php include_once "components/cp_tab_bar.php" ?>
-
-</section>
+<?php include_once "components/cp_maquina_tempo.php" ?>
+<?php include_once "components/cp_tab_bar.php" ?>
 <!-- Javascript -->
 <?php include_once "helpers/help_js.php" ?>
+<script type="text/javascript">
+
+    document.getElementById("botaomaquina").onclick = function () {
+        console.log("ola")
+        document.getElementById("maquinabottom").classList.toggle("animamaquina");
+    }
+
+</script>
 </body>
 </html>

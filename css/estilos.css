@@ -133,7 +133,24 @@ nav a {
     top: 8px;
 }
 
+.pt-responsive {
+    padding-top: 8vh;
+}
+
+
+.botaomaquina {
+    position: absolute;
+    right: 6px;
+    top: 8px;
+    z-index: 999;
+}
+
+
 #botaoperfil:hover {
+    color: white;
+}
+
+#botaomaquina:hover {
     color: white;
 }
 
@@ -324,7 +341,6 @@ nav a {
     bottom: 10px;
     right: 20px;
 }
-
 
 
 .btn-pub {
@@ -692,9 +708,21 @@ a:hover {
     box-shadow: inset 0 0 5px #c1c1c1;
 }
 
+
 .maquina {
+    border-radius: 15px 15px 0 0;
     background-color: var(--menu-cor);
-    border-radius: 30px 30px 0 0;
+    padding: 15px 12px 5px 12px;
+    position: fixed;
+    bottom: -161px;
+    left: 0;
+    width: 100%;
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+
+.maquina.animamaquina {
+    transform: translateY(-221px);
 }
 
 
@@ -891,16 +919,15 @@ input[type="radio" i]:focus {
     display: inline-block;
     position: relative;
     width: 320px;
-    height: 545px;
+    height: 81vh;
     text-align: left;
     margin: 20px 12px 20px 12px;
     text-decoration: none;
     color: white;
-
 }
 
 .primeiro {
-    margin: 20px 28px 20px 12px;
+    margin: 20px 7% 20px 12px;
 }
 
 .ultimo {
@@ -908,8 +935,10 @@ input[type="radio" i]:focus {
 }
 
 .linha-memorias {
-    position: relative;
-    top: -85px;
+    position: absolute;
+    bottom: 106px;
+    left: 0;
+    right: 0;
 }
 
 .memoria p {
@@ -920,7 +949,7 @@ input[type="radio" i]:focus {
 
 .img-memoria {
     width: 100%;
-    height: 360px;
+    height: 50vh;
     object-fit: cover;
 }
 
@@ -931,7 +960,7 @@ input[type="radio" i]:focus {
 
 .memoria .ano {
     position: absolute;
-    bottom: 0;
+    bottom: 20px;
     left: 50%;
     transform: translate(-50%, 0);
 }
@@ -939,7 +968,7 @@ input[type="radio" i]:focus {
 
 .memoria .bola {
     position: absolute;
-    bottom: 38px;
+    bottom: 60px;
     left: 50%;
     transform: translate(-50%, 0);
 }
