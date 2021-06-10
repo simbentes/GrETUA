@@ -217,7 +217,7 @@
         </form>
     </section>
 
-    <?php include_once "components/tab_bar.php" ?>
+    <?php include_once "components/cp_tab_bar.php" ?>
 
 </section>
 <!-- Javascript -->
