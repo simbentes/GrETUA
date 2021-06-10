@@ -170,7 +170,7 @@
                 </a>
             </li>
             <li class="list-group-item">
-                <a href="index.html">
+                <a href="index.php">
                     <div class="row g-0 align-items-center justify-content-between">
                         <div class="col-auto">
                             <div class="row g-0 align-items-center">
