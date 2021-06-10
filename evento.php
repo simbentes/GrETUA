@@ -105,7 +105,6 @@
 <?php include_once "components/tab_bar.php" ?>
 
 <!-- Javascript -->
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/script.js"></script>
+<?php include_once "helpers/help_js.php" ?>
 </body>
 </html>
