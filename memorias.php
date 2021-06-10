@@ -1,25 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <!-- Meta Tags -->
-    <meta charset="utf-8">
-    <meta name="description" content="Grupo Experimental de Teatro da Universidade de Aveiro">
-    <meta name="keywords" content="cultura, arte, música, teatro, dança">
-    <meta name="author" content="Simão Bentes">
-    <meta name="apple-mobile-web-app-title" content="GrETUA">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
-    <!-- CSS -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
-          rel="stylesheet">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="font/bootstrap-icons.css">
-    <link rel="stylesheet" href="fontawesome/css/all.min.css">
-    <link rel="stylesheet" href="css/estilos.css">
-    <link rel="manifest" href="manifest.json">
+    <?php include_once "helpers/help_meta.php" ?>
+    <?php include_once "helpers/help_link.php" ?>
     <title>GrETUA</title>
 </head>
 <body>

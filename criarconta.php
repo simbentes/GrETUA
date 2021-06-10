@@ -50,13 +50,13 @@
 
         </div>
         <div class="pb-5">
-            <h1 class="logintitulo mb-0">bem-vindo de volta.</h1>
+            <h1 class="logintitulo mb-0">vamos começar.</h1>
         </div>
 
         <form action="gretua.php">
             <div>
-                <div id="pwa" class="btn btn-grande btn-google w-100"><img
-                        src="img/g_logo.svg" class="logo">Iniciar sessão com a Google</div>
+                <a href="gretua.php" class="btn btn-grande btn-google w-100" href="gretua.php"
+                   value="Criar Conta"><img src="img/g_logo.svg" class="logo">Criar Conta com a Google</a>
             </div>
             <div class="row align-items-center py-3">
                 <div class="col-1">
@@ -66,26 +66,31 @@
                     <hr>
                 </div>
             </div>
-
             <div class="mb-3">
-                <input type="email" class="form-control forminfo formlogin" id="formGroupExampleInput"
-                       placeholder="Email"
+                <input type="text" class="form-control forminfo formlogin" placeholder="Nome" required>
+            </div>
+            <div class="mb-3">
+                <input type="email" class="form-control forminfo formlogin" placeholder="Email" required>
+            </div>
+            <div class="mb-3">
+                <input type="password" class="form-control forminfo formlogin" placeholder="Password" required>
+            </div>
+            <div class="mb-3">
+                <input type="password" class="form-control forminfo formlogin" placeholder="Confirmar Password"
                        required>
             </div>
-            <div class="mb-3">
-                <input type="password" class="form-control forminfo formlogin" id="formGroupExampleInput2"
-                       placeholder="Password" required>
-            </div>
             <div>
-                <input type="submit" class="btn btn-grande w-100" href="index.html" value="Iniciar Sessão">
+                <input type="submit" class="btn btn-grande w-100" href="index.html" value="Criar Conta" required>
             </div>
             <div class="pt-5 text-center msg-login">
-                <h6>Ainda não tens conta? <a href="criarconta.php"><strong>Criar Conta</strong></a></h6>
+                <h6>Já tens conta? <a href="index.php"><strong>Iniciar Sessão</strong></a></h6>
             </div>
         </form>
     </section>
 </main>
+
 <!-- Javascript -->
-<?php include_once "helpers/help_js.php" ?>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/script.js"></script>
 </body>
 </html>
