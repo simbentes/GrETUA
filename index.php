@@ -47,7 +47,6 @@
 		c5.7-32.7,22.3-57.9,50.6-74.7c13.2-8,27.2-15.2,41.9-19.8c30.8-9.6,28.3-31.7,25.1-39.6C191.9,11.2,182.8,5.5,177.5,3.7z"/>
                 </g>
             </svg>
-
         </div>
         <div class="pb-5">
             <h1 class="logintitulo mb-0">bem-vindo de volta.</h1>
@@ -56,7 +55,7 @@
         <form action="gretua.php">
             <div>
                 <div id="pwa" class="btn btn-grande btn-google w-100"><img
-                        src="img/g_logo.svg" class="logo">Iniciar sessão com o facebook</div>
+                        src="img/g_logo.svg" class="logo">Iniciar sessão com a Google</div>
             </div>
             <div class="row align-items-center py-3">
                 <div class="col-1">
