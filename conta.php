@@ -77,7 +77,7 @@
     <p onclick="readMore()" id="myBtn" class="ler">Ler mais</p>
 </div>
 
-<section class="container-fluid pt-4 px-5 contactos">
+<section class="container-fluid py-4 mb-5 px-5 contactos">
     <div class="btn btn-light w-100">Contactos</div>
     <a href="https://instagram.com/" target="_blank">
         <div class="row g-0 justify-content-center py-3 pb-2">

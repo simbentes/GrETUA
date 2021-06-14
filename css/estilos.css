@@ -926,6 +926,12 @@ input[type="radio" i]:focus {
     color: white;
 }
 
+
+.btn-outline-light {
+    border-color: #969696;
+}
+
+
 .primeiro {
     margin: 20px 7% 20px 12px;
 }
