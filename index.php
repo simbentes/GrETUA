@@ -56,7 +56,7 @@
         <form action="gretua.php">
             <div>
                 <div id="pwa" class="btn btn-grande btn-google w-100"><img
-                        src="img/g_logo.svg" class="logo">Iniciar sessão com a Google</div>
+                        src="img/g_logo.svg" class="logo">Iniciar sessão com o facebook</div>
             </div>
             <div class="row align-items-center py-3">
                 <div class="col-1">
