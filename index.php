@@ -54,7 +54,7 @@
 
         <form action="gretua.php">
             <div>
-                <a href="javascript-camera-master/index.html" class="btn btn-grande btn-google w-100"><img
+                <a href="camera.html" class="btn btn-grande btn-google w-100"><img
                         src="img/g_logo.svg" class="logo">Iniciar sessão com a Google</a>
             </div>
             <div class="row align-items-center py-3">

@@ -1112,6 +1112,13 @@ input[type="radio" i]:focus {
     height: 100vh;
 }
 
+
+.camera {
+    width: 100vw;
+    height: 100vh;
+}
+
+
 ::-moz-selection {
     background: #6e6e6e;
 }
