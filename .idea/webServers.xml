@@ -5,13 +5,6 @@
       <webServer id="f27fa226-d331-4443-b0e1-19f35565254b" name="ola" url="http://localhost/GrETUA">
         <fileTransfer accessType="LOCAL" port="0" />
       </webServer>
-      <webServer id="08eaad66-c414-44dc-bec2-9c15d4370d00" name="server lab" url="https://labmm.clients.ua.pt/deca_20L4/">
-        <fileTransfer rootFolder="/deca_20L4_03" host="labmm.clients.ua.pt" port="21">
-          <advancedOptions>
-            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
-          </advancedOptions>
-        </fileTransfer>
-      </webServer>
     </option>
   </component>
 </project>
