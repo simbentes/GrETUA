@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -18,7 +21,7 @@
             <img class="img-fluid rounded-circle" src="img/sikvi.jpg">
         </div>
         <div class="col-auto">
-            <h2 class="mb-0">Joana Silva</h2>
+            <h2 class="mb-0"><?= $_SESSION["nome"] ?></h2>
             <span class="badge bg-success">ENCENADORA</span>
         </div>
     </div>

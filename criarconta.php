@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -53,7 +56,7 @@
             <h1 class="logintitulo mb-0">vamos começar.</h1>
         </div>
 
-        <form action="gretua.php">
+        <form action="scripts/sc_user_register.php" method="post">
             <div>
                 <a href="gretua.php" class="btn btn-grande btn-google w-100" href="gretua.php"
                    value="Criar Conta"><img src="img/g_logo.svg" class="logo">Criar Conta com a Google</a>
@@ -66,17 +69,25 @@
                     <hr>
                 </div>
             </div>
-            <div class="mb-3">
-                <input type="text" class="form-control forminfo formlogin" placeholder="Nome" required>
+            <div class="row mb-3 g-2">
+                <div class="col">
+                    <input type="text" class="form-control forminfo formlogin" name="nome" placeholder="Nome" required>
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control forminfo formlogin" name="apelido" placeholder="Apelido"
+                           required>
+                </div>
             </div>
             <div class="mb-3">
-                <input type="email" class="form-control forminfo formlogin" placeholder="Email" required>
+                <input type="email" class="form-control forminfo formlogin" name="email" placeholder="Email" required>
             </div>
             <div class="mb-3">
-                <input type="password" class="form-control forminfo formlogin" placeholder="Password" required>
+                <input type="password" class="form-control forminfo formlogin" name="password" placeholder="Password"
+                       required>
             </div>
             <div class="mb-3">
-                <input type="password" class="form-control forminfo formlogin" placeholder="Confirmar Password"
+                <input type="password" class="form-control forminfo formlogin" name="password2"
+                       placeholder="Confirmar Password"
                        required>
             </div>
             <div>

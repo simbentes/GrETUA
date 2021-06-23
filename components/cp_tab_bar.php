@@ -23,7 +23,7 @@
         </a>
         <a class="col px-1" href="conta.php">
             <img class="rounded-circle fotoperfilnav " src="img/sikvi.jpg" alt="">
-            <div class="w-100 item-menu">Joana</div>
+            <div class="w-100 item-menu"><?= $_SESSION["nomeproprio"] ?></div>
         </a>
     </div>
 </div>
