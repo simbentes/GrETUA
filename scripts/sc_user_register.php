@@ -4,7 +4,7 @@ if (!empty($_POST['nome']) && !empty($_POST['apelido']) && !empty($_POST['passwo
 
     require_once "../connections/connection.php";
 
-    $fotoperfil = "angelica.jpg";
+    $fotoperfil = "default.png";
     $email = $_POST['email'];
 
     // Create a new DB connection
@@ -44,10 +44,10 @@ if (!empty($_POST['nome']) && !empty($_POST['apelido']) && !empty($_POST['passwo
 
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-            $query = "INSERT INTO utilizadores (nome, apelido, email, password, foto_perfil, data_criacao) VALUES (?,?,?,?,?, CURRENT_TIMESTAMP)";
+            $query = "INSERT INTO utilizadores (nome, apelido, email, password, foto_perfil, data_criacao) VALUES (?,?,?,?,'default.png', CURRENT_TIMESTAMP)";
 
             if (mysqli_stmt_prepare($stmt, $query)) {
-                mysqli_stmt_bind_param($stmt, 'sssss', $nome, $apelido, $email, $password, $fotoperfil);
+                mysqli_stmt_bind_param($stmt, 'ssss', $nome, $apelido, $email, $password);
 
 
                 // Devemos validar também o resultado do execute!
@@ -62,7 +62,7 @@ if (!empty($_POST['nome']) && !empty($_POST['apelido']) && !empty($_POST['passwo
                     $_SESSION["nomeproprio"] = $nome;
                     $_SESSION["nome"] = $nome . " " . $apelido;
                     $_SESSION["email"] = $email;
-                    $_SESSION["fperfil"] = $fotoperfil;
+                    $_SESSION["fperfil"] = "default.png";
                     header("Location: ../gretua.php");
                 } else {
                     echo $nome . "; " . $apelido . "; " . $email . "; " . $password;

@@ -247,6 +247,9 @@ nav a {
     width: 85%;
 }
 
+.confirmar-icon {
+    color: var(--cor-tema);
+}
 
 .comentar:focus {
     border: 1px var(--cor-tema) solid;
@@ -254,7 +257,6 @@ nav a {
     color: #FFF;
     box-shadow: none;
 }
-
 
 .tagmemoria {
     background-color: var(--cor-tema);
@@ -268,7 +270,6 @@ nav a {
     top: 0;
 }
 
-
 .pubfeed {
     border-radius: 8px;
     background-color: var(--pub-cor);
@@ -280,6 +281,13 @@ nav a {
     padding: 0.6rem;
 }
 
+
+.fotoperfil {
+    border-radius: 50rem;
+    object-fit: cover;
+    width: 100px;
+    height: 100px;
+}
 
 .tagpub {
     background-color: rgb(212, 40, 40);

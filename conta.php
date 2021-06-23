@@ -17,8 +17,8 @@ session_start();
 
 <section class="container pt-4">
     <div class="row justify-content-center align-items-center">
-        <div class="col-4">
-            <img class="img-fluid rounded-circle" src="img/sikvi.jpg">
+        <div class="col-auto">
+            <img class="img-fluid fotoperfil" src="img/<?= $_SESSION["fperfil"] ?>">
         </div>
         <div class="col-auto">
             <h2 class="mb-0"><?= $_SESSION["nome"] ?></h2>
@@ -27,9 +27,9 @@ session_start();
     </div>
 </section>
 <section class="container-fluid">
-    <div type="button" class="btn btn-outline-light w-100 editar-perfil">
+    <a href="editar-perfil.php" type="button" class="btn btn-outline-light w-100 editar-perfil">
         Editar perfil
-    </div>
+    </a>
 </section>
 <section class="py-3">
     <!--
