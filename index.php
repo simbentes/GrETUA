@@ -52,10 +52,11 @@
             <h1 class="logintitulo mb-0">bem-vindo de volta.</h1>
         </div>
 
-        <form action="gretua.php">
+        <form action="scripts/sc_user_login.php" method="post">
             <div>
-                <a href="gretua.php" class="btn btn-grande btn-google w-100"><img
-                            src="img/g_logo.svg" class="logo">Iniciar sessão com a Google</a>
+                <div class="btn btn-grande btn-google w-100"><img
+                            src="img/g_logo.svg" class="logo">Iniciar sessão com a Google
+                </div>
             </div>
             <div class="row align-items-center py-3">
                 <div class="col-1">
@@ -68,15 +69,15 @@
 
             <div class="mb-3">
                 <input type="email" class="form-control forminfo formlogin" id="formGroupExampleInput"
-                       placeholder="Email"
+                       placeholder="Email" name="email"
                        required>
             </div>
             <div class="mb-3">
                 <input type="password" class="form-control forminfo formlogin" id="formGroupExampleInput2"
-                       placeholder="Password" required>
+                       placeholder="Password" name="password" required>
             </div>
             <div>
-                <input type="submit" class="btn btn-grande w-100" href="index.html" value="Iniciar Sessão">
+                <input type="submit" class="btn btn-grande w-100" value="Iniciar Sessão">
             </div>
             <div class="pt-5 text-center msg-login">
                 <h6>Ainda não tens conta? <a href="criarconta.php"><strong>Criar Conta</strong></a></h6>

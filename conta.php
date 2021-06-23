@@ -154,7 +154,7 @@ session_start();
                 </a>
             </li>
             <li class="list-group-item">
-                <a href="index.php">
+                <a href="scripts/sc_logout.php">
                     <div class="row g-0 align-items-center justify-content-between">
                         <div class="col-auto">
                             <div class="row g-0 align-items-center">

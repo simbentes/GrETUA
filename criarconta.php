@@ -58,8 +58,9 @@ session_start();
 
         <form action="scripts/sc_user_register.php" method="post">
             <div>
-                <a href="gretua.php" class="btn btn-grande btn-google w-100" href="gretua.php"
-                   value="Criar Conta"><img src="img/g_logo.svg" class="logo">Criar Conta com a Google</a>
+                <div class="btn btn-grande btn-google w-100" href="gretua.php"
+                     value="Criar Conta"><img src="img/g_logo.svg" class="logo">Criar Conta com a Google
+                </div>
             </div>
             <div class="row align-items-center py-3">
                 <div class="col-1">
