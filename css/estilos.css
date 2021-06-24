@@ -276,6 +276,16 @@ nav a {
     width: 100% !important;
 }
 
+.uploadfotoperfil {
+    display: block;
+    box-shadow: rgba(0, 0, 0, 0.16) 0 2px 8px;
+    height: 100px;
+    width: 100px;
+    border-radius: 12px;
+    text-decoration: none;
+    background-color: var(--card-cor);
+}
+
 
 .pubfeed .card-body {
     padding: 0.6rem;

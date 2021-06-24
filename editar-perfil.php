@@ -32,7 +32,25 @@ session_start();
         <div class="row justify-content-center align-items-center">
             <div class="col-auto justify-content-center">
                 <div class="col text-center">
-                    <img class="img-fluid fotoperfil" src="img/<?= $_SESSION["fperfil"] ?>">
+                    <div class="form-group">
+                        <div id="upfoto" class="uploadfotoperfil position-relative">
+                            <label for="avatar" class="botaoupfoto" id="maquina">
+                                <i class="fas fa-camera iconedegrade bg-light"></i>
+                            </label>
+                            <input type="file" id="avatar" name="foto" accept="image/*"
+                                   onchange="loadFile(event)">
+                            <img src="img/capas/<?= $_SESSION["fperfil"] ?>" class="fotoperfil" id="output"/>
+                            <script>
+                                var loadFile = function (event) {
+                                    var output = document.getElementById('output');
+                                    output.src = URL.createObjectURL(event.target.files[0]);
+                                    output.onload = function () {
+                                        URL.revokeObjectURL(output.src) // free memory
+                                    }
+                                };
+                            </script>
+                        </div>
+                    </div>
                 </div>
                 <div class="col text-center">
                     <a href="#">Alterar foto de perfil</a>
