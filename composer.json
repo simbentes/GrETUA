@@ -1,0 +1,17 @@
+{
+    "name": "simbentes/gretua",
+    "autoload": {
+        "psr-4": {
+            "Simbentes\\Gretua\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "simbentes",
+            "email": "bentes@ua.pt"
+        }
+    ],
+    "require": {
+        "twbs/bootstrap": "^5.0"
+    }
+}
