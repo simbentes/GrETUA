@@ -6,8 +6,7 @@ coverage
 .cache
 dist
 lib
-.vscode/
-.idea/
+/.idea/
 *.min.js
 # Logs
 logs
