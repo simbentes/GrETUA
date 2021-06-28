@@ -49,6 +49,13 @@ body {
     margin-bottom: 10px;
 }
 
+.fotoperfilinput {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50rem;
+}
+
 
 textarea {
     resize: none;
@@ -56,6 +63,15 @@ textarea {
 
 nav a {
     text-decoration: none;
+}
+
+
+input[type='file'] {
+    display: none;
+}
+
+.upfoto input {
+    display: none;
 }
 
 .list-group-item {
@@ -281,8 +297,9 @@ nav a {
     box-shadow: rgba(0, 0, 0, 0.16) 0 2px 8px;
     height: 100px;
     width: 100px;
-    border-radius: 12px;
+    border-radius: 50rem;
     text-decoration: none;
+    margin: auto;
     background-color: var(--card-cor);
 }
 
@@ -923,6 +940,7 @@ input[type="radio" i]:focus {
     white-space: nowrap;
     height: auto;
     direction: rtl;
+    z-index: 9999;
 }
 
 
@@ -963,6 +981,7 @@ input[type="radio" i]:focus {
     bottom: 106px;
     left: 0;
     right: 0;
+    z-index: -3000;
 }
 
 .memoria p {
@@ -1035,6 +1054,22 @@ input[type="radio" i]:focus {
     margin: 0;
     cursor: pointer;
 }
+
+.botaoupfotoperfil {
+    color: #242424;
+    font-size: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 16px 25px 16px 25px;
+    margin: 0;
+    cursor: pointer;
+}
+
 
 .modal-content {
     background-color: var(--menu-cor);
