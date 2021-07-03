@@ -10,8 +10,5 @@
             "name": "simbentes",
             "email": "bentes@ua.pt"
         }
-    ],
-    "require": {
-        "twbs/bootstrap": "^5.0"
-    }
+    ]
 }
