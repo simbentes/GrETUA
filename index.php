@@ -1,7 +1,8 @@
+<?php require "vendor/autoload.php" ?>
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-    <?php require_once "vendor/autoload.php" ?>
     <?php include_once "helpers/help_meta.php" ?>
     <?php include_once "helpers/help_link.php" ?>
     <title>GrETUA</title>
