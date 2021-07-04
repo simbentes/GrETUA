@@ -144,44 +144,6 @@ $userid = $_SESSION['id_user'];
         <div class="pb-4">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
-                    <a href="reservas.php">
-                        <div class="row g-0 align-items-center justify-content-between">
-                            <div class="col-auto">
-                                <div class="row g-0 align-items-center">
-                                    <div class="col-auto pe-2">
-                                        <i class="bi bi-pen h1"></i>
-                                    </div>
-                                    <div class="col-auto mb-1">
-                                        Reservas
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="bi bi-chevron-right h6"></i>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="osmeuseventos.php">
-                        <div class="row g-0 align-items-center justify-content-between">
-                            <div class="col-auto">
-                                <div class="row g-0 align-items-center">
-                                    <div class="col-auto pe-2">
-                                        <i class="bi bi-calendar-check h1"></i>
-                                    </div>
-                                    <div class="col-auto mb-1">
-                                        Os meus eventos
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="bi bi-chevron-right h6"></i>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li class="list-group-item">
                     <a href="scripts/sc_logout.php">
                         <div class="row g-0 align-items-center justify-content-between">
                             <div class="col-auto">
