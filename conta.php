@@ -14,7 +14,6 @@ session_start();
         <i class="bi bi-three-dots-vertical h2"></i>
     </button>
 </div>
-
 <section class="container pt-4">
     <div class="row justify-content-center align-items-center">
         <div class="col-auto">
@@ -27,7 +26,7 @@ session_start();
     </div>
 </section>
 <section class="container-fluid">
-    <a href="editar-perfil.php" type="button" class="btn btn-outline-light w-100 editar-perfil">
+    <a href="editar-perfil.php" class="btn btn-outline-light w-100 editar-perfil">
         Editar perfil
     </a>
 </section>
