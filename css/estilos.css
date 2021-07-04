@@ -417,6 +417,11 @@ input[type='file'] {
     padding: 3px 0;
 }
 
+.btn-outline-light:hover {
+    color: #f8f9fa;
+    background-color: transparent;
+    border-color: #969696;
+}
 
 #more {
     display: none;
