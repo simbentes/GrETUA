@@ -27,7 +27,6 @@
             if (mysqli_stmt_num_rows($stmt) == 0) {
                 echo "<div class='col-12 py-5 mb-5'><h1>Não tens eventos guardados.</h1></div>";
             } else {
-
                 while (mysqli_stmt_fetch($stmt)) {
                     ?>
                     <div class="col-12 py-3">
@@ -56,7 +55,6 @@
                     <?php
                 }
             }
-
         } else {
             echo "Error: " . mysqli_error($link);
         }
