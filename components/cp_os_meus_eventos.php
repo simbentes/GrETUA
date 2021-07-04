@@ -49,19 +49,22 @@
                             <div class="col-auto">
                                 <?php
 
-                                $query = "SELECT COUNT(eventos_guardados_vou.vou) FROM `eventos_guardados_vou` WHERE eventos_guardados_vou.ref_id_evento =" . $id_evento;
+                                $query = "SELECT COUNT(vou) FROM `eventos_guardados_vou` WHERE vou = 1 AND eventos_guardados_vou.ref_id_evento =" . $id_evento;
 
                                 if (mysqli_stmt_prepare($stmt, $query)) {
 
                                     mysqli_stmt_execute($stmt);
                                     mysqli_stmt_bind_result($stmt, $n_pessoas);
-                                    mysqli_stmt_fetch($stmt);
 
-                                    if (isset($n_pessoas)) {
-                                        echo '<h3 class="mb-0 ps-2">' . $n_pessoas . ' pessoas vão</h3>';
-
+                                    if (mysqli_stmt_fetch($stmt)) {
+                                        if ($n_pessoas == 1) {
+                                            $texto = "pessoa vai";
+                                        } else {
+                                            $texto = "pessoas vão";
+                                        }
+                                        echo '<h3 class="mb-0 ps-2">' . $n_pessoas . ' ' . $texto . '</h3>';
                                     } else {
-                                        echo "erro";
+                                        echo "Error: " . mysqli_stmt_error($stmt);
                                     }
 
                                 } else {
@@ -90,3 +93,6 @@
     </div>
 
 </section>
+
+
+

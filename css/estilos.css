@@ -295,13 +295,25 @@ input[type='file'] {
 .uploadfotoperfil {
     display: block;
     box-shadow: rgba(0, 0, 0, 0.16) 0 2px 8px;
-    height: 100px;
-    width: 100px;
     border-radius: 50rem;
     text-decoration: none;
     margin: auto;
-    background-color: var(--card-cor);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 .pubfeed .card-body {
@@ -1166,6 +1178,38 @@ input[type="radio" i]:focus {
 .formlogin {
     height: calc(1.2em + 1.8rem + 2px);
     border-radius: 10px;
+}
+
+.formconta {
+    height: calc(1em + 1.8rem + 2px);
+    font-size: 16px;
+    border-radius: 8px;
+}
+
+
+
+
+.tainfo {background-color: var(--menu-cor);
+    color: #FFF;
+    font-size: 1.1rem;
+    width: 100% !important;
+    border-radius: 12px;
+    border: 0;
+    box-shadow: rgba(0, 0, 0, 0.16) 0 2px 8px;
+}
+
+.tainfo:focus {
+    border: 1px var(--cor-tema) solid;
+    background-color: var(--menu-cor);
+    color: #FFF;
+    box-shadow: none;
+}
+
+
+
+.taconta {
+    font-size: 16px;
+    border-radius: 8px;
 }
 
 
