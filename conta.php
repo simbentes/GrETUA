@@ -35,9 +35,7 @@ $userid = $_SESSION['id_user'];
         </a>
     </section>
     <section class="py-3">
-        <!--
-        <div class="text-center small">MEMBRO DESDE</div>
-    -->
+
         <div>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 483.12 27.37">
                 <defs>
