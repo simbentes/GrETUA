@@ -14,11 +14,11 @@ $userid = $_SESSION['id_user'];
 <body>
     <div class="botaoperfil">
         <button type="button" class="btn btn-transparente" id="botaoperfil">
-            <i class="bi bi-three-dots-vertical h2"></i>
+            <i class="bi bi-list h1"></i>
         </button>
     </div>
 
-    <section class="container pt-4">
+    <section class="container pt-5">
         <div class="row justify-content-center align-items-center">
             <div class="col-auto">
                 <img class="img-fluid fotoperfil" src="img/<?= $_SESSION["fperfil"] ?>">
@@ -34,6 +34,9 @@ $userid = $_SESSION['id_user'];
             Editar perfil
         </a>
     </section>
+
+
+
     <section class="py-3">
 
         <div>
@@ -66,10 +69,51 @@ $userid = $_SESSION['id_user'];
                 </g>
             </svg>
         </div>
-        <h5 class="pt-1 text-center">17 abril 2021</h5>
+        <h5 class="pt-1 text-center mb-0">17 abril 2021</h5>
     </section>
 
-
+    <section class="container-fluid pb-3">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <a href="reservas.php">
+                    <div class="row g-0 align-items-center justify-content-between">
+                        <div class="col-auto">
+                            <div class="row g-0 align-items-center">
+                                <div class="col-auto pe-2">
+                                    <i class="bi bi-pen h1"></i>
+                                </div>
+                                <div class="col-auto mb-1">
+                                    Reservas
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="bi bi-chevron-right h6"></i>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            <li class="list-group-item">
+                <a href="osmeuseventos.php">
+                    <div class="row g-0 align-items-center justify-content-between">
+                        <div class="col-auto">
+                            <div class="row g-0 align-items-center">
+                                <div class="col-auto pe-2">
+                                    <i class="bi bi-calendar-check h1"></i>
+                                </div>
+                                <div class="col-auto mb-1">
+                                    Os meus eventos
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="bi bi-chevron-right h6"></i>
+                        </div>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </section>
     <section class="container-fluid">
         <div class="evento-text"></div>
 
@@ -84,28 +128,10 @@ $userid = $_SESSION['id_user'];
         <p onclick="readMore()" id="myBtn" class="ler">Ler mais</p>
     </div>
 
-    <hr class="solid">
 
-    <section class="container-fluid pt-3 pb-2  ">
-        <div class="row  align-items-center">
 
-            <div class="col-auto ">
-                <h3 class="mb-0 pb-0">Os meus eventos</h3>
-            </div>
-        </div>
-        <?php include_once "components/cp_os_meus_eventos.php" ?>
-    </section>
 
-    <section class="container-fluid pt-3 pb-2 px-3 ">
-        <div class="row gx-0 align-items-center">
-            <div class="col-auto ">
-                <h3 class="mb-0">Reservas</h3>
-            </div>
-        </div>
-        <?php include_once "components/cp_reservas.php" ?>
-    </section>
 
-    <hr class="solid">
     <section class="container-fluid py-4 mb-5 px-5 contactos">
         <div class="btn btn-light w-100">Contactos</div>
         <a href="https://instagram.com/" target="_blank">

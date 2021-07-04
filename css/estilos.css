@@ -312,8 +312,8 @@ input[type='file'] {
 .fotoperfil {
     border-radius: 50rem;
     object-fit: cover;
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
 }
 
 .tagpub {
