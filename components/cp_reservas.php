@@ -10,9 +10,9 @@
         $stmt = mysqli_stmt_init($link);
 
         $query = "SELECT eventos.id_evento, eventos.data_evento, eventos.nome FROM eventos
-                            INNER JOIN eventos_guardados_vou
-                            ON eventos.id_evento = eventos_guardados_vou.ref_id_evento
-                            WHERE eventos_guardados_vou.guardados = 1 AND eventos_guardados_vou.ref_id_utilizador = " . $userid;
+                            INNER JOIN reservas
+                            ON eventos.id_evento = reservas.ref_id_evento
+                            WHERE reservas.ref_id_utilizador = " . $userid;
 
         if (mysqli_stmt_prepare($stmt, $query)) {
 
@@ -25,7 +25,7 @@
             mysqli_stmt_store_result($stmt);
 
             if (mysqli_stmt_num_rows($stmt) == 0) {
-                echo "Ainda sem eventos guardados";
+                echo "Ainda sem reservas efetuadas";
             } else {
                 while (mysqli_stmt_fetch($stmt)) {
         ?>
