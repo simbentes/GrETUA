@@ -189,67 +189,78 @@ if (mysqli_stmt_prepare($stmt, $query)) {
         <div class="container-fluid py-3">
             <h3>Os meus eventos</h3>
         </div>
-        <section class="container-fluid pb-3 px-0">
-            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <a href="evento.php">
-                            <div class="eventoperfil">
-                                <img class="img-fluid img-evento" src="img/ruinas3.jpg">
-                                <div class="desc-evento container-fluid">
-                                    <h6 class="top-right">Ruínas</h6>
-                                    <div class="row">
-                                        <div class="col text-cinza">28 abril</div>
-                                        <div class="col text-cinza text-center">22h30</div>
-                                        <div class="col text-cinza text-end">teatro</div>
-                                    </div>
+
+
+
+
+
+
+
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <a href="evento.php">
+                        <div class="eventoperfil">
+                            <img class="img-fluid img-evento" src="img/ruinas3.jpg">
+                            <div class="desc-evento container-fluid">
+                                <h6 class="top-right">Ruínas</h6>
+                                <div class="row">
+                                    <div class="col text-cinza">28 abril</div>
+                                    <div class="col text-cinza text-center">22h30</div>
+                                    <div class="col text-cinza text-end">teatro</div>
                                 </div>
                             </div>
-                        </a>
-                    </div>
-                    <div class="carousel-item justify-content-center">
-                        <a href="evento.php">
-                            <div class="eventoperfil">
-                                <img class="img-fluid img-evento" src="img/palmieres.jpg">
-                                <div class="desc-evento container-fluid">
-                                    <h6 class="top-right">P A L M I E R E S</h6>
-                                    <div class="row">
-                                        <div class="col text-cinza">1 junho</div>
-                                        <div class="col text-cinza text-center">22h30</div>
-                                        <div class="col text-cinza text-end">concerto</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="carousel-item">
-                        <a href="evento.php">
-                            <div class="eventoperfil">
-                                <img class="img-fluid img-evento" src="img/ninguem.jpg">
-                                <div class="desc-evento container-fluid">
-                                    <h6 class="top-right">Ninguém, de Deeogo Oliveira</h6>
-                                    <div class="row">
-                                        <div class="col text-cinza">8 junho</div>
-                                        <div class="col text-cinza text-center">22h30</div>
-                                        <div class="col text-cinza text-end">concerto</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                        </div>
+                    </a>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                        data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                        data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+                <div class="carousel-item justify-content-center">
+                    <a href="evento.php">
+                        <div class="eventoperfil">
+                            <img class="img-fluid img-evento" src="img/palmieres.jpg">
+                            <div class="desc-evento container-fluid">
+                                <h6 class="top-right">P A L M I E R E S</h6>
+                                <div class="row">
+                                    <div class="col text-cinza">1 junho</div>
+                                    <div class="col text-cinza text-center">22h30</div>
+                                    <div class="col text-cinza text-end">concerto</div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="carousel-item">
+                    <a href="evento.php">
+                        <div class="eventoperfil">
+                            <img class="img-fluid img-evento" src="img/ninguem.jpg">
+                            <div class="desc-evento container-fluid">
+                                <h6 class="top-right">Ninguém, de Deeogo Oliveira</h6>
+                                <div class="row">
+                                    <div class="col text-cinza">8 junho</div>
+                                    <div class="col text-cinza text-center">22h30</div>
+                                    <div class="col text-cinza text-end">concerto</div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
-        </section>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         <section id="perfilbottom" class="perfil-bottom container">

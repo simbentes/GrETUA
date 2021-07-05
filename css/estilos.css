@@ -59,6 +59,16 @@ body {
 }
 
 
+.carrossel a {
+    color: white;
+}
+
+.carrossel h6 {
+    font-weight: 600;
+    font-size: 22px;
+}
+
+
 .caixaalert {
     position: fixed;
     bottom: 55px;
