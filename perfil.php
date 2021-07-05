@@ -2,7 +2,7 @@
 session_start();
 if (!isset($_SESSION['id_user'])) {
     header("Location: index.php");
-} else {
+}
     ?>
     <!DOCTYPE html>
     <html lang="pt">
@@ -27,6 +27,3 @@ if (!isset($_SESSION['id_user'])) {
     </body>
 
     </html>
-    <?php
-}
-?>

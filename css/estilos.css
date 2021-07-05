@@ -51,6 +51,19 @@ body {
     border-radius: 50rem;
 }
 
+.alert {
+    z-index: 999999999999999999;
+    border-radius: 5px;
+    text-align: center;
+    padding: 0.5rem 1rem;
+}
+
+
+.caixaalert {
+    position: fixed;
+    bottom: 55px;
+}
+
 
 textarea {
     resize: none;

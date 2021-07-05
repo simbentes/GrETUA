@@ -21,6 +21,37 @@ if (mysqli_stmt_prepare($stmt, $query)) {
 
 
     if (mysqli_stmt_fetch($stmt)) {
+
+        if (isset($_GET["msg"])) {
+            $msg_show = true;
+            switch ($_GET["msg"]) {
+                case 0:
+                    $message = "Alterações efetuadas.";
+                    $class = "alert-success";
+                    break;
+                case 1:
+                    $message = "Estão efetuadas.";
+                    $class = "alert-danger";
+                    break;
+                case 2:
+                    $message = "Descrição muito longa.";
+                    $class = "alert-danger";
+                    break;
+                default:
+                    $msg_show = false;
+            }
+
+            echo '<div class="container-fluid caixaalert"><div class="row justify-content-center"><div class="col-auto"><div id="aviso" class="alert ' . $class . ' alert-dismissible fade show" role="alert">' . $message . '</div></div></div></div>';
+            if ($msg_show) {
+                echo "<script>
+            setTimeout(function () {
+                var myAlert = document.getElementById('aviso')
+                var bsAlert = new bootstrap.Alert(myAlert)
+                bsAlert.close()
+            }, 3000)
+        </script>";
+            }
+        }
         ?>
         <section class="container-fluid pt-2 maisconta">
             <div class="row justify-content-end g-0">
