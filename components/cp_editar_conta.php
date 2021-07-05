@@ -110,7 +110,7 @@ if (mysqli_stmt_prepare($stmt, $query)) {
                                 <label for="biografia" class="mb-1">Biografia</label>
                                 <textarea class="form-control tainfo taconta" id="biografia" rows="4"><?= $biografia ?></textarea>
                             </div>
-                            <hr>
+                            <hr class="my-3">
                             <div class="mb-3">
                                 <label for="instagram" class="mb-1">Instagram <small>(username)</small></label>
                                 <input type="text" class="form-control forminfo formconta" id="instagram"

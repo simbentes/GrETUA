@@ -29,7 +29,7 @@ session_start();
         </div>
 
     </section>
-    <?php include_once "components/cp_editar_perfil.php" ?>
+    <?php include_once "components/cp_editar_conta.php" ?>
 
 </main>
 <?php include_once "components/cp_tab_bar.php" ?>

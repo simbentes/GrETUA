@@ -22,16 +22,7 @@ if (mysqli_stmt_prepare($stmt, $query)) {
 
     if (mysqli_stmt_fetch($stmt)) {
         ?>
-        <section class="container-fluid pt-2 maisconta">
-            <div class="row justify-content-end g-0">
-                <div class="col-auto botaoperfil">
-                    <button type="button" class="btn btn-transparente" id="botaoperfil">
-                        <i class="bi bi-list h1"></i>
-                    </button>
-                </div>
-            </div>
-        </section>
-        <section class="container-fluid perfiluser">
+        <section class="container-fluid perfil">
             <div class="row justify-content-center align-items-center">
                 <div class="col-auto">
                     <img class="img-fluid fotoperfil" src="img/<?= $_SESSION["fperfil"] ?>">
@@ -64,12 +55,6 @@ if (mysqli_stmt_prepare($stmt, $query)) {
                     </a>
                 </div>
             </div>
-            <div>
-                <a href="editar-perfil.php" type="button" class="btn btn-outline-light w-100 editar-perfil">
-                    Editar perfil
-                </a>
-            </div>
-
         </section>
 
 
