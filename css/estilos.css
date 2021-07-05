@@ -59,11 +59,11 @@ body {
 }
 
 
-.carrossel a {
+.swiper-slide a {
     color: white;
 }
 
-.carrossel h6 {
+.swiper-slide h6 {
     font-weight: 600;
     font-size: 22px;
 }
