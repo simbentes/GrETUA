@@ -191,14 +191,10 @@ if (mysqli_stmt_prepare($stmt, $query)) {
         </div>
 
 
-
-
-
-
-
-        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
+        <!-- Swiper -->
+        <div class="swiper-container mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
                     <a href="evento.php">
                         <div class="eventoperfil">
                             <img class="img-fluid img-evento" src="img/ruinas3.jpg">
@@ -213,7 +209,7 @@ if (mysqli_stmt_prepare($stmt, $query)) {
                         </div>
                     </a>
                 </div>
-                <div class="carousel-item justify-content-center">
+                <div class="swiper-slide">
                     <a href="evento.php">
                         <div class="eventoperfil">
                             <img class="img-fluid img-evento" src="img/palmieres.jpg">
@@ -228,7 +224,7 @@ if (mysqli_stmt_prepare($stmt, $query)) {
                         </div>
                     </a>
                 </div>
-                <div class="carousel-item">
+                <div class="swiper-slide">
                     <a href="evento.php">
                         <div class="eventoperfil">
                             <img class="img-fluid img-evento" src="img/ninguem.jpg">
@@ -244,23 +240,21 @@ if (mysqli_stmt_prepare($stmt, $query)) {
                     </a>
                 </div>
             </div>
+            <div class="swiper-scrollbar"></div>
         </div>
 
+        <!-- Swiper JS -->
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        <!-- Initialize Swiper -->
+        <script>
+            var swiper = new Swiper(".mySwiper", {
+                scrollbar: {
+                    el: ".swiper-scrollbar",
+                    hide: true,
+                },
+            });
+        </script>
 
 
         <section id="perfilbottom" class="perfil-bottom container">
