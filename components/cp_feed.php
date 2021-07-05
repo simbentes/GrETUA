@@ -49,7 +49,7 @@
                         <hr>
                         <div class="row row-cols-auto">
                             <div class="col pe-0">
-                                <img src="img/sikvi.jpg" class="userbubble">
+                                <img src="img/users/sikvi.jpg" class="userbubble">
                             </div>
 
                             <div class="col comentarform">
@@ -92,7 +92,7 @@
                     <div class="row row-cols-auto justify-content-between">
                         <div class="col">
                             <div class="infouser">
-                                <img src="img/joaoalves.jpg" class="userbubble">
+                                <img src="img/users/joaoalves.jpg" class="userbubble">
                                 <span class="utilizador">João Alves</span>
                             </div>
                         </div>

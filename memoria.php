@@ -70,7 +70,7 @@ session_start();
                             <div class="row row-cols-auto justify-content-between">
                                 <div class="col">
                                     <div class="infouser">
-                                        <img src="img/espacos_gretua_2.jpg" class="userbubble">
+                                        <img src="img/users/espacos_gretua_2.jpg" class="userbubble">
                                         <span class="utilizador">José Manuel</span>
                                     </div>
                                 </div>
@@ -91,7 +91,7 @@ session_start();
                             <hr>
                             <div class="row row-cols-auto">
                                 <div class="col pe-0">
-                                    <img src="img/sikvi.jpg" class="userbubble">
+                                    <img src="img/users/sikvi.jpg" class="userbubble">
                                 </div>
 
                                 <div class="col comentarform">
@@ -110,7 +110,7 @@ session_start();
                             <div class="row row-cols-auto justify-content-between">
                                 <div class="col">
                                     <div class="infouser">
-                                        <img src="img/joaoalves.jpg" class="userbubble">
+                                        <img src="img/users/joaoalves.jpg" class="userbubble">
                                         <span class="utilizador">João Alves</span>
                                     </div>
                                 </div>
@@ -131,7 +131,7 @@ session_start();
                             <hr>
                             <div class="row row-cols-auto">
                                 <div class="col pe-0">
-                                    <img src="img/sikvi.jpg" class="userbubble">
+                                    <img src="img/users/sikvi.jpg" class="userbubble">
                                 </div>
 
                                 <div class="col comentarform">
