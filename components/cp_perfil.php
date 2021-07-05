@@ -13,7 +13,7 @@ if (isset($_GET["id"])) {
         $stmt = mysqli_stmt_init($link);
 
         //posso concatenar, visto que o parametro não foi colocado pelo user
-        $query = "SELECT utilizadores.nome, utilizadores.apelido, foto_perfil, utilizadores.descricao, conta_instagram, conta_whatsapp
+        $query = "SELECT utilizadores.nome, utilizadores.apelido, foto_perfil, utilizadores.descricao, conta_instagram, conta_whatsapp, DATE_FORMAT(DATE(data_criacao), '%d%m%Y')
 FROM `utilizadores`
 WHERE id_utilizadores = ?";
 
@@ -25,10 +25,55 @@ WHERE id_utilizadores = ?";
             mysqli_stmt_execute($stmt);
 
             /* bind result variables */
-            mysqli_stmt_bind_result($stmt, $nome, $apelido, $foto_perfil, $biografia, $instagram, $whatsapp);
+            mysqli_stmt_bind_result($stmt, $nome, $apelido, $foto_perfil, $biografia, $instagram, $whatsapp, $data_criacao);
 
 
             if (mysqli_stmt_fetch($stmt)) {
+                //vamos subtituir o mês de numerico para escrito
+                switch (substr($data_criacao, 2, 2)) {
+                    case "01":
+                        $mes = " janeiro ";
+                        break;
+                    case "02":
+                        $mes = " fevereiro ";
+                        break;
+                    case "03":
+                        $mes = " março ";
+                        break;
+                    case "04":
+                        $mes = " abril ";
+                        break;
+                    case "05":
+                        $mes = " maio ";
+                        break;
+                    case "06":
+                        $mes = " junho ";
+                        break;
+                    case "07":
+                        $mes = " julho ";
+                        break;
+                    case "08":
+                        $mes = " agosto ";
+                        break;
+                    case "09":
+                        $mes = " setembro";
+                        break;
+                    case "10":
+                        $mes = " outubro";
+                        break;
+                    case "11":
+                        $mes = " novembro";
+                        break;
+                    case "12":
+                        $mes = " dezembro";
+                        break;
+                    default:
+                        $data_mes_criacao = "";
+                }
+
+                //substituir pelo  mês correspondente
+                //não consegui arranjar outra forma....
+                $data_mes_criacao = substr_replace($data_criacao, $mes, 2, 2);
                 ?>
                 <section class="container-fluid perfil">
                     <div class="row justify-content-center align-items-center">
@@ -98,7 +143,7 @@ WHERE id_utilizadores = ?";
                             </g>
                         </svg>
                     </div>
-                    <h5 class="pt-1 text-center mb-0">17 abril 2021</h5>
+                    <h5 class="pt-1 text-center mb-0"><?= $data_mes_criacao ?></h5>
                 </section>
                 <div class="container-fluid py-3">
                     <h3>Eventos a que fui</h3>
