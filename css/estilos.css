@@ -143,7 +143,7 @@ input[type='file'] {
 }
 
 
-.biografia{
+.biografia {
     font-size: 13.5px;
 }
 
@@ -302,21 +302,6 @@ input[type='file'] {
     text-decoration: none;
     margin: auto;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 .pubfeed .card-body {
@@ -518,6 +503,14 @@ input[type='file'] {
     padding: 0 50px;
     font-weight: 500;
 }
+
+.miniaturafoto {
+    width: 100%;
+    height: calc(100vw / 2.4);
+    object-fit: cover;
+
+}
+
 
 .btn-seguir:hover {
     background-color: var(--cor-tema);
@@ -783,8 +776,6 @@ a:hover {
 }
 
 
-
-
 .labelfotoperfil {
     color: var(--cor-tema);
 }
@@ -911,14 +902,13 @@ a:hover {
     background-color: var(--bkg-cor);
 }
 
-.perfil{
+.perfil {
     padding-top: 36px;
 }
 
 .perfiluser {
     padding-top: 60px;
 }
-
 
 
 .eventoperfil {
@@ -1251,9 +1241,8 @@ input[type="radio" i]:focus {
 }
 
 
-
-
-.tainfo {background-color: var(--menu-cor);
+.tainfo {
+    background-color: var(--menu-cor);
     color: #FFF;
     font-size: 1.1rem;
     width: 100% !important;
@@ -1268,7 +1257,6 @@ input[type="radio" i]:focus {
     color: #FFF;
     box-shadow: none;
 }
-
 
 
 .taconta {

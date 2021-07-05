@@ -157,71 +157,20 @@ if (mysqli_stmt_prepare($stmt, $query)) {
             </div>
         </section>
 
-
-        <section id="perfilbottom" class="perfil-bottom container">
-            <div class="pb-4">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                        <a href="reservas.php">
-                            <div class="row g-0 align-items-center justify-content-between">
-                                <div class="col-auto">
-                                    <div class="row g-0 align-items-center">
-                                        <div class="col-auto pe-2">
-                                            <i class="bi bi-pen h1"></i>
-                                        </div>
-                                        <div class="col-auto mb-1">
-                                            Reservas
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <i class="bi bi-chevron-right h6"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="osmeuseventos.php">
-                            <div class="row g-0 align-items-center justify-content-between">
-                                <div class="col-auto">
-                                    <div class="row g-0 align-items-center">
-                                        <div class="col-auto pe-2">
-                                            <i class="bi bi-calendar-check h1"></i>
-                                        </div>
-                                        <div class="col-auto mb-1">
-                                            Os meus eventos
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <i class="bi bi-chevron-right h6"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="list-group-item">
-                        <a href="scripts/sc_logout.php">
-                            <div class="row g-0 align-items-center justify-content-between">
-                                <div class="col-auto">
-                                    <div class="row g-0 align-items-center">
-                                        <div class="col-auto pe-2">
-                                            <i class="bi bi-box-arrow-right h1"></i>
-                                        </div>
-                                        <div class="col-auto mb-1">
-                                            Terminar Sessão
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-auto">
-                                    <i class="bi bi-chevron-right h6"></i>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-                </ul>
+        <!--<section class="container-fluid px-1 pt-3 pb-5">
+            <div class="row g-1 pb-3">
+                <div class="col-4">
+                    <img class="miniaturafoto" src="img/jam.jpeg">
+                </div>
+                <div class="col-4">
+                    <img class="miniaturafoto" src="img/ruinas3.jpg">
+                </div>
+                <div class="col-4">
+                    <img class="miniaturafoto" src="img/jose_valente.jpg">
+                </div>
             </div>
-        </section>
+        </section>-->
+
 
 
         <?php

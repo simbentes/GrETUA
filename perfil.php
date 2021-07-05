@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['id_user'])) {
-    header("Location: gretua.php");
+    header("Location: index.php");
 } else {
     ?>
     <!DOCTYPE html>
