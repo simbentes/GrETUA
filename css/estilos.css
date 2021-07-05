@@ -78,6 +78,7 @@ input[type='file'] {
 
 
 .fotoperfilnav {
+    object-fit: cover;
     height: 32px;
     width: 32px;
 }

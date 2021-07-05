@@ -22,45 +22,68 @@ if (mysqli_stmt_prepare($stmt, $query)) {
 
     if (mysqli_stmt_fetch($stmt)) {
         ?>
-        <section class="py-4 container-fluid px-3 menu_perfil">
-            <section class="container pt-2">
-                <div class="row justify-content-center align-items-center">
-                    <div class="col-12">
-                        <div>
-                            <?php
-                            if (isset($_GET["msg"])) {
-                                $msg_show = true;
-                                switch ($_GET["msg"]) {
-                                    case 0:
-                                        $message = "Password errada";
-                                        $class = "alert-danger";
-                                        break;
-                                    case 1:
-                                        $message = "Alterações efetuadas.";
-                                        $class = "alert-success";
-                                        break;
-                                    case 2:
-                                        $message = "Morada mal preenchida.";
-                                        $class = "alert-danger";
-                                        break;
-                                    default:
-                                        $msg_show = false;
-                                }
+        <form action="scripts/sc_editar_info_conta.php" method="post" enctype="multipart/form-data" class="px-0">
 
-                                echo "<div class=\"alert $class alert-dismissible fade show\" role=\"alert\">
+            <section class="container-fluid pt-3 pb-2 px-3 topindexmenu">
+                <div class="row align-content-center justify-content-between">
+                    <div class="col-auto">
+                        <div class="row gx-0 align-items-center">
+                            <div class="col-auto">
+                                <a href="conta.php" class="text-white"><i
+                                            class="bi bi-chevron-left p-1 mb-0 h5"></i></a>
+                            </div>
+                            <div class="col-auto ps-3">
+                                <h3 class="mb-0">Editar Perfil</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn p-0">
+                            <i class="bi bi-check2 confirmar-icon p-1 mb-0 h2"></i>
+                        </button>
+                    </div>
+
+                </div>
+
+            </section>
+            <section class="py-4 container-fluid menu_perfil">
+                <section class="container pt-2">
+                    <div class="row justify-content-center align-items-center">
+                        <div class="col-12">
+                            <div>
+                                <?php
+                                if (isset($_GET["msg"])) {
+                                    $msg_show = true;
+                                    switch ($_GET["msg"]) {
+                                        case 0:
+                                            $message = "Password errada";
+                                            $class = "alert-danger";
+                                            break;
+                                        case 1:
+                                            $message = "Alterações efetuadas.";
+                                            $class = "alert-success";
+                                            break;
+                                        case 2:
+                                            $message = "Morada mal preenchida.";
+                                            $class = "alert-danger";
+                                            break;
+                                        default:
+                                            $msg_show = false;
+                                    }
+
+                                    echo "<div class=\"alert $class alert-dismissible fade show\" role=\"alert\">
 " . $message . "
   <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
     <span aria-hidden=\"true\">&times;</span>
   </button>
 </div>";
-                                if ($msg_show) {
-                                    echo '<script>window.onload=function (){$(\'.alert\').alert();}</script>';
+                                    if ($msg_show) {
+                                        echo '<script>window.onload=function (){$(\'.alert\').alert();}</script>';
+                                    }
                                 }
-                            }
-                            ?>
+                                ?>
+                            </div>
                         </div>
-                    </div>
-                    <form action="scripts/sc_user_register.php" method="post" class="px-0">
                         <div class="col-auto pb-4">
                             <div class="row">
                                 <div class="col text-center">
@@ -68,7 +91,7 @@ if (mysqli_stmt_prepare($stmt, $query)) {
                                         <div class="form-group">
                                             <div id="upfoto" class="uploadfotoperfil position-relative">
                                                 <label for="avatar" id="maquina">
-                                                    <img src="img/<?= $foto_perfil ?>" class="fotoperfilinput"
+                                                    <img src="img/users/<?= $foto_perfil ?>" class="fotoperfilinput"
                                                          id="output"/>
                                                 </label>
                                                 <input type="file" id="avatar" name="foto" accept="image/*"
@@ -108,7 +131,25 @@ if (mysqli_stmt_prepare($stmt, $query)) {
                             </div>
                             <div class="mb-3">
                                 <label for="biografia" class="mb-1">Biografia</label>
-                                <textarea class="form-control tainfo taconta" id="biografia" rows="4"><?= $biografia ?></textarea>
+                                <textarea class="form-control tainfo taconta" name="biografia" id="biografia" rows="5"
+                                          onkeydown="caixatexto()"><?= $biografia ?></textarea>
+                                <div class="text-end"><small id="nchar"></small></div>
+                                <script>
+                                    window.onload = function () {
+                                        caixatexto()
+                                    }
+                                    var caixatexto = function (event) {
+                                        var texto = document.getElementById('biografia').value;
+                                        var resultado = 200 - texto.length
+
+                                        if (resultado < 0) {
+                                            document.getElementById('nchar').style.color = "#f13e3e";
+                                        } else {
+                                            document.getElementById('nchar').style.color = "white";
+                                        }
+                                        document.getElementById('nchar').innerHTML = resultado;
+                                    };
+                                </script>
                             </div>
                             <hr class="my-3">
                             <div class="mb-3">
@@ -123,12 +164,10 @@ if (mysqli_stmt_prepare($stmt, $query)) {
                                        value="<?= $whatsapp ?>" name="whatsapp">
                             </div>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </section>
             </section>
-        </section>
-
-
+        </form>
         <?php
     } else {
         header("Location: index.php");
