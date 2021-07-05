@@ -13,8 +13,10 @@ if (!empty($_POST["nome"]) && !empty($_POST["apelido"])) {
 
 
     include_once "sc_upload_imagem.php";
-    $nome_img = uploadImagem($_FILES["foto"], "users", 300);
-    if (!isset($nome_img)) {
+    //só alteramos a foto se o user colocou uma nova no input...
+    if (!empty($_FILES["foto"]["name"])) {
+        $nome_img = uploadImagem($_FILES["foto"], "users", 300);
+    } else {
         $nome_img = $_SESSION["fperfil"];
     }
 
