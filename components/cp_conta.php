@@ -7,7 +7,7 @@ $link = new_db_connection();
 $stmt = mysqli_stmt_init($link);
 
 //posso concatenar, visto que o parametro não foi colocado pelo user
-$query = "SELECT foto_perfil, utilizadores.biografia, instagram, whatsapp, DATE_FORMAT(DATE(utilizadores.timestamp), '%d%m%Y')
+$query = "SELECT username, foto_perfil, utilizadores.biografia, instagram, whatsapp, DATE_FORMAT(DATE(utilizadores.timestamp), '%d%m%Y')
 FROM `utilizadores`
 WHERE id_utilizadores = " . $_SESSION["id_user"];
 
@@ -17,7 +17,7 @@ if (mysqli_stmt_prepare($stmt, $query)) {
     mysqli_stmt_execute($stmt);
 
     /* bind result variables */
-    mysqli_stmt_bind_result($stmt, $foto_perfil, $biografia, $instagram, $whatsapp, $data_criacao);
+    mysqli_stmt_bind_result($stmt, $username, $foto_perfil, $biografia, $instagram, $whatsapp, $data_criacao);
 
 
     if (mysqli_stmt_fetch($stmt)) {
@@ -101,7 +101,10 @@ if (mysqli_stmt_prepare($stmt, $query)) {
 
         ?>
         <section class="container-fluid pt-2 maisconta">
-            <div class="row justify-content-end g-0">
+            <div class="row justify-content-between align-items-center g-0">
+                <div class="col-auto">
+                    <h4 class="mb-1 username"><?= $username ?></h4>
+                </div>
                 <div class="col-auto botaoperfil">
                     <button type="button" class="btn btn-transparente" id="botaoperfil">
                         <i class="bi bi-list h1"></i>

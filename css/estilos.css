@@ -919,6 +919,12 @@ a:hover {
 }
 
 
+.username {
+    letter-spacing: 0.01em;
+    font-weight: 700;
+}
+
+
 .evento {
     position: relative;
     width: 85vw;

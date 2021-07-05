@@ -83,6 +83,10 @@ if (isset($_SESSION['id_user'])) {
                 </div>
             </div>
             <div class="mb-3">
+                <input type="username" class="form-control forminfo formlogin" name="username" placeholder="Username"
+                       required>
+            </div>
+            <div class="mb-3">
                 <input type="email" class="form-control forminfo formlogin" name="email" placeholder="Email" required>
             </div>
             <div class="mb-3">

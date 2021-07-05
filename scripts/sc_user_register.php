@@ -6,6 +6,7 @@ if (!empty($_POST['nome']) && !empty($_POST['apelido']) && !empty($_POST['passwo
 
     $fotoperfil = "default.png";
     $email = $_POST['email'];
+    $username = $_POST['username'];
 
     // Create a new DB connection
     $link = new_db_connection();
@@ -13,12 +14,12 @@ if (!empty($_POST['nome']) && !empty($_POST['apelido']) && !empty($_POST['passwo
     /* create a prepared statement */
     $stmt = mysqli_stmt_init($link);
 
-    $query = "SELECT email FROM utilizadores WHERE email = ?";
+    $query = "SELECT email FROM utilizadores WHERE email = ? OR username = ?";
 
     if (mysqli_stmt_prepare($stmt, $query)) {
 
         // Bind variables by type to each parameter
-        mysqli_stmt_bind_param($stmt, 's', $email);
+        mysqli_stmt_bind_param($stmt, 'ss', $email, $username);
 
         /* execute the prepared statement */
         mysqli_stmt_execute($stmt);
@@ -29,7 +30,7 @@ if (!empty($_POST['nome']) && !empty($_POST['apelido']) && !empty($_POST['passwo
         mysqli_stmt_store_result($stmt);
 
         if (mysqli_stmt_num_rows($stmt) != 0) {
-            //já existe uma conta com este mail
+            //já existe uma conta com este mail ou com este username
             header("Location: ../criarconta.php?msg=1");
         } else {
             //vamos criar uma nova conta
@@ -44,10 +45,10 @@ if (!empty($_POST['nome']) && !empty($_POST['apelido']) && !empty($_POST['passwo
 
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-            $query = "INSERT INTO utilizadores (nome, apelido, email, password, foto_perfil, timestamp) VALUES (?,?,?,?,'default.png', CURRENT_TIMESTAMP)";
+            $query = "INSERT INTO utilizadores (nome, apelido,username, email, password, foto_perfil) VALUES (?,?,?,?,?,'default.png')";
 
             if (mysqli_stmt_prepare($stmt, $query)) {
-                mysqli_stmt_bind_param($stmt, 'ssss', $nome, $apelido, $email, $password);
+                mysqli_stmt_bind_param($stmt, 'sssss', $nome, $apelido, $username, $email, $password);
 
 
                 // Devemos validar também o resultado do execute!
