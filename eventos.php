@@ -7,6 +7,7 @@ session_start();
     <?php include_once "helpers/help_meta.php" ?>
     <?php include_once "helpers/help_link.php" ?>
     <title>GrETUA</title>
+
 </head>
 <body>
 <section class="container py-3">
@@ -39,73 +40,12 @@ session_start();
     <div class="container pt-5">
         <h2 class="mb-0">próximos eventos</h2>
     </div>
-    <div class="container px-0">
+    <!-- Swiper -->
+    <div class="swiper-container proximoseventos py-4">
+        <div class="swiper-wrapper">
 
-        <div class="eventos text-black-50">
-            <a href="evento.php">
-                <div class="evento">
-                    <img class="img-fluid img-evento" src="img/circo.jpg">
-                    <div class="desc-evento container-fluid">
-                        <h6>Circo Contemporâneo</h6>
-                        <div class="row">
-                            <div class="col text-cinza">28 abril</div>
-                            <div class="col text-cinza text-center">22h30</div>
-                            <div class="col text-cinza text-end">teatro</div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="evento.php">
-                <div class="evento">
-                    <img class="img-fluid img-evento" src="img/jose.jpg">
-                    <div class="desc-evento container-fluid">
-                        <h6 class="top-right">José Valente</h6>
-                        <div class="row">
-                            <div class="col text-cinza">12 agosto</div>
-                            <div class="col text-cinza text-center">22h30</div>
-                            <div class="col text-cinza text-end">concerto</div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="evento.php">
-                <div class="evento">
-                    <img class="img-fluid img-evento" src="img/ruinas3.jpg">
-                    <div class="desc-evento container-fluid">
-                        <h6 class="top-right">Ruínas</h6>
-                        <div class="row">
-                            <div class="col text-cinza">28 abril</div>
-                            <div class="col text-cinza text-center">22h30</div>
-                            <div class="col text-cinza text-end">teatro</div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <a href="evento.php">
-                <div class="evento">
-                    <img class="img-fluid img-evento" src="img/jam_session.jpg">
-                    <div class="desc-evento container-fluid">
-                        <h6 class="top-right">Jam Sessions</h6>
-                        <div class="row">
-                            <div class="col text-cinza">16 de julho</div>
-                            <div class="col text-cinza text-center">22h30</div>
-                            <div class="col text-cinza text-end">concerto</div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-</section>
-<section>
-    <div class="container pt-4">
-        <h2 class="mb-0">os meus eventos</h2>
-    </div>
-    <div class="container px-0">
-
-        <div class="eventos text-black-50">
-            <a href="evento.php">
-                <div class="evento">
+            <div class="evento swiper-slide">
+                <a href="evento.php">
                     <img class="img-fluid img-evento" src="img/da_chick.jpg">
                     <div class="desc-evento container-fluid">
                         <h6 class="top-right">Da Chick</h6>
@@ -115,10 +55,11 @@ session_start();
                             <div class="col text-cinza text-end">concerto</div>
                         </div>
                     </div>
-                </div>
-            </a>
-            <a href="evento.php">
-                <div class="evento">
+                </a>
+            </div>
+
+            <div class="evento swiper-slide">
+                <a href="evento.php">
                     <img class="img-fluid img-evento" src="img/ruinas3.jpg">
                     <div class="desc-evento container-fluid">
                         <h6 class="top-right">Ruínas</h6>
@@ -128,10 +69,11 @@ session_start();
                             <div class="col text-cinza text-end">teatro</div>
                         </div>
                     </div>
-                </div>
-            </a>
-            <a href="evento.php">
-                <div class="evento">
+                </a>
+            </div>
+
+            <div class="evento swiper-slide">
+                <a href="evento.php">
                     <img class="img-fluid img-evento" src="img/palmieres.jpg">
                     <div class="desc-evento container-fluid">
                         <h6 class="top-right">P A L M I E R E S</h6>
@@ -141,10 +83,10 @@ session_start();
                             <div class="col text-cinza text-end">concerto</div>
                         </div>
                     </div>
-                </div>
-            </a>
-            <a href="evento.php">
-                <div class="evento">
+                </a>
+            </div>
+            <div class="evento swiper-slide">
+                <a href="evento.php">
                     <img class="img-fluid img-evento" src="img/ninguem.jpg">
                     <div class="desc-evento container-fluid">
                         <h6 class="top-right">Ninguém, de Deeogo Oliveira</h6>
@@ -154,10 +96,10 @@ session_start();
                             <div class="col text-cinza text-end">concerto</div>
                         </div>
                     </div>
-                </div>
-            </a>
-            <a href="evento.php">
-                <div class="evento">
+                </a>
+            </div>
+            <div class="evento swiper-slide">
+                <a href="evento.php">
                     <img class="img-fluid img-evento" src="img/angelica.jpg">
                     <div class="desc-evento container-fluid">
                         <h6 class="top-right">Angélica Salvi - Phantone</h6>
@@ -167,10 +109,94 @@ session_start();
                             <div class="col text-cinza text-end">concerto</div>
                         </div>
                     </div>
-                </div>
-            </a>
+
+                </a>
+            </div>
         </div>
+        <div class="swiper-scrollbar"></div>
     </div>
+</section>
+<section>
+    <div class="container pt-4">
+        <h2 class="mb-0">os meus eventos</h2>
+    </div>
+    <!-- Swiper -->
+    <div class="swiper-container osmeuseventos py-4">
+        <div class="swiper-wrapper">
+
+            <div class="evento swiper-slide">
+                <a href="evento.php">
+                    <img class="img-fluid img-evento" src="img/da_chick.jpg">
+                    <div class="desc-evento container-fluid">
+                        <h6 class="top-right">Da Chick</h6>
+                        <div class="row">
+                            <div class="col text-cinza">4 junho</div>
+                            <div class="col text-cinza text-center">21h00</div>
+                            <div class="col text-cinza text-end">concerto</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="evento swiper-slide">
+                <a href="evento.php">
+                    <img class="img-fluid img-evento" src="img/ruinas3.jpg">
+                    <div class="desc-evento container-fluid">
+                        <h6 class="top-right">Ruínas</h6>
+                        <div class="row">
+                            <div class="col text-cinza">28 abril</div>
+                            <div class="col text-cinza text-center">22h30</div>
+                            <div class="col text-cinza text-end">teatro</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="evento swiper-slide">
+                <a href="evento.php">
+                    <img class="img-fluid img-evento" src="img/palmieres.jpg">
+                    <div class="desc-evento container-fluid">
+                        <h6 class="top-right">P A L M I E R E S</h6>
+                        <div class="row">
+                            <div class="col text-cinza">1 junho</div>
+                            <div class="col text-cinza text-center">22h30</div>
+                            <div class="col text-cinza text-end">concerto</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="evento swiper-slide">
+                <a href="evento.php">
+                    <img class="img-fluid img-evento" src="img/ninguem.jpg">
+                    <div class="desc-evento container-fluid">
+                        <h6 class="top-right">Ninguém, de Deeogo Oliveira</h6>
+                        <div class="row">
+                            <div class="col text-cinza">8 junho</div>
+                            <div class="col text-cinza text-center">22h30</div>
+                            <div class="col text-cinza text-end">concerto</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="evento swiper-slide">
+                <a href="evento.php">
+                    <img class="img-fluid img-evento" src="img/angelica.jpg">
+                    <div class="desc-evento container-fluid">
+                        <h6 class="top-right">Angélica Salvi - Phantone</h6>
+                        <div class="row">
+                            <div class="col text-cinza">25 de maio</div>
+                            <div class="col text-cinza text-center">22h30</div>
+                            <div class="col text-cinza text-end">concerto</div>
+                        </div>
+                    </div>
+
+                </a>
+            </div>
+        </div>
+        <div class="swiper-scrollbar"></div>
+    </div>
+
+
 </section>
 
 
@@ -178,5 +204,27 @@ session_start();
 
 <!-- Javascript -->
 <?php include_once "helpers/help_js.php" ?>
+<!-- Initialize Swiper -->
+<script>
+    var proximos = new Swiper(".proximoseventos", {
+        slidesPerView: "auto",
+        centeredSlides: true,
+        spaceBetween: 15,
+        pagination: {
+            el: ".swiper-scrollbar",
+            clickable: true,
+        },
+    });
+
+    var meus = new Swiper(".osmeuseventos", {
+        slidesPerView: "auto",
+        centeredSlides: true,
+        spaceBetween: 15,
+        pagination: {
+            el: ".swiper-scrollbar",
+            clickable: true,
+        },
+    });
+</script>
 </body>
 </html>
