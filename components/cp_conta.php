@@ -187,7 +187,7 @@ if (mysqli_stmt_prepare($stmt, $query)) {
             <h5 class="pt-1 text-center mb-0"><?= $data_mes_criacao ?></h5>
         </section>
         <div class="container-fluid py-3">
-            <h3>Eventos a que fui</h3>
+            <h3>Os meus eventos</h3>
         </div>
         <section class="container-fluid pb-3 px-0">
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
