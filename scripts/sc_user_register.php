@@ -44,7 +44,7 @@ if (!empty($_POST['nome']) && !empty($_POST['apelido']) && !empty($_POST['passwo
 
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-            $query = "INSERT INTO utilizadores (nome, apelido, email, password, foto_perfil, data_criacao) VALUES (?,?,?,?,'default.png', CURRENT_TIMESTAMP)";
+            $query = "INSERT INTO utilizadores (nome, apelido, email, password, foto_perfil, timestamp) VALUES (?,?,?,?,'default.png', CURRENT_TIMESTAMP)";
 
             if (mysqli_stmt_prepare($stmt, $query)) {
                 mysqli_stmt_bind_param($stmt, 'ssss', $nome, $apelido, $email, $password);

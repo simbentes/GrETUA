@@ -32,7 +32,7 @@ if (!empty($_POST["nome"]) && !empty($_POST["apelido"])) {
         $link = new_db_connection();
         $stmt = mysqli_stmt_init($link);
 
-        $query = "UPDATE utilizadores SET nome = ?, apelido = ?, descricao = ?, foto_perfil = ?, conta_instagram = ?, conta_whatsapp = ? WHERE id_utilizadores = " . $_SESSION["id_user"];
+        $query = "UPDATE utilizadores SET nome = ?, apelido = ?, biografia = ?, foto_perfil = ?, instagram = ?, whatsapp = ? WHERE id_utilizadores = " . $_SESSION["id_user"];
 
 
         if (mysqli_stmt_prepare($stmt, $query)) {

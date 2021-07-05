@@ -13,7 +13,7 @@ if (isset($_GET["id"])) {
         $stmt = mysqli_stmt_init($link);
 
         //posso concatenar, visto que o parametro não foi colocado pelo user
-        $query = "SELECT utilizadores.nome, utilizadores.apelido, foto_perfil, utilizadores.descricao, conta_instagram, conta_whatsapp, DATE_FORMAT(DATE(data_criacao), '%d%m%Y')
+        $query = "SELECT utilizadores.nome, utilizadores.apelido, foto_perfil, utilizadores.biografia, instagram, whatsapp, DATE_FORMAT(DATE(utilizadores.timestamp), '%d%m%Y')
 FROM `utilizadores`
 WHERE id_utilizadores = ?";
 

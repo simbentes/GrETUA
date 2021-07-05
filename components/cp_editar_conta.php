@@ -7,7 +7,7 @@ $link = new_db_connection();
 $stmt = mysqli_stmt_init($link);
 
 //posso concatenar, visto que o parametro não foi colocado pelo user
-$query = "SELECT utilizadores.nome, utilizadores.apelido, foto_perfil, utilizadores.descricao, conta_instagram, conta_whatsapp
+$query = "SELECT utilizadores.nome, utilizadores.apelido, foto_perfil, utilizadores.biografia, instagram, whatsapp
 FROM `utilizadores`
 WHERE id_utilizadores = " . $_SESSION["id_user"];
 

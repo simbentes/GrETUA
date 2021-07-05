@@ -49,7 +49,7 @@
                             <div class="col-auto">
                                 <?php
 
-                                $query = "SELECT COUNT(vou) FROM `eventos_guardados_vou` WHERE vou = 1 AND eventos_guardados_vou.ref_id_evento =" . $id_evento;
+                                $query = "SELECT COUNT(vou) FROM `guardados_vou` WHERE vou = 1 AND guardados_vou.ref_id_eventos =" . $id_evento;
 
                                 if (mysqli_stmt_prepare($stmt, $query)) {
 
