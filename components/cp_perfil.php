@@ -93,20 +93,25 @@ WHERE id_utilizadores = ?";
                         <div class="col-auto">
                             <input type="submit" class="btn btn-seguir w-100" value="Seguir">
                         </div>
-                        <div class="col-auto">
-                            <a href="https://instagram.com/<?= $instagram ?>" target="_blank">
-                                <div class="redessocias">
-                                    <i class="bi bi-instagram iconredes"></i>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-auto">
-                            <a href="https://wa.me/00351<?= $whatsapp ?>" target="_blank">
-                                <div class="redessocias">
-                                    <i class="bi bi-whatsapp iconredes"></i>
-                                </div>
-                            </a>
-                        </div>
+                        <?php
+                        if (!empty($instagram)) { ?>
+                            <div class="col-auto">
+                                <a href="https://instagram.com/<?= $instagram ?>" target="_blank">
+                                    <div class="redessocias">
+                                        <i class="bi bi-instagram iconredes"></i>
+                                    </div>
+                                </a>
+                            </div>
+                        <?php }
+                        if (!empty($whatsapp)) { ?>
+                            <div class="col-auto">
+                                <a href="https://wa.me/00351<?= $whatsapp ?>" target="_blank">
+                                    <div class="redessocias">
+                                        <i class="bi bi-whatsapp iconredes"></i>
+                                    </div>
+                                </a>
+                            </div>
+                        <?php } ?>
                     </div>
                 </section>
 

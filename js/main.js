@@ -6,7 +6,7 @@ if ('serviceWorker' in navigator) {
             console.log("sw reigstrao!!")
             console.log(registration)
         }).catch(error=>{
-            console.log("deu merda!")
+            console.log("algo de erro n está certo!")
             console.log(error)
         })
     });
