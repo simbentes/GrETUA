@@ -34,7 +34,7 @@ if (mysqli_stmt_prepare($stmt, $query)) {
         <section class="container-fluid perfiluser">
             <div class="row justify-content-center align-items-center">
                 <div class="col-auto">
-                    <img class="img-fluid fotoperfil" src="img/<?= $_SESSION["fperfil"] ?>">
+                    <img class="img-fluid fotoperfil" src="img/users/<?= $_SESSION["fperfil"] ?>">
                 </div>
                 <div class="col-auto">
                     <h2 class="mb-0"><?= $_SESSION["nome"] ?></h2>
