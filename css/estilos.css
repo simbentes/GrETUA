@@ -20,11 +20,6 @@ body {
 }
 
 
-.btn-primary {
-    background-color: var(--cor-tema);
-}
-
-
 .degrade-imagem {
     background: linear-gradient(180deg, rgb(0 0 0 / 0%) 0%, rgb(6 6 8) 90%);
     width: 100%;
@@ -87,27 +82,6 @@ input[type='file'] {
     width: 32px;
 }
 
-.btn-pequeno {
-    background-color: #1c1c1e;
-    color: var(--cor-tema);
-    border-radius: 10px;
-    padding: 5px 0;
-}
-
-.btn-pequeno:hover {
-    background-color: #1c1c1e;
-    color: var(--cor-tema);
-    border-radius: 10px;
-    padding: 5px 0;
-}
-
-.btn-pequeno span {
-    font-size: 11px;
-}
-
-.btn-pequeno i {
-    font-size: 20px;
-}
 
 .frame-img {
     margin-bottom: -20px;
@@ -213,42 +187,6 @@ input[type='file'] {
     border: 0;
     outline: 0;
     box-shadow: none;
-}
-
-
-.btn-memoriafeed {
-    background-color: #202021;
-    color: var(--cor-tema);
-    border-radius: 37px;
-    padding: 5px 20px;
-    text-transform: uppercase;
-    font-size: 15px;
-    font-weight: 600;
-}
-
-
-.btn-memoriafeed:hover {
-    background-color: #202021;
-    color: var(--cor-tema);
-}
-
-
-.btn-like {
-    right: 13px;
-    position: absolute;
-    top: 270px;
-    background-color: #2C2C2E;
-    color: var(--cor-tema);
-    border-radius: 37px;
-    padding: 8px 9px;
-    text-transform: uppercase;
-    font-size: 15px;
-    font-weight: 600;
-}
-
-.btn-like:hover {
-    background-color: #202021;
-    color: var(--cor-tema);
 }
 
 
@@ -378,34 +316,6 @@ input[type='file'] {
 }
 
 
-.btn-pub {
-    background-color: var(--cor-tema);
-    color: white;
-    border-radius: 50em;
-    padding: 6px 20px;
-    font-weight: 500;
-}
-
-.btn-pub:hover {
-    background-color: var(--cor-tema);
-    color: white;
-}
-
-.btn-transparente {
-    color: white;
-}
-
-
-.btn:focus {
-    box-shadow: none;
-}
-
-.btn-fechar {
-    position: relative;
-    left: 15px;
-    bottom: 9px;
-}
-
 .topindexmenu .btn:hover {
     color: white;
 }
@@ -415,12 +325,6 @@ input[type='file'] {
     font-weight: 500;
     font-size: 13px;
     padding: 3px 0;
-}
-
-.btn-outline-light:hover {
-    color: #f8f9fa;
-    background-color: transparent;
-    border-color: #969696;
 }
 
 
@@ -477,6 +381,107 @@ input[type='file'] {
 }
 
 
+.btn-primary {
+    background-color: var(--cor-tema);
+}
+
+
+.btn-pequeno {
+    background-color: #1c1c1e;
+    color: var(--cor-tema);
+    border-radius: 10px;
+    padding: 5px 0;
+}
+
+.btn-pequeno:hover {
+    background-color: #1c1c1e;
+    color: var(--cor-tema);
+    border-radius: 10px;
+    padding: 5px 0;
+}
+
+.btn-pequeno span {
+    font-size: 11px;
+}
+
+.btn-pequeno i {
+    font-size: 20px;
+}
+
+
+.btn-memoriafeed {
+    background-color: #202021;
+    color: var(--cor-tema);
+    border-radius: 37px;
+    padding: 5px 20px;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+
+.btn-memoriafeed:hover {
+    background-color: #202021;
+    color: var(--cor-tema);
+}
+
+
+.btn-like {
+    right: 13px;
+    position: absolute;
+    top: 270px;
+    background-color: #2C2C2E;
+    color: var(--cor-tema);
+    border-radius: 37px;
+    padding: 8px 9px;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.btn-like:hover {
+    background-color: #202021;
+    color: var(--cor-tema);
+}
+
+
+.btn-transparente {
+    color: white;
+}
+
+
+.btn:focus {
+    box-shadow: none;
+}
+
+.btn-fechar {
+    position: relative;
+    left: 15px;
+    bottom: 9px;
+}
+
+
+.btn-pub {
+    background-color: var(--cor-tema);
+    color: white;
+    border-radius: 50em;
+    padding: 6px 20px;
+    font-weight: 500;
+}
+
+.btn-pub:hover {
+    background-color: var(--cor-tema);
+    color: white;
+}
+
+
+.btn-outline-light:hover {
+    color: #f8f9fa;
+    background-color: transparent;
+    border-color: #969696;
+}
+
+
 .btn-grande {
     background-color: var(--cor-tema);
     color: white;
@@ -504,19 +509,41 @@ input[type='file'] {
     font-weight: 500;
 }
 
-.miniaturafoto {
-    width: 100%;
-    height: calc(100vw / 2.4);
-    object-fit: cover;
-
-}
-
 
 .btn-seguir:hover {
     background-color: var(--cor-tema);
     color: white;
     border-radius: 5px;
     font-weight: 500;
+}
+
+
+.btn-editar-perfil {
+    height: 40px;
+    font-size: 13.5px;
+    background-color: var(--menu-cor);
+    color: white;
+    border-radius: 5px;
+    padding: 0 50px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+
+.btn-editar-perfil:hover {
+    background-color: var(--menu-cor);
+    color: white;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+
+.miniaturafoto {
+    width: 100%;
+    height: calc(100vw / 2.4);
+    object-fit: cover;
+
 }
 
 

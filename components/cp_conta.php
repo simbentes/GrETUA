@@ -47,7 +47,7 @@ if (mysqli_stmt_prepare($stmt, $query)) {
             </div>
             <div class="row g-1 justify-content-center align-content-center pt-3">
                 <div class="col-auto">
-                    <input type="submit" class="btn btn-seguir w-100" value="Seguir">
+                    <a href="editar-perfil.php" class="btn btn-editar-perfil">Editar Perfil</a>
                 </div>
                 <div class="col-auto">
                     <a href="https://instagram.com/<?= $instagram ?>" target="_blank">
@@ -63,11 +63,6 @@ if (mysqli_stmt_prepare($stmt, $query)) {
                         </div>
                     </a>
                 </div>
-            </div>
-            <div>
-                <a href="editar-perfil.php" type="button" class="btn btn-outline-light w-100 editar-perfil">
-                    Editar perfil
-                </a>
             </div>
 
         </section>
