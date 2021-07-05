@@ -966,8 +966,8 @@ a:hover {
 .eventoperfil {
     position: relative;
     margin: auto;
-    width: 330px;
-    height: 230px;
+    width: 90vw;
+    height: calc(90vw / 1.6);
     font-size: 12px;
     text-align: left;
     border-radius: 16px;

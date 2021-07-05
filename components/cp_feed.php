@@ -27,7 +27,7 @@
                         <div class="row row-cols-auto justify-content-between">
                             <div class="col">
                                 <div class="infouser">
-                                    <img src="img/josepereira.jpg" class="userbubble">
+                                    <img src="img/users/josepereira.jpg" class="userbubble">
                                     <span class="utilizador">José Pereira</span>
                                 </div>
                             </div>
@@ -49,7 +49,7 @@
                         <hr>
                         <div class="row row-cols-auto">
                             <div class="col pe-0">
-                                <img src="img/users/sikvi.jpg" class="userbubble">
+                                <img src="img/users/<?= $_SESSION["fperfil"] ?>" class="userbubble">
                             </div>
 
                             <div class="col comentarform">
@@ -113,7 +113,7 @@
                     <hr>
                     <div class="row row-cols-auto">
                         <div class="col pe-0">
-                            <img src="img/sikvi.jpg" class="userbubble">
+                            <img src="img/users/<?= $_SESSION["fperfil"] ?>" class="userbubble">
                         </div>
 
                         <div class="col comentarform">
