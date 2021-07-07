@@ -1412,7 +1412,7 @@ input[type="radio" i]:focus {
     background: #6e6e6e;
 }
 
-@media only screen and (max-height: 750px) and (max-width: 450px) {
+@media only screen and (max-height: 700px) and (max-width: 450px) {
     .desc-curta {
         display: none;
     }
