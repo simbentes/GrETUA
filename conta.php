@@ -23,7 +23,14 @@ if (!isset($_SESSION['id_user'])) {
         document.getElementById("perfilbottom").classList.toggle("animaperfil");
 
     }
+
+
+
 </script>
 </body>
 
 </html>
+
+
+
+
