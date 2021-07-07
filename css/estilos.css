@@ -125,20 +125,31 @@ input[type='file'] {
 }
 
 
+
+
+
+.bilhetes-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
 .perfil-bottom {
     z-index: 8;
     border-radius: 15px 15px 0 0;
     background-color: var(--menu-cor);
     padding: 15px 12px 5px 12px;
     position: fixed;
-    bottom: -161px;
+    bottom: -175px;
     left: 0;
     width: 100%;
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .animaperfil {
-    transform: translateY(-191px);
+    transform: translateY(-235px);
 }
 
 
@@ -933,10 +944,48 @@ a:hover {
     text-align: left;
     border-radius: 16px;
     text-decoration: none;
-    background-color: white;
+    background-color: transparent;
     -webkit-box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
     box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
 }
+
+
+
+
+
+
+.bilhetes {
+    position: relative;
+    width: 90vw;
+    height: calc(90vw * 1.7);
+    font-size: 12px;
+    text-align: left;
+    border-radius: 16px;
+    text-decoration: none;
+    background-color: #ac7373;
+    -webkit-box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
+}
+
+
+
+
+
+
+
+
+.desc-bilhete {
+    left: 0;
+}
+
+
+
+
+
+
+
+
+
 
 .redessocias {
     background-color: var(--menu-cor);
