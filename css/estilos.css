@@ -51,6 +51,12 @@ body {
     border-radius: 50rem;
 }
 
+
+.desc-curta {
+    display: block;
+}
+
+
 .alert {
     z-index: 99999999999999;
     border-radius: 5px;
@@ -130,8 +136,20 @@ input[type='file'] {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    padding-top: 51px;
+    padding-bottom: 90px;
 }
 
+
+.memoria-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding-top: 51px;
+    padding-bottom: 90px;
+}
 
 .perfil-bottom {
     z-index: 8;
@@ -947,6 +965,17 @@ a:hover {
 }
 
 
+.swiper-pagination {
+    bottom: 110px;
+    left: 0;
+    width: 100%;
+}
+
+.swiper-pagination-bullet {
+    background: #FFF;
+    margin: 0 4px;
+}
+
 .bilhetes {
     position: relative;
     width: 90vw;
@@ -955,16 +984,18 @@ a:hover {
     text-align: left;
     border-radius: 16px;
     text-decoration: none;
-    background-color: #ac7373;
+    background-color: #fad14b;
     -webkit-box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
     box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
 }
 
 
-.qrcode {
-    width: 180px;
-    height: 180px;
+.qrcode img {
+    border: 10px solid white;
     border-radius: 8px;
+    margin-top: 240px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
@@ -1129,7 +1160,6 @@ input[type="radio" i]:focus {
     width: 320px;
     height: 81vh;
     text-align: left;
-    margin: 20px 12px 20px 12px;
     text-decoration: none;
     color: white;
 }
@@ -1150,7 +1180,7 @@ input[type="radio" i]:focus {
 
 .linha-memorias {
     position: absolute;
-    bottom: 106px;
+    bottom: 63px;
     left: 0;
     right: 0;
     z-index: -3000;
@@ -1169,15 +1199,15 @@ input[type="radio" i]:focus {
 }
 
 .desc-memoria {
-    padding-top: 10px;
+    padding-top: 14px;
 }
 
 
 .memoria .ano {
     position: absolute;
     bottom: 20px;
-    left: 50%;
-    transform: translate(-50%, 0);
+    left: 0;
+    right: 0;
 }
 
 
@@ -1380,4 +1410,10 @@ input[type="radio" i]:focus {
 
 ::selection {
     background: #6e6e6e;
+}
+
+@media only screen and (max-height: 750px) and (max-width: 450px) {
+    .desc-curta {
+        display: none;
+    }
 }

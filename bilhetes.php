@@ -28,6 +28,7 @@ if (!isset($_SESSION['id_user'])) {
         <?php include_once "components/cp_bilhetes.php" ?>
     </main>
     <?php include_once "components/cp_tab_bar.php" ?>
+    <script src="js/qrcode.min.js"></script>
     <!-- Javascript -->
     <?php include_once "helpers/help_js.php" ?>
     </body>
@@ -45,6 +46,26 @@ if (!isset($_SESSION['id_user'])) {
             },
         });
     </script>
+    <div id="qrcode"></div>
+    <script type="text/javascript">
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+            text: "http://github.com/simbentes",
+            width: 220,
+            height: 220,
+            useSVG: true
+        });
+
+        var qrcode = new QRCode(document.getElementById("qrcode2"), {
+            text: "ashjdbfaoshdfbajkhsdfbakjshdfbakjhsdfbkajhdsfbkajhsfdbkajhsdbfkajhsdbfkajhsdbfkajhsdbfkajshbdfkajhsdbfkjahsbdf",
+            width: 220,
+            height: 220,
+            colorDark: "#000000",
+            colorLight: "#ffffff",
+            correctLevel: QRCode.CorrectLevel.H,
+            useSVG: true
+        });
+    </script>
+
     </body>
     </html>
 
