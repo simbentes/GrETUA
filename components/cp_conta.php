@@ -261,7 +261,7 @@ if (mysqli_stmt_prepare($stmt, $query)) {
 
 
         <section id="perfilbottom" class="perfil-bottom container">
-            <div class="pb-4">
+            <div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
                         <a href="reservas.php">
@@ -273,6 +273,25 @@ if (mysqli_stmt_prepare($stmt, $query)) {
                                         </div>
                                         <div class="col-auto mb-1">
                                             Reservas
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="bi bi-chevron-right h6"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="bilhetes.php">
+                            <div class="row g-0 align-items-center justify-content-between">
+                                <div class="col-auto">
+                                    <div class="row g-0 align-items-center">
+                                        <div class="col-auto pe-2">
+                                            <i class="bi bi-receipt h1"></i>
+                                        </div>
+                                        <div class="col-auto mb-1">
+                                            Bilhetes
                                         </div>
                                     </div>
                                 </div>

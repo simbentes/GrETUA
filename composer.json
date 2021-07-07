@@ -10,5 +10,8 @@
             "name": "simbentes",
             "email": "bentes@ua.pt"
         }
-    ]
+    ],
+    "require": {
+        "endroid/qr-code": "^4.2"
+    }
 }
