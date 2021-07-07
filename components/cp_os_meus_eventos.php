@@ -8,10 +8,14 @@
         $link = new_db_connection();
         $stmt = mysqli_stmt_init($link);
 
-        $query = "SELECT eventos.id_evento, DATE(data_evento), DATE_FORMAT(TIME(data_evento), '%H:%i'), eventos.nome FROM eventos
-                            INNER JOIN eventos_guardados_vou
-                            ON eventos.id_evento = eventos_guardados_vou.ref_id_evento
-                            WHERE eventos_guardados_vou.guardados = 1 AND eventos_guardados_vou.ref_id_utilizador = " . $userid;
+        $query = "SELECT eventos.id_eventos, DATE(MIN(data_eventos.data)), DATE_FORMAT(TIME(MIN(data_eventos.data)), '%H:%i'), eventos.nome, fotos_eventos.foto FROM eventos
+INNER JOIN data_eventos
+ON data_eventos.ref_id_eventos = eventos.id_eventos
+INNER JOIN guardados_vou
+ON eventos.id_eventos = guardados_vou.ref_id_eventos
+INNER JOIN fotos_eventos
+ON fotos_eventos.ref_id_eventos = eventos.id_eventos
+WHERE guardados_vou.guardados = 0 AND guardados_vou.ref_id_utilizadores = " . $userid . " AND fotos_eventos.capa = 1;";
 
         if (mysqli_stmt_prepare($stmt, $query)) {
 
@@ -19,7 +23,7 @@
             mysqli_stmt_execute($stmt);
 
             /* bind result variables */
-            mysqli_stmt_bind_result($stmt, $id_evento, $data_evento, $hora_evento, $nome_evento);
+            mysqli_stmt_bind_result($stmt, $id_evento, $data_evento, $hora_evento, $nome_evento, $foto);
 
             mysqli_stmt_store_result($stmt);
 
@@ -32,9 +36,9 @@
 
                     ?>
                     <div class="col-12 py-3">
-                        <a class="aevento" href="evento.php?id=<?= $id_evento ?>">
+                        <a class="aevento" href="evento.php?evento=<?= $id_evento ?>">
                             <div class="eventoindex">
-                                <img class="img-fluid img-evento" src="img/ruinas3.jpg">
+                                <img class="img-fluid img-evento" src="img/<?= $foto ?>">
                                 <div class="desc-evento container-fluid gx-3">
                                     <h2 class="top-right mb-0"><?= $nome_evento ?></h2>
                                     <div class="row">
@@ -66,15 +70,13 @@
                                     } else {
                                         echo "Error: " . mysqli_stmt_error($stmt);
                                     }
-
                                 } else {
                                     echo "Error: " . mysqli_error($link);
                                 }
-
                                 ?>
                             </div>
                             <div class="col-auto">
-                                <a href="evento.php" class="btn btn-memoriafeed">Ver Evento</a>
+                                <a href="evento.php?evento=<?= $id_evento ?>" class="btn btn-memoriafeed">Ver Evento</a>
                             </div>
                         </div>
                     </div>
