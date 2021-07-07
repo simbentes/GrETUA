@@ -38,7 +38,7 @@ if (!isset($_SESSION['id_user'])) {
         var swiper = new Swiper(".mySwiper", {
             slidesPerView: "auto",
             centeredSlides: true,
-            spaceBetween: 20,
+            spaceBetween: 12,
             pagination: {
                 el: ".swiper-pagination",
                 clickable: true,

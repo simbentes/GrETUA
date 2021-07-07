@@ -125,9 +125,6 @@ input[type='file'] {
 }
 
 
-
-
-
 .bilhetes-container {
     display: flex;
     justify-content: center;
@@ -950,10 +947,6 @@ a:hover {
 }
 
 
-
-
-
-
 .bilhetes {
     position: relative;
     width: 90vw;
@@ -968,23 +961,16 @@ a:hover {
 }
 
 
-
-
-
-
+.qrcode {
+    width: 180px;
+    height: 180px;
+    border-radius: 8px;
+}
 
 
 .desc-bilhete {
     left: 0;
 }
-
-
-
-
-
-
-
-
 
 
 .redessocias {
