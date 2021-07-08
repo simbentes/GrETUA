@@ -40,7 +40,7 @@ ORDER BY data_eventos.data DESC;";
                             ?>
 
                             <div class="memoria swiper-slide">
-                                <a href="memoria.php?id=<?= $id_evento ?>">
+                                <a href="memoria.php?memoria=<?= $id_evento ?>">
 
                                     <img class="img-memoria" src="img/<?= $foto ?>">
                                     <div class="desc-memoria container-fluid">
