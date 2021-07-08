@@ -358,13 +358,7 @@
         <!-- End of Main Content -->
 
         <!-- Footer -->
-        <footer class="sticky-footer bg-white">
-            <div class="container my-auto">
-                <div class="copyright text-center my-auto">
-                    <span>&copy; GrETUA <?= date("Y") ?></span>
-                </div>
-            </div>
-        </footer>
+        <?php include_once "components/cp_footer.php"; ?>
         <!-- End of Footer -->
 
     </div>
