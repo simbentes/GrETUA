@@ -11,11 +11,11 @@ if (isset($_GET["memoria"])) {
     $query = "SELECT DATE(data_eventos.data), eventos.nome, fotos_eventos.foto, eventos.descricao FROM eventos
 INNER JOIN data_eventos
 ON data_eventos.ref_id_eventos = eventos.id_eventos
-INNER JOIN fotos_eventos
+LEFT JOIN fotos_eventos
 ON fotos_eventos.ref_id_eventos = eventos.id_eventos
 INNER JOIN tipo_eventos
 ON tipo_eventos.id_tipo_eventos = eventos.ref_id_tipo_eventos
-WHERE fotos_eventos.capa = 1 AND eventos.id_eventos = ? AND data_eventos.data < NOW() AND (data_eventos.data) IN (SELECT MIN(data_eventos.data) FROM data_eventos GROUP BY data_eventos.ref_id_eventos)
+WHERE (fotos_eventos.foto IS NUll OR fotos_eventos.capa = 1) AND eventos.id_eventos = ? AND data_eventos.data < NOW() AND (data_eventos.data) IN (SELECT MIN(data_eventos.data) FROM data_eventos GROUP BY data_eventos.ref_id_eventos)
 ORDER BY data_eventos.data DESC;";
 
     if (mysqli_stmt_prepare($stmt, $query)) {
@@ -35,7 +35,9 @@ ORDER BY data_eventos.data DESC;";
         if (mysqli_stmt_num_rows($stmt) > 0) {
             /* fetch values */
             mysqli_stmt_fetch($stmt);
-
+            if(!isset($foto)){
+                $foto = "evento_default.png";
+            }
             ?>
 
             <div class="position-relative">

@@ -12,13 +12,13 @@ if (isset($_GET["evento"])) {
 FROM eventos
 INNER JOIN data_eventos
 ON data_eventos.ref_id_eventos = eventos.id_eventos
-INNER JOIN fotos_eventos
+LEFT JOIN fotos_eventos
 ON fotos_eventos.ref_id_eventos = eventos.id_eventos
 INNER JOIN tipo_eventos
 ON tipo_eventos.id_tipo_eventos = eventos.ref_id_tipo_eventos
 INNER JOIN artistas
 ON artistas.id_artistas = eventos.ref_id_artistas
-WHERE fotos_eventos.capa = 1 AND (data_eventos.data) IN (SELECT MIN(data_eventos.data) FROM data_eventos WHERE data_eventos.data > NOW() GROUP BY data_eventos.ref_id_eventos) AND eventos.id_eventos = ? 
+WHERE (fotos_eventos.foto IS NUll OR fotos_eventos.capa = 1) AND (data_eventos.data) IN (SELECT MIN(data_eventos.data) FROM data_eventos WHERE data_eventos.data > NOW() GROUP BY data_eventos.ref_id_eventos) AND eventos.id_eventos = ? 
 ORDER BY data_eventos.data;";
 
     if (mysqli_stmt_prepare($stmt, $query)) {
@@ -38,7 +38,9 @@ ORDER BY data_eventos.data;";
         if (mysqli_stmt_num_rows($stmt) > 0) {
             /* fetch values */
             mysqli_stmt_fetch($stmt);
-
+            if(!isset($foto)){
+                $foto = "evento_default.png";
+            }
             $hora_h = str_replace(":", "h", $hora);
             ?>
 

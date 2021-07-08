@@ -41,11 +41,11 @@
             $query = "SELECT eventos.id_eventos, DATE(data_eventos.data), DATE_FORMAT(TIME(data_eventos.data), '%H:%i'), eventos.nome, fotos_eventos.foto, tipo_eventos.nome FROM eventos
 INNER JOIN data_eventos
 ON data_eventos.ref_id_eventos = eventos.id_eventos
-INNER JOIN fotos_eventos
+LEFT JOIN fotos_eventos
 ON fotos_eventos.ref_id_eventos = eventos.id_eventos
 INNER JOIN tipo_eventos
 ON tipo_eventos.id_tipo_eventos = eventos.ref_id_tipo_eventos
-WHERE fotos_eventos.capa = 1 AND (data_eventos.data) IN (SELECT MIN(data_eventos.data) FROM data_eventos WHERE data_eventos.data > NOW() GROUP BY data_eventos.ref_id_eventos)
+WHERE (fotos_eventos.foto IS NUll OR fotos_eventos.capa = 1) AND (data_eventos.data) IN (SELECT MIN(data_eventos.data) FROM data_eventos WHERE data_eventos.data > NOW() GROUP BY data_eventos.ref_id_eventos)
 ORDER BY data_eventos.data;";
 
             if (mysqli_stmt_prepare($stmt, $query)) {
@@ -62,7 +62,9 @@ ORDER BY data_eventos.data;";
                     echo "<div class='col-12 py-5 mb-5'><h1>Não tens eventos guardados.</h1></div>";
                 } else {
                     while (mysqli_stmt_fetch($stmt)) {
-
+                        if(!isset($foto)){
+                            $foto = "evento_default.png";
+                        }
                         $hora_h_evento = str_replace(":", "h", $hora_evento);
 
                         ?>
