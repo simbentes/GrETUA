@@ -5,8 +5,6 @@ $directoryURI = $_SERVER['REQUEST_URI'];
 $path = parse_url($directoryURI, PHP_URL_PATH);
 $components = explode('/', $path);
 $first_part = $components[3];
-echo $first_part;
-
 ?>
 
 <!-- Sidebar -->
@@ -24,7 +22,7 @@ echo $first_part;
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item <?php if ($first_part == "" || "index.php"): echo "active"; endif; ?>">
+    <li class="nav-item <?php if ($first_part == "index.php"): echo "active"; endif; ?>">
         <a class="nav-link" href="index.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
@@ -39,7 +37,13 @@ echo $first_part;
     </div>
 
 
-    <li class="nav-item">
+    <li class="nav-item <?php if ($first_part == "reservas.php"): echo "active"; endif; ?>">
+        <a class="nav-link" href="reservas.php">
+            <i class="fas fa-fw fa-book"></i>
+            <span>Reservas</span></a>
+    </li>
+
+    <li class="nav-item <?php if ($first_part == "users.php"): echo "active"; endif; ?>">
         <a class="nav-link" href="users.php">
             <i class="fas fa-fw fa-users"></i>
             <span>Utilizadores</span></a>
