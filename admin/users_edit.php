@@ -28,7 +28,7 @@
 
     <!-- Sidebar -->
     <?php
-    include_once "../components/cp_navbars_side.php";
+    include_once "components/cp_navbars_side.php";
     ?>
     <!-- End of Sidebar -->
 

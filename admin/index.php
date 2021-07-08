@@ -28,19 +28,19 @@
 
     <!-- Sidebar -->
     <?php
-    include_once "../components/cp_navbars_side.php";
+    include_once "components/cp_navbars_side.php";
     ?>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
-
+3
         <!-- Main Content -->
         <div id="content">
 
             <!-- Topbar -->
             <?php
-            include_once "../components/cp_navbars_top.php";
+            include_once "components/cp_navbars_top.php";
             ?>
             <!-- End of Topbar -->
 

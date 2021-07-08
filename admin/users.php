@@ -28,7 +28,7 @@
 
     <!-- Sidebar -->
     <?php
-    include_once "../components/cp_navbars_side.php";
+    include_once "components/cp_navbars_side.php";
     ?>
     <!-- End of Sidebar -->
 
@@ -40,7 +40,7 @@
 
             <!-- Topbar -->
             <?php
-            include_once "../components/cp_navbars_top.php";
+            include_once "components/cp_navbars_top.php";
             ?>
             <!-- End of Topbar -->
 
