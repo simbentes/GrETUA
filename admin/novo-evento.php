@@ -5,7 +5,7 @@
 
     <?php include_once "helpers/help_meta.php"; ?>
 
-    <title>GrETUA Admin - Dashboard</title>
+    <title>GrETUA Admin - Novo Evento</title>
 
     <?php include_once "helpers/help_link.php"; ?>
 
@@ -49,7 +49,7 @@
     </a>
 
     <?php include_once "helpers/help_js.php"; ?>
-
+    <script src="js/novo_evento.js"></script>
 </body>
 
 </html>

@@ -9,62 +9,80 @@
             está a criar uma memórias.</p>
 
         <!-- DataTales Example -->
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Informações</h6>
-            </div>
-            <div class="card-body">
-                <div class="bg">
-                    <form>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputEmail4">Email</label>
-                                <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-                            </div>
-                            <div class="form-group col-md-6">
-                                <label for="inputPassword4">Password</label>
-                                <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
-                            </div>
+        <div class="row justify-content-center">
+            <div class="col col-lg-10">
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Informações</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="bg">
+                            <form>
+                                <div class="form-group">
+                                    <label for="inputAddress">Nome</label>
+                                    <input type="text" class="form-control" id="nome">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Descrição Curta</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">Descrição</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                                </div>
+                                <hr>
+                                <div class="form-row">
+                                    <div class="form-group col-lg-6 col-xl-3">
+                                        <label for="editora">Categoria</label>
+                                        <select id="editora" name="editora" class="form-control">
+                                            <option selected="">Selecionar</option>
+                                            <option value="5">Abbey Records</option>
+                                            <option value="6">Apple Records</option>
+                                            <option value="12">Atlantic Records</option>
+                                            <option value="15">Def Jam Recordings</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-lg-6 col-xl-3">
+                                        <label for="outraeditora">Outra Categoria</label>
+                                        <input type="text" name="outraeditora" class="form-control" id="outraeditora">
+                                    </div>
+                                    <div class="form-group col-md-12 col-lg-4 col-xl-2">
+                                        <label for="lotacao">Lotação</label>
+                                        <input type="number" name="lotacao" class="form-control" id="lotacao" min="0">
+                                    </div>
+                                    <div class="form-group col-md-6 col-lg-4 col-xl-2">
+                                        <label for="precoreserva">Preço com Reserva</label>
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-11 col-md-10">
+                                                <input type="number" name="precoreserva" class="form-control"
+                                                       id="precoreserva" min="0" step=".01">
+                                            </div>
+                                            <div class="col-auto pl-2">
+                                                €
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-6 col-lg-4 col-xl-2">
+                                        <label for="precoporta">Preço à Porta</label>
+                                        <div class="row no-gutters align-items-center">
+                                            <div class="col-11 col-md-10">
+                                                <input type="number" name="precoporta" class="form-control"
+                                                       id="precoporta" min="0" step=".01">
+                                            </div>
+                                            <div class="col-auto pl-2">
+                                                €
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Sign in</button>
+                            </form>
                         </div>
-                        <div class="form-group">
-                            <label for="inputAddress">Address</label>
-                            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputAddress2">Address 2</label>
-                            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group col-md-6">
-                                <label for="inputCity">City</label>
-                                <input type="text" class="form-control" id="inputCity">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label for="inputState">State</label>
-                                <select id="inputState" class="form-control">
-                                    <option selected>Choose...</option>
-                                    <option>...</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-2">
-                                <label for="inputZip">Zip</label>
-                                <input type="text" class="form-control" id="inputZip">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="gridCheck">
-                                <label class="form-check-label" for="gridCheck">
-                                    Check me out
-                                </label>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Sign in</button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
-
     </div>
     <!-- /.container-fluid -->
 

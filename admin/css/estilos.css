@@ -1,0 +1,8 @@
+.form-control {
+    height: calc(1.5em + 1.5rem + 2px);
+}
+
+
+textarea {
+    resize: none;
+}
