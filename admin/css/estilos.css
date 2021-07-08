@@ -6,3 +6,30 @@
 textarea {
     resize: none;
 }
+
+
+.IMGthumbnail {
+    height: 150px;
+    width: auto;
+    margin: auto;
+    background-color: #ececec;
+    padding: 2px;
+    border-radius: 5px;
+}
+
+.IMGthumbnail img {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 5px;
+}
+
+.imgThumbContainer {
+    display: inline-block;
+    padding: 0 10px;
+}
+
+
+.imgThumbContainer > .imgName {
+    text-align: center;
+    padding: 2px 6px;
+}
