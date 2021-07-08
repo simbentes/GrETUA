@@ -25,7 +25,6 @@ if (!isset($_SESSION['id_user'])) {
     }
 
 
-
 </script>
 </body>
 
