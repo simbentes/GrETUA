@@ -392,9 +392,7 @@
     </div>
 </div>
 
-<?php
-include_once "helpers/help_js.php";
-?>
+<?php include_once "helpers/help_js.php"; ?>
 
 </body>
 

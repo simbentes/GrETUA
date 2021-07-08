@@ -3,15 +3,11 @@
 
 <head>
 
-    <?php
-    include_once "helpers/help_meta.php";
-    ?>
+    <?php include_once "helpers/help_meta.php"; ?>
 
     <title>GrETUA Admin - Dashboard</title>
 
-    <?php
-    include_once "helpers/help_link.php";
-    ?>
+    <?php include_once "helpers/help_link.php"; ?>
 
 
 </head>
@@ -22,9 +18,7 @@
 <div id="wrapper">
 
     <!-- Sidebar -->
-    <?php
-    include_once "components/cp_navbars_side.php";
-    ?>
+    <?php include_once "components/cp_navbars_side.php"; ?>
     <!-- End of Sidebar -->
 
     <!-- Content Wrapper -->
@@ -34,9 +28,7 @@
         <div id="content">
 
             <!-- Topbar -->
-            <?php
-            include_once "components/cp_navbars_top.php";
-            ?>
+            <?php include_once "components/cp_navbars_top.php"; ?>
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
