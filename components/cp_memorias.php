@@ -11,16 +11,15 @@
                 $link = new_db_connection();
                 $stmt = mysqli_stmt_init($link);
 
-                $query = "SELECT eventos.id_eventos, DATE(data_eventos.data), eventos.nome, fotos_eventos.foto FROM eventos
+                $query = "SELECT eventos.id_eventos, DATE(data_eventos.data), eventos.nome, fotos_eventos.foto, eventos.descricao_curta FROM eventos
 INNER JOIN data_eventos
 ON data_eventos.ref_id_eventos = eventos.id_eventos
 INNER JOIN fotos_eventos
 ON fotos_eventos.ref_id_eventos = eventos.id_eventos
 INNER JOIN tipo_eventos
 ON tipo_eventos.id_tipo_eventos = eventos.ref_id_tipo_eventos
-WHERE fotos_eventos.capa = 1 AND data_eventos.data < NOW()
-GROUP BY eventos.id_eventos
-ORDER BY data_eventos.data;";
+WHERE fotos_eventos.capa = 1 AND data_eventos.data < NOW() AND (data_eventos.data) IN (SELECT MIN(data_eventos.data) FROM data_eventos GROUP BY data_eventos.ref_id_eventos)
+ORDER BY data_eventos.data DESC;";
 
                 if (mysqli_stmt_prepare($stmt, $query)) {
 
@@ -28,7 +27,7 @@ ORDER BY data_eventos.data;";
                     mysqli_stmt_execute($stmt);
 
                     /* bind result variables */
-                    mysqli_stmt_bind_result($stmt, $id_evento, $data_evento, $nome_evento, $foto);
+                    mysqli_stmt_bind_result($stmt, $id_evento, $data_evento, $nome_evento, $foto, $desc_curta);
 
                     mysqli_stmt_store_result($stmt);
 
@@ -47,9 +46,7 @@ ORDER BY data_eventos.data;";
                                     <div class="desc-memoria container-fluid">
                                         <h3 class="top-right"><?= $nome_evento ?></h3>
                                         <div class="row">
-                                            <p class="text-cinza desc-curta">A habitual e muito rica aliança com o Núcleo de
-                                                Estudantes de Música - AAUAv
-                                            </p>
+                                            <p class="text-cinza desc-curta"><?= $desc_curta ?></p>
                                         </div>
                                     </div>
                                     <div class="bola">

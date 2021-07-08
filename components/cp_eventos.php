@@ -38,16 +38,14 @@
             $link = new_db_connection();
             $stmt = mysqli_stmt_init($link);
 
-            $query = "SELECT eventos.id_eventos, DATE(MIN(data_eventos.data)), DATE_FORMAT(TIME(MIN(data_eventos.data)), '%H:%i'), eventos.nome, fotos_eventos.foto, tipo_eventos.nome FROM eventos
+            $query = "SELECT eventos.id_eventos, DATE(data_eventos.data), DATE_FORMAT(TIME(data_eventos.data), '%H:%i'), eventos.nome, fotos_eventos.foto, tipo_eventos.nome FROM eventos
 INNER JOIN data_eventos
 ON data_eventos.ref_id_eventos = eventos.id_eventos
-INNER JOIN guardados_vou
-ON eventos.id_eventos = guardados_vou.ref_id_eventos
 INNER JOIN fotos_eventos
 ON fotos_eventos.ref_id_eventos = eventos.id_eventos
 INNER JOIN tipo_eventos
 ON tipo_eventos.id_tipo_eventos = eventos.ref_id_tipo_eventos
-WHERE guardados_vou.ref_id_utilizadores = 1 AND fotos_eventos.capa = 1 AND data_eventos.data > NOW()
+WHERE fotos_eventos.capa = 1 AND (data_eventos.data) IN (SELECT MIN(data_eventos.data) FROM data_eventos WHERE data_eventos.data > NOW() GROUP BY data_eventos.ref_id_eventos)
 ORDER BY data_eventos.data;";
 
             if (mysqli_stmt_prepare($stmt, $query)) {
@@ -102,81 +100,6 @@ ORDER BY data_eventos.data;";
 <section>
     <div class="container pt-4">
         <h2 class="mb-0">os meus eventos</h2>
-    </div>
-    <!-- Swiper -->
-    <div class="swiper-container osmeuseventos py-4">
-        <div class="swiper-wrapper">
-
-            <div class="evento swiper-slide">
-                <a href="evento.php">
-                    <img class="img-fluid img-evento" src="img/da_chick.jpg">
-                    <div class="desc-evento container-fluid">
-                        <h6 class="top-right">Da Chick</h6>
-                        <div class="row">
-                            <div class="col text-cinza">4 junho</div>
-                            <div class="col text-cinza text-center">21h00</div>
-                            <div class="col text-cinza text-end">concerto</div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="evento swiper-slide">
-                <a href="evento.php">
-                    <img class="img-fluid img-evento" src="img/ruinas3.jpg">
-                    <div class="desc-evento container-fluid">
-                        <h6 class="top-right">Ruínas</h6>
-                        <div class="row">
-                            <div class="col text-cinza">28 abril</div>
-                            <div class="col text-cinza text-center">22h30</div>
-                            <div class="col text-cinza text-end">teatro</div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="evento swiper-slide">
-                <a href="evento.php">
-                    <img class="img-fluid img-evento" src="img/palmieres.jpg">
-                    <div class="desc-evento container-fluid">
-                        <h6 class="top-right">P A L M I E R E S</h6>
-                        <div class="row">
-                            <div class="col text-cinza">1 junho</div>
-                            <div class="col text-cinza text-center">22h30</div>
-                            <div class="col text-cinza text-end">concerto</div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="evento swiper-slide">
-                <a href="evento.php">
-                    <img class="img-fluid img-evento" src="img/ninguem.jpg">
-                    <div class="desc-evento container-fluid">
-                        <h6 class="top-right">Ninguém, de Deeogo Oliveira</h6>
-                        <div class="row">
-                            <div class="col text-cinza">8 junho</div>
-                            <div class="col text-cinza text-center">22h30</div>
-                            <div class="col text-cinza text-end">concerto</div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="evento swiper-slide">
-                <a href="evento.php">
-                    <img class="img-fluid img-evento" src="img/angelica.jpg">
-                    <div class="desc-evento container-fluid">
-                        <h6 class="top-right">Angélica Salvi - Phantone</h6>
-                        <div class="row">
-                            <div class="col text-cinza">25 de maio</div>
-                            <div class="col text-cinza text-center">22h30</div>
-                            <div class="col text-cinza text-end">concerto</div>
-                        </div>
-                    </div>
-
-                </a>
-            </div>
-        </div>
-        <div class="swiper-scrollbar"></div>
     </div>
 </section>
 

@@ -3,34 +3,34 @@ require_once "connections/connection.php";
 
 
 if (isset($_GET["evento"])) {
-    $id_produtos = $_GET["evento"];
+    $eventoid = $_GET["evento"];
 
     $link = new_db_connection();
     $stmt = mysqli_stmt_init($link);
 
-    $query = "SELECT DATE(MIN(data_eventos.data)), DATE_FORMAT(TIME(MIN(data_eventos.data)), '%H:%i'),eventos.nome, fotos_eventos.foto, eventos.descricao_curta, eventos.descricao, lotacao, preco_reserva, preco_porta, tipo_eventos.nome, artistas.nome, guardados_vou.guardados, guardados_vou.vou
+    $query = "SELECT DATE(data_eventos.data), DATE_FORMAT(TIME(data_eventos.data), '%H:%i'),eventos.nome, fotos_eventos.foto, eventos.descricao_curta, eventos.descricao, lotacao, preco_reserva, preco_porta, tipo_eventos.nome, artistas.nome
 FROM eventos
 INNER JOIN data_eventos
 ON data_eventos.ref_id_eventos = eventos.id_eventos
-INNER JOIN guardados_vou
-ON eventos.id_eventos = guardados_vou.ref_id_eventos
 INNER JOIN fotos_eventos
 ON fotos_eventos.ref_id_eventos = eventos.id_eventos
 INNER JOIN tipo_eventos
 ON tipo_eventos.id_tipo_eventos = eventos.ref_id_tipo_eventos
 INNER JOIN artistas
 ON artistas.id_artistas = eventos.ref_id_artistas
-WHERE guardados_vou.ref_id_utilizadores = 1 AND fotos_eventos.capa = 1 AND data_eventos.data > NOW()
+WHERE fotos_eventos.capa = 1 AND (data_eventos.data) IN (SELECT MIN(data_eventos.data) FROM data_eventos WHERE data_eventos.data > NOW() GROUP BY data_eventos.ref_id_eventos) AND eventos.id_eventos = ? 
 ORDER BY data_eventos.data;";
 
     if (mysqli_stmt_prepare($stmt, $query)) {
 
 
+        mysqli_stmt_bind_param($stmt, "i", $eventoid);
+
         /* execute the prepared statement */
         mysqli_stmt_execute($stmt);
 
         /* bind result variables */
-        mysqli_stmt_bind_result($stmt, $data, $hora, $nome_evento, $foto, $desc_curta, $desc, $lotacao, $preco_reserva, $preco_porta, $tipo_evento, $artista, $guardado, $vou);
+        mysqli_stmt_bind_result($stmt, $data, $hora, $nome_evento, $foto, $desc_curta, $desc, $lotacao, $preco_reserva, $preco_porta, $tipo_evento, $artista);
 
         /* store result */
         mysqli_stmt_store_result($stmt);
