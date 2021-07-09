@@ -71,7 +71,7 @@ $stmt = mysqli_stmt_init($link);
                                             onchange="verArtista(this.value)">
                                         <option selected="">Selecionar</option>
                                         <?php
-                                        $query = "SELECT id_artistas, nome FROM `artistas`";
+                                        $query = "SELECT id_artistas, nome FROM `artistas` ORDER BY nome";
 
                                         if (mysqli_stmt_prepare($stmt, $query)) {
 
@@ -114,7 +114,7 @@ $stmt = mysqli_stmt_init($link);
                                         <select id="categoria" name="tipoevento" class="form-control">
                                             <option value="" selected>Selecionar</option>
                                             <?php
-                                            $query = "SELECT id_tipo_eventos, nome FROM `tipo_eventos`";
+                                            $query = "SELECT id_tipo_eventos, nome FROM `tipo_eventos` ORDER BY nome";
 
                                             if (mysqli_stmt_prepare($stmt, $query)) {
 
@@ -205,7 +205,7 @@ $stmt = mysqli_stmt_init($link);
                                     <select id="paisart" name="paisartista" class="form-control">
                                         <option selected="">Selecionar</option>
                                         <?php
-                                        $query = "SELECT id_pais, pais FROM `paises`";
+                                        $query = "SELECT id_pais, pais FROM `paises` ORDER BY pais";
 
                                         if (mysqli_stmt_prepare($stmt, $query)) {
 
