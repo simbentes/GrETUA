@@ -9,7 +9,7 @@
             está a criar uma memórias.</p>
 
         <!-- DataTales Example -->
-        <form>
+        <form action="scripts/sc_criar_evento.php" method="post" enctype="multipart/form-data">
             <div class="row justify-content-center">
 
                 <div id="container-evento" class="col-lg-10">
@@ -22,7 +22,7 @@
 
                                 <div class="form-group">
                                     <label for="inputAddress">Nome</label>
-                                    <input type="text" class="form-control" id="nome">
+                                    <input type="text" class="form-control" id="nomeevento">
                                 </div>
                                 <div class="form-group">
                                     <label for="artista">Artista</label>
@@ -45,18 +45,18 @@
                                 <div id="removerdata"></div>
 
                                 <div class="form-group">
-                                    <label for="exampleFormControlTextarea1">Descrição Curta</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                                    <label for="textarea1">Descrição Curta</label>
+                                    <textarea class="form-control" id="textarea1" name="curtadesc" rows="2"></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleFormControlTextarea1">Descrição</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                                    <label for="textarea1">Descrição</label>
+                                    <textarea class="form-control" id="textarea1" name="desc" rows="4"></textarea>
                                 </div>
                                 <hr>
                                 <div class="form-row">
                                     <div class="form-group col-lg-6">
-                                        <label for="editora">Categoria</label>
-                                        <select id="editora" name="editora" class="form-control">
+                                        <label for="categoria">Categoria</label>
+                                        <select id="categoria" name="tipoevento" class="form-control">
                                             <option selected="">Selecionar</option>
                                             <option value="5">Abbey Records</option>
                                             <option value="6">Apple Records</option>
