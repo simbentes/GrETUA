@@ -65,8 +65,8 @@
                                         </select>
                                     </div>
                                     <div class="form-group col-lg-6">
-                                        <label for="outraeditora">Outra Categoria</label>
-                                        <input type="text" name="outraeditora" class="form-control" id="outraeditora">
+                                        <label for="outracategoria">Outra Categoria</label>
+                                        <input type="text" name="outrotipoevento" class="form-control" id="outracategoria">
                                     </div>
                                     <div class="form-group col-md-12 col-lg-4">
                                         <label for="lotacao">Lotação</label>

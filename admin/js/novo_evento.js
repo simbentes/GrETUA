@@ -1,24 +1,22 @@
-var selectEditora = document.getElementById("editora");
+var selectCategoria = document.getElementById("categoria");
 
 
-selectEditora.addEventListener("change", function () {
-    var opcaoAlbum = selectEditora.value
+selectCategoria.addEventListener("change", function () {
+    var opcaoAlbum = selectCategoria.value
 
     if (opcaoAlbum == "Selecionar") {
-        document.getElementById("outraeditora").disabled = false;
+        document.getElementById("outracategoria").disabled = false;
     } else {
-        document.getElementById("outraeditora").disabled = true;
+        document.getElementById("outracategoria").disabled = true;
     }
 });
 
-document.getElementById("outraeditora").addEventListener("keyup", function () {
-    if (document.getElementById("outraeditora").value != "") {
-        document.getElementById("editora").disabled = true;
+document.getElementById("outracategoria").addEventListener("keyup", function () {
+    if (document.getElementById("outracategoria").value != "") {
+        selectCategoria.disabled = true;
     } else {
-        document.getElementById("editora").disabled = false;
-
+        selectCategoria.disabled = false;
     }
-
 });
 
 
