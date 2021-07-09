@@ -9,17 +9,22 @@ if (!empty($_POST["email"]) && !empty($_POST["password"])) {
 
     $stmt = mysqli_stmt_init($link);
 
-    $query = "SELECT id_utilizadores, password, nome, apelido, foto_perfil FROM utilizadores WHERE email = ?";
+    $query = "SELECT id_utilizadores, password, utilizadores.nome, apelido, foto_perfil, id_cargo FROM utilizadores 
+LEFT JOIN cargo
+ON cargo.id_cargo = utilizadores.ref_id_cargo
+WHERE email = ? OR username = ?;";
 
     if (mysqli_stmt_prepare($stmt, $query)) {
-        mysqli_stmt_bind_param($stmt, 's', $email);
+
+        //$email é o campo da form, o user pode colocar o mail ou o username para facilitar o login
+        mysqli_stmt_bind_param($stmt, 'ss', $email, $email);
 
         if (mysqli_stmt_execute($stmt)) {
 
-            mysqli_stmt_bind_result($stmt, $userid, $password_hash, $nome, $apelido, $fotoperfil);
+            mysqli_stmt_bind_result($stmt, $userid, $password_hash, $nome, $apelido, $fotoperfil, $cargo);
 
             if (mysqli_stmt_fetch($stmt)) {
-             
+
                 if (password_verify($password, $password_hash)) {
                     // Guardar sessão de utilizador
                     session_start();
@@ -28,6 +33,7 @@ if (!empty($_POST["email"]) && !empty($_POST["password"])) {
                     $_SESSION["fperfil"] = $fotoperfil;
                     $_SESSION["email"] = $email;
                     $_SESSION["nomeproprio"] = $nome;
+                    $_SESSION["cargo"] = $cargo;
 
                     // Feedback de sucesso
                     header("Location: ../gretua.php");
