@@ -33,12 +33,13 @@
 
             <?php include_once "components/cp_novo_evento.php"; ?>
 
-            <!-- Footer -->
-            <?php include_once "components/cp_footer.php"; ?>
-            <!-- End of Footer -->
 
         </div>
         <!-- End of Content Wrapper -->
+
+        <!-- Footer -->
+        <?php include_once "components/cp_footer.php"; ?>
+        <!-- End of Footer -->
 
     </div>
     <!-- End of Page Wrapper -->
