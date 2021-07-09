@@ -106,17 +106,16 @@ if (!empty($_POST["nomeevento"]) && !empty($_POST["artista"]) && !empty($_POST["
                         echo "Error: " . mysqli_stmt_error($stmt);
                     } else {
                         //sucesso
-                        // header("Location: ../novo-evento.php?msg=3");
+                        header("Location: ../novo-evento.php?msg=3");
                     }
                 }
             } else {
                 echo "Error:" . mysqli_error($link);
             }
 
-            $files = array_filter($_FILES['fotos']['name']);
 
+            //adicionar fotos
             $totalfotos = count($_FILES['fotos']['name']);
-
             include_once "sc_upload_imagens.php";
 
             if (!empty($_FILES["fotos"]["name"])) {
@@ -129,8 +128,24 @@ if (!empty($_POST["nomeevento"]) && !empty($_POST["artista"]) && !empty($_POST["
                 header("Location: ../novo-evento.php?msg=2");
                 die;
             }
-            var_dump($array_nome_img);
-            die;
+
+
+            $query = "INSERT INTO fotos_eventos (foto, ref_id_eventos) VALUES (?, ?)";
+
+            if (mysqli_stmt_prepare($stmt, $query)) {
+
+                mysqli_stmt_bind_param($stmt, 'si', $nome_img, $id_evento);
+
+                //vamos relacionar as datas ao evento
+                foreach ($array_nome_img as $nome_img) {
+                    if (!mysqli_stmt_execute($stmt)) {
+                        echo "Error: " . mysqli_stmt_error($stmt);
+                    }
+                }
+            } else {
+                echo "Error:" . mysqli_error($link);
+            }
+
         } else {
             echo "Error:" . mysqli_stmt_error($stmt);
         }
