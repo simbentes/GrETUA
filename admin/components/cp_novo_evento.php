@@ -32,13 +32,10 @@
                                         <option value="15">Def Jam Recordings</option>
                                     </select>
                                 </div>
-                                <div class="form-group" id="data1">
-                                    <label for="meeting-time">Data:</label>
-                                    <input type="datetime-local" class="form-control" id="meeting-time"
-                                           name="data-evento1" min="1960-01-01T00:00">
-
-                                </div>
-                                <div id="outrasdatas" class="">
+                                <div class="form-group" id="dataevento">
+                                    <label for="meeting-time" id="labeldata">Data</label>
+                                    <input type="datetime-local" class="form-control" id="dataevento1"
+                                           name="dataevento1" min="1960-01-01T00:00">
 
                                 </div>
                                 <div id="adicionardata" class="btn btn-primary mb-3">Adicionar Data</div>

@@ -18,6 +18,7 @@ document.getElementById("outraeditora").addEventListener("keyup", function () {
         document.getElementById("editora").disabled = false;
 
     }
+
 });
 
 
@@ -25,14 +26,23 @@ var selectBotaoDatas = document.getElementById("adicionardata")
 var iBotao = 1
 document.getElementById("adicionardata").setAttribute("data-value", iBotao);
 
+const d = new Date();
+document.getElementById("dataevento1").value = d.getFullYear() + "-01-01T00:00"
+
 selectBotaoDatas.onclick = function () {
     iBotao++
 
-    document.getElementById("outrasdatas").innerHTML += "<div class='form-group' id='data" + iBotao + "'><label for=\"meeting-time" + iBotao + "\">Data</label>\n" +
-        "                                    <input type=\"datetime-local\" class=\"form-control\" id=\"meeting-time" + iBotao + "\"\n" +
-        "                                           name=\"data-evento" + iBotao + "\" min=\"1960-01-01T00:00\"></div>"
+    var node = document.createElement("input");
 
-    document.getElementById("data" + iBotao).value = "1960-01-01T00:00";
+    node.type = "datetime-local"
+    node.classList.add("form-control")
+    node.classList.add("my-2")
+    node.id = "data" + iBotao
+    node.value = d.getFullYear() + "-01-01T00:00"
+    node.min = "1960-01-01T00:00"
+    node.name = "dataevento" + iBotao
+    document.getElementById("dataevento").appendChild(node);
+
 
     document.getElementById("adicionardata").setAttribute("data-value", iBotao);
     document.getElementById("removerdata").style.display = "inline-block";
@@ -40,6 +50,9 @@ selectBotaoDatas.onclick = function () {
     document.getElementById("removerdata").classList.add("btn");
     document.getElementById("removerdata").classList.add("btn-secondary");
     document.getElementById("removerdata").classList.add("mb-3");
+
+
+    document.getElementById("labeldata").innerHTML = "Datas";
 
     console.log(iBotao)
 
@@ -51,14 +64,16 @@ document.getElementById("removerdata").onclick = function () {
         document.getElementById("data" + iBotao).remove()
         iBotao--
     } else {
-        document.getElementById("outrasdatas").innerHTML = "";
+        document.getElementById("data" + iBotao).remove()
         document.getElementById("removerdata").style.display = "none";
         iBotao = 1
+        document.getElementById("labeldata").innerHTML = "Data";
     }
 
 
     document.getElementById("adicionardata").setAttribute("data-value", iBotao);
 }
+
 
 
 //varias fotos
