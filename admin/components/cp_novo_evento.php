@@ -9,27 +9,30 @@
             está a criar uma memórias.</p>
 
         <!-- DataTales Example -->
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Evento/Memória</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="bg">
-                            <form>
+        <form>
+            <div class="row justify-content-center">
+
+                <div id="container-evento" class="col-lg-10">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Evento/Memória</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="bg">
+
                                 <div class="form-group">
                                     <label for="inputAddress">Nome</label>
                                     <input type="text" class="form-control" id="nome">
                                 </div>
                                 <div class="form-group">
-                                    <label for="artista">Categoria</label>
-                                    <select id="artista" name="artista" class="form-control">
+                                    <label for="artista">Artista</label>
+                                    <select id="artista" name="artista" class="form-control"
+                                            onchange="verArtista(this.value)">
                                         <option selected="">Selecionar</option>
                                         <option value="5">Abbey Records</option>
                                         <option value="6">Apple Records</option>
                                         <option value="12">Atlantic Records</option>
-                                        <option value="15">Def Jam Recordings</option>
+                                        <option value="novoartista" class="font-weight-bolder">Novo Artista</option>
                                     </select>
                                 </div>
                                 <div class="form-group" id="dataevento">
@@ -106,30 +109,26 @@
                                         <button type="submit" class="btn btn-primary">Publicar</button>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Novo Artista</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="bg">
-                            <form>
+                <div id="container-artista" class="col-lg-4 d-none">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Novo Artista</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="bg">
+
                                 <div class="form-group">
                                     <label for="inputAddress">Nome</label>
                                     <input type="text" class="form-control" id="nome">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleFormControlTextarea1">Descrição Curta</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleFormControlTextarea1">Descrição</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                                    <label for="exampleFormControlTextarea1">Biografia</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1"
+                                              rows="4"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="artista">País</label>
@@ -141,12 +140,31 @@
                                         <option value="15">Def Jam Recordings</option>
                                     </select>
                                 </div>
-                            </form>
+                                <div class="redes py-2">
+                                    <h6 class="font-weight-bolder">Redes Sociais</h6>
+                                    <div class="form-group">
+                                        <label for="instagram">Instagram</label>
+                                        <input type="text" class="form-control" id="instagram">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="facebook">Facebook</label>
+                                        <input type="text" class="form-control" id="facebook">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="spotify">Spotify</label>
+                                        <input type="text" class="form-control" id="spotify">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="youtube">YouTube</label>
+                                        <input type="text" class="form-control" id="youtube">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
         <!-- /.container-fluid -->
 
     </div>

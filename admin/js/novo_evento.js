@@ -22,6 +22,22 @@ document.getElementById("outraeditora").addEventListener("keyup", function () {
 });
 
 
+function verArtista(nome) {
+
+    if (nome == "novoartista") {
+        document.getElementById("container-artista").classList.remove("d-none")
+        document.getElementById("container-evento").classList.remove("col-lg-10")
+        document.getElementById("container-evento").classList.add("col-lg-8")
+    } else {
+        document.getElementById("container-artista").classList.add("d-none")
+        document.getElementById("container-evento").classList.add("col-lg-10")
+        document.getElementById("container-evento").classList.remove("col-lg-8")
+
+    }
+
+}
+
+
 var selectBotaoDatas = document.getElementById("adicionardata")
 var iBotao = 1
 document.getElementById("adicionardata").setAttribute("data-value", iBotao);
@@ -73,7 +89,6 @@ document.getElementById("removerdata").onclick = function () {
 
     document.getElementById("adicionardata").setAttribute("data-value", iBotao);
 }
-
 
 
 //varias fotos
