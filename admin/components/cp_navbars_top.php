@@ -179,7 +179,7 @@
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                  aria-labelledby="userDropdown">
 
-                <a class="dropdown-item" href="../../public/"><i class="fa fa-user fa-fw mr-2 text-gray-400"></i>Voltar
+                <a class="dropdown-item" href="../gretua.php"><i class="fa fa-user fa-fw mr-2 text-gray-400"></i>Voltar
                     área pública</a>
 
                 <div class="dropdown-divider"></div>

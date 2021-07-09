@@ -15,16 +15,18 @@ if (isset($_SESSION['id_user'])) {
 
 
     <section class="container d-block">
-        <div class="mb-1">
-            <svg xmlns="http://www.w3.org/2000/svg" width="100" height="40" fill="currentColor"
-                 viewBox="0 0 1079.1 376.9">
-                <g>
-                    <path class="st0" d="M275.9,187.8c-18.4,4.5-35.2,7.7-49-9.9c-3.9-5-10.9-5.9-15.9-2c-0.6,0.4-1,0.9-1.6,1.5
+        <div class="row align-items-md-center justify-content-md-between">
+            <div class="col-md-6">
+                <div class="mb-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="40" fill="currentColor"
+                         viewBox="0 0 1079.1 376.9">
+                        <g>
+                            <path class="st0" d="M275.9,187.8c-18.4,4.5-35.2,7.7-49-9.9c-3.9-5-10.9-5.9-15.9-2c-0.6,0.4-1,0.9-1.6,1.5
 		c-5.7,6.2-16.9,10.4-12.9,21.6c9.3,25.7,9.3,52.5,11.2,79.2c1.9,27.5-1,55.7,15,80.9l0,0c2.5,4.4,7.2,6.9,12.3,6.9
 		c8.2-0.2,14.8,0.4,19.3-4.4c12.6-13.4,9.1-46.7,4.9-71c-3-18-6.4-36-9.7-54.3c3.6-0.9,6.3-1.1,8.4-2.1c10.2-5,18.7-7.8,28.9,2.3
 		c3.9,3.9,16,3.1,21.9,0c5.2-2.9,10-12.3,9.6-18.6C316.9,196.9,296.5,182.7,275.9,187.8z"/>
-                    <path class="st0"
-                          d="M1078.4,321.1l-0.2-0.4c-18.7-88.1-37.9-175.8-56.1-264c-4.8-23.3-18.6-35.9-40.6-41
+                            <path class="st0"
+                                  d="M1078.4,321.1l-0.2-0.4c-18.7-88.1-37.9-175.8-56.1-264c-4.8-23.3-18.6-35.9-40.6-41
 		c-18.4-4.4-26-0.2-31.4,18.2c-7.5,25.2-15.1,50.6-21.7,76.1c-7.2,27.6-13.3,55.4-20.2,83.1c-1.1,4.2-4.2,7.8-6.3,11.7
 		c-3.3-3.3-8.4-6.2-9.7-10.2c-2.7-8.1-4.3-16.7-4.6-25.4c-0.6-32.1,0-64.1-0.5-96.2c-0.1-10.4-6.6-15.6-16.8-15.9
 		c-15.9-0.4-24.4,8.6-22.5,25.8c4.6,40.2,3.3,80.1-1.5,120.2c-3.2,26.3-6.3,52.4-8.8,78.8c-2.1,21.9-15.9,37.5-39.4,42.6
@@ -44,50 +46,55 @@ if (isset($_SESSION['id_user'])) {
 		c1.6-25.2,3-50.4,5.7-75.5c1.6-16.1,10.3-28.5,25.9-34.7c16.3-6.6,30.4-2.7,36.8,13.8c7.3,18.6,12.3,38.4,16.2,58.1
 		c1.3,7.2,2.4,14.6,3.1,21.9c1.2,13.1,12.9,22.8,25.9,21.5c1.1-0.2,2.1-0.3,3.1-0.4l1.8-0.4C1071.5,354.7,1082,337.9,1078.4,321.1z
 		 M984.3,165.2c-0.3,2-5.2,4.7-7.8,4.4c-2.5-0.3-6.6-4.1-6.4-6c0.4-6.6,2.4-13.1,4.2-21.3C985.3,148.9,985.8,157,984.3,165.2z"/>
-                    <path class="st0"
-                          d="M177.5,3.7c-4-1.5-17.2-3.6-17.2-3.6C149.7-0.5,135,2.6,126,8.2l-0.1,0.2c-35.3,22.2-64.4,51-88.8,84.8
+                            <path class="st0"
+                                  d="M177.5,3.7c-4-1.5-17.2-3.6-17.2-3.6C149.7-0.5,135,2.6,126,8.2l-0.1,0.2c-35.3,22.2-64.4,51-88.8,84.8
 		C6.7,135.2-9,181,5.4,232.9c13.2,47.7,34.3,90,84.4,109.7c8.1,2.9,16.2,5.3,24.6,7.1c6,0.9,22.9,2.9,34.3-5.7
 		c8.5-6.5,17.2-15.5,19.2-25.5c5.4-27.3,3.9-54.8-9-80.4c-12.1-24.2-33.2-35.3-59.6-31.7c-3.7,0.6-9,3-10,6c-1,2.6,2.2,7.4,4.5,10.5
 		c2.4,3.5,6.1,6,8.7,9.5c3.9,5.3,4.5,10.7-0.9,15.5c-5.4,4.8-12,7.1-17.5,1.3c-13.2-14-24-29.1-19-50.3c3.7-16.2,8.1-32.3,10.9-48.5
 		c5.7-32.7,22.3-57.9,50.6-74.7c13.2-8,27.2-15.2,41.9-19.8c30.8-9.6,28.3-31.7,25.1-39.6C191.9,11.2,182.8,5.5,177.5,3.7z"/>
-                </g>
-            </svg>
-        </div>
-        <div class="pb-5">
-            <h1 class="logintitulo mb-0">bem-vindo de volta.</h1>
+                        </g>
+                    </svg>
+                </div>
+                <div class="pb-5">
+                    <h1 class="logintitulo mb-0">bem-vindo de volta.</h1>
+                </div>
+            </div>
+            <div class="col-md-6 col-xl-5">
+                <form action="scripts/sc_user_login.php" method="post">
+                    <div>
+                        <div class="btn btn-grande btn-google w-100"><img
+                                    src="img/g_logo.svg" class="logo">Iniciar sessão com a Google
+                        </div>
+                    </div>
+                    <div class="row align-items-center py-3">
+                        <div class="col-1">
+                            ou
+                        </div>
+                        <div class="col-11">
+                            <hr>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="text" class="form-control forminfo formlogin" id="formGroupExampleInput"
+                               placeholder="Email ou username" name="email"
+                               required>
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" class="form-control forminfo formlogin" id="formGroupExampleInput2"
+                               placeholder="Password" name="password" required>
+                    </div>
+                    <div>
+                        <input type="submit" class="btn btn-grande w-100" value="Iniciar Sessão">
+                    </div>
+                    <div class="pt-5 text-center msg-login">
+                        <h6>Ainda não tens conta? <a href="criarconta.php"><strong>Criar Conta</strong></a></h6>
+                    </div>
+                </form>
+            </div>
         </div>
 
-        <form action="scripts/sc_user_login.php" method="post">
-            <div>
-                <div class="btn btn-grande btn-google w-100"><img
-                            src="img/g_logo.svg" class="logo">Iniciar sessão com a Google
-                </div>
-            </div>
-            <div class="row align-items-center py-3">
-                <div class="col-1">
-                    ou
-                </div>
-                <div class="col-11">
-                    <hr>
-                </div>
-            </div>
 
-            <div class="mb-3">
-                <input type="text" class="form-control forminfo formlogin" id="formGroupExampleInput"
-                       placeholder="Email ou username" name="email"
-                       required>
-            </div>
-            <div class="mb-3">
-                <input type="password" class="form-control forminfo formlogin" id="formGroupExampleInput2"
-                       placeholder="Password" name="password" required>
-            </div>
-            <div>
-                <input type="submit" class="btn btn-grande w-100" value="Iniciar Sessão">
-            </div>
-            <div class="pt-5 text-center msg-login">
-                <h6>Ainda não tens conta? <a href="criarconta.php"><strong>Criar Conta</strong></a></h6>
-            </div>
-        </form>
     </section>
 </main>
 <!-- Javascript -->
