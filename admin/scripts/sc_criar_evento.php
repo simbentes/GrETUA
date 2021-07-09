@@ -68,7 +68,7 @@ if (!empty($_POST["nomeartista"]) && !empty($_POST["artista"]) && !empty($_POST[
     }
 
 
-    //artista com upload feito
+    //artista e tipo de evento com upload feito
     //falta apenas criar o evento
 
     $nomeartista = $_POST["nomeartista"];
@@ -81,7 +81,7 @@ if (!empty($_POST["nomeartista"]) && !empty($_POST["artista"]) && !empty($_POST[
     $array_fotos = $_POST["fotos[]"];
 
 
-    $query = "INSERT INTO `produtos` (`ref_id_albuns`, `ref_id_utilizadores_vendedores`, `ref_id_condicoes`, `img_capa`, `preco`) VALUES (?,?,?,?,?)";
+    $query = "INSERT INTO `eventos` (`nome`, `ref_id_artistas`, `descricao`, `descricao_curta`, `ref_id_tipo_eventos`, `lotacao`, `preco_reserva`, `preco_porta`) VALUES (?,?,?,?,?,?,?,?)";
     if (mysqli_stmt_prepare($stmt, $query)) {
         mysqli_stmt_bind_param($stmt, 'iiiss', $id_evento, $ref_id_vendedor, $condicao, $nome_img, $preco);
         if (mysqli_stmt_execute($stmt)) {
