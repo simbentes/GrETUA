@@ -73,8 +73,8 @@ if (isset($_SESSION['id_user'])) {
             </div>
 
             <div class="mb-3">
-                <input type="email" class="form-control forminfo formlogin" id="formGroupExampleInput"
-                       placeholder="Email" name="email"
+                <input type="text" class="form-control forminfo formlogin" id="formGroupExampleInput"
+                       placeholder="Email ou username" name="email"
                        required>
             </div>
             <div class="mb-3">
