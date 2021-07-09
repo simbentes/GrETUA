@@ -43,7 +43,7 @@
                                 </div>
                                 <div id="adicionardata" class="btn btn-primary mb-3">Adicionar Data</div>
                                 <div id="removerdata"></div>
-
+                                <input type="hidden" id="numdatas" name="ndatas" value="1">
                                 <div class="form-group">
                                     <label for="textarea1">Descrição Curta</label>
                                     <textarea class="form-control" id="textarea1" name="curtadesc" rows="2"></textarea>
@@ -57,7 +57,7 @@
                                     <div class="form-group col-lg-6">
                                         <label for="categoria">Categoria</label>
                                         <select id="categoria" name="tipoevento" class="form-control">
-                                            <option selected="">Selecionar</option>
+                                            <option selected value="">Selecionar</option>
                                             <option value="5">Abbey Records</option>
                                             <option value="6">Apple Records</option>
                                             <option value="12">Atlantic Records</option>
@@ -66,7 +66,8 @@
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label for="outracategoria">Outra Categoria</label>
-                                        <input type="text" name="outrotipoevento" class="form-control" id="outracategoria">
+                                        <input type="text" name="outrotipoevento" class="form-control"
+                                               id="outracategoria">
                                     </div>
                                     <div class="form-group col-md-12 col-lg-4">
                                         <label for="lotacao">Lotação</label>
@@ -123,16 +124,16 @@
 
                                 <div class="form-group">
                                     <label for="inputAddress">Nome</label>
-                                    <input type="text" class="form-control" id="nome">
+                                    <input type="text" class="form-control" id="nome" name="nomeartista">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Biografia</label>
                                     <textarea class="form-control" id="exampleFormControlTextarea1"
-                                              rows="4"></textarea>
+                                              rows="4" name="artistadesc"></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label for="artista">País</label>
-                                    <select id="artista" name="artista" class="form-control">
+                                    <label for="paisart">País</label>
+                                    <select id="paisart" name="paisartista" class="form-control">
                                         <option selected="">Selecionar</option>
                                         <option value="5">Abbey Records</option>
                                         <option value="6">Apple Records</option>

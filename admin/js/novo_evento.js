@@ -38,7 +38,6 @@ function verArtista(nome) {
 
 var selectBotaoDatas = document.getElementById("adicionardata")
 var iBotao = 1
-document.getElementById("adicionardata").setAttribute("data-value", iBotao);
 
 const d = new Date();
 document.getElementById("dataevento1").value = d.getFullYear() + "-01-01T00:00"
@@ -66,7 +65,7 @@ selectBotaoDatas.onclick = function () {
     document.getElementById("removerdata").classList.add("mb-3");
 
 
-    document.getElementById("labeldata").innerHTML = "Datas";
+    document.getElementById("numdatas").value = iBotao;
 
     console.log(iBotao)
 
@@ -84,8 +83,7 @@ document.getElementById("removerdata").onclick = function () {
         document.getElementById("labeldata").innerHTML = "Data";
     }
 
-
-    document.getElementById("adicionardata").setAttribute("data-value", iBotao);
+    document.getElementById("numdatas").value = iBotao;
 }
 
 

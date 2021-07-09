@@ -1,7 +1,7 @@
 <?php
 
 
-if (!empty($_POST["nomeartista"]) && !empty($_POST["artista"]) && !empty($_POST["dataevento1"]) && !empty($_POST["curtadesc"]) && !empty($_POST["desc"]) && !empty($_POST["tipoevento"]) && !empty($_POST["lotacao"]) && !empty($_POST["precoreserva"]) && !empty($_POST["precoporta"]) && !empty($_POST["fotos[]"])) {
+if (!empty($_POST["nomeartista"]) && !empty($_POST["artista"]) && !empty($_POST["dataevento1"]) && !empty($_POST["curtadesc"]) && !empty($_POST["desc"]) && !empty($_POST["tipoevento"]) && !empty($_POST["lotacao"]) && !empty($_POST["precoreserva"]) && !empty($_POST["precoporta"]) && !empty($_POST["ndatas"])) {
 
     require_once "../connections/connection.php";
 
@@ -22,7 +22,7 @@ if (!empty($_POST["nomeartista"]) && !empty($_POST["artista"]) && !empty($_POST[
             !empty($_POST["spotify"]) ? $spotify = $_POST["spotify"] : $spotify = null;
             !empty($_POST["youtube"]) ? $youtube = $_POST["youtube"] : $youtube = null;
 
-            $query = "INSERT INTO artistas (nome, bigrafia, ref_id_paises, instagram, facebook, spotify, youtube) VALUES (?,?,?,?,?,?,?)";
+            $query = "INSERT INTO artistas (nome, biografia, ref_id_paises, instagram, facebook, spotify, youtube) VALUES (?,?,?,?,?,?,?)";
 
             if (mysqli_stmt_prepare($stmt, $query)) {
 
@@ -46,6 +46,28 @@ if (!empty($_POST["nomeartista"]) && !empty($_POST["artista"]) && !empty($_POST[
     }
 
 
+    //se for escolhido um estlo que já está na base de dados, já podemos atribuir o id
+    if (!empty($_POST["tipoevento"])) {
+        $id_tipoevento = $_POST["tipoevento"];
+    } else {
+        $query = "INSERT INTO tipo_eventos (nome) VALUES (?)";
+
+        if (mysqli_stmt_prepare($stmt, $query)) {
+
+            mysqli_stmt_bind_param($stmt, 's', $_POST["tipoevento"]);
+
+            if (mysqli_stmt_execute($stmt)) {
+                //o id do artista é a ultima PK inserida na base de dados. vai ser util para criar o evento
+                $id_tipoevento = mysqli_insert_id($link);
+            } else {
+                echo "Error:" . mysqli_stmt_error($stmt);
+            }
+        } else {
+            echo "Error:" . mysqli_error($link);
+        }
+    }
+
+
     //artista com upload feito
     //falta apenas criar o evento
 
@@ -57,14 +79,6 @@ if (!empty($_POST["nomeartista"]) && !empty($_POST["artista"]) && !empty($_POST[
     $precoreserva = $_POST["precoreserva"];
     $precoporta = $_POST["precoporta"];
     $array_fotos = $_POST["fotos[]"];
-
-
-    //upload imagem
-    include_once "../../scripts/sc_upload_imagem.php";
-    $nome_img = uploadImagem($_FILES["foto"], "capas", 400);
-    if (!isset($nome_img)) {
-        $nome_img = "capa_default.png";
-    }
 
 
     $query = "INSERT INTO `produtos` (`ref_id_albuns`, `ref_id_utilizadores_vendedores`, `ref_id_condicoes`, `img_capa`, `preco`) VALUES (?,?,?,?,?)";
@@ -79,6 +93,15 @@ if (!empty($_POST["nomeartista"]) && !empty($_POST["artista"]) && !empty($_POST[
     } else {
         echo "Error:" . mysqli_error($link);
     }
+
+
+    /*
+        //upload imagem
+        include_once "../../scripts/sc_upload_imagem.php";
+        $nome_img = uploadImagem($_FILES["foto"], "capas", 400);
+        if (!isset($nome_img)) {
+            $nome_img = "capa_default.png";
+        }*/
 
 
     mysqli_stmt_close($stmt);
