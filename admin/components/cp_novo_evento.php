@@ -1,7 +1,44 @@
+<?php
+require_once "connections/connection.php";
+
+$link = new_db_connection();
+$stmt = mysqli_stmt_init($link);
+?>
+
 <div id="content">
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
+        <?php
+        if (isset($_GET["msg"])) {
+            $msg_show = true;
+            switch ($_GET["msg"]) {
+                case 0:
+                    $message = "Faltam informações do Evento";
+                    $class = "alert-danger";
+                    break;
+                case 1:
+                    $message = "Faltam informações do Artista";
+                    $class = "alert-danger";
+                    break;
+                case 2:
+                    $message = "<i class='far fa-check-circle pr-2'></i>Evento publicado com sucesso";
+                    $class = "alert-success";
+                    break;
+                default:
+                    $msg_show = false;
+            }
+
+            if ($msg_show) {
+                echo "<div class=\"alert $class alert-dismissible fade show\" role=\"alert\">
+" . $message . "
+  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+    <span aria-hidden=\"true\">&times;</span>
+  </button>
+</div>";
+            }
+        }
+        ?>
 
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">Novo Evento <small>(ou Memória)</small></h1>
@@ -22,16 +59,30 @@
 
                                 <div class="form-group">
                                     <label for="inputAddress">Nome</label>
-                                    <input type="text" class="form-control" id="nomeevento">
+                                    <input type="text" class="form-control" name="nomeevento">
                                 </div>
                                 <div class="form-group">
                                     <label for="artista">Artista</label>
                                     <select id="artista" name="artista" class="form-control"
                                             onchange="verArtista(this.value)">
                                         <option selected="">Selecionar</option>
-                                        <option value="5">Abbey Records</option>
-                                        <option value="6">Apple Records</option>
-                                        <option value="12">Atlantic Records</option>
+                                        <?php
+                                        $query = "SELECT id_artistas, nome FROM `artistas`";
+
+                                        if (mysqli_stmt_prepare($stmt, $query)) {
+
+                                            mysqli_stmt_execute($stmt);
+
+                                            mysqli_stmt_bind_result($stmt, $id_artistas, $nomeartistas);
+
+                                            while (mysqli_stmt_fetch($stmt)) {
+                                                /* fetch values */
+                                                echo '<option value="' . $id_artistas . '">' . $nomeartistas . '</option>';
+                                            }
+                                        } else {
+                                            echo "Error: " . mysqli_error($link);
+                                        }
+                                        ?>
                                         <option value="novoartista" class="font-weight-bolder">Novo Artista</option>
                                     </select>
                                 </div>
@@ -57,11 +108,24 @@
                                     <div class="form-group col-lg-6">
                                         <label for="categoria">Categoria</label>
                                         <select id="categoria" name="tipoevento" class="form-control">
-                                            <option selected value="">Selecionar</option>
-                                            <option value="5">Abbey Records</option>
-                                            <option value="6">Apple Records</option>
-                                            <option value="12">Atlantic Records</option>
-                                            <option value="15">Def Jam Recordings</option>
+                                            <option value="" selected>Selecionar</option>
+                                            <?php
+                                            $query = "SELECT id_tipo_eventos, nome FROM `tipo_eventos`";
+
+                                            if (mysqli_stmt_prepare($stmt, $query)) {
+
+                                                mysqli_stmt_execute($stmt);
+
+                                                mysqli_stmt_bind_result($stmt, $id_tipoevento, $tipoeventonome);
+
+                                                while (mysqli_stmt_fetch($stmt)) {
+                                                    /* fetch values */
+                                                    echo '<option value="' . $id_tipoevento . '">' . $tipoeventonome . '</option>';
+                                                }
+                                            } else {
+                                                echo "Error: " . mysqli_error($link);
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                     <div class="form-group col-lg-6">
@@ -135,10 +199,23 @@
                                     <label for="paisart">País</label>
                                     <select id="paisart" name="paisartista" class="form-control">
                                         <option selected="">Selecionar</option>
-                                        <option value="5">Abbey Records</option>
-                                        <option value="6">Apple Records</option>
-                                        <option value="12">Atlantic Records</option>
-                                        <option value="15">Def Jam Recordings</option>
+                                        <?php
+                                        $query = "SELECT id_pais, pais FROM `paises`";
+
+                                        if (mysqli_stmt_prepare($stmt, $query)) {
+
+                                            mysqli_stmt_execute($stmt);
+
+                                            mysqli_stmt_bind_result($stmt, $id_pais, $pais);
+
+                                            while (mysqli_stmt_fetch($stmt)) {
+                                                /* fetch values */
+                                                echo '<option value="' . $id_pais . '">' . $pais . '</option>';
+                                            }
+                                        } else {
+                                            echo "Error: " . mysqli_error($link);
+                                        }
+                                        ?>
                                     </select>
                                 </div>
                                 <div class="redes py-2">
@@ -169,3 +246,11 @@
         <!-- /.container-fluid -->
 
     </div>
+</div>
+
+
+<?php
+
+mysqli_stmt_close($stmt);
+mysqli_close($link);
+?>

@@ -1,7 +1,6 @@
 <?php
 
-
-if (!empty($_POST["nomeartista"]) && !empty($_POST["artista"]) && !empty($_POST["dataevento1"]) && !empty($_POST["curtadesc"]) && !empty($_POST["desc"]) && !empty($_POST["tipoevento"]) && !empty($_POST["lotacao"]) && !empty($_POST["precoreserva"]) && !empty($_POST["precoporta"]) && !empty($_POST["ndatas"])) {
+if (!empty($_POST["nomeevento"]) && !empty($_POST["artista"]) && !empty($_POST["dataevento1"]) && !empty($_POST["curtadesc"]) && !empty($_POST["desc"]) && !empty($_POST["lotacao"]) && !empty($_POST["precoreserva"]) && !empty($_POST["precoporta"]) && !empty($_POST["ndatas"])) {
 
     require_once "../connections/connection.php";
 
@@ -22,7 +21,7 @@ if (!empty($_POST["nomeartista"]) && !empty($_POST["artista"]) && !empty($_POST[
             !empty($_POST["spotify"]) ? $spotify = $_POST["spotify"] : $spotify = null;
             !empty($_POST["youtube"]) ? $youtube = $_POST["youtube"] : $youtube = null;
 
-            $query = "INSERT INTO artistas (nome, biografia, ref_id_paises, instagram, facebook, spotify, youtube) VALUES (?,?,?,?,?,?,?)";
+            $query = "INSERT INTO artistas (nome, biografia, ref_id_pais, instagram, facebook, spotify, youtube) VALUES (?,?,?,?,?,?,?)";
 
             if (mysqli_stmt_prepare($stmt, $query)) {
 
@@ -40,7 +39,7 @@ if (!empty($_POST["nomeartista"]) && !empty($_POST["artista"]) && !empty($_POST[
             }
         } else {
             //falta info do artista
-            header("Location: ../vender.php?msg=0");
+            header("Location: ../novo-evento.php?msg=1");
             die();
         }
     }
@@ -54,7 +53,7 @@ if (!empty($_POST["nomeartista"]) && !empty($_POST["artista"]) && !empty($_POST[
 
         if (mysqli_stmt_prepare($stmt, $query)) {
 
-            mysqli_stmt_bind_param($stmt, 's', $_POST["tipoevento"]);
+            mysqli_stmt_bind_param($stmt, 's', $_POST["outrotipoevento"]);
 
             if (mysqli_stmt_execute($stmt)) {
                 //o id do artista é a ultima PK inserida na base de dados. vai ser util para criar o evento
@@ -71,22 +70,59 @@ if (!empty($_POST["nomeartista"]) && !empty($_POST["artista"]) && !empty($_POST[
     //artista e tipo de evento com upload feito
     //falta apenas criar o evento
 
-    $nomeartista = $_POST["nomeartista"];
-    $dataevento1 = $_POST["dataevento1"];
-    $curtadesc = $_POST["curtadesc"];
+    $nomeevento = $_POST["nomeevento"];
     $desc = $_POST["desc"];
-    $tipoevento = $_POST["tipoevento"];
+    $curtadesc = $_POST["curtadesc"];
+    $lotacao = $_POST["lotacao"];
     $precoreserva = $_POST["precoreserva"];
     $precoporta = $_POST["precoporta"];
-    $array_fotos = $_POST["fotos[]"];
 
 
     $query = "INSERT INTO `eventos` (`nome`, `ref_id_artistas`, `descricao`, `descricao_curta`, `ref_id_tipo_eventos`, `lotacao`, `preco_reserva`, `preco_porta`) VALUES (?,?,?,?,?,?,?,?)";
     if (mysqli_stmt_prepare($stmt, $query)) {
-        mysqli_stmt_bind_param($stmt, 'iiiss', $id_evento, $ref_id_vendedor, $condicao, $nome_img, $preco);
+        mysqli_stmt_bind_param($stmt, 'sissiiii', $nomeevento, $id_artista, $desc, $curtadesc, $id_tipoevento, $lotacao, $precoreserva, $precoporta);
         if (mysqli_stmt_execute($stmt)) {
-            //anuncio publicado
-            header("Location: ../vender.php?msg=2");
+            //anuncio publicado, falta adicionar as datas e as fotos
+
+
+            //o id do evento é a ultima PK inserida na base de dados. vai ser util para criar adicionar a data
+            $id_evento = mysqli_insert_id($link);
+
+
+            //ver quantos inputs de datas existem. depois repetimos o execute conforme o número de datas que existirem
+            $ndatas = $_POST["ndatas"];
+
+
+            $query = "INSERT INTO data_eventos (data, ref_id_eventos) VALUES (?, ?)";
+
+            if (mysqli_stmt_prepare($stmt, $query)) {
+
+                mysqli_stmt_bind_param($stmt, 'si', $data_evento, $id_evento);
+
+                //vamos relacionar as datas ao evento
+                for ($i = 1; $i <= $ndatas; $i++) {
+                    $data_evento = date("Y-m-d H:i:s", strtotime($_POST["dataevento" . $i]));
+                    if (!mysqli_stmt_execute($stmt)) {
+                        echo "Error: " . mysqli_stmt_error($stmt);
+                    } else {
+                        //sucesso
+                        header("Location: ../novo-evento.php?msg=2");
+                    }
+                }
+            } else {
+                echo "Error:" . mysqli_error($link);
+            }
+
+
+            /*
+     //upload imagem
+     include_once "../../scripts/sc_upload_imagem.php";
+     $nome_img = uploadImagem($_FILES["foto"], "capas", 400);
+     if (!isset($nome_img)) {
+         $nome_img = "capa_default.png";
+     }*/
+
+
         } else {
             echo "Error:" . mysqli_stmt_error($stmt);
         }
@@ -95,20 +131,11 @@ if (!empty($_POST["nomeartista"]) && !empty($_POST["artista"]) && !empty($_POST[
     }
 
 
-    /*
-        //upload imagem
-        include_once "../../scripts/sc_upload_imagem.php";
-        $nome_img = uploadImagem($_FILES["foto"], "capas", 400);
-        if (!isset($nome_img)) {
-            $nome_img = "capa_default.png";
-        }*/
-
-
     mysqli_stmt_close($stmt);
     mysqli_close($link);
 } else {
     //falta info do evento
-    header("Location: ../vender.php?msg=1");
+    header("Location: ../novo-evento.php?msg=0");
 }
 
 

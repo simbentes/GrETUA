@@ -41,8 +41,8 @@ if (mysqli_stmt_prepare($stmt, $query)) {
                     $msg_show = false;
             }
 
-            echo '<div class="container-fluid caixaalert"><div class="row justify-content-center"><div class="col-auto"><div id="aviso" class="alert ' . $class . ' alert-dismissible fade show" role="alert">' . $message . '</div></div></div></div>';
             if ($msg_show) {
+                echo '<div class="container-fluid caixaalert"><div class="row justify-content-center"><div class="col-auto"><div id="aviso" class="alert ' . $class . ' alert-dismissible fade show" role="alert">' . $message . '</div></div></div></div>';
                 echo "<script>
             setTimeout(function () {
                 var myAlert = document.getElementById('aviso')

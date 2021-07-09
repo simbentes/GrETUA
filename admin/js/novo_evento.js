@@ -2,9 +2,8 @@ var selectCategoria = document.getElementById("categoria");
 
 
 selectCategoria.addEventListener("change", function () {
-    var opcaoAlbum = selectCategoria.value
 
-    if (opcaoAlbum == "Selecionar") {
+    if (document.getElementById("categoria").value == "") {
         document.getElementById("outracategoria").disabled = false;
     } else {
         document.getElementById("outracategoria").disabled = true;
