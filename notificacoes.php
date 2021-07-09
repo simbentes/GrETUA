@@ -31,7 +31,7 @@ session_start();
                     </div>
                     <div class="col-auto">
                         <div class="my-2">
-                            <img src="img/da_chick.jpg" class="minpub">
+                            <img src="img/eventos/da_chick.jpg" class="minpub">
                         </div>
                     </div>
                 </div>
@@ -43,14 +43,14 @@ session_start();
                 <li class="list-group-item lista_perfil py-1 my-0">
 
                     <div class="my-2">
-                        <img src="img/brigitesilva.jpg" class="userbubble me-2">
+                        <img src="img/eventos/brigitesilva.jpg" class="userbubble me-2">
                         <b>Brigite</b> gostou do seu post.
                     </div>
                 </li>
                 <li class="list-group-item lista_perfil py-1 my-0">
 
                     <div class="my-2">
-                        <img src="img/danielantunes.jpg" class="userbubble me-2">
+                        <img src="img/eventos/danielantunes.jpg" class="userbubble me-2">
                         <b>Daniel</b> gostou do seu post.
                     </div>
                 </li>

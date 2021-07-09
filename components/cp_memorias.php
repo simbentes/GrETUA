@@ -36,7 +36,7 @@ ORDER BY data_eventos.data DESC;";
                     } else {
                         while (mysqli_stmt_fetch($stmt)) {
 
-                            if(!isset($foto)){
+                            if (!isset($foto)) {
                                 $foto = "evento_default.png";
                             }
                             ?>
@@ -44,7 +44,7 @@ ORDER BY data_eventos.data DESC;";
                             <div class="memoria swiper-slide">
                                 <a href="memoria.php?memoria=<?= $id_evento ?>">
 
-                                    <img class="img-memoria" src="img/<?= $foto ?>">
+                                    <img class="img-memoria" src="img/eventos/<?= $foto ?>">
                                     <div class="desc-memoria container-fluid">
                                         <h3 class="top-right"><?= $nome_evento ?></h3>
                                         <div class="row">

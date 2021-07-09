@@ -22,7 +22,7 @@
             <div class="col-12 py-3">
                 <a class="aevento" href="evento.php">
                     <div class="eventoindex">
-                        <img class="img-fluid img-evento" src="img/ninguem.jpg">
+                        <img class="img-fluid img-evento" src="img/eventos/ninguem.jpg">
                         <div class="desc-evento container-fluid gx-3">
                             <h2 class="top-right mb-0">Ninguém, Deeogo Oliveira</h2>
                             <div class="row">
@@ -94,7 +94,7 @@
             <div class="col-12 py-3">
                 <a class="aevento" href="evento.php">
                     <div class="eventoindex">
-                        <img class="img-fluid img-evento" src="img/ninguem.jpg">
+                        <img class="img-fluid img-evento" src="img/eventos/ninguem.jpg">
                         <div class="desc-evento container-fluid gx-3">
                             <h2 class="top-right mb-0">Ninguém, Deeogo Oliveira</h2>
                             <div class="row">

@@ -47,7 +47,7 @@ ORDER BY data_eventos.data;";
             <div class="position-relative">
                 <section class="container px-0 frame-img">
                     <div class="position-relative">
-                        <img class="img-fluid framefotoevento" src="img/<?= $foto ?>"/>
+                        <img class="img-fluid framefotoevento" src="img/eventos/<?= $foto ?>"/>
                         <div class="degrade-imagem"></div>
                         <a href="eventos.php" class="voltar"><i class="bi bi-chevron-left p-1 mb-0 h2"></i></a>
                     </div>

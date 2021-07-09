@@ -62,7 +62,7 @@ ORDER BY data_eventos.data;";
                     echo "<div class='col-12 py-5 mb-5'><h1>Não tens eventos guardados.</h1></div>";
                 } else {
                     while (mysqli_stmt_fetch($stmt)) {
-                        if(!isset($foto)){
+                        if (!isset($foto)) {
                             $foto = "evento_default.png";
                         }
                         $hora_h_evento = str_replace(":", "h", $hora_evento);
@@ -71,7 +71,7 @@ ORDER BY data_eventos.data;";
 
                         <div class="evento swiper-slide">
                             <a href="evento.php?evento=<?= $id_evento ?>">
-                                <img class="img-fluid img-evento" src="img/<?= $foto ?>">
+                                <img class="img-fluid img-evento" src="img/eventos/<?= $foto ?>">
                                 <div class="desc-evento container-fluid">
                                     <h6 class="top-right"><?= $nome_evento ?></h6>
                                     <div class="row">

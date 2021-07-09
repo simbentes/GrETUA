@@ -22,6 +22,10 @@ $stmt = mysqli_stmt_init($link);
                     $class = "alert-danger";
                     break;
                 case 2:
+                    $message = "<i class='far fa-check-circle pr-2'></i>Adicione uma foto ao evento";
+                    $class = "alert-danger";
+                    break;
+                case 3:
                     $message = "<i class='far fa-check-circle pr-2'></i>Evento publicado com sucesso";
                     $class = "alert-success";
                     break;
@@ -135,14 +139,15 @@ $stmt = mysqli_stmt_init($link);
                                     </div>
                                     <div class="form-group col-md-12 col-lg-4">
                                         <label for="lotacao">Lotação</label>
-                                        <input type="number" name="lotacao" class="form-control" id="lotacao" min="0">
+                                        <input type="number" name="lotacao" class="form-control" id="lotacao" min="0"
+                                               max="10000">
                                     </div>
                                     <div class="form-group col-md-6 col-lg-4">
                                         <label for="precoreserva">Preço com Reserva</label>
                                         <div class="row no-gutters align-items-center">
                                             <div class="col-11 col-lg-10">
                                                 <input type="number" name="precoreserva" class="form-control"
-                                                       id="precoreserva" min="0" step=".01">
+                                                       id="precoreserva" min="0" max="999" step=".01">
                                             </div>
                                             <div class="col-auto pl-2">
                                                 €
@@ -154,7 +159,7 @@ $stmt = mysqli_stmt_init($link);
                                         <div class="row no-gutters align-items-center">
                                             <div class="col-11 col-lg-10">
                                                 <input type="number" name="precoporta" class="form-control"
-                                                       id="precoporta" min="0" step=".01">
+                                                       id="precoporta" min="0" max="999" step=".01">
                                             </div>
                                             <div class="col-auto pl-2">
                                                 €

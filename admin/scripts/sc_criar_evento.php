@@ -106,23 +106,31 @@ if (!empty($_POST["nomeevento"]) && !empty($_POST["artista"]) && !empty($_POST["
                         echo "Error: " . mysqli_stmt_error($stmt);
                     } else {
                         //sucesso
-                        header("Location: ../novo-evento.php?msg=2");
+                        // header("Location: ../novo-evento.php?msg=3");
                     }
                 }
             } else {
                 echo "Error:" . mysqli_error($link);
             }
 
+            $files = array_filter($_FILES['fotos']['name']);
 
-            /*
-     //upload imagem
-     include_once "../../scripts/sc_upload_imagem.php";
-     $nome_img = uploadImagem($_FILES["foto"], "capas", 400);
-     if (!isset($nome_img)) {
-         $nome_img = "capa_default.png";
-     }*/
+            $totalfotos = count($_FILES['fotos']['name']);
 
+            include_once "sc_upload_imagens.php";
 
+            if (!empty($_FILES["fotos"]["name"])) {
+                for ($i = 0; $i < $totalfotos; $i++) {
+                    $array_nome_img[] = uploadImagem($_FILES["fotos"], $i, "eventos", 800);
+                }
+            } else {
+                $array_nome_img = null;
+                //falta info do evento
+                header("Location: ../novo-evento.php?msg=2");
+                die;
+            }
+            var_dump($array_nome_img);
+            die;
         } else {
             echo "Error:" . mysqli_stmt_error($stmt);
         }

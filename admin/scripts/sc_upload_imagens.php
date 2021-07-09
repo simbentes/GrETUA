@@ -1,5 +1,6 @@
 <?php
 
+
 function resizeImage($filename, $min_width, $min_height, $tipo)
 {
     list($orig_width, $orig_height) = getimagesize($filename);
@@ -37,17 +38,18 @@ function resizeImage($filename, $min_width, $min_height, $tipo)
     return $image_p;
 }
 
-function uploadImagem($nome, $pasta, $px)
+
+function uploadImagem($nome, $nfotos, $pasta, $px)
 {
 
 
-    $target_dir = "../img/" . $pasta . "/";
-    $target_file = $target_dir . basename($nome["name"]);
+    $target_dir = "../../img/" . $pasta . "/";
+    $target_file = $target_dir . basename($nome["name"][$nfotos]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
 
-    $check = getimagesize($nome["tmp_name"]);
+    $check = getimagesize($nome["tmp_name"][$nfotos]);
     if ($check !== false) {
         $uploadOk = 1;
     } else {
@@ -61,7 +63,7 @@ function uploadImagem($nome, $pasta, $px)
     }
 
     // Check file size
-    if ($nome["size"] > 100000000) {
+    if ($nome["size"][$nfotos] > 100000000) {
         echo "Sorry, your file is too large.";
         $uploadOk = 0;
     }
@@ -77,8 +79,8 @@ function uploadImagem($nome, $pasta, $px)
     if ($uploadOk == 0) {
         echo "Sorry, your file was not uploaded.";
     } else {
-        move_uploaded_file($nome["tmp_name"], $target_file);
-        $pathimagem = $target_dir . $nome["name"];
+        move_uploaded_file($nome["tmp_name"][$nfotos], $target_file);
+        $pathimagem = $target_dir . $nome["name"][$nfotos];
         $nomefinal = md5(uniqid()) . '.webp';
         imagewebp(resizeImage($pathimagem, $px, $px, $imageFileType), $target_dir . $nomefinal, 100);
         unlink($pathimagem);

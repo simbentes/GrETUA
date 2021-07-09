@@ -43,7 +43,7 @@ ORDER BY data_eventos.data DESC;";
             <div class="position-relative">
                 <section class="container px-0 frame-img">
                     <div class="position-relative">
-                        <img class="img-fluid framefotoevento" src="img/<?= $foto ?>"/>
+                        <img class="img-fluid framefotoevento" src="img/eventos/<?= $foto ?>"/>
                         <div class="degrade-imagem"></div>
                         <a href="memorias.php" class="voltar"><i class="bi bi-chevron-left p-1 mb-0 h2"></i></a>
                     </div>
@@ -103,7 +103,7 @@ ORDER BY data_eventos.data DESC;";
                                             </div>
                                         </div>
                                     </div>
-                                    <img src="img/publico.jpg" class="card-img-top" alt="...">
+                                    <img src="img/eventos/publico.jpg" class="card-img-top" alt="...">
                                     <button class="btn btn-like">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                              fill="currentColor"
