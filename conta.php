@@ -14,9 +14,11 @@ if (!isset($_SESSION['id_user'])) {
 </head>
 
 <body>
+
 <?php include_once "components/cp_conta.php" ?>
 <?php include_once "components/cp_tab_bar.php" ?>
 <?php include_once "helpers/help_js.php" ?>
+
 <script type="text/javascript">
     document.getElementById("botaoperfil").onclick = function () {
         console.log("clickads")

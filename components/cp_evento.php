@@ -81,16 +81,19 @@ ORDER BY data_eventos.data;";
                         </div>
                         <div class="col px-1 pb-1 text-center">
                             <input id="vou" value="111" class="btn-vou"
-                                   type="checkbox" onclick="vouEvento(this.checked,this.value)">
+                                   type="checkbox"
+                                   onclick="vouEvento(this.checked,this.value)" <?php if ($vou == 1) echo "checked" ?>>
                             <label class="btn btn-pequeno w-100 label-btn-vou" for="vou"><i
                                         id="iconbtnvou" class="bi bi-star d-block"></i><span id="textbtnvou"
-                                                                                                      class="d-block">Vou</span></label>
+                                                                                             class="d-block">Vou</span></label>
                         </div>
                         <div class="col ps-1 pb-1 text-center">
                             <input id="guardado" value="111" class="btn-guardado"
-                                   type="checkbox" onclick="guardarEvento(this.checked,this.value)" checked>
+                                   type="checkbox"
+                                   onclick="guardarEvento(this.checked,this.value)" <?php if ($guardado == 1) echo "checked" ?>>
                             <label class="btn btn-pequeno w-100 label-btn-guardado" for="guardado"><i
-                                       id="iconbtnguardado" class="bi bi-bookmark d-block"></i><span id="textbtnguardado"
+                                        id="iconbtnguardado" class="bi bi-bookmark d-block"></i><span
+                                        id="textbtnguardado"
                                         class="d-block">Guardar</span></label>
                         </div>
                         <div class="col-12 pt-2">
