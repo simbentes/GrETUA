@@ -80,7 +80,7 @@ ORDER BY data_eventos.data;";
                                         class="d-block">Reservar</span></button>
                         </div>
                         <div class="col px-1 pb-1 text-center">
-                            <input id="vou" value="111" class="btn-vou"
+                            <input id="vou" value="<?= $eventoid ?>" class="btn-vou"
                                    type="checkbox"
                                    onclick="vouEvento(this.checked,this.value)" <?php if ($vou == 1) echo "checked" ?>>
                             <label class="btn btn-pequeno w-100 label-btn-vou" for="vou"><i
@@ -88,7 +88,7 @@ ORDER BY data_eventos.data;";
                                                                                              class="d-block">Vou</span></label>
                         </div>
                         <div class="col ps-1 pb-1 text-center">
-                            <input id="guardado" value="111" class="btn-guardado"
+                            <input id="guardado" value="<?= $eventoid ?>" class="btn-guardado"
                                    type="checkbox"
                                    onclick="guardarEvento(this.checked,this.value)" <?php if ($guardado == 1) echo "checked" ?>>
                             <label class="btn btn-pequeno w-100 label-btn-guardado" for="guardado"><i

@@ -17,7 +17,7 @@ window.onload = function () {
 
 
 //adicionar album aos favoritos
-function guardarEvento(estado, produto) {
+function guardarEvento(estado, evento) {
 
     if (estado) {
         document.getElementById("textbtnguardado").innerHTML = "Guardado";
@@ -29,10 +29,9 @@ function guardarEvento(estado, produto) {
         document.getElementById("iconbtnguardado").classList.remove("bi-bookmark-fill");
     }
 
-
     //vamos enviar por ajax o produto e estado do botao(checkbox), para saber se o user "guardou" ou "removeu dos guardados"
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET", "scripts/sc_guardar_album.php?guardado=" + estado + "&produto=" + produto, true);
+    xmlhttp.open("GET", "scripts/sc_guardar_vou_evento.php?guardado=" + estado + "&evento=" + evento, true);
     xmlhttp.send();
 
 }
