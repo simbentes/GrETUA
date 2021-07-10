@@ -26,7 +26,7 @@ session_start();
                 <div class="row align-items-center justify-content-between">
                     <div class="col-auto">
                         <div class="col-auto">
-                            <img src="img/ruipedro.jpg" class="userbubble me-2">
+                            <img src="img/users/ruipedro.jpg" class="userbubble me-2">
                             <strong>Rui</strong> vai ao evento <strong>Da Chick</strong></div>
                     </div>
                     <div class="col-auto">
@@ -43,14 +43,14 @@ session_start();
                 <li class="list-group-item lista_perfil py-1 my-0">
 
                     <div class="my-2">
-                        <img src="img/eventos/brigitesilva.jpg" class="userbubble me-2">
+                        <img src="img/users/brigitesilva.jpg" class="userbubble me-2">
                         <b>Brigite</b> gostou do seu post.
                     </div>
                 </li>
                 <li class="list-group-item lista_perfil py-1 my-0">
 
                     <div class="my-2">
-                        <img src="img/eventos/danielantunes.jpg" class="userbubble me-2">
+                        <img src="img/users/danielantunes.jpg" class="userbubble me-2">
                         <b>Daniel</b> gostou do seu post.
                     </div>
                 </li>
@@ -62,14 +62,14 @@ session_start();
                 <li class="list-group-item lista_perfil py-1 my-0">
 
                     <div class="my-2">
-                        <img src="img/helenasoares.jpg" class="userbubble me-2">
+                        <img src="img/users/helenasoares.jpg" class="userbubble me-2">
                         <b>Helena</b> gostou do seu post.
                     </div>
                 </li>
                 <li class="list-group-item lista_perfil py-1 my-0">
 
                     <div class="my-2">
-                        <img src="img/josepereira.jpg" class="userbubble me-2">
+                        <img src="img/users/josepereira.jpg" class="userbubble me-2">
                         <b>José</b> gostou do seu post.
                     </div>
                 </li>

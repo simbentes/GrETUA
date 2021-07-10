@@ -38,7 +38,7 @@ WHERE guardados_vou.guardados = 0 AND guardados_vou.ref_id_utilizadores = " . $u
                     <div class="col-12 py-3">
                         <a class="aevento" href="evento.php?evento=<?= $id_evento ?>">
                             <div class="eventoindex">
-                                <img class="img-fluid img-evento" src="img/<?= $foto ?>">
+                                <img class="img-fluid img-evento" src="img/eventos/<?= $foto ?>">
                                 <div class="desc-evento container-fluid gx-3">
                                     <h2 class="top-right mb-0"><?= $nome_evento ?></h2>
                                     <div class="row">

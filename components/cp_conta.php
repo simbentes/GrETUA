@@ -200,7 +200,7 @@ if (mysqli_stmt_prepare($stmt, $query)) {
                 <div class="swiper-slide">
                     <a href="evento.php">
                         <div class="eventoperfil">
-                            <img class="img-fluid img-evento" src="img/ruinas3.jpg">
+                            <img class="img-fluid img-evento" src="img/eventos/ruinas3.jpg">
                             <div class="desc-evento container-fluid">
                                 <h6 class="top-right">Ruínas</h6>
                                 <div class="row">
@@ -215,7 +215,7 @@ if (mysqli_stmt_prepare($stmt, $query)) {
                 <div class="swiper-slide">
                     <a href="evento.php">
                         <div class="eventoperfil">
-                            <img class="img-fluid img-evento" src="img/palmieres.jpg">
+                            <img class="img-fluid img-evento" src="img/eventos/palmieres.jpg">
                             <div class="desc-evento container-fluid">
                                 <h6 class="top-right">P A L M I E R E S</h6>
                                 <div class="row">
@@ -230,7 +230,7 @@ if (mysqli_stmt_prepare($stmt, $query)) {
                 <div class="swiper-slide">
                     <a href="evento.php">
                         <div class="eventoperfil">
-                            <img class="img-fluid img-evento" src="img/ninguem.jpg">
+                            <img class="img-fluid img-evento" src="img/eventos/ninguem.jpg">
                             <div class="desc-evento container-fluid">
                                 <h6 class="top-right">Ninguém, de Deeogo Oliveira</h6>
                                 <div class="row">

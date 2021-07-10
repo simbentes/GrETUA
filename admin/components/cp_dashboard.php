@@ -133,20 +133,6 @@ $stmt = mysqli_stmt_init($link);
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                    <div class="dropdown no-arrow">
-                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                             aria-labelledby="dropdownMenuLink">
-                            <div class="dropdown-header">Dropdown Header:</div>
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -163,20 +149,6 @@ $stmt = mysqli_stmt_init($link);
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                    <div class="dropdown no-arrow">
-                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                             aria-labelledby="dropdownMenuLink">
-                            <div class="dropdown-header">Dropdown Header:</div>
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -185,13 +157,13 @@ $stmt = mysqli_stmt_init($link);
                     </div>
                     <div class="mt-4 text-center small">
                     <span class="mr-2">
-                      <i class="fas fa-circle text-primary"></i> Direct
+                      <i class="fas fa-circle text-primary"></i> Publicações
                     </span>
                         <span class="mr-2">
-                      <i class="fas fa-circle text-success"></i> Social
+                      <i class="fas fa-circle text-success"></i> Likes
                     </span>
                         <span class="mr-2">
-                      <i class="fas fa-circle text-info"></i> Referral
+                      <i class="fas fa-circle text-info"></i> Comentários
                     </span>
                     </div>
                 </div>
@@ -303,17 +275,14 @@ $stmt = mysqli_stmt_init($link);
             <!-- Illustrations -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Utilizadores mais ativos</h6>
                 </div>
                 <div class="card-body">
                     <div class="text-center">
                         <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
                              src="img/undraw_posting_photo.svg" alt="">
                     </div>
-                    <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank"
-                                                                                          rel="nofollow"
-                                                                                          href="https://undraw.co/">unDraw</a>,
-                        a constantly updated collection of beautiful svg images that you can use completely
+                    <p>Add some quality, svg illustrations to your project courtesy beautiful svg images that you can use completely
                         free and without attribution!</p>
                     <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
                         unDraw &rarr;</a>

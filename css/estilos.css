@@ -164,7 +164,7 @@ input[type='file'] {
 }
 
 .animaperfil {
-    transform: translateY(-235px);
+    transform: translateY(-230px);
 }
 
 
@@ -635,14 +635,68 @@ footer {
 }
 
 
-
 .fa-bm {
     font-size: 24px;
 }
 
 
+.btn-guardado {
+    position: absolute;
+    left: -100vw;
+}
+
+.label-btn-guardado {
+    cursor: pointer;
+    align-self: center;
+    transition: color 0.2s ease-in-out;
+}
 
 
+.label-btn-guardado::selection {
+    color: none;
+    background: transparent;
+}
+
+.label-btn-guardado::moz-selection {
+    color: none;
+    background: transparent;
+}
+
+.btn-guardado:checked + label {
+    color: white;
+    background-color: var(--cor-tema);
+    will-change: font-size;
+    animation: color 1s ease-in-out;
+}
+
+.btn-vou {
+    position: absolute;
+    left: -100vw;
+}
+
+.label-btn-vou {
+    cursor: pointer;
+    align-self: center;
+    transition: color 0.2s ease-in-out;
+}
+
+
+.label-btn-vou::selection {
+    color: none;
+    background: transparent;
+}
+
+.label-btn-vou::moz-selection {
+    color: none;
+    background: transparent;
+}
+
+.btn-vou:checked + label {
+    color: white;
+    background-color: var(--cor-tema);
+    will-change: font-size;
+    animation: color 1s ease-in-out;
+}
 
 
 .mainpi {

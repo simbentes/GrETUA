@@ -32,7 +32,7 @@
                     <div class="col-12 py-3">
                         <a class="aevento" href="evento.php?id=<?= $id_evento ?>">
                             <div class="eventoindex">
-                                <img class="img-fluid img-evento" src="img/ruinas3.jpg">
+                                <img class="img-fluid img-evento" src="img/eventos/ruinas3.jpg">
                                 <div class="desc-evento container-fluid gx-3">
                                     <h2 class="top-right mb-0"><?= $nome_evento ?></h2>
                                     <div class="row">

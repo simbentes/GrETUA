@@ -160,7 +160,7 @@ WHERE id_utilizadores = ?";
                         <div class="swiper-slide">
                             <a href="evento.php">
                                 <div class="eventoperfil">
-                                    <img class="img-fluid img-evento" src="img/ruinas3.jpg">
+                                    <img class="img-fluid img-evento" src="img/eventos/ruinas3.jpg">
                                     <div class="desc-evento container-fluid">
                                         <h6 class="top-right">Ruínas</h6>
                                         <div class="row">
@@ -175,7 +175,7 @@ WHERE id_utilizadores = ?";
                         <div class="swiper-slide">
                             <a href="evento.php">
                                 <div class="eventoperfil">
-                                    <img class="img-fluid img-evento" src="img/palmieres.jpg">
+                                    <img class="img-fluid img-evento" src="img/eventos/palmieres.jpg">
                                     <div class="desc-evento container-fluid">
                                         <h6 class="top-right">P A L M I E R E S</h6>
                                         <div class="row">
@@ -190,7 +190,7 @@ WHERE id_utilizadores = ?";
                         <div class="swiper-slide">
                             <a href="evento.php">
                                 <div class="eventoperfil">
-                                    <img class="img-fluid img-evento" src="img/ninguem.jpg">
+                                    <img class="img-fluid img-evento" src="img/eventos/ninguem.jpg">
                                     <div class="desc-evento container-fluid">
                                         <h6 class="top-right">Ninguém, de Deeogo Oliveira</h6>
                                         <div class="row">
@@ -219,19 +219,6 @@ WHERE id_utilizadores = ?";
                     });
                 </script>
 
-                <!--<section class="container-fluid px-1 pt-3 pb-5">
-                    <div class="row g-1 pb-3">
-                        <div class="col-4">
-                            <img class="miniaturafoto" src="img/jam.jpeg">
-                        </div>
-                        <div class="col-4">
-                            <img class="miniaturafoto" src="img/ruinas3.jpg">
-                        </div>
-                        <div class="col-4">
-                            <img class="miniaturafoto" src="img/jose_valente.jpg">
-                        </div>
-                    </div>
-                </section>-->
 
 
                 <?php
