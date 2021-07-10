@@ -251,10 +251,8 @@ $stmt = mysqli_stmt_init($link);
             </div>
         </form>
         <!-- /.container-fluid -->
-
     </div>
 </div>
-
 
 <?php
 
