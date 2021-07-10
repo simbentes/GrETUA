@@ -177,6 +177,10 @@ $stmt = mysqli_stmt_init($link);
                                         <label for="files">Fotos do Evento: </label>
                                         <input id="files" name="fotos[]" type="file" multiple/>
                                     </div>
+                                    <div id="fotocapacontainer" class="py-2" style="display: none">
+                                        <label for="fotocapa">Capa</label>
+                                        <select id="fotocapa" name="fotocapa" class="form-control" required></select>
+                                    </div>
                                     <div class="d-flex justify-content-end">
                                         <button type="submit" class="btn btn-primary py-2 px-4">Publicar</button>
                                     </div>
@@ -195,16 +199,16 @@ $stmt = mysqli_stmt_init($link);
 
                                 <div class="form-group">
                                     <label for="inputAddress">Nome</label>
-                                    <input type="text" class="form-control" id="nome" name="nomeartista" required>
+                                    <input type="text" class="form-control" id="nome" name="nomeartista">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Biografia</label>
                                     <textarea class="form-control" id="exampleFormControlTextarea1"
-                                              rows="4" name="artistadesc" required></textarea>
+                                              rows="4" name="artistadesc"></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="paisart">País</label>
-                                    <select id="paisart" name="paisartista" class="form-control" required>
+                                    <select id="paisart" name="paisartista" class="form-control">
                                         <option selected="">Selecionar</option>
                                         <?php
                                         $query = "SELECT id_pais, pais FROM `paises` ORDER BY pais";

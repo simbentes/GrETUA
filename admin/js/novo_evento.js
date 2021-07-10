@@ -93,12 +93,17 @@ window.onload = function () {
     if (window.File && window.FileList && window.FileReader) {
         var filesInput = document.getElementById("files");
 
+
         filesInput.addEventListener("change", function (event) {
+
 
             var files = event.target.files; //FileList object
             var output = document.getElementById("imgThumbnailPreview");
+            output.innerHTML = "";
+            document.getElementById("fotocapa").innerHTML = "";
 
             for (var i = 0; i < files.length; i++) {
+
                 var file = files[i];
 
                 //Only pics
@@ -107,20 +112,29 @@ window.onload = function () {
 
                 var picReader = new FileReader();
 
+
+                var nomeimg = this.files[i].name
+
                 picReader.addEventListener("load", function (event) {
 
                     var picSrc = event.target.result;
 
-                    var imgThumbnailElem = "<div class='col-auto py-3 imgThumbContainer'><div class='IMGthumbnail'><img  src='" + picSrc + "'" +
-                        "title='" + file.name + "'/>";
+                    var imgThumbnailElem = "<div class='col-auto py-3 imgThumbContainer'><div class='IMGthumbnail'><img  src='" + picSrc + "'/>";
 
                     output.innerHTML = output.innerHTML + imgThumbnailElem;
 
                 });
 
+                document.getElementById("fotocapa").innerHTML += "<option value='" + this.files[i].name + "'>" + (i + 1) + " — " + this.files[i].name + "</option>";
+
+
                 //Read the image
                 picReader.readAsDataURL(file);
             }
+
+
+            document.getElementById("fotocapacontainer").style.display = "block";
+
 
         });
     } else {

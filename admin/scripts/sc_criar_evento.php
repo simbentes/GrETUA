@@ -106,7 +106,7 @@ if (!empty($_POST["nomeevento"]) && !empty($_POST["artista"]) && !empty($_POST["
                         echo "Error: " . mysqli_stmt_error($stmt);
                     } else {
                         //sucesso
-                        header("Location: ../novo-evento.php?msg=3");
+                        //header("Location: ../novo-evento.php?msg=3");
                     }
                 }
             } else {
@@ -121,6 +121,7 @@ if (!empty($_POST["nomeevento"]) && !empty($_POST["artista"]) && !empty($_POST["
             if (!empty($_FILES["fotos"]["name"])) {
                 for ($i = 0; $i < $totalfotos; $i++) {
                     $array_nome_img[] = uploadImagem($_FILES["fotos"], $i, "eventos", 800);
+
                 }
             } else {
                 $array_nome_img = null;
@@ -129,18 +130,26 @@ if (!empty($_POST["nomeevento"]) && !empty($_POST["artista"]) && !empty($_POST["
                 die;
             }
 
+            $fotocapa = $_POST["fotocapa"];
 
-            $query = "INSERT INTO fotos_eventos (foto, ref_id_eventos) VALUES (?, ?)";
+            $query = "INSERT INTO fotos_eventos (foto, capa, ref_id_eventos) VALUES (?,?,?)";
 
             if (mysqli_stmt_prepare($stmt, $query)) {
 
-                mysqli_stmt_bind_param($stmt, 'si', $nome_img, $id_evento);
-
+                mysqli_stmt_bind_param($stmt, 'ssi', $nome_img, $capa, $id_evento);
+                $n = 0;
                 //vamos relacionar as datas ao evento
                 foreach ($array_nome_img as $nome_img) {
+                    //se o nome do ficheiro for igual ao value do select de escolher a capa, definimos essa foto como capa
+                    if ($_FILES['fotos']['name'][$n] == $fotocapa) {
+                        $capa = 1;
+                    } else {
+                        $capa = 0;
+                    }
                     if (!mysqli_stmt_execute($stmt)) {
                         echo "Error: " . mysqli_stmt_error($stmt);
                     }
+                    $n++;
                 }
             } else {
                 echo "Error:" . mysqli_error($link);
