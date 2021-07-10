@@ -54,14 +54,14 @@ WHERE email = ? OR username = ?;";
 
                 } else {
                     // Password está errada
-                    header("Location: ../index.php?msg=123123");
+                    header("Location: ../index.php?msg=0");
                 }
 
             } else {
                 // user não existe
                 echo "Incorrect credentials!";
                 echo "<a href='../index.php'>Try again</a>";
-                header("Location: ../index.php?msg=123");
+                header("Location: ../index.php?msg=0");
             }
 
         } else {

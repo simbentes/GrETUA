@@ -8,14 +8,20 @@
         $link = new_db_connection();
         $stmt = mysqli_stmt_init($link);
 
-        $query = "SELECT eventos.id_eventos, DATE(MIN(data_eventos.data)), DATE_FORMAT(TIME(MIN(data_eventos.data)), '%H:%i'), eventos.nome, fotos_eventos.foto FROM eventos
+        $query = "SELECT eventos.id_eventos, DATE(data_eventos.data), DATE_FORMAT(TIME(data_eventos.data), '%H:%i'), eventos.nome, fotos_eventos.foto
+FROM eventos
+LEFT JOIN guardados_vou
+ON guardados_vou.ref_id_eventos = eventos.id_eventos
 INNER JOIN data_eventos
 ON data_eventos.ref_id_eventos = eventos.id_eventos
-INNER JOIN guardados_vou
-ON eventos.id_eventos = guardados_vou.ref_id_eventos
-INNER JOIN fotos_eventos
+LEFT JOIN fotos_eventos
 ON fotos_eventos.ref_id_eventos = eventos.id_eventos
-WHERE guardados_vou.guardados = 0 AND guardados_vou.ref_id_utilizadores = " . $userid . " AND fotos_eventos.capa = 1;";
+INNER JOIN tipo_eventos
+ON tipo_eventos.id_tipo_eventos = eventos.ref_id_tipo_eventos
+INNER JOIN artistas
+ON artistas.id_artistas = eventos.ref_id_artistas
+WHERE (fotos_eventos.foto IS NUll OR fotos_eventos.capa = 1) AND (data_eventos.data) IN (SELECT MIN(data_eventos.data) FROM data_eventos WHERE data_eventos.data > NOW() GROUP BY data_eventos.ref_id_eventos) AND guardados = 1
+ORDER BY guardados_vou.timestamp_guardados DESC;";
 
         if (mysqli_stmt_prepare($stmt, $query)) {
 
@@ -40,7 +46,7 @@ WHERE guardados_vou.guardados = 0 AND guardados_vou.ref_id_utilizadores = " . $u
                             <div class="eventoindex">
                                 <img class="img-fluid img-evento" src="img/eventos/<?= $foto ?>">
                                 <div class="desc-evento container-fluid gx-3">
-                                    <h2 class="top-right mb-0"><?= $nome_evento ?></h2>
+                                    <h4 class="top-right mb-0"><?= $nome_evento ?></h4>
                                     <div class="row">
                                         <div class="col text-cinza"><?= $data_evento ?></div>
                                         <div class="col text-cinza text-center"><?= $hora_h_evento ?></div>
@@ -49,30 +55,31 @@ WHERE guardados_vou.guardados = 0 AND guardados_vou.ref_id_utilizadores = " . $u
                                 </div>
                             </div>
                         </a>
-                        <div class="row pt-3 justify-content-between align-items-center">
+                        <div class="row pt-2 justify-content-between align-items-center">
                             <div class="col-auto">
                                 <?php
-
+                                $stmt2 = mysqli_stmt_init($link);
                                 $query = "SELECT COUNT(vou) FROM `guardados_vou` WHERE vou = 1 AND guardados_vou.ref_id_eventos =" . $id_evento;
 
-                                if (mysqli_stmt_prepare($stmt, $query)) {
+                                if (mysqli_stmt_prepare($stmt2, $query)) {
 
-                                    mysqli_stmt_execute($stmt);
-                                    mysqli_stmt_bind_result($stmt, $n_pessoas);
+                                    mysqli_stmt_execute($stmt2);
+                                    mysqli_stmt_bind_result($stmt2, $n_pessoas);
 
-                                    if (mysqli_stmt_fetch($stmt)) {
+                                    if (mysqli_stmt_fetch($stmt2)) {
                                         if ($n_pessoas == 1) {
                                             $texto = "pessoa vai";
                                         } else {
                                             $texto = "pessoas vão";
                                         }
-                                        echo '<h3 class="mb-0 ps-2">' . $n_pessoas . ' ' . $texto . '</h3>';
+                                        echo '<h5 class="mb-0 ps-2">' . $n_pessoas . ' ' . $texto . '</h5>';
                                     } else {
-                                        echo "Error: " . mysqli_stmt_error($stmt);
+                                        echo "Error: " . mysqli_stmt_error($stmt2);
                                     }
                                 } else {
                                     echo "Error: " . mysqli_error($link);
                                 }
+                                mysqli_stmt_close($stmt2);
                                 ?>
                             </div>
                             <div class="col-auto">

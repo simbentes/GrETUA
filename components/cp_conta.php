@@ -302,15 +302,15 @@ if (mysqli_stmt_prepare($stmt, $query)) {
                         </a>
                     </li>
                     <li class="list-group-item">
-                        <a href="osmeuseventos.php">
+                        <a href="guardados.php">
                             <div class="row g-0 align-items-center justify-content-between">
                                 <div class="col-auto">
                                     <div class="row g-0 align-items-center">
                                         <div class="col-auto pe-2">
-                                            <i class="bi bi-calendar-check h1"></i>
+                                            <i class="bi bi-bookmark h1"></i>
                                         </div>
                                         <div class="col-auto mb-1">
-                                            Os meus eventos
+                                            Guardados
                                         </div>
                                     </div>
                                 </div>

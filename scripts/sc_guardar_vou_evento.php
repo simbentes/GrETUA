@@ -11,9 +11,10 @@ if (isset($_SESSION["id_user"]) && isset($_GET["guardado"]) && isset($_GET["even
     $stmt = mysqli_stmt_init($link);
 
     // vamos ver se já existe alguma instancia relativa a um user
-    $query = "SELECT ref_id_utilizadores FROM `guardados_vou` WHERE ref_id_utilizadores = " . $id_user;
+    $query = "SELECT ref_id_utilizadores FROM `guardados_vou` WHERE ref_id_utilizadores = ? AND ref_id_eventos = ?";
 
     if (mysqli_stmt_prepare($stmt, $query)) {
+        mysqli_stmt_bind_param($stmt, "ii", $id_user, $id_evento);
         mysqli_stmt_execute($stmt);
         mysqli_stmt_store_result($stmt);
 
@@ -35,14 +36,14 @@ if (isset($_SESSION["id_user"]) && isset($_GET["guardado"]) && isset($_GET["even
             $query = "INSERT INTO guardados_vou (guardados,ref_id_utilizadores,ref_id_eventos,timestamp_guardados) VALUES (?,?,?,CURRENT_TIMESTAMP)";
         } else {
             //se não estiver, o user quer remover
-            $query = "UPDATE guardados_vou SET guardados = ?,timestamp_guardados = CURRENT_TIMESTAMP WHERE ref_id_utilizadores = ?";
+            $query = "UPDATE guardados_vou SET guardados = ?,timestamp_guardados = CURRENT_TIMESTAMP WHERE ref_id_utilizadores = ? AND ref_id_eventos = ?";
         }
 
         if (mysqli_stmt_prepare($stmt, $query)) {
             if (!$update) {
                 mysqli_stmt_bind_param($stmt, 'iii', $guardado, $id_user, $id_evento);
             } else {
-                mysqli_stmt_bind_param($stmt, 'ii', $guardado, $id_user);
+                mysqli_stmt_bind_param($stmt, 'iii', $guardado, $id_user, $id_evento);
             }
             if (!mysqli_stmt_execute($stmt)) {
                 echo "Error:" . mysqli_stmt_error($stmt);
@@ -59,14 +60,14 @@ if (isset($_SESSION["id_user"]) && isset($_GET["guardado"]) && isset($_GET["even
             $query = "INSERT INTO guardados_vou (vou,ref_id_utilizadores,ref_id_eventos,timestamp_vou) VALUES (?,?,?,CURRENT_TIMESTAMP)";
         } else {
             //se não estiver, o user quer remover
-            $query = "UPDATE guardados_vou SET vou = ?,timestamp_vou = CURRENT_TIMESTAMP WHERE ref_id_utilizadores = ?";
+            $query = "UPDATE guardados_vou SET vou = ?,timestamp_vou = CURRENT_TIMESTAMP WHERE ref_id_utilizadores = ? AND ref_id_eventos = ?";
         }
 
         if (mysqli_stmt_prepare($stmt, $query)) {
             if (!$update) {
                 mysqli_stmt_bind_param($stmt, 'iii', $vou, $id_user, $id_evento);
             } else {
-                mysqli_stmt_bind_param($stmt, 'ii', $vou, $id_user);
+                mysqli_stmt_bind_param($stmt, 'iii', $vou, $id_user, $id_evento);
             }
             if (!mysqli_stmt_execute($stmt)) {
                 echo "Error:" . mysqli_stmt_error($stmt);
