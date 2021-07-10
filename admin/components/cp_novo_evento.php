@@ -47,7 +47,7 @@ $stmt = mysqli_stmt_init($link);
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">Novo Evento <small>(ou Memória)</small></h1>
         <p class="mb-4">Publicar um novo Evento no plataforma. Se selecionar datas anteriores à atual, lembre-se que
-            está a criar uma memórias.</p>
+            está a criar uma memória.</p>
 
         <!-- DataTales Example -->
         <form action="scripts/sc_criar_evento.php" method="post" enctype="multipart/form-data">
@@ -63,12 +63,12 @@ $stmt = mysqli_stmt_init($link);
 
                                 <div class="form-group">
                                     <label for="inputAddress">Nome</label>
-                                    <input type="text" class="form-control" name="nomeevento">
+                                    <input type="text" class="form-control" name="nomeevento" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="artista">Artista</label>
                                     <select id="artista" name="artista" class="form-control"
-                                            onchange="verArtista(this.value)">
+                                            onchange="verArtista(this.value)" required>
                                         <option selected="">Selecionar</option>
                                         <?php
                                         $query = "SELECT id_artistas, nome FROM `artistas` ORDER BY nome";
@@ -93,7 +93,7 @@ $stmt = mysqli_stmt_init($link);
                                 <div class="form-group" id="dataevento">
                                     <label for="meeting-time" id="labeldata">Data</label>
                                     <input type="datetime-local" class="form-control" id="dataevento1"
-                                           name="dataevento1" min="1960-01-01T00:00">
+                                           name="dataevento1" min="1960-01-01T00:00" required>
 
                                 </div>
                                 <div id="adicionardata" class="btn btn-primary mb-3">Adicionar Data</div>
@@ -101,11 +101,13 @@ $stmt = mysqli_stmt_init($link);
                                 <input type="hidden" id="numdatas" name="ndatas" value="1">
                                 <div class="form-group">
                                     <label for="textarea1">Descrição Curta</label>
-                                    <textarea class="form-control" id="textarea1" name="curtadesc" rows="2"></textarea>
+                                    <textarea class="form-control" id="textarea1" name="curtadesc" rows="2"
+                                              required></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="textarea1">Descrição</label>
-                                    <textarea class="form-control" id="textarea1" name="desc" rows="4"></textarea>
+                                    <textarea class="form-control" id="textarea1" name="desc" rows="4"
+                                              required></textarea>
                                 </div>
                                 <hr>
                                 <div class="form-row">
@@ -140,14 +142,14 @@ $stmt = mysqli_stmt_init($link);
                                     <div class="form-group col-md-12 col-lg-4">
                                         <label for="lotacao">Lotação</label>
                                         <input type="number" name="lotacao" class="form-control" id="lotacao" min="0"
-                                               max="10000">
+                                               max="10000" required>
                                     </div>
                                     <div class="form-group col-md-6 col-lg-4">
                                         <label for="precoreserva">Preço com Reserva</label>
                                         <div class="row no-gutters align-items-center">
                                             <div class="col-11 col-lg-10">
                                                 <input type="number" name="precoreserva" class="form-control"
-                                                       id="precoreserva" min="0" max="999" step=".01">
+                                                       id="precoreserva" min="0" max="999" step=".01" required>
                                             </div>
                                             <div class="col-auto pl-2">
                                                 €
@@ -159,7 +161,7 @@ $stmt = mysqli_stmt_init($link);
                                         <div class="row no-gutters align-items-center">
                                             <div class="col-11 col-lg-10">
                                                 <input type="number" name="precoporta" class="form-control"
-                                                       id="precoporta" min="0" max="999" step=".01">
+                                                       id="precoporta" min="0" max="999" step=".01" required>
                                             </div>
                                             <div class="col-auto pl-2">
                                                 €
@@ -176,7 +178,7 @@ $stmt = mysqli_stmt_init($link);
                                         <input id="files" name="fotos[]" type="file" multiple/>
                                     </div>
                                     <div class="d-flex justify-content-end">
-                                        <button type="submit" class="btn btn-primary">Publicar</button>
+                                        <button type="submit" class="btn btn-primary py-2 px-4">Publicar</button>
                                     </div>
                                 </div>
                             </div>
@@ -193,16 +195,16 @@ $stmt = mysqli_stmt_init($link);
 
                                 <div class="form-group">
                                     <label for="inputAddress">Nome</label>
-                                    <input type="text" class="form-control" id="nome" name="nomeartista">
+                                    <input type="text" class="form-control" id="nome" name="nomeartista" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">Biografia</label>
                                     <textarea class="form-control" id="exampleFormControlTextarea1"
-                                              rows="4" name="artistadesc"></textarea>
+                                              rows="4" name="artistadesc" required></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="paisart">País</label>
-                                    <select id="paisart" name="paisartista" class="form-control">
+                                    <select id="paisart" name="paisartista" class="form-control" required>
                                         <option selected="">Selecionar</option>
                                         <?php
                                         $query = "SELECT id_pais, pais FROM `paises` ORDER BY pais";
