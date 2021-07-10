@@ -54,7 +54,7 @@ if (!empty($_POST["nomeevento"]) && !empty($_POST["artista"]) && !empty($_POST["
     if (!empty($_POST["tipoevento"])) {
         $id_tipoevento = $_POST["tipoevento"];
     } else {
-        if (!empty($_POST["nomeartista"])) {
+        if (!empty($_POST["outrotipoevento"])) {
 
             $query = "INSERT INTO tipo_eventos (nome) VALUES (?)";
 
@@ -77,7 +77,7 @@ if (!empty($_POST["nomeevento"]) && !empty($_POST["artista"]) && !empty($_POST["
         } else {
             $apagarartista = 1;
             //falta tipo de evento (categoria)
-            header("Location: ../novo-evento.php?msg=1");
+            header("Location: ../novo-evento.php?msg=4");
         }
     }
 
@@ -195,7 +195,7 @@ if (!empty($_POST["nomeevento"]) && !empty($_POST["artista"]) && !empty($_POST["
     }
 
 
-    // se ocorreu um erro, vamos apagar informações que foram adicionadas
+    // se ocorreu um erro, vamos apagar informações que foram adicionadas antes desse mesmo erro
 
     if ($apagardatas == 1) {
         $query = "DELETE FROM data_eventos WHERE id_data_eventos = ?";
@@ -212,20 +212,6 @@ if (!empty($_POST["nomeevento"]) && !empty($_POST["artista"]) && !empty($_POST["
             }
         }
     }
-
-    if ($apagartipoevento == 1) {
-        $query = "DELETE FROM id_tipo_evento WHERE id_tipo_evento = ?";
-
-        if (mysqli_stmt_prepare($stmt, $query)) {
-
-            mysqli_stmt_bind_param($stmt, 'i', $id_tipoevento);
-            /* execute the prepared statement */
-            if (!mysqli_stmt_execute($stmt)) {
-                echo "Error: " . mysqli_stmt_error($stmt);
-            }
-        }
-    }
-
 
     if ($apagarevento == 1) {
         $query = "DELETE FROM eventos WHERE id_eventos = ?";
@@ -253,12 +239,18 @@ if (!empty($_POST["nomeevento"]) && !empty($_POST["artista"]) && !empty($_POST["
         }
     }
 
+    if ($apagartipoevento == 1) {
+        $query = "DELETE FROM id_tipo_evento WHERE id_tipo_evento = ?";
 
+        if (mysqli_stmt_prepare($stmt, $query)) {
 
-
-
-
-
+            mysqli_stmt_bind_param($stmt, 'i', $id_tipoevento);
+            /* execute the prepared statement */
+            if (!mysqli_stmt_execute($stmt)) {
+                echo "Error: " . mysqli_stmt_error($stmt);
+            }
+        }
+    }
 
     mysqli_stmt_close($stmt);
     mysqli_close($link);

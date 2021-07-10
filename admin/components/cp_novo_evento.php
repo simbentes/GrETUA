@@ -29,6 +29,10 @@ $stmt = mysqli_stmt_init($link);
                     $message = "<i class='far fa-check-circle pr-2'></i>Evento publicado com sucesso";
                     $class = "alert-success";
                     break;
+                case 4:
+                    $message = "<i class='far fa-check-circle pr-2'></i>Evento sem categoria definida";
+                    $class = "alert-danger";
+                    break;
                 default:
                     $msg_show = false;
             }
