@@ -120,7 +120,7 @@ if (!empty($_POST["nomeevento"]) && !empty($_POST["artista"]) && !empty($_POST["
 
             if (!empty($_FILES["fotos"]["name"])) {
                 for ($i = 0; $i < $totalfotos; $i++) {
-                    $array_nome_img[] = uploadImagem($_FILES["fotos"], $i, "eventos", 800);
+                    $array_nome_img[] = uploadImagem($_FILES["fotos"], $i, "eventos", 1080);
 
                 }
             } else {
