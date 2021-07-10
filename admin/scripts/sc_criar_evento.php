@@ -197,46 +197,6 @@ if (!empty($_POST["nomeevento"]) && !empty($_POST["artista"]) && !empty($_POST["
 
     // se ocorreu um erro, vamos apagar informações que foram adicionadas
 
-    if ($apagarartista == 1) {
-        $query = "DELETE FROM artistas WHERE id_artistas = ?";
-
-        if (mysqli_stmt_prepare($stmt, $query)) {
-
-            mysqli_stmt_bind_param($stmt, 'i', $id_artista);
-            /* execute the prepared statement */
-            if (!mysqli_stmt_execute($stmt)) {
-                echo "Error: " . mysqli_stmt_error($stmt);
-            }
-        }
-    }
-
-
-    if ($apagartipoevento == 1) {
-        $query = "DELETE FROM id_tipo_evento WHERE id_tipo_evento = ?";
-
-        if (mysqli_stmt_prepare($stmt, $query)) {
-
-            mysqli_stmt_bind_param($stmt, 'i', $id_tipoevento);
-            /* execute the prepared statement */
-            if (!mysqli_stmt_execute($stmt)) {
-                echo "Error: " . mysqli_stmt_error($stmt);
-            }
-        }
-    }
-
-    if ($apagarevento == 1) {
-        $query = "DELETE FROM eventos WHERE id_eventos = ?";
-
-        if (mysqli_stmt_prepare($stmt, $query)) {
-
-            mysqli_stmt_bind_param($stmt, 'i', $id_evento);
-            /* execute the prepared statement */
-            if (!mysqli_stmt_execute($stmt)) {
-                echo "Error: " . mysqli_stmt_error($stmt);
-            }
-        }
-    }
-
     if ($apagardatas == 1) {
         $query = "DELETE FROM data_eventos WHERE id_data_eventos = ?";
 
@@ -252,6 +212,52 @@ if (!empty($_POST["nomeevento"]) && !empty($_POST["artista"]) && !empty($_POST["
             }
         }
     }
+
+    if ($apagartipoevento == 1) {
+        $query = "DELETE FROM id_tipo_evento WHERE id_tipo_evento = ?";
+
+        if (mysqli_stmt_prepare($stmt, $query)) {
+
+            mysqli_stmt_bind_param($stmt, 'i', $id_tipoevento);
+            /* execute the prepared statement */
+            if (!mysqli_stmt_execute($stmt)) {
+                echo "Error: " . mysqli_stmt_error($stmt);
+            }
+        }
+    }
+
+
+    if ($apagarevento == 1) {
+        $query = "DELETE FROM eventos WHERE id_eventos = ?";
+
+        if (mysqli_stmt_prepare($stmt, $query)) {
+
+            mysqli_stmt_bind_param($stmt, 'i', $id_evento);
+            /* execute the prepared statement */
+            if (!mysqli_stmt_execute($stmt)) {
+                echo "Error: " . mysqli_stmt_error($stmt);
+            }
+        }
+    }
+
+    if ($apagarartista == 1) {
+        $query = "DELETE FROM artistas WHERE id_artistas = ?";
+
+        if (mysqli_stmt_prepare($stmt, $query)) {
+
+            mysqli_stmt_bind_param($stmt, 'i', $id_artista);
+            /* execute the prepared statement */
+            if (!mysqli_stmt_execute($stmt)) {
+                echo "Error: " . mysqli_stmt_error($stmt);
+            }
+        }
+    }
+
+
+
+
+
+
 
 
     mysqli_stmt_close($stmt);
