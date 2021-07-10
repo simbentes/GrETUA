@@ -1,10 +1,6 @@
 <?php
 session_start();
 require "vendor/autoload.php";
-if (!isset($_SESSION['id_user'])) {
-    header("Location: gretua.php");
-} else {
-    $userid = $_SESSION['id_user'];
     ?>
     <!DOCTYPE html>
     <html lang="pt">
@@ -68,7 +64,3 @@ if (!isset($_SESSION['id_user'])) {
 
     </body>
     </html>
-
-    <?php
-}
-?>
