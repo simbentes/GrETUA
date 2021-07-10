@@ -8,6 +8,11 @@ if (!empty($_POST["nomeevento"]) && !empty($_POST["artista"]) && !empty($_POST["
     $stmt = mysqli_stmt_init($link);
 
 
+    $apagarartista = 0;
+    $apagartipoevento = 0;
+    $apagarevento = 0;
+    $apagardatas = 0;
+
     if ($_POST["artista"] !== "novoartista") {
         //se for escolhido um artista que já está na base de dados, já podemos atribuir o id
         $id_artista = $_POST["artista"];
@@ -49,20 +54,30 @@ if (!empty($_POST["nomeevento"]) && !empty($_POST["artista"]) && !empty($_POST["
     if (!empty($_POST["tipoevento"])) {
         $id_tipoevento = $_POST["tipoevento"];
     } else {
-        $query = "INSERT INTO tipo_eventos (nome) VALUES (?)";
+        if (!empty($_POST["nomeartista"])) {
 
-        if (mysqli_stmt_prepare($stmt, $query)) {
+            $query = "INSERT INTO tipo_eventos (nome) VALUES (?)";
 
-            mysqli_stmt_bind_param($stmt, 's', $_POST["outrotipoevento"]);
+            if (mysqli_stmt_prepare($stmt, $query)) {
 
-            if (mysqli_stmt_execute($stmt)) {
-                //o id do artista é a ultima PK inserida na base de dados. vai ser util para criar o evento
-                $id_tipoevento = mysqli_insert_id($link);
+                mysqli_stmt_bind_param($stmt, 's', $_POST["outrotipoevento"]);
+
+                if (mysqli_stmt_execute($stmt)) {
+                    //o id do artista é a ultima PK inserida na base de dados. vai ser util para criar o evento
+                    $id_tipoevento = mysqli_insert_id($link);
+                } else {
+                    $apagarartista = 1;
+                    echo "Error:" . mysqli_stmt_error($stmt);
+                }
             } else {
-                echo "Error:" . mysqli_stmt_error($stmt);
+                $apagarartista = 1;
+                echo "Error:" . mysqli_error($link);
             }
+
         } else {
-            echo "Error:" . mysqli_error($link);
+            $apagarartista = 1;
+            //falta tipo de evento (categoria)
+            header("Location: ../novo-evento.php?msg=1");
         }
     }
 
@@ -103,13 +118,18 @@ if (!empty($_POST["nomeevento"]) && !empty($_POST["artista"]) && !empty($_POST["
                 for ($i = 1; $i <= $ndatas; $i++) {
                     $data_evento = date("Y-m-d H:i:s", strtotime($_POST["dataevento" . $i]));
                     if (!mysqli_stmt_execute($stmt)) {
+                        $apagarartista = 1;
+                        $apagartipoevento = 1;
+                        $apagarevento = 1;
                         echo "Error: " . mysqli_stmt_error($stmt);
                     } else {
-                        //sucesso
-                        //header("Location: ../novo-evento.php?msg=3");
+                        $id_datas[] = mysqli_insert_id($link);
                     }
                 }
             } else {
+                $apagarartista = 1;
+                $apagartipoevento = 1;
+                $apagarevento = 1;
                 echo "Error:" . mysqli_error($link);
             }
 
@@ -121,13 +141,11 @@ if (!empty($_POST["nomeevento"]) && !empty($_POST["artista"]) && !empty($_POST["
             if (!empty($_FILES["fotos"]["name"])) {
                 for ($i = 0; $i < $totalfotos; $i++) {
                     $array_nome_img[] = uploadImagem($_FILES["fotos"], $i, "eventos", 1080);
-
                 }
             } else {
                 $array_nome_img = null;
-                //falta info do evento
+                //faltam fotos
                 header("Location: ../novo-evento.php?msg=2");
-                die;
             }
 
             $fotocapa = $_POST["fotocapa"];
@@ -147,19 +165,92 @@ if (!empty($_POST["nomeevento"]) && !empty($_POST["artista"]) && !empty($_POST["
                         $capa = 0;
                     }
                     if (!mysqli_stmt_execute($stmt)) {
+                        $apagarartista = 1;
+                        $apagartipoevento = 1;
+                        $apagarevento = 1;
+                        $apagardatas = 1;
                         echo "Error: " . mysqli_stmt_error($stmt);
+                    } else {
+                        header("Location: ../novo-evento.php?msg=3");
                     }
                     $n++;
                 }
             } else {
+                $apagarartista = 1;
+                $apagartipoevento = 1;
+                $apagarevento = 1;
+                $apagardatas = 1;
                 echo "Error:" . mysqli_error($link);
             }
 
         } else {
+            $apagarartista = 1;
+            $apagartipoevento = 1;
             echo "Error:" . mysqli_stmt_error($stmt);
         }
     } else {
+        $apagarartista = 1;
+        $apagartipoevento = 1;
         echo "Error:" . mysqli_error($link);
+    }
+
+
+    // se ocorreu um erro, vamos apagar informações que foram adicionadas
+
+    if ($apagarartista == 1) {
+        $query = "DELETE FROM artistas WHERE id_artistas = ?";
+
+        if (mysqli_stmt_prepare($stmt, $query)) {
+
+            mysqli_stmt_bind_param($stmt, 'i', $id_artista);
+            /* execute the prepared statement */
+            if (!mysqli_stmt_execute($stmt)) {
+                echo "Error: " . mysqli_stmt_error($stmt);
+            }
+        }
+    }
+
+
+    if ($apagartipoevento == 1) {
+        $query = "DELETE FROM id_tipo_evento WHERE id_tipo_evento = ?";
+
+        if (mysqli_stmt_prepare($stmt, $query)) {
+
+            mysqli_stmt_bind_param($stmt, 'i', $id_tipoevento);
+            /* execute the prepared statement */
+            if (!mysqli_stmt_execute($stmt)) {
+                echo "Error: " . mysqli_stmt_error($stmt);
+            }
+        }
+    }
+
+    if ($apagarevento == 1) {
+        $query = "DELETE FROM eventos WHERE id_eventos = ?";
+
+        if (mysqli_stmt_prepare($stmt, $query)) {
+
+            mysqli_stmt_bind_param($stmt, 'i', $id_evento);
+            /* execute the prepared statement */
+            if (!mysqli_stmt_execute($stmt)) {
+                echo "Error: " . mysqli_stmt_error($stmt);
+            }
+        }
+    }
+
+    if ($apagardatas == 1) {
+        $query = "DELETE FROM data_eventos WHERE id_data_eventos = ?";
+
+        if (mysqli_stmt_prepare($stmt, $query)) {
+
+            mysqli_stmt_bind_param($stmt, 'i', $id_data);
+
+            foreach ($id_datas as $id_data) {
+                /* execute the prepared statement */
+                if (!mysqli_stmt_execute($stmt)) {
+                    echo "Error: " . mysqli_stmt_error($stmt);
+                }
+            }
+        }
     }
 
 
