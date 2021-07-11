@@ -20,7 +20,9 @@ INNER JOIN tipo_eventos
 ON tipo_eventos.id_tipo_eventos = eventos.ref_id_tipo_eventos
 INNER JOIN artistas
 ON artistas.id_artistas = eventos.ref_id_artistas
-WHERE (fotos_eventos.foto IS NUll OR fotos_eventos.capa = 1) AND (data_eventos.data) IN (SELECT MIN(data_eventos.data) FROM data_eventos WHERE data_eventos.data > NOW() GROUP BY data_eventos.ref_id_eventos) AND guardados = 1
+INNER JOIN utilizadores
+ON utilizadores.id_utilizadores = guardados_vou.ref_id_utilizadores
+WHERE (fotos_eventos.foto IS NUll OR fotos_eventos.capa = 1) AND (data_eventos.data) IN (SELECT MIN(data_eventos.data) FROM data_eventos WHERE data_eventos.data > NOW() GROUP BY data_eventos.ref_id_eventos) AND guardados = 1 AND id_utilizadores = " . $_SESSION["id_user"] . "
 ORDER BY guardados_vou.timestamp_guardados DESC;";
 
         if (mysqli_stmt_prepare($stmt, $query)) {

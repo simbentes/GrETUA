@@ -11,7 +11,7 @@ if (isset($_GET["evento"])) {
     $query = "SELECT DATE(data_eventos.data), DATE_FORMAT(TIME(data_eventos.data), '%H:%i'),eventos.nome, fotos_eventos.foto, eventos.descricao_curta, eventos.descricao, lotacao, preco_reserva, preco_porta, tipo_eventos.nome, artistas.nome, guardados_vou.guardados, guardados_vou.vou
 FROM eventos
 LEFT JOIN guardados_vou
-ON guardados_vou.ref_id_eventos = eventos.id_eventos
+ON guardados_vou.ref_id_eventos = eventos.id_eventos AND ref_id_utilizadores = " . $_SESSION["id_user"] . "
 INNER JOIN data_eventos
 ON data_eventos.ref_id_eventos = eventos.id_eventos
 LEFT JOIN fotos_eventos
@@ -20,8 +20,9 @@ INNER JOIN tipo_eventos
 ON tipo_eventos.id_tipo_eventos = eventos.ref_id_tipo_eventos
 INNER JOIN artistas
 ON artistas.id_artistas = eventos.ref_id_artistas
-WHERE (fotos_eventos.foto IS NUll OR fotos_eventos.capa = 1) AND (data_eventos.data) IN (SELECT MIN(data_eventos.data) FROM data_eventos WHERE data_eventos.data > NOW() GROUP BY data_eventos.ref_id_eventos) AND eventos.id_eventos = ? 
-ORDER BY data_eventos.data;";
+WHERE (fotos_eventos.foto IS NUll OR fotos_eventos.capa = 1) AND (data_eventos.data) IN (SELECT MIN(data_eventos.data) FROM data_eventos WHERE data_eventos.data > NOW() AND id_eventos = ?
+GROUP BY data_eventos.ref_id_eventos)
+ORDER BY guardados_vou.timestamp_guardados DESC;";
 
     if (mysqli_stmt_prepare($stmt, $query)) {
 
