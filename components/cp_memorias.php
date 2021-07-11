@@ -57,7 +57,7 @@ ORDER BY data_eventos.data DESC;";
                                         </svg>
                                     </div>
                                     <div class="ano">
-                                        <div class="text-uppercase">Estreou</div>
+                                        <div class="text-center text-uppercase"><small>Estreou</small></div>
                                         <h3 class="text-center mb-0">
                                             <?= $data_evento ?>
                                         </h3>
