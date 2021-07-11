@@ -15,7 +15,7 @@ session_start();
             <a href="conta.php" class="text-white"><i class="bi bi-chevron-left p-1 mb-0 h5"></i></a>
         </div>
         <div class="col-auto ps-3">
-            <h3 class="mb-0">Os meus eventos</h3>
+            <h3 class="mb-0">Guardados</h3>
         </div>
     </div>
 </section>

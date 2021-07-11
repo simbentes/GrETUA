@@ -11,7 +11,7 @@ if (isset($_GET["evento"])) {
     $query = "SELECT DATE(data_eventos.data), DATE_FORMAT(TIME(data_eventos.data), '%H:%i'),eventos.nome, fotos_eventos.foto, eventos.descricao_curta, eventos.descricao, lotacao, preco_reserva, preco_porta, tipo_eventos.nome, artistas.nome, guardados_vou.guardados, guardados_vou.vou
 FROM eventos
 LEFT JOIN guardados_vou
-ON guardados_vou.ref_id_eventos = eventos.id_eventos
+ON guardados_vou.ref_id_eventos = eventos.id_eventos AND ref_id_utilizadores = " . $_SESSION["id_user"] . "
 INNER JOIN data_eventos
 ON data_eventos.ref_id_eventos = eventos.id_eventos
 LEFT JOIN fotos_eventos
@@ -20,8 +20,9 @@ INNER JOIN tipo_eventos
 ON tipo_eventos.id_tipo_eventos = eventos.ref_id_tipo_eventos
 INNER JOIN artistas
 ON artistas.id_artistas = eventos.ref_id_artistas
-WHERE (fotos_eventos.foto IS NUll OR fotos_eventos.capa = 1) AND (data_eventos.data) IN (SELECT MIN(data_eventos.data) FROM data_eventos WHERE data_eventos.data > NOW() GROUP BY data_eventos.ref_id_eventos) AND eventos.id_eventos = ? 
-ORDER BY data_eventos.data;";
+WHERE (fotos_eventos.foto IS NUll OR fotos_eventos.capa = 1) AND (data_eventos.data) IN (SELECT MIN(data_eventos.data) FROM data_eventos WHERE data_eventos.data > NOW() AND id_eventos = ?
+GROUP BY data_eventos.ref_id_eventos)
+ORDER BY guardados_vou.timestamp_guardados DESC;";
 
     if (mysqli_stmt_prepare($stmt, $query)) {
 
@@ -76,8 +77,22 @@ ORDER BY data_eventos.data;";
                     <div class="row">
                         <div class="col pe-1 pb-1 text-center">
                             <button type="button" class="btn btn-pequeno w-100" data-bs-toggle="modal"
-                                    data-bs-target="#reservarBilheteModal"><i class="bi bi-pen d-block"></i><span
+                                    data-bs-target="#reservarBilheteModal" onclick="partilharLink()"><i
+                                        class="bi bi-pen d-block"></i><span
                                         class="d-block">Reservar</span></button>
+                            <script>
+                                function partilharLink() {
+                                    if (navigator.share) {
+                                        navigator.share({
+                                            title: '<?= $nome_evento ?>',
+                                            text: 'Vamos a um evento juntos? <?= $nome_evento ?>',
+                                            url: window.location.href,
+                                        })
+                                            .then(() => console.log('Successful share'))
+                                            .catch((error) => console.log('Error sharing', error));
+                                    }
+                                }
+                            </script>
                         </div>
                         <div class="col px-1 pb-1 text-center">
                             <input id="vou" value="<?= $eventoid ?>" class="btn-vou"
@@ -100,25 +115,48 @@ ORDER BY data_eventos.data;";
                             <button class="btn btn-grande w-100">Adquirir Bilhete</button>
                         </div>
                     </div>
-                    <!-- Modal -->
-                    <section class="modal fade" id="reservarBilheteModal" tabindex="-1"
-                             aria-labelledby="exampleModalLabel"
-                             aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content p-0">
-                                <div class="modal-body text-center">
-                                    <h5 class="mt-3">O teu bilhete foi reservado.</h5>
-                                    <i class="bi bi-check-circle fa-5x"></i>
-                                    <p class="py-2 m-0">Verifica na aba "Reservas" da tua conta.</p>
+                    <div class="container-fluid pt-5 pb-3">
+                        <h3>Disponiblidade</h3>
+                        <div class="col-lg-5">
+                            <div class="row justify-content-between">
+                                <div class="col-auto">
+                                    <h6>Estado</h6>
                                 </div>
-                                <div class="modal-footer p-0">
-                                    <a type="button" class="btn botaomodal py-3 m-0 w-100"
-                                       href="evento.php">CONTINUAR
-                                    </a>
+                                <div class="col-auto">
+                                    <h6><?= $lotacao ?></h6>
                                 </div>
                             </div>
+                            <?php
+                            switch ($lotacao) {
+                                case 1:
+                                    $cor_barra = "bg-barra-1";
+                                    $size = "100";
+                                    break;
+                                case 2:
+                                    $cor_barra = "bg-barra-2";
+                                    $size = "75";
+                                    break;
+                                case 3:
+                                    $cor_barra = "bg-barra-3";
+                                    $size = "50";
+                                    break;
+                                case 4:
+                                    $cor_barra = "bg-barra-4";
+                                    $size = "25";
+                                    break;
+                                default:
+                                    $cor_barra = "bg-barra-5";
+                                    $size = "10";
+                            }
+
+                            echo "<div class='progress'>
+                                    <div class='progress-bar progress-bar $cor_barra' role='progressbar'
+                                         style='width: $size%' aria-valuenow='$size' aria-valuemin='0'
+                                         aria-valuemax='$size'></div>
+                                </div>"
+                            ?>
                         </div>
-                    </section>
+                    </div>
                     <div class="container-fluid py-5 mb-5">
                         <h3>Ficha Técnica</h3>
                         <div><strong>Conceção e direção artística:</strong></div>
