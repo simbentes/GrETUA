@@ -714,14 +714,31 @@ footer {
 }
 
 
+
+
+.framefotoevento {
+    position: relative;
+    width: 100%;
+    min-height: 400px;
+    background-attachment: fixed;
+    background-position: top;
+    background-repeat: no-repeat;
+    -moz-background-size: auto 50%;
+    -webkit-background-size: auto 50%;
+    -o-background-size: auto 50%;
+    background-size: auto 50%;
+}
+
+
+
 .voltar {
-    position: absolute;
     top: 25px;
     left: 20px;
+    position: fixed;
 }
 
 .share {
-    position: absolute;
+    position: fixed;
     top: 25px;
     right: 20px;
 }
@@ -1141,11 +1158,7 @@ a:hover {
 }
 
 
-.framefotoevento {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-}
+
 
 
 .desc-evento {

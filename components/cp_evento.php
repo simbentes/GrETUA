@@ -49,12 +49,11 @@ ORDER BY guardados_vou.timestamp_guardados DESC;";
 
             <div class="position-relative">
                 <section class="container px-0 frame-img">
-                    <div class="position-relative">
-                        <img class="img-fluid framefotoevento" src="img/eventos/<?= $foto ?>"/>
+                    <div class="framefotoevento" style="background-image: url('img/eventos/<?= $foto ?>')">
                         <div class="degrade-imagem"></div>
                         <a href="eventos.php" class="voltar"><i class="bi bi-chevron-left p-1 mb-0 h2"></i></a>
-                        <a class="share" onclick="partilharLink()"><i class="bi bi-box-arrow-up p-1 mb-0 h2"></i>
-                        </a>
+                        <div class="share" onclick="partilharLink()"><i class="bi bi-box-arrow-up p-1 mb-0 h2"></i>
+                        </div>
                     </div>
                     <script>
                         function partilharLink() {
