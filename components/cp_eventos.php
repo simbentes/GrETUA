@@ -109,6 +109,7 @@ ORDER BY data_eventos.data;";
     </div>
 </section>
 
+<script src= "js/jquery.js"></script>
 <script>
 $(document).ready(function(){
     $('#pesquisa').keyup(function(){
