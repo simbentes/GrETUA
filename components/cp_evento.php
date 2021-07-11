@@ -51,8 +51,9 @@ ORDER BY guardados_vou.timestamp_guardados DESC;";
                 <section class="container px-0 frame-img">
                     <div class="framefotoevento" style="background-image: url('img/eventos/<?= $foto ?>')">
                         <div class="degrade-imagem"></div>
-                        <a href="eventos.php" class="voltar"><i class="bi bi-chevron-left p-1 mb-0 h2"></i></a>
-                        <div class="share" onclick="partilharLink()"><i class="bi bi-box-arrow-up p-1 mb-0 h2"></i>
+                        <a id="voltar" href="eventos.php" class="voltar"><i class="bi bi-chevron-left p-1 mb-0 h2"></i></a>
+                        <div id="share" class="share" onclick="partilharLink()"><i
+                                    class="bi bi-box-arrow-up p-1 mb-0 h2"></i>
                         </div>
                     </div>
                     <script>
@@ -90,11 +91,9 @@ ORDER BY guardados_vou.timestamp_guardados DESC;";
                     </div>
                     <div class="row">
                         <div class="col pe-1 pb-1 text-center">
-                            <button type="button" class="btn btn-pequeno w-100" data-bs-toggle="modal"
-                                    data-bs-target="#reservarBilheteModal"
-                            "><i
-                                    class="bi bi-pen d-block"></i><span
-                                    class="d-block">Reservar</span></button>
+                            <a href="reservar.php?evento=<?= $eventoid ?>" class="btn btn-pequeno w-100"><i
+                                        class="bi bi-pen d-block"></i><span
+                                        class="d-block">Reservar</span></a>
                         </div>
                         <div class="col px-1 pb-1 text-center">
                             <input id="vou" value="<?= $eventoid ?>" class="btn-vou"

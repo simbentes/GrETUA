@@ -735,12 +735,14 @@ footer {
     top: 25px;
     left: 20px;
     position: fixed;
+    transition: top 0.3s ease-out;
 }
 
 .share {
     position: fixed;
     top: 25px;
     right: 20px;
+    transition: top 0.3s ease-out;
 }
 
 

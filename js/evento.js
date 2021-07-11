@@ -20,8 +20,18 @@ window.onload = function () {
 }
 
 
+//botoes desaparecem apos algum scroll
 
-
+window.onscroll = function() {
+    var currentScrollPos = window.pageYOffset;
+    if (240 > currentScrollPos) {
+        document.getElementById("voltar").style.top = "25px";
+        document.getElementById("share").style.top = "25px";
+    } else {
+        document.getElementById("voltar").style.top = "-100px";
+        document.getElementById("share").style.top = "-100px";
+    }
+}
 
 
 //adicionar album aos favoritos
