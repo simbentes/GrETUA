@@ -53,7 +53,22 @@ ORDER BY guardados_vou.timestamp_guardados DESC;";
                         <img class="img-fluid framefotoevento" src="img/eventos/<?= $foto ?>"/>
                         <div class="degrade-imagem"></div>
                         <a href="eventos.php" class="voltar"><i class="bi bi-chevron-left p-1 mb-0 h2"></i></a>
+                        <a class="share" onclick="partilharLink()"><i class="bi bi-box-arrow-up p-1 mb-0 h2"></i>
+                        </a>
                     </div>
+                    <script>
+                        function partilharLink() {
+                            if (navigator.share) {
+                                navigator.share({
+                                    title: '<?= $nome_evento ?>',
+                                    text: 'Vamos a um evento juntos? <?= $nome_evento ?>',
+                                    url: window.location.href,
+                                })
+                                    .then(() => console.log('Successful share'))
+                                    .catch((error) => console.log('Error sharing', error));
+                            }
+                        }
+                    </script>
                 </section>
                 <section class="container evento-text">
                     <div>
@@ -77,22 +92,10 @@ ORDER BY guardados_vou.timestamp_guardados DESC;";
                     <div class="row">
                         <div class="col pe-1 pb-1 text-center">
                             <button type="button" class="btn btn-pequeno w-100" data-bs-toggle="modal"
-                                    data-bs-target="#reservarBilheteModal" onclick="partilharLink()"><i
-                                        class="bi bi-pen d-block"></i><span
-                                        class="d-block">Reservar</span></button>
-                            <script>
-                                function partilharLink() {
-                                    if (navigator.share) {
-                                        navigator.share({
-                                            title: '<?= $nome_evento ?>',
-                                            text: 'Vamos a um evento juntos? <?= $nome_evento ?>',
-                                            url: window.location.href,
-                                        })
-                                            .then(() => console.log('Successful share'))
-                                            .catch((error) => console.log('Error sharing', error));
-                                    }
-                                }
-                            </script>
+                                    data-bs-target="#reservarBilheteModal"
+                            "><i
+                                    class="bi bi-pen d-block"></i><span
+                                    class="d-block">Reservar</span></button>
                         </div>
                         <div class="col px-1 pb-1 text-center">
                             <input id="vou" value="<?= $eventoid ?>" class="btn-vou"
