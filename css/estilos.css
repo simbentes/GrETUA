@@ -717,7 +717,13 @@ footer {
 .voltar {
     position: absolute;
     top: 25px;
-    left: 15px;
+    left: 20px;
+}
+
+.share {
+    position: absolute;
+    top: 25px;
+    right: 20px;
 }
 
 
