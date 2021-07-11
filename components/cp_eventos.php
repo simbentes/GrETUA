@@ -4,6 +4,10 @@
                class="form-control forminfo barrapesquisa"
                placeholder="Pesquisar">
     </form>
+    <div id="result">
+
+    </div>
+
 </section>
 
 <section class="container px-3">
@@ -105,6 +109,28 @@ ORDER BY data_eventos.data;";
     </div>
 </section>
 
+<script>
+$(document).ready(function(){
+    $('#pesquisa').keyup(function(){
+        var txt = $(this).val();
+        if(txt != ''){
+
+        }else{
+            $('#result').html('');
+            $.ajax({
+                url:"fetch.php",
+                method:"post",
+                data:{search:txt},
+                dataType:"text",
+                success:function(data)
+                {
+                    $('#result').html(data);
+                }
+            });
+        }
+    });
+});
+</script>
 
 
 
