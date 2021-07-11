@@ -81,7 +81,7 @@ ORDER BY guardados_vou.timestamp_guardados DESC;";
                             </div>
                             <div class="row">
                                 <div class="col text-cinza text-center py-3">
-                                    <strong>Reserva: <?= $preco_reserva ?>€ | À porta: <?= $preco_porta ?>€</strong>
+                                    <strong>Preço: <?php if($preco_reserva > 0){echo $preco_reserva .'€';}else{echo "Grátis";} ?>  <?php if($preco_porta>0){echo '|'. $preco_porta . '€';}  ?></strong>
                                 </div>
                             </div>
                         </div>
