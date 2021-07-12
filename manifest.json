@@ -1,27 +1,27 @@
 {
-  "short_name": "GrETUApp",
-  "name": "GrETUApp",
+  "short_name": "GrETUA",
+  "name": "GrETUA",
   "icons": [
     {
       "src": "/deca_20L4/deca_20L4_33/img/logos/maskable_icon_x96.png",
       "sizes": "96x96",
       "type": "image/png",
-      "purpose": "maskable"
+      "purpose": "any"
     },
     {
       "src": "/deca_20L4/deca_20L4_33/img/logos/maskable_icon_x192.png",
       "sizes": "192x192",
       "type": "image/png",
-      "purpose": "maskable"
+      "purpose": "any"
     },
     {
       "src": "/deca_20L4/deca_20L4_33/img/logos/maskable_icon_x512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "maskable"
+      "purpose": "any"
     }
   ],
-  "start_url": "/deca_20L4/deca_20L4_33/?source=pwa",
+  "start_url": "/deca_20L4/deca_20L4_33/",
   "background_color": "#111111",
   "display": "standalone",
   "scope": "/",
