@@ -73,6 +73,7 @@ function carregarMemorias() {
 document.getElementById("temporange").addEventListener("change", function () {
 
     if (this.value == 100) {
+        slidesMemorias.removeAllSlides();
         lastdata = "";
         carregarMemorias();
     } else {
