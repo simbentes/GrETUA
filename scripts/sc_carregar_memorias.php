@@ -8,7 +8,11 @@ if (isset($_GET['carregar']) && isset($_GET['data'])) {
     if (isset($_GET["data"])) {
         //se estiver empty é sinal que é o primeiro pedido ajax
         if (!empty($_GET["data"])) {
-            $data_query = $_GET['data'];
+            if (is_numeric($_GET["data"])) {
+                $data_query = date("Y-m-d H:i:s", round($_GET['data']));
+            } else {
+                $data_query = $_GET['data'];
+            }
             $ultima_data = "AND data_eventos.data < ?";
         } else {
             $ultima_data = "";

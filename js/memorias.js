@@ -68,3 +68,31 @@ function carregarMemorias() {
     xmlhttp.send();
 
 }
+
+
+document.getElementById("temporange").addEventListener("change", function () {
+
+    if (this.value == 100) {
+        lastdata = "";
+        carregarMemorias();
+    } else {
+        slidesMemorias.removeAllSlides();
+
+        console.log(document.getElementById("min-data").value)
+        console.log(document.getElementById("max-data").value)
+        //intervalo de tempo entre a primeira e ultima data, em unix
+        var min_data = parseInt(document.getElementById("min-data").value)
+        var max_data = parseInt(document.getElementById("max-data").value)
+
+
+        var diferenca = max_data - min_data
+        var percentagem = this.value / 100
+        var dataRange = diferenca * percentagem
+
+        var dataSelecionada = min_data + dataRange
+
+        lastdata = dataSelecionada;
+        carregarMemorias();
+
+    }
+})

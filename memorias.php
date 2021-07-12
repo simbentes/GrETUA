@@ -16,7 +16,6 @@ session_start();
 </div>
 
 <?php include_once "components/cp_memorias.php" ?>
-<?php include_once "components/cp_maquina_tempo.php" ?>
 <?php include_once "components/cp_tab_bar.php" ?>
 <!-- Javascript -->
 <?php include_once "helpers/help_js.php" ?>
