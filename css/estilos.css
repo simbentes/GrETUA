@@ -765,10 +765,10 @@ footer {
     background-attachment: fixed;
     background-position: top;
     background-repeat: no-repeat;
-    -moz-background-size: auto 50%;
-    -webkit-background-size: auto 50%;
-    -o-background-size: auto 50%;
-    background-size: auto 50%;
+    -moz-background-size: 100% auto;
+    -webkit-background-size: 100% auto;
+    -o-background-size: 100% auto;
+    background-size: 100% auto;
 }
 
 

@@ -20,23 +20,6 @@ session_start();
 <?php include_once "components/cp_tab_bar.php" ?>
 <!-- Javascript -->
 <?php include_once "helpers/help_js.php" ?>
-<script type="text/javascript">
-
-    document.getElementById("botaomaquina").onclick = function () {
-        console.log("ola")
-        document.getElementById("maquinabottom").classList.toggle("animamaquina");
-    }
-
-
-    var swiper = new Swiper(".mySwiper", {
-        slidesPerView: "auto",
-        centeredSlides: true,
-        spaceBetween: 28,
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-        },
-    });
-</script>
+<script src="js/memorias.js"></script>
 </body>
 </html>
