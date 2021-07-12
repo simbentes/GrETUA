@@ -48,7 +48,7 @@ GROUP BY data_eventos.ref_id_eventos)";
 
             <div class="position-relative">
                 <section class="container px-0 frame-img">
-                    <div class="framefotoevento" style="background-image: url('img/eventos/<?= $foto ?>')">
+                    <div id="framefotoevento" class="framefotoevento" style="background-image: url('img/eventos/<?= $foto ?>')">
                         <div class="degrade-imagem"></div>
                         <a id="voltar" href="eventos.php" class="voltar"><i class="bi bi-chevron-left p-1 mb-0 h2"></i></a>
                         <div id="share" class="share" onclick="partilharLink()"><i

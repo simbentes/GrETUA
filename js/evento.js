@@ -1,5 +1,8 @@
 window.onload = function () {
 
+
+
+
     if (document.getElementById("guardado").checked == true) {
         document.getElementById("textbtnguardado").innerHTML = "Guardado";
         document.getElementById("iconbtnguardado").classList.remove("bi-bookmark");
@@ -17,12 +20,16 @@ window.onload = function () {
         document.getElementById("iconbtnvou").classList.add("bi-star");
         document.getElementById("iconbtnvou").classList.remove("bi-star-fill");
     }
+
+
+
+
 }
 
 
 //botoes desaparecem apos algum scroll
 
-window.onscroll = function() {
+window.onscroll = function () {
     var currentScrollPos = window.pageYOffset;
     if (240 > currentScrollPos) {
         document.getElementById("voltar").style.top = "25px";
@@ -36,7 +43,6 @@ window.onscroll = function() {
 
 //adicionar album aos favoritos
 function guardarEvento(estado, evento) {
-
     if (estado) {
         document.getElementById("textbtnguardado").innerHTML = "Guardado";
         document.getElementById("iconbtnguardado").classList.remove("bi-bookmark");

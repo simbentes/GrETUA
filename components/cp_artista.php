@@ -30,7 +30,7 @@ if (isset($_GET["artista"])) {
 
             <div class="position-relative">
                 <section class="container px-0 frame-img">
-                    <div class="framefotoevento" style="background-image: url('img/eventos/<?php
+                    <div id="framefotoevento" class="framefotoevento" style="background-image: url('img/eventos/<?php
 
                     $query = "SELECT foto FROM `fotos_eventos` 
 INNER JOIN eventos 

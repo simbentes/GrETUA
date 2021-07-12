@@ -16,5 +16,6 @@ session_start();
 
 <!-- Javascript -->
 <?php include_once "helpers/help_js.php" ?>
+<script src="js/memoria.js"></script>
 </body>
 </html>
