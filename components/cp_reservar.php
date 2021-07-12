@@ -10,11 +10,9 @@
     </div>
 </section>
 <main>
-
-    <form action="scripts/sc_editar_info_conta.php" method="post" class="px-0">
-        <section class="py-5 container-fluid menu_perfil">
-            <section class="container pt-2">
-
+    <section class="reservas-container">
+        <div class="container">
+            <form action="scripts/sc_editar_info_conta.php" method="post" class="px-0">
                 <div class="row mb-3 g-2">
                     <div class="col">
                         <label for="nome" class="mb-1">Nome</label>
@@ -62,7 +60,8 @@
                     <input type="text" class="form-control forminfo formconta" id="whatsapp"
                            value="" name="whatsapp">
                 </div>
-            </section>
-        </section>
-    </form>
+            </form>
+        </div>
+    </section>
+
 </main>
