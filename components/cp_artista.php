@@ -30,7 +30,31 @@ if (isset($_GET["artista"])) {
 
             <div class="position-relative">
                 <section class="container px-0 frame-img">
-                    <div class="framefotoevento" style="background-image: url('img/users/default.png')">
+                    <div class="framefotoevento" style="background-image: url('img/eventos/<?php
+
+                    $query = "SELECT foto FROM `fotos_eventos` 
+INNER JOIN eventos 
+ON eventos.id_eventos = fotos_eventos.ref_id_eventos
+WHERE eventos.ref_id_artistas = ?;";
+
+                    if (mysqli_stmt_prepare($stmt, $query)) {
+                        mysqli_stmt_bind_param($stmt, "i", $artistaid);
+                        mysqli_stmt_execute($stmt);
+
+                        mysqli_stmt_bind_result($stmt, $foto);
+
+                        while (mysqli_stmt_fetch($stmt)) {
+                            $array_fotos[] = $foto;
+                        }
+
+                        if (isset($array_fotos)) {
+                            echo $array_fotos[array_rand($array_fotos)];
+                        }
+
+                    } else {
+                        echo "Error: " . mysqli_error($link);
+                    }
+                    ?>')">
                         <div class="degrade-imagem"></div>
                         <a id="voltar" href="eventos.php" class="voltar"><i class="bi bi-chevron-left p-1 mb-0 h2"></i></a>
                         <div id="share" class="share" onclick="partilharLink()"><i
@@ -54,7 +78,7 @@ if (isset($_GET["artista"])) {
                 <section class="artista-info">
                     <div class="container">
                         <div class="px-1">
-                            <h1><?= $nome_artista ?></h1>
+                            <h1 class="text-center"><?= $nome_artista ?></h1>
                         </div>
                         <div class="row g-1 justify-content-center align-content-center pt-3 pb-4">
                             <div class="col-auto">
@@ -63,7 +87,7 @@ if (isset($_GET["artista"])) {
                             <?php
                             if (!empty($insta)) { ?>
                                 <div class="col-auto">
-                                    <a href="<?= $insta ?>" target="_blank">
+                                    <a href="https://www.instagram.com/<?= basename($insta) ?>" target="_blank">
                                         <div class="redessocias">
                                             <i class="bi bi-instagram iconredes"></i>
                                         </div>
@@ -99,38 +123,24 @@ if (isset($_GET["artista"])) {
                             <?php } ?>
                         </div>
                         <p><?= $bio ?></p>
-                        <div class="container-fluid pt-4">
-                            <?php
-                            if (!empty($spotify)) { ?>
-                                <h3 class="mb-3">Spotify</h3>
-                                <iframe src="https://open.spotify.com/embed/artist/<?= basename($spotify); ?>?theme=0" width="100%" height="300" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                            <?php } ?>
-                            <h3>Fotos no <img src="img/gretua.svg" class="py-2" height="34"></h3>
-                        </div>
+                        <?php
+                        if (!empty($spotify)) { ?>
+                            <h3 class="mb-3">Repertório</h3>
+                            <iframe src="https://open.spotify.com/embed/artist/<?= basename($spotify); ?>?theme=0"
+                                    width="100%" height="300" frameBorder="0" allowtransparency="true"
+                                    allow="encrypted-media"></iframe>
+                        <?php } ?>
+                        <h3 class="pt-3">Fotos no <img src="img/gretua.svg" class="pb-2" height="34"></h3>
                     </div>
                     <div class="swiper-container mySwiper pb-5 mb-5">
                         <div class="swiper-wrapper">
                             <?php
-                            $query = "SELECT foto FROM `fotos_eventos` 
-INNER JOIN eventos 
-ON eventos.id_eventos = fotos_eventos.ref_id_eventos
-WHERE eventos.ref_id_artistas = ?;";
-
-                            if (mysqli_stmt_prepare($stmt, $query)) {
-                                mysqli_stmt_bind_param($stmt, "i", $artistaid);
-                                mysqli_stmt_execute($stmt);
-
-                                mysqli_stmt_bind_result($stmt, $foto);
-
-                                while (mysqli_stmt_fetch($stmt)) {
-                                    ?>
-                                    <div class="swiper-slide fotos-artita-eventos"><img src="img/eventos/<?= $foto ?>"
-                                                                                        class="fotos-artista-fluid">
-                                    </div>
-                                    <?php
-                                }
-                            } else {
-                                echo "Error: " . mysqli_error($link);
+                            foreach ($array_fotos as $foto) {
+                                ?>
+                                <div class="swiper-slide fotos-artita-eventos"><img src="img/eventos/<?= $foto ?>"
+                                                                                    class="fotos-artista-fluid">
+                                </div>
+                                <?php
                             }
                             ?>
                         </div>

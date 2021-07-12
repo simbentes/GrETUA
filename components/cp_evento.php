@@ -113,7 +113,31 @@ GROUP BY data_eventos.ref_id_eventos)";
                                 <a href="artista.php?artista=<?= $id_artista ?>" class="artistabtn">
                                     <div class="row align-items-center g-2">
                                         <div class="col-auto">
-                                            <img src="img/users/default.png" class="fotoperfilartista">
+                                            <img src="img/eventos/<?php
+
+                                            $query = "SELECT foto FROM `fotos_eventos` 
+INNER JOIN eventos 
+ON eventos.id_eventos = fotos_eventos.ref_id_eventos
+WHERE eventos.ref_id_artistas = ?;";
+
+                                            if (mysqli_stmt_prepare($stmt, $query)) {
+                                                mysqli_stmt_bind_param($stmt, "i", $id_artista);
+                                                mysqli_stmt_execute($stmt);
+
+                                                mysqli_stmt_bind_result($stmt, $foto);
+
+                                                while (mysqli_stmt_fetch($stmt)) {
+                                                    $array_fotos[] = $foto;
+                                                }
+
+                                                if (isset($array_fotos)) {
+                                                    echo $array_fotos[array_rand($array_fotos)];
+                                                }
+
+                                            } else {
+                                                echo "Error: " . mysqli_error($link);
+                                            }
+                                            ?>" class="fotoperfilartista">
                                         </div>
                                         <div class="col-auto fw-700">
                                             <?= $artista ?>
