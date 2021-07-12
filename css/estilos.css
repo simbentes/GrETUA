@@ -35,6 +35,12 @@ body {
     right: 0;
 }
 
+.artista-info {
+    position: absolute;
+    top: 315px;
+    left: 0;
+    right: 0;
+}
 
 .fotoinput {
     width: 100%;
@@ -105,11 +111,31 @@ input[type='file'] {
     padding: 10px 5px;
 }
 
+.fw-700 {
+    font-weight: 700;
+}
+
 
 .fotoperfilnav {
     object-fit: cover;
     height: 32px;
     width: 32px;
+}
+
+.artistabtn {
+    color: white;
+}
+
+.artistabtn:hover {
+    color: white;
+}
+
+
+.fotoperfilartista {
+    object-fit: cover;
+    height: 40px;
+    width: 40px;
+    border-radius: 50rem;
 }
 
 
@@ -131,13 +157,31 @@ input[type='file'] {
 }
 
 
+small, .small {
+    font-size: .8em;
+}
+
+.icon-evento {
+    font-size: 2rem;
+}
+
 .bilhetes-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    padding-top: 51px;
+    height: calc(100vh - 51px);
+    margin-top: 51px;
     padding-bottom: 90px;
+}
+
+
+.reservas-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-top: 51px;
+    margin-bottom: 60px;
 }
 
 
@@ -714,8 +758,6 @@ footer {
 }
 
 
-
-
 .framefotoevento {
     position: relative;
     width: 100%;
@@ -728,7 +770,6 @@ footer {
     -o-background-size: auto 50%;
     background-size: auto 50%;
 }
-
 
 
 .voltar {
@@ -820,6 +861,24 @@ a:hover {
     text-decoration: underline;
 }
 
+.fotos-artita-eventos {
+    position: relative;
+    width: 85vw;
+    height: calc(85vw * 1.4);
+    font-size: 12px;
+    text-align: left;
+    text-decoration: none;
+    -webkit-box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
+}
+
+
+.fotos-artista-fluid {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
 
 .form-signin {
     width: 100%;
@@ -833,7 +892,7 @@ a:hover {
     position: fixed;
     right: 0;
     background-image: url(https://modnetrojmiasto.pl/wp-content/uploads/2020/03/RecyklingUbran_main.jpeg);
-    background-position: center;
+    background-position: top;
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -1044,7 +1103,6 @@ a:hover {
     text-align: left;
     border-radius: 16px;
     text-decoration: none;
-    background-color: transparent;
     -webkit-box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
     box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
 }
@@ -1158,9 +1216,6 @@ a:hover {
     object-fit: cover;
     border-radius: 10px;
 }
-
-
-
 
 
 .desc-evento {

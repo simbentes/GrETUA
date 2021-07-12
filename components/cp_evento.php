@@ -8,7 +8,7 @@ if (isset($_GET["evento"])) {
     $link = new_db_connection();
     $stmt = mysqli_stmt_init($link);
 
-    $query = "SELECT DATE(data_eventos.data), DATE_FORMAT(TIME(data_eventos.data), '%H:%i'),eventos.nome, fotos_eventos.foto, eventos.descricao_curta, eventos.descricao, lotacao, preco_reserva, preco_porta, tipo_eventos.nome, artistas.nome, guardados_vou.guardados, guardados_vou.vou
+    $query = "SELECT eventos.nome, fotos_eventos.foto, eventos.descricao_curta, eventos.descricao, lotacao, preco_reserva, preco_porta, tipo_eventos.nome, artistas.nome, artistas.id_artistas, guardados_vou.guardados, guardados_vou.vou, duracao, classificacao_etaria
 FROM eventos
 LEFT JOIN guardados_vou
 ON guardados_vou.ref_id_eventos = eventos.id_eventos AND ref_id_utilizadores = " . $_SESSION["id_user"] . "
@@ -21,8 +21,7 @@ ON tipo_eventos.id_tipo_eventos = eventos.ref_id_tipo_eventos
 INNER JOIN artistas
 ON artistas.id_artistas = eventos.ref_id_artistas
 WHERE (fotos_eventos.foto IS NUll OR fotos_eventos.capa = 1) AND (data_eventos.data) IN (SELECT MIN(data_eventos.data) FROM data_eventos WHERE data_eventos.data > NOW() AND id_eventos = ?
-GROUP BY data_eventos.ref_id_eventos)
-ORDER BY guardados_vou.timestamp_guardados DESC;";
+GROUP BY data_eventos.ref_id_eventos)";
 
     if (mysqli_stmt_prepare($stmt, $query)) {
 
@@ -33,7 +32,7 @@ ORDER BY guardados_vou.timestamp_guardados DESC;";
         mysqli_stmt_execute($stmt);
 
         /* bind result variables */
-        mysqli_stmt_bind_result($stmt, $data, $hora, $nome_evento, $foto, $desc_curta, $desc, $lotacao, $preco_reserva, $preco_porta, $tipo_evento, $artista, $guardado, $vou);
+        mysqli_stmt_bind_result($stmt, $nome_evento, $foto, $desc_curta, $desc, $lotacao, $preco_reserva, $preco_porta, $tipo_evento, $artista, $id_artista, $guardado, $vou, $duracao, $c_etaria);
 
         /* store result */
         mysqli_stmt_store_result($stmt);
@@ -44,7 +43,7 @@ ORDER BY guardados_vou.timestamp_guardados DESC;";
             if (!isset($foto)) {
                 $foto = "evento_default.png";
             }
-            $hora_h = str_replace(":", "h", $hora);
+            // $hora_h = str_replace(":", "h", $hora);
             ?>
 
             <div class="position-relative">
@@ -74,19 +73,82 @@ ORDER BY guardados_vou.timestamp_guardados DESC;";
                     <div>
                         <div class="evento-titulo px-3">
                             <h1><?= $nome_evento ?></h1>
-                            <div class="row">
-                                <h6 class="col text-cinza"><?= $data ?></h6>
-                                <h6 class="col text-cinza text-center"><?= $hora_h ?></h6>
-                                <h6 class="col text-cinza text-end"><?= $tipo_evento ?></h6>
-                            </div>
-                            <div class="row">
-                                <div class="col text-cinza text-center py-3">
-                                    <strong>Preço: <?php if($preco_reserva > 0){echo $preco_reserva .'€';}else{echo "Grátis";} ?>  <?php if($preco_porta>0){echo '|'. $preco_porta . '€';}  ?></strong>
-                                </div>
+                            <div class="row justify-content-between">
+                                <h6 class="col-auto text-cinza">
+                                    <?php
+                                    $query = "SELECT DATE_FORMAT(MIN(DATE(data)), '%d-%m'), DATE_FORMAT(MIN(DATE(data)), '%Y'), DATE_FORMAT(MAX(DATE(data)), '%d-%m'), DATE_FORMAT(MAX(DATE(data)), '%Y')  FROM `data_eventos` WHERE ref_id_eventos = ?;";
+                                    if (mysqli_stmt_prepare($stmt, $query)) {
+                                        mysqli_stmt_bind_param($stmt, "i", $eventoid);
+                                        mysqli_stmt_execute($stmt);
+                                        mysqli_stmt_bind_result($stmt, $min_data, $min_ano, $max_data, $max_ano);
+
+                                        if (mysqli_stmt_fetch($stmt)) {
+                                            $meses = array("-01", "-02", "-03", "-04", "-05", "-06", "-07", "-08", "-09", "-10", "-11", "-12");
+                                            $str_meses = array(" JAN", "FEV", " MAR", " ABR", " MAI", " JUN", " JUL", " AGO", " SET", " OUT", " NOV", " DEZ");
+
+                                            $min_data_str = str_replace($meses, $str_meses, $min_data);
+                                            $max_data_str = str_replace($meses, $str_meses, $max_data);
+
+                                            if ($min_data == $max_data) {
+                                                echo $min_data_str;
+                                            } else {
+                                                if ($min_ano == $max_ano) {
+                                                    echo "<small>DE</small> " . $min_data_str . " <small>A</small>  " . $max_data_str;
+                                                } else {
+                                                    echo "<small>DE</small> " . $min_data_str . " " . $min_ano . " <small>A</small>  " . $max_data_str . " " . $max_ano;
+
+                                                }
+                                            }
+                                        }
+                                    } else {
+                                        echo "Error: " . mysqli_error($link);
+                                    }
+                                    ?>
+                                </h6>
+                                <h6 class="col-auto text-cinza text-end"><?= $tipo_evento ?></h6>
                             </div>
                         </div>
-                        <div class="container">
-                            <p><?= $desc_curta ?></p>
+                        <div class="row justify-content-center align-items-center py-3">
+                            <div class="col-auto">
+                                <a href="artista.php?artista=<?= $id_artista ?>" class="artistabtn">
+                                    <div class="row align-items-center g-2">
+                                        <div class="col-auto">
+                                            <img src="img/users/default.png" class="fotoperfilartista">
+                                        </div>
+                                        <div class="col-auto fw-700">
+                                            <?= $artista ?>
+                                            <svg width="14" height="14" viewBox="0 0 16 16"
+                                                 xmlns="http://www.w3.org/2000/svg"
+                                                 xmlns:svg="http://www.w3.org/2000/svg" class="bi bi-check-circle">
+                                                <g>
+                                                    <title>Layer 1</title>
+                                                    <circle id="svg_5" r="7.52393" cy="8" cx="8" stroke-dasharray="null"
+                                                            stroke-width="null" fill="#007fff"/>
+                                                    <path fill="#ffffff" id="svg_1"
+                                                          d="m8,15a7,7 0 1 1 0,-14a7,7 0 0 1 0,14zm0,1a8,8 0 1 0 0,-16a8,8 0 0 0 0,16z"/>
+                                                    <path fill="#ffffff" id="svg_2"
+                                                          d="m10.97,4.97a0.235,0.235 0 0 0 -0.02,0.022l-3.473,4.425l-2.093,-2.094a0.75,0.75 0 0 0 -1.06,1.06l2.646,2.647a0.75,0.75 0 0 0 1.079,-0.02l3.992,-4.99a0.75,0.75 0 0 0 -1.071,-1.05z"/>
+                                                    <circle id="svg_7" r="0.02376" cy="2.6257" cx="-1.22298"
+                                                            stroke-dasharray="null" stroke-width="null" fill="black"/>
+                                                </g>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <p><?= $desc_curta ?></p>
+                        <div class="row">
+                            <div class="col text-cinza text-center pb-3">
+                                <strong>Preço: <?php if ($preco_reserva > 0) {
+                                        echo $preco_reserva . '€';
+                                    } else {
+                                        echo "Grátis";
+                                    }
+                                    if ($preco_porta > 0) {
+                                        echo ' | ' . $preco_porta . '€';
+                                    } ?></strong>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -158,7 +220,7 @@ ORDER BY guardados_vou.timestamp_guardados DESC;";
                             ?>
                         </div>
                     </div>
-                    <div class="container-fluid py-5 mb-5">
+                    <div class="container-fluid py-5 mb-4">
                         <h3>Ficha Técnica</h3>
                         <div><strong>Conceção e direção artística:</strong></div>
                         <div>ALEXANDRA FILIPE</div>
@@ -175,6 +237,26 @@ ORDER BY guardados_vou.timestamp_guardados DESC;";
                         <div class="pt-2"><strong>Instrumentistas:</strong> FLOR DA MATA, flauta</div>
                         <div> DIOGO CHAVES, guitarra</div>
                         <div> JOÃO SANTOS, guitarra</div>
+                        <div class="row justify-content-center align-items-center py-3">
+                            <div class="col-auto row align-items-center">
+                                <div class="col-auto pe-1 ps-3">
+                                    <i class="bi bi-clock icon-evento"></i>
+                                </div>
+                                <div class="col-auto ps-1 pe-3">
+                                    <h6 class="mb-0 small">Duração</h6>
+                                    <h3 class="mb-0"><?= $duracao ?> <small>MIN</small></h3>
+                                </div>
+                            </div>
+                            <div class="col-auto row align-items-center">
+                                <div class="col-auto pe-1 ps-3">
+                                    <i class="bi bi-people icon-evento"></i>
+                                </div>
+                                <div class="col-auto ps-1 pe-3">
+                                    <h6 class="mb-0 small">Classificação etária</h6>
+                                    <h3 class="mb-0">M/<?= $c_etaria ?></h3>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </section>
             </div>
