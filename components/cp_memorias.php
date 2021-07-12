@@ -2,16 +2,13 @@
     <div class="memoria-container">
         <div dir="rtl" class="swiper-container mySwiper">
             <div class="swiper-wrapper position-relative">
-
-
                 <?php
-
                 require_once("connections/connection.php");
 
                 $link = new_db_connection();
                 $stmt = mysqli_stmt_init($link);
 
-                $query = "SELECT eventos.id_eventos, DATE(data_eventos.data), eventos.nome, fotos_eventos.foto, eventos.descricao_curta FROM eventos
+                $query = "SELECT eventos.id_eventos, DATE_FORMAT(DATE(data_eventos.data),'%d!%m-%Y'), eventos.nome, fotos_eventos.foto, eventos.descricao_curta FROM eventos
 INNER JOIN data_eventos
 ON data_eventos.ref_id_eventos = eventos.id_eventos
 LEFT JOIN fotos_eventos
@@ -59,7 +56,14 @@ ORDER BY data_eventos.data DESC;";
                                     <div class="ano">
                                         <div class="text-center text-uppercase"><small>Estreou</small></div>
                                         <h3 class="text-center mb-0">
-                                            <?= $data_evento ?>
+                                            <?php
+                                            $meses = array("!01-", "!02-", "!03-", "!04-", "!05-", "!06-", "!07-", "!08-", "!09-", "!10-", "!11-", "!12-");
+                                            $str_meses = array(" de janeiro de ", " de fevereiro de ", " de março de ", " de abril de ", " de maio de ", " de junho de ", " de julho de ", " de agosto de ", " de setembro de ", " de outubro de ", " de novembro de ", " de dezembro de ");
+
+                                            $data_str = str_replace($meses, $str_meses, $data_evento);
+
+                                            echo $data_str;
+                                            ?>
                                         </h3>
                                     </div>
 

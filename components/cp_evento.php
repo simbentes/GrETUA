@@ -71,12 +71,12 @@ GROUP BY data_eventos.ref_id_eventos)";
                 </section>
                 <section class="container evento-text">
                     <div>
-                        <div class="evento-titulo px-3">
+                        <div class="evento-titulo px-2">
                             <h1><?= $nome_evento ?></h1>
                             <div class="row justify-content-between">
                                 <h6 class="col-auto text-cinza">
                                     <?php
-                                    $query = "SELECT DATE_FORMAT(MIN(DATE(data)), '%d-%m'), DATE_FORMAT(MIN(DATE(data)), '%Y'), DATE_FORMAT(MAX(DATE(data)), '%d-%m'), DATE_FORMAT(MAX(DATE(data)), '%Y')  FROM `data_eventos` WHERE ref_id_eventos = ?;";
+                                    $query = "SELECT DATE_FORMAT(MIN(DATE(data)), '%d-%m'), DATE_FORMAT(MIN(DATE(data)), '%Y'), DATE_FORMAT(MAX(DATE(data)), '%d-%m'), DATE_FORMAT(MAX(DATE(data)), '%Y')  FROM `data_eventos` WHERE ref_id_eventos = ? AND data > NOW();";
                                     if (mysqli_stmt_prepare($stmt, $query)) {
                                         mysqli_stmt_bind_param($stmt, "i", $eventoid);
                                         mysqli_stmt_execute($stmt);
@@ -162,18 +162,6 @@ WHERE eventos.ref_id_artistas = ?;";
                             </div>
                         </div>
                         <p><?= $desc_curta ?></p>
-                        <div class="row">
-                            <div class="col text-cinza text-center pb-3">
-                                <strong>Preço: <?php if ($preco_reserva > 0) {
-                                        echo $preco_reserva . '€';
-                                    } else {
-                                        echo "Grátis";
-                                    }
-                                    if ($preco_porta > 0) {
-                                        echo ' | ' . $preco_porta . '€';
-                                    } ?></strong>
-                            </div>
-                        </div>
                     </div>
                     <div class="row">
                         <div class="col pe-1 pb-1 text-center">
@@ -202,7 +190,19 @@ WHERE eventos.ref_id_artistas = ?;";
                             <button class="btn btn-grande w-100">Adquirir Bilhete</button>
                         </div>
                     </div>
-                    <div class="container-fluid pt-5 pb-3">
+                    <div class="row py-3">
+                        <div class="col text-cinza text-center">
+                            <strong>Preço: <?php if ($preco_reserva > 0) {
+                                    echo $preco_reserva . '€';
+                                } else {
+                                    echo "Grátis";
+                                }
+                                if ($preco_porta > 0) {
+                                    echo ' | ' . $preco_porta . '€';
+                                } ?></strong>
+                        </div>
+                    </div>
+                    <div class="container-fluid py-3">
                         <h3>Disponiblidade</h3>
                         <div class="col-lg-5">
                             <div class="row justify-content-between">
@@ -244,7 +244,7 @@ WHERE eventos.ref_id_artistas = ?;";
                             ?>
                         </div>
                     </div>
-                    <div class="container-fluid py-5 mb-4">
+                    <div class="container-fluid py-4 mb-5">
                         <h3>Ficha Técnica</h3>
                         <div><strong>Conceção e direção artística:</strong></div>
                         <div>ALEXANDRA FILIPE</div>

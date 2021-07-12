@@ -187,8 +187,10 @@ if (mysqli_stmt_prepare($stmt, $query)) {
                     </g>
                 </svg>
             </div>
-            <h5 class="pt-1 text-center mb-0"><?= $data_mes_criacao ?></h5>
-        </section>
+            <div class="text-center mb-0">
+                <div class="text-center text-uppercase"><small>Membro desde</small></div>
+                <h3 class="text-center mb-0"><?= $data_mes_criacao ?></h3>
+            </div>        </section>
         <div class="container-fluid py-3">
             <h3>Os meus eventos</h3>
         </div>
