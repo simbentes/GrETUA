@@ -74,7 +74,7 @@ function verSemanaUsers() {
                 data: {
                     labels: diasanteshoje,
                     datasets: [{
-                        label: "Novos Utilizadores",
+                        label: "Novos utilizadores",
                         lineTension: 0.3,
                         backgroundColor: "rgba(78, 115, 223, 0.05)",
                         borderColor: "rgba(78, 115, 223, 1)",
