@@ -29,8 +29,8 @@
     </div>
 </section>
 <section>
-    <div class="container pt-5">
-        <h2 class="mb-0">próximos eventos</h2>
+    <div class="container pt-3">
+        <h3 class="mb-0">Próximos eventos</h3>
     </div>
     <!-- Swiper -->
     <div class="swiper-container proximoseventos py-4">
@@ -105,7 +105,7 @@ ORDER BY data_eventos.data;";
 </section>
 <section>
     <div class="container pt-4">
-        <h2 class="mb-0">os meus eventos</h2>
+        <h3 class="mb-0">Guardados</h3>
     </div>
 </section>
 

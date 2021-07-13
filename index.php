@@ -15,5 +15,6 @@ if (isset($_SESSION['id_user'])) {
 <?php include_once "components/cp_login.php" ?>
 <!-- Javascript -->
 <?php include_once "helpers/help_js.php" ?>
+<script src="js/login.js"></script>
 </body>
 </html>
