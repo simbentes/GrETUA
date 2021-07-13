@@ -21,6 +21,9 @@ var lastdata = "";
 
 //vamos carregar as memórias de quatro em quatro
 //só carregamos mais quatro quando o user chegar ao quarto slide desde o ulitmo carregamento
+
+
+
 slidesMemorias.on('slideChange', function () {
 
     if (slideAnterior < slidesMemorias.activeIndex) {
@@ -29,11 +32,9 @@ slidesMemorias.on('slideChange', function () {
         var slideCarregar = (slidesMemorias.activeIndex + 1) % 4
 
         if (slideCarregar == 0) {
-
             carregarMemorias();
         }
     }
-
     slideAnterior = slidesMemorias.activeIndex
 });
 
@@ -46,7 +47,6 @@ window.onload = function () {
 
 function carregarMemorias() {
 
-    console.log("carregaaaaaaaaa  " + lastdata)
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {

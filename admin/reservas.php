@@ -12,6 +12,7 @@
     <?php
     include_once "helpers/help_link.php";
     ?>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.25/b-1.7.1/b-html5-1.7.1/datatables.min.css"/>
 
 
 </head>
@@ -65,7 +66,12 @@
 <?php
 include_once "helpers/help_js.php";
 ?>
-
+<!-- Page level plugins -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.25/b-1.7.1/b-html5-1.7.1/datatables.min.js"></script>
+<!-- Page level custom scripts -->
+<script src="js/reservas.js"></script>
 
 </body>
 
