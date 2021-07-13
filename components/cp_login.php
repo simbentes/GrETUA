@@ -27,7 +27,6 @@ if (isset($_GET["msg"])) {
 }
 ?>
 <main class="login">
-
     <section class="container d-block">
         <div class="row align-items-md-center justify-content-md-between">
             <div class="col-md-6">
@@ -75,20 +74,6 @@ if (isset($_GET["msg"])) {
             </div>
             <div class="col-md-6 col-xl-5">
                 <form action="scripts/sc_user_login.php" method="post">
-                    <div>
-                        <div class="btn btn-grande btn-google w-100"><img
-                                src="img/g_logo.svg" class="logo">Iniciar sessão com a Google
-                        </div>
-                    </div>
-                    <div class="row align-items-center py-3">
-                        <div class="col-1">
-                            ou
-                        </div>
-                        <div class="col-11">
-                            <hr>
-                        </div>
-                    </div>
-
                     <div class="mb-3">
                         <input type="text" class="form-control forminfo formlogin" id="formGroupExampleInput"
                                placeholder="Email ou username" name="email"

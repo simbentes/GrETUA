@@ -60,19 +60,6 @@ if (isset($_SESSION['id_user'])) {
         </div>
 
         <form action="scripts/sc_user_register.php" method="post">
-            <div>
-                <div class="btn btn-grande btn-google w-100" href="gretua.php"
-                     value="Criar Conta"><img src="img/eventos/g_logo.svg" class="logo">Criar Conta com a Google
-                </div>
-            </div>
-            <div class="row align-items-center py-3">
-                <div class="col-1">
-                    ou
-                </div>
-                <div class="col-11">
-                    <hr>
-                </div>
-            </div>
             <div class="row mb-3 g-2">
                 <div class="col">
                     <input type="text" class="form-control forminfo formlogin" name="nome" placeholder="Nome" required>
