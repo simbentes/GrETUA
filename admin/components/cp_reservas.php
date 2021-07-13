@@ -1,55 +1,68 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Gestão de reservas</h1>
-        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                    class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+    <div class="d-sm-flex align-items-center justify-content-between">
+        <h1 class="h3 mb-0 text-gray-800">Reservas</h1>
     </div>
+
 
     <!-- Content Row -->
-    <div class="row">
 
-        <div class="col-lg-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Utilizadores registados
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body">
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
+    <div class="panel panel-default">
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+            <div>
+                <table id="tabelareservas" class="table table-striped">
+                    <thead>
+                    <tr class="rowtr">
+                        <th>Reserva nº</th>
+                        <th>Reservado por</th>
+                        <th>Evento</th>
+                        <th>Data</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    require_once "connections/connection.php";
+
+                    $link = new_db_connection();
+
+                    //prepared statement
+                    $stmt = mysqli_stmt_init($link);
+
+                    //query
+                    $query = "SELECT id_utilizadores, CONCAT(utilizadores.nome, ' ',apelido), ativo, email, timestamp, cargo.nome
+FROM `utilizadores`
+LEFT JOIN cargo
+ON cargo.id_cargo = utilizadores.ref_id_cargo;";
+
+                    if (mysqli_stmt_prepare($stmt, $query)) {
+                        mysqli_stmt_execute($stmt);
+                        mysqli_stmt_bind_result($stmt, $id_users, $nome, $ativo, $email, $data_criacao, $cargo);
+
+                        while (mysqli_stmt_fetch($stmt)) { ?>
+
                             <tr>
-                                <th>Id</th>
-                                <th>Username</th>
-                                <th>Email</th>
-                                <th>Data Criação</th>
-                                <th>Perfil</th>
-                                <th>Operações</th>
+                                <td><?= $id_users ?></td>
+                                <td><?= $nome; ?></td>
+                                <td><?= $email ?></td>
+                                <td><?= $data_criacao ?></td>
                             </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>{id_users}</td>
-                                <td><i class="fa fa-ban fa-fw"></i>{username}</td>
-                                <td>{email}</td>
-                                <td>{date_creation}</td>
-                                <td>{roles_descricao}</td>
-                                <td><a href='users_edit.php?id={id_users}'><i class=\"fa fa-edit
-                                                                              fa-fw\"></a></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- /.table-responsive -->
-                </div>
-                <!-- /.panel-body -->
+                            <?php
+                        }
+                        mysqli_stmt_close($stmt);
+                    }
+                    mysqli_close($link);
+
+                    ?>
+                    </tbody>
+                </table>
             </div>
-            <!-- /.panel -->
+            <!-- /.table-responsive -->
         </div>
-
+        <!-- /.panel-body -->
     </div>
+    <!-- /.panel -->
 
 
 </div>

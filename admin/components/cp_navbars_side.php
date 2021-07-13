@@ -55,17 +55,18 @@ if (isset($_SESSION["cargo"]) && $_SESSION["cargo"] == 1):
             Gestão
         </div>
 
+        <li class="nav-item <?php if ($first_part == "users.php"): echo "active"; endif; ?>">
+            <a class="nav-link" href="users.php">
+                <i class="fas fa-fw fa-users"></i>
+                <span>Utilizadores</span></a>
+        </li>
+
         <li class="nav-item <?php if ($first_part == "reservas.php"): echo "active"; endif; ?>">
             <a class="nav-link" href="reservas.php">
                 <i class="fas fa-fw fa-book"></i>
                 <span>Reservas</span></a>
         </li>
 
-        <li class="nav-item <?php if ($first_part == "users.php"): echo "active"; endif; ?>">
-            <a class="nav-link" href="users.php">
-                <i class="fas fa-fw fa-users"></i>
-                <span>Utilizadores</span></a>
-        </li>
 
 
         <!-- Nav Item - Utilities Collapse Menu -->
