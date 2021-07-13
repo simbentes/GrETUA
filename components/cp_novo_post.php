@@ -14,8 +14,10 @@
         </div>
         <h2>Nova Publicação</h2>
         <hr>
-        <form>
-            <textarea id="textopub" class="form-control textopub" aria-label="With textarea"
+        <form action="scripts/sc_publicar.php" method="POST">
+            <textarea id="titulopub" class="form-control textopub" name="titulopubb" aria-label="With textarea"
+                      placeholder="Título"></textarea>
+            <textarea id="textopub" class="form-control textopub" name="textopub" aria-label="With textarea"
                       placeholder="Conta-nos a tua memória..."></textarea>
         </form>
         <div class="row">
@@ -36,7 +38,7 @@
                            onchange="loadFile(event)">
                 </div>
                 <div class="col-auto">
-                    <a class="btn btn-pub" href="gretua.php">Publicar</a>
+                    <a class="btn btn-pub" href="gretua.php" type="submit">Publicar</a>
                 </div>
             </div>
         </div>
