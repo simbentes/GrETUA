@@ -10,12 +10,11 @@ if (isset($_SESSION["cargo"]) && $_SESSION["cargo"] == 1):
     $query = "SELECT COUNT(id_utilizadores) FROM `utilizadores` WHERE DAYOFWEEK(utilizadores.timestamp) = ? AND UNIX_TIMESTAMP(utilizadores.timestamp) > (UNIX_TIMESTAMP(NOW()) - 604800);";
 
     $diadasemana = date("w");
-    // o dayoftheweek no mysql vai de 1 a 7, ao contrario do php e js
+    // o dayoftheweek no mysql vai de 1 a 7, ao contrario do php e js que é de 0 a 6
     $x = $diadasemana + 1;
     for ($i = 0; $i < 7; $i++) {
         $x++;
         //fazer push dos dias da semana
-
 
         if (mysqli_stmt_prepare($stmt, $query)) {
 
@@ -30,7 +29,6 @@ if (isset($_SESSION["cargo"]) && $_SESSION["cargo"] == 1):
         } else {
             echo "Error: " . mysqli_error($link);
         }
-
 
         if ($x == 7) {
             $x = 0;
