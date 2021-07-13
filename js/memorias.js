@@ -25,6 +25,7 @@ slidesMemorias.on('slideChange', function () {
 
     if (slideAnterior < slidesMemorias.activeIndex) {
         console.log(slidesMemorias.activeIndex)
+
         var slideCarregar = (slidesMemorias.activeIndex + 1) % 4
 
         if (slideCarregar == 0) {
@@ -71,7 +72,6 @@ function carregarMemorias() {
 
 
 document.getElementById("temporange").addEventListener("change", function () {
-
     if (this.value == 100) {
         slidesMemorias.removeAllSlides();
         lastdata = "";

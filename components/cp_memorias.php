@@ -69,7 +69,7 @@
                 <h4 class="mb-1"><?= $min_ano ?></h4>
             </div>
             <div class="col-7">
-                <input type="range" class="form-range" id="temporange" value="100">
+                <input type="range" class="form-range" id="temporange" value="100" step="0.1">
             </div>
             <div class="col-auto">
                 <h4 class="mb-1"><?= $max_ano ?></h4>
