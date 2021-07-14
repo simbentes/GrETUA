@@ -16,28 +16,6 @@ session_start();
 
 <!-- Javascript -->
 <?php include_once "helpers/help_js.php" ?>
-<script src="js/jquery.js"></script>
-<script>
-    $(document).ready(function () {
-        $('#pesquisa').keyup(function () {
-            var txt = $(this).val();
-            if (txt != '') {
-
-            } else {
-                $('#result').html('');
-                $.ajax({
-                    url: "fetch.php",
-                    method: "post",
-                    data: {search: txt},
-                    dataType: "text",
-                    success: function (data) {
-                        $('#result').html(data);
-                    }
-                });
-            }
-        });
-    });
-</script>
 <script>
     var proximos = new Swiper(".proximoseventos", {
         slidesPerView: "auto",
@@ -79,6 +57,7 @@ session_start();
             document.getElementById("pesquisa-bg").style.inset = "";
             document.getElementById("pesquisa-bg").style.zIndex = "";
             document.getElementById("search-bar").onfocus = false;
+            document.getElementById("resultados").style.height = "";
 
 
         } else {
