@@ -1,6 +1,6 @@
 <?php
 
-if (!empty($_POST["nomeevento"]) && !empty($_POST["artista"]) && !empty($_POST["dataevento1"]) && !empty($_POST["curtadesc"]) && !empty($_POST["desc"]) && !empty($_POST["lotacao"]) && !empty($_POST["precoreserva"]) && !empty($_POST["precoporta"]) && !empty($_POST["ndatas"])) {
+if (!empty($_POST["nomeevento"]) && !empty($_POST["artista"]) && !empty($_POST["dataevento1"]) && !empty($_POST["curtadesc"]) && !empty($_POST["desc"]) && !empty($_POST["lotacao"]) && !empty($_POST["duracao"]) && !empty($_POST["cetaria"]) && !empty($_POST["precoreserva"]) && !empty($_POST["precoporta"]) && !empty($_POST["ndatas"])) {
 
     require_once "../connections/connection.php";
 
@@ -20,6 +20,8 @@ if (!empty($_POST["nomeevento"]) && !empty($_POST["artista"]) && !empty($_POST["
         //vamos adicionar um novo artista à nossa bd
         if (!empty($_POST["nomeartista"]) && !empty($_POST["artistadesc"]) && !empty($_POST["paisartista"])) {
 
+
+            echo "!!!!!!!!!!!" . $_POST["paisartista"] . "!!!!!!!!!!!!!";
             //se não estão preenchidos, ficam a null
             !empty($_POST["instagram"]) ? $instagram = $_POST["instagram"] : $instagram = null;
             !empty($_POST["facebook"]) ? $facebook = $_POST["facebook"] : $facebook = null;
@@ -91,11 +93,14 @@ if (!empty($_POST["nomeevento"]) && !empty($_POST["artista"]) && !empty($_POST["
     $lotacao = $_POST["lotacao"];
     $precoreserva = $_POST["precoreserva"];
     $precoporta = $_POST["precoporta"];
+    $duracao = $_POST["duracao"];
+    $cetaria = $_POST["cetaria"];
+    $ftecnica = $_POST["ftecnica"];
 
 
-    $query = "INSERT INTO `eventos` (`nome`, `ref_id_artistas`, `descricao`, `descricao_curta`, `ref_id_tipo_eventos`, `lotacao`, `preco_reserva`, `preco_porta`) VALUES (?,?,?,?,?,?,?,?)";
+    $query = "INSERT INTO `eventos` (`nome`, `ref_id_artistas`, `descricao`, `descricao_curta`, `ref_id_tipo_eventos`, `lotacao`, `preco_reserva`, `preco_porta`, duracao, classificacao_etaria, ficha_tecnica) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
     if (mysqli_stmt_prepare($stmt, $query)) {
-        mysqli_stmt_bind_param($stmt, 'sissiiii', $nomeevento, $id_artista, $desc, $curtadesc, $id_tipoevento, $lotacao, $precoreserva, $precoporta);
+        mysqli_stmt_bind_param($stmt, 'sissiiiiiis', $nomeevento, $id_artista, $desc, $curtadesc, $id_tipoevento, $lotacao, $precoreserva, $precoporta, $duracao, $cetaria, $ftecnica);
         if (mysqli_stmt_execute($stmt)) {
             //anuncio publicado, falta adicionar as datas e as fotos
 

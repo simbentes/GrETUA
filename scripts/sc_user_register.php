@@ -4,7 +4,7 @@ if (!empty($_POST['nome']) && !empty($_POST['apelido']) && !empty($_POST['passwo
 
     require_once "../connections/connection.php";
 
-    $fotoperfil = "default.png";
+    $fotoperfil = "default.webp";
     $email = $_POST['email'];
     $username = $_POST['username'];
 
@@ -45,7 +45,7 @@ if (!empty($_POST['nome']) && !empty($_POST['apelido']) && !empty($_POST['passwo
 
             $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-            $query = "INSERT INTO utilizadores (nome, apelido,username, email, password, foto_perfil) VALUES (?,?,?,?,?,'default.png')";
+            $query = "INSERT INTO utilizadores (nome, apelido,username, email, password, foto_perfil) VALUES (?,?,?,?,?,'default.webp')";
 
             if (mysqli_stmt_prepare($stmt, $query)) {
                 mysqli_stmt_bind_param($stmt, 'sssss', $nome, $apelido, $username, $email, $password);
@@ -63,7 +63,7 @@ if (!empty($_POST['nome']) && !empty($_POST['apelido']) && !empty($_POST['passwo
                     $_SESSION["nomeproprio"] = $nome;
                     $_SESSION["nome"] = $nome . " " . $apelido;
                     $_SESSION["email"] = $email;
-                    $_SESSION["fperfil"] = "default.png";
+                    $_SESSION["fperfil"] = "default.webp";
                     header("Location: ../gretua.php");
                 } else {
                     echo $nome . "; " . $apelido . "; " . $email . "; " . $password;
