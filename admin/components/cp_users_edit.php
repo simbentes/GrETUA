@@ -126,5 +126,4 @@ WHERE id_utilizadores = ?";
     //não existe nenhuma query string do album
     header("Location: users.php");
 }
-
 ?>

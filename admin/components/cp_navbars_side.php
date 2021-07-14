@@ -90,7 +90,6 @@ if (isset($_SESSION["cargo"]) && $_SESSION["cargo"] == 1):
 
     </ul>
     <!-- End of Sidebar -->
-
 <?php
 else:
     header("Location: ../index.php");

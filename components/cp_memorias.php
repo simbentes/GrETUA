@@ -34,7 +34,7 @@
     </div>
 </div>
 <section id="maquinabottom" class="maquina container pt-4 pb-3">
-    <h4 class="pt-2 text-center pb-3 mb-4">máquina do tempo</h4>
+    <h4 class="pt-2 text-center pb-3 mb-4">Máquina do tempo</h4>
     <?php
 
     require_once("connections/connection.php");
