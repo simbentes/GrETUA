@@ -45,10 +45,11 @@ ORDER BY guardados_vou.timestamp_guardados DESC;";
                     ?>
                     <div class="col-12 py-3">
                         <a class="aevento" href="evento.php?evento=<?= $id_evento ?>">
-                            <div class="eventoindex">
+                            <div class="eventoperfil">
+                                <div class="evento-card-degrade"></div>
                                 <img class="img-fluid img-evento" src="img/eventos/<?= $foto ?>">
-                                <div class="desc-evento container-fluid gx-3">
-                                    <h4 class="top-right mb-0"><?= $nome_evento ?></h4>
+                                <div class="desc-evento container-fluid">
+                                    <h6 class="top-right"><?= $nome_evento ?></h6>
                                     <div class="row">
                                         <div class="col text-cinza"><?= $data_evento ?></div>
                                         <div class="col text-cinza text-center"><?= $hora_h_evento ?></div>
@@ -57,37 +58,6 @@ ORDER BY guardados_vou.timestamp_guardados DESC;";
                                 </div>
                             </div>
                         </a>
-                        <div class="row pt-2 justify-content-between align-items-center">
-                            <div class="col-auto">
-                                <?php
-                                $stmt2 = mysqli_stmt_init($link);
-                                $query = "SELECT COUNT(vou) FROM `guardados_vou` WHERE vou = 1 AND guardados_vou.ref_id_eventos =" . $id_evento;
-
-                                if (mysqli_stmt_prepare($stmt2, $query)) {
-
-                                    mysqli_stmt_execute($stmt2);
-                                    mysqli_stmt_bind_result($stmt2, $n_pessoas);
-
-                                    if (mysqli_stmt_fetch($stmt2)) {
-                                        if ($n_pessoas == 1) {
-                                            $texto = "pessoa vai";
-                                        } else {
-                                            $texto = "pessoas vão";
-                                        }
-                                        echo '<h5 class="mb-0 ps-2">' . $n_pessoas . ' ' . $texto . '</h5>';
-                                    } else {
-                                        echo "Error: " . mysqli_stmt_error($stmt2);
-                                    }
-                                } else {
-                                    echo "Error: " . mysqli_error($link);
-                                }
-                                mysqli_stmt_close($stmt2);
-                                ?>
-                            </div>
-                            <div class="col-auto">
-                                <a href="evento.php?evento=<?= $id_evento ?>" class="btn btn-memoriafeed">Ver Evento</a>
-                            </div>
-                        </div>
                     </div>
                     <?php
                 }

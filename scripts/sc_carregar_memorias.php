@@ -1,7 +1,4 @@
 <?php
-
-session_start();
-
 if (isset($_GET['carregar']) && isset($_GET['data'])) {
 
     //buscar a ultima data, para impedir que existam repeticoes

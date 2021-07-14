@@ -10,8 +10,6 @@ document.getElementById("btnfechar").onclick = function () {
 
 
 
-
-
 let hoje = new Date().toISOString().substr(0, 10);
 
 document.getElementById("datahoje").value = hoje;

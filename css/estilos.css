@@ -816,6 +816,15 @@ h1, h2, h3, h4 {
     font-weight: 700;
 }
 
+.text-pesquisa {
+    letter-spacing: -0.02em;
+    font-weight: 700;
+}
+
+.text-pesquisa:hover {
+    color: white;
+}
+
 h5 {
     letter-spacing: -0.02em;
     font-weight: 500;
@@ -1213,6 +1222,15 @@ a:hover {
     background-color: white;
     -webkit-box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
     box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
+}
+
+
+.evento-card-degrade {
+    background: linear-gradient(180deg, rgb(0 0 0 / 0%) 0%, rgb(6 6 8) 110%);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: 0;
 }
 
 .evento h6 {
