@@ -42,58 +42,56 @@ WHERE id_utilizadores = ?";
                             <!-- /.panel-heading -->
                             <div class="panel-body">
                                 <form role="form" method="post" action="scripts/sc_users_update.php">
-                                    <input type="hidden" name="id_users" value="{$id_users}">
                                     <div class="form-group">
-                                        <label>ID do utilizador</label>
-                                        <p class="form-control-static"><?= $id_user ?></p>
+                                        <label for="inputAddress">Nome</label>
+                                        <input type="text" class="form-control" id="nome" name="nomeartista">
                                     </div>
                                     <div class="form-group">
-                                        <label>Data de criação</label>
-                                        <p class="form-control-static"><?= $data_criacao ?></p>
+                                        <label for="exampleFormControlTextarea1">Biografia</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1"
+                                                  rows="4" name="artistadesc"></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label>Username</label>
-                                        <input class="form-control" name="username"
-                                               value="<?= $username ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Email</label>
-                                        <input class="form-control" name="email" value="<?= $email ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Estado</label>
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" name="active" <?= $checked ?>> Activo
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Perfil</label>
-                                        <select class="form-control" name="id_cargo">
+                                        <label for="paisart">País</label>
+                                        <select id="paisart" name="paisartista" class="form-control">
+                                            <option selected="">Selecionar</option>
                                             <?php
-                                            $query = "SELECT id_cargo,cargo.nome FROM `cargo`;";
+                                            $query = "SELECT id_pais, pais FROM `paises` ORDER BY pais";
 
                                             if (mysqli_stmt_prepare($stmt, $query)) {
 
                                                 mysqli_stmt_execute($stmt);
 
-                                                mysqli_stmt_bind_result($stmt, $id_cargo, $cargo_nome);
+                                                mysqli_stmt_bind_result($stmt, $id_pais, $pais);
 
                                                 while (mysqli_stmt_fetch($stmt)) {
-                                                    if($cargo == $cargo_nome) {
-                                                        $selected = "selected";
-                                                    } else {
-                                                        $selected = "";
-                                                    }
-                                                    echo "<option value='$id_cargo' $selected>$cargo_nome</option>";
+                                                    /* fetch values */
+                                                    echo '<option value="' . $id_pais . '">' . $pais . '</option>';
                                                 }
                                             } else {
                                                 echo "Error: " . mysqli_error($link);
                                             }
                                             ?>
                                         </select>
+                                    </div>
+                                    <div class="redes py-2">
+                                        <h6 class="font-weight-bolder">Redes Sociais</h6>
+                                        <div class="form-group">
+                                            <label for="instagram">Instagram</label>
+                                            <input type="text" class="form-control" id="instagram">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="facebook">Facebook</label>
+                                            <input type="text" class="form-control" id="facebook">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="spotify">Spotify</label>
+                                            <input type="text" class="form-control" id="spotify">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="youtube">YouTube</label>
+                                            <input type="text" class="form-control" id="youtube">
+                                        </div>
                                     </div>
                                     <button type="submit" class="btn btn-info">Submeter alterações
                                     </button>
