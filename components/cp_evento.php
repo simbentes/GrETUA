@@ -41,7 +41,7 @@ GROUP BY data_eventos.ref_id_eventos)";
             /* fetch values */
             mysqli_stmt_fetch($stmt);
             if (!isset($foto)) {
-                $foto = "evento_default.png";
+                $foto = "evento_default.webp";
             }
             // $hora_h = str_replace(":", "h", $hora);
             ?>

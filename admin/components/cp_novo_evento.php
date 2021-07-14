@@ -22,7 +22,7 @@ $stmt = mysqli_stmt_init($link);
                     $class = "alert-danger";
                     break;
                 case 2:
-                    $message = "<i class='far fa-check-circle pr-2'></i>Adicione uma foto ao evento";
+                    $message = "Adicione uma foto ao evento";
                     $class = "alert-danger";
                     break;
                 case 3:
@@ -30,7 +30,7 @@ $stmt = mysqli_stmt_init($link);
                     $class = "alert-success";
                     break;
                 case 4:
-                    $message = "<i class='far fa-check-circle pr-2'></i>Evento sem categoria definida";
+                    $message = "Evento sem categoria definida";
                     $class = "alert-danger";
                     break;
                 default:
@@ -114,8 +114,13 @@ $stmt = mysqli_stmt_init($link);
                                               required></textarea>
                                 </div>
                                 <hr>
+                                <div class="form-group">
+                                    <label for="ftecnica">Ficha Técnica</label>
+                                    <textarea class="form-control" id="ftecnica" name="ftecnica" rows="4"
+                                              required></textarea>
+                                </div>
                                 <div class="form-row">
-                                    <div class="form-group col-lg-6">
+                                    <div class="form-group col-lg-4">
                                         <label for="categoria">Categoria</label>
                                         <select id="categoria" name="tipoevento" class="form-control">
                                             <option value="" selected>Selecionar</option>
@@ -138,10 +143,20 @@ $stmt = mysqli_stmt_init($link);
                                             ?>
                                         </select>
                                     </div>
-                                    <div class="form-group col-lg-6">
+                                    <div class="form-group col-lg-4">
                                         <label for="outracategoria">Outra Categoria</label>
                                         <input type="text" name="outrotipoevento" class="form-control"
                                                id="outracategoria">
+                                    </div>
+                                    <div class="form-group col-lg-2">
+                                        <label for="duracao">Duração (m)</label>
+                                        <input type="number" name="duracao" class="form-control" id="duracao" min="0"
+                                               max="10000" required>
+                                    </div>
+                                    <div class="form-group col-lg-2">
+                                        <label for="classetaria">C/ Etária</label>
+                                        <input type="number" name="cetaria" class="form-control" id="classetaria" min="0"
+                                               max="10000" required>
                                     </div>
                                     <div class="form-group col-md-12 col-lg-4">
                                         <label for="lotacao">Lotação</label>
@@ -213,7 +228,7 @@ $stmt = mysqli_stmt_init($link);
                                 <div class="form-group">
                                     <label for="paisart">País</label>
                                     <select id="paisart" name="paisartista" class="form-control">
-                                        <option selected="">Selecionar</option>
+                                        <option selected="" value="">Selecionar</option>
                                         <?php
                                         $query = "SELECT id_pais, pais FROM `paises` ORDER BY pais";
 
@@ -237,19 +252,19 @@ $stmt = mysqli_stmt_init($link);
                                     <h6 class="font-weight-bolder">Redes Sociais</h6>
                                     <div class="form-group">
                                         <label for="instagram">Instagram</label>
-                                        <input type="text" class="form-control" id="instagram">
+                                        <input type="text" class="form-control" name="instagram">
                                     </div>
                                     <div class="form-group">
                                         <label for="facebook">Facebook</label>
-                                        <input type="text" class="form-control" id="facebook">
+                                        <input type="text" class="form-control" name="facebook">
                                     </div>
                                     <div class="form-group">
                                         <label for="spotify">Spotify</label>
-                                        <input type="text" class="form-control" id="spotify">
+                                        <input type="text" class="form-control" name="spotify">
                                     </div>
                                     <div class="form-group">
                                         <label for="youtube">YouTube</label>
-                                        <input type="text" class="form-control" id="youtube">
+                                        <input type="text" class="form-control" name="youtube">
                                     </div>
                                 </div>
                             </div>

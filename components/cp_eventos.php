@@ -59,7 +59,7 @@ $stmt = mysqli_stmt_init($link);
 
                     while (mysqli_stmt_fetch($stmt)) {
                         if (!isset($foto)) {
-                            $foto = "evento_default.png";
+                            $foto = "evento_default.webp";
                         }
 
                         ?>
@@ -155,7 +155,7 @@ ORDER BY data_eventos.data;";
 
                     while (mysqli_stmt_fetch($stmt)) {
                         if (!isset($foto)) {
-                            $foto = "evento_default.png";
+                            $foto = "evento_default.webp";
                         }
 
                         ?>
@@ -226,7 +226,7 @@ ORDER BY data_eventos.data;";
 
                     while (mysqli_stmt_fetch($stmt)) {
                         if (!isset($foto)) {
-                            $foto = "evento_default.png";
+                            $foto = "evento_default.webp";
                         }
 
                         ?>
