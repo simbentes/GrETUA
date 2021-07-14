@@ -190,78 +190,71 @@ if (mysqli_stmt_prepare($stmt, $query)) {
             <div class="text-center mb-0">
                 <div class="text-center text-uppercase"><small>Membro desde</small></div>
                 <h3 class="text-center mb-0"><?= $data_mes_criacao ?></h3>
-            </div>        </section>
-        <div class="container-fluid py-3">
-            <h3>Os meus eventos</h3>
-        </div>
-
-
-        <!-- Swiper -->
-        <div class="swiper-container mySwiper">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <a href="evento.php">
-                        <div class="eventoperfil">
-                            <img class="img-fluid img-evento" src="img/eventos/ruinas3.jpg">
-                            <div class="desc-evento container-fluid">
-                                <h6 class="top-right">Ruínas</h6>
-                                <div class="row">
-                                    <div class="col text-cinza">28 abril</div>
-                                    <div class="col text-cinza text-center">22h30</div>
-                                    <div class="col text-cinza text-end">teatro</div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="evento.php">
-                        <div class="eventoperfil">
-                            <img class="img-fluid img-evento" src="img/eventos/palmieres.jpg">
-                            <div class="desc-evento container-fluid">
-                                <h6 class="top-right">P A L M I E R E S</h6>
-                                <div class="row">
-                                    <div class="col text-cinza">1 junho</div>
-                                    <div class="col text-cinza text-center">22h30</div>
-                                    <div class="col text-cinza text-end">concerto</div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="swiper-slide">
-                    <a href="evento.php">
-                        <div class="eventoperfil">
-                            <img class="img-fluid img-evento" src="img/eventos/ninguem.jpg">
-                            <div class="desc-evento container-fluid">
-                                <h6 class="top-right">Ninguém, de Deeogo Oliveira</h6>
-                                <div class="row">
-                                    <div class="col text-cinza">8 junho</div>
-                                    <div class="col text-cinza text-center">22h30</div>
-                                    <div class="col text-cinza text-end">concerto</div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
             </div>
-            <div class="swiper-scrollbar"></div>
+        </section>
+        <div class="container-fluid pt-3">
+            <h3 class="mb-0">Atividade</h3>
         </div>
-
-        <!-- Swiper JS -->
-        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
-        <!-- Initialize Swiper -->
-        <script>
-            var swiper = new Swiper(".mySwiper", {
-                scrollbar: {
-                    el: ".swiper-scrollbar",
-                    hide: true,
-                },
-            });
-        </script>
-
-
+        <div class="pb-5">
+            <section class="container-fluid pb-4">
+                <div class="row">
+                    <div class="col-12 py-3">
+                        <div class="card pubfeed">
+                            <div class="card-body">
+                                <div class="row row-cols-auto justify-content-between">
+                                    <div class="col">
+                                        <div class="infouser">
+                                            <img src="img/users/<?= $foto_perfil ?>" class="userbubble">
+                                            <span class="utilizador">José Pereira</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <img src="img/eventos/ninguem.jpg" class="card-img-top" alt="...">
+                            <button class="btn btn-like">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                     class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                          d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                                </svg>
+                            </button>
+                            <div class="card-body">
+                                <h5 class="card-title">Arte no seu estado mais puro</h5>
+                                <p class="card-text">O virtuoso portuense veio para os palcos para ficar. O espectáculo
+                                    “Ninguém”,
+                                    cruza as linguagens da dança, do teatro e do circo contemporâneo.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 py-3">
+                    <div class="card pubfeed">
+                        <div class="card-body">
+                            <div class="row row-cols-auto justify-content-between">
+                                <div class="col">
+                                    <div class="infouser">
+                                        <img src="img/users/<?= $foto_perfil ?>" class="userbubble">
+                                        <span class="utilizador"><?= $_SESSION["nome"] ?></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <img src="img/eventos/jam.jpeg" class="card-img-top" alt="...">
+                        <button class="btn btn-like">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                 class="bi bi-heart-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                      d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+                            </svg>
+                        </button>
+                        <div class="card-body">
+                            <h5 class="card-title">Concerto memorável</h5>
+                            <p class="card-text">Mais uma noite de Jam Sessions. Um concerto único.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
         <section id="perfilbottom" class="perfil-bottom container">
             <div>
                 <ul class="list-group list-group-flush">

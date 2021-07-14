@@ -1184,11 +1184,16 @@ a:hover {
 
 .maisconta {
     position: fixed;
+    z-index: 9999;
     background-color: var(--bkg-cor);
 }
 
 .perfil {
     padding-top: 36px;
+}
+
+.ficha {
+    white-space: pre-wrap;
 }
 
 .perfiluser {

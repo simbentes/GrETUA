@@ -61,6 +61,18 @@ if (isset($_SESSION["cargo"]) && $_SESSION["cargo"] == 1):
                 <span>Utilizadores</span></a>
         </li>
 
+        <li class="nav-item <?php if ($first_part == "eventos.php"): echo "active"; endif; ?>">
+            <a class="nav-link" href="eventos.php">
+                <i class="fas fa-fw fa-calendar"></i>
+                <span>Eventos/Memórias</span></a>
+        </li>
+
+        <li class="nav-item <?php if ($first_part == "artistas.php"): echo "active"; endif; ?>">
+            <a class="nav-link" href="artistas.php">
+                <i class="fas fa-fw fa-star"></i>
+                <span>Artistas</span></a>
+        </li>
+
         <li class="nav-item <?php if ($first_part == "reservas.php"): echo "active"; endif; ?>">
             <a class="nav-link" href="reservas.php">
                 <i class="fas fa-fw fa-book"></i>

@@ -8,7 +8,7 @@ if (isset($_GET["evento"])) {
     $link = new_db_connection();
     $stmt = mysqli_stmt_init($link);
 
-    $query = "SELECT eventos.nome, fotos_eventos.foto, eventos.descricao_curta, eventos.descricao, lotacao, preco_reserva, preco_porta, tipo_eventos.nome, artistas.nome, artistas.id_artistas, guardados_vou.guardados, guardados_vou.vou, duracao, classificacao_etaria
+    $query = "SELECT eventos.nome, fotos_eventos.foto, eventos.descricao_curta,  eventos.descricao, ficha_tecnica, lotacao, preco_reserva, preco_porta, tipo_eventos.nome, artistas.nome, artistas.id_artistas, guardados_vou.guardados, guardados_vou.vou, duracao, classificacao_etaria
 FROM eventos
 LEFT JOIN guardados_vou
 ON guardados_vou.ref_id_eventos = eventos.id_eventos AND ref_id_utilizadores = " . $_SESSION["id_user"] . "
@@ -32,7 +32,7 @@ GROUP BY data_eventos.ref_id_eventos)";
         mysqli_stmt_execute($stmt);
 
         /* bind result variables */
-        mysqli_stmt_bind_result($stmt, $nome_evento, $foto, $desc_curta, $desc, $lotacao, $preco_reserva, $preco_porta, $tipo_evento, $artista, $id_artista, $guardado, $vou, $duracao, $c_etaria);
+        mysqli_stmt_bind_result($stmt, $nome_evento, $foto, $desc_curta, $desc, $ficha_tecnica, $lotacao, $preco_reserva, $preco_porta, $tipo_evento, $artista, $id_artista, $guardado, $vou, $duracao, $c_etaria);
 
         /* store result */
         mysqli_stmt_store_result($stmt);
@@ -48,7 +48,8 @@ GROUP BY data_eventos.ref_id_eventos)";
 
             <div class="position-relative">
                 <section class="container px-0 frame-img">
-                    <div id="framefotoevento" class="framefotoevento" style="background-image: url('img/eventos/<?= $foto ?>')">
+                    <div id="framefotoevento" class="framefotoevento"
+                         style="background-image: url('img/eventos/<?= $foto ?>')">
                         <div class="degrade-imagem"></div>
                         <a id="voltar" href="eventos.php" class="voltar"><i class="bi bi-chevron-left p-1 mb-0 h2"></i></a>
                         <div id="share" class="share" onclick="partilharLink()"><i
@@ -246,21 +247,7 @@ WHERE eventos.ref_id_artistas = ?;";
                     </div>
                     <div class="container-fluid py-4 mb-5">
                         <h3>Ficha Técnica</h3>
-                        <div><strong>Conceção e direção artística:</strong></div>
-                        <div>ALEXANDRA FILIPE</div>
-                        <div>FLOR DA MATA</div>
-                        <div> JOÃO SANTOS</div>
-                        <div> SARA GONÇALVES</div>
-                        <div class="pt-2"><strong>Interpretação: </strong></div>
-                        <div> "JOSÉ VALENTE"</div>
-                        <div class="pt-2"><strong>Elenco</strong>"Músicos a Brincar"</div>
-                        <div class="pt-2"><strong> Vozes:</strong> ALEXANDRA FILIPE, soprano</div>
-                        <div> BEATRIZ NUNES, soprano</div>
-                        <div> JOANA DINIS DA FONSECA, mezzo-soprano</div>
-                        <div> SARA GONÇALVES, soprano</div>
-                        <div class="pt-2"><strong>Instrumentistas:</strong> FLOR DA MATA, flauta</div>
-                        <div> DIOGO CHAVES, guitarra</div>
-                        <div> JOÃO SANTOS, guitarra</div>
+                        <p class="ficha"><?= $ficha_tecnica ?></p>
                         <div class="row justify-content-center align-items-center py-3">
                             <div class="col-auto row align-items-center">
                                 <div class="col-auto pe-1 ps-3">

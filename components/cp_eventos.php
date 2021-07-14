@@ -14,22 +14,14 @@ $stmt = mysqli_stmt_init($link);
     </form>
     <div id="resultados" class="row py-3" style="display: none"></div>
 </section>
-
 <section class="container px-3">
     <div class="botaomultiplo">
-
         <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
             <input type="radio" class="btn-check" name="btnradio" id="btnradio0" autocomplete="off" checked>
             <label class="btn btn-multiplo-primary" for="btnradio0">Todos</label>
 
             <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
-            <label class="btn btn-multiplo-primary" for="btnradio1">Teatro</label>
-
-            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-            <label class="btn btn-multiplo-primary" for="btnradio2">Música</label>
-
-            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-            <label class="btn btn-multiplo-primary px-0" for="btnradio3">Workshops</label>
+            <label class="btn btn-multiplo-primary" for="btnradio1">Guardados</label>
         </div>
     </div>
 </section>
@@ -73,8 +65,8 @@ $stmt = mysqli_stmt_init($link);
                         ?>
 
                         <div class="evento swiper-slide">
-                            <div class="evento-card-degrade"></div>
                             <a href="evento.php?evento=<?= $id_evento ?>">
+                                <div class="evento-card-degrade"></div>
                                 <img class="img-fluid img-evento" src="img/eventos/<?= $foto ?>">
                                 <div class="desc-evento container-fluid">
                                     <h6 class="top-right"><?= $nome_evento ?></h6>
@@ -132,7 +124,7 @@ $stmt = mysqli_stmt_init($link);
     </section>
     <section>
         <div class="container pt-2">
-            <h4 class="mb-0">Oportunidades Únicas</h4>
+            <h4 class="mb-0">Oportunidades únicas</h4>
         </div>
         <div class="swiper-container concertos py-4">
             <div class="swiper-wrapper">

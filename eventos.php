@@ -71,8 +71,7 @@ session_start();
                         document.getElementById("resultados").innerHTML = this.responseText
 
                     } else {
-                        document.getElementById("resultados").innerHTML = ""
-
+                        document.getElementById("resultados").innerHTML = "<div class='col-12 py-3 text-pesquisa h1 m-0 text-white'>Sem Resultados.</div>"
                     }
                 }
             };

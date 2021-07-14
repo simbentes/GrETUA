@@ -2,7 +2,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between">
-        <h1 class="h3 mb-0 text-gray-800">Utilizadores Registados</h1>
+        <h1 class="h3 mb-0 text-gray-800">Eventos/Memórias registados</h1>
     </div>
 
 
@@ -12,14 +12,14 @@
         <!-- /.panel-heading -->
         <div class="panel-body">
             <div>
-                <table id="tabelausers" class="table table-striped">
+                <table id="tabelaeventos" class="table table-striped">
                     <thead>
                     <tr class="rowtr">
                         <th>Id</th>
-                        <th>Nome</th>
-                        <th>Email</th>
-                        <th>Data Criação</th>
-                        <th>Cargo</th>
+                        <th>Estreia</th>
+                        <th>Evento</th>
+                        <th>Categoria</th>
+                        <th>Data de Criação</th>
                         <th>Operações</th>
                     </tr>
                     </thead>
@@ -33,28 +33,24 @@
                     $stmt = mysqli_stmt_init($link);
 
                     //query
-                    $query = "SELECT id_utilizadores, CONCAT(utilizadores.nome, ' ',apelido), ativo, email, timestamp, cargo.nome
-FROM `utilizadores`
-LEFT JOIN cargo
-ON cargo.id_cargo = utilizadores.ref_id_cargo;";
+                    $query = "SELECT eventos.nome, id_eventos, data, descricao_curta, tipo_eventos.nome, timestamp  FROM `eventos` INNER JOIN data_eventos ON data_eventos.ref_id_eventos = id_eventos
+INNER JOIN tipo_eventos ON tipo_eventos.id_tipo_eventos = ref_id_tipo_eventos
+WHERE (data_eventos.data) IN (SELECT MIN(data_eventos.data) FROM data_eventos GROUP BY data_eventos.ref_id_eventos)  
+ORDER BY `data_eventos`.`data`  DESC";
 
                     if (mysqli_stmt_prepare($stmt, $query)) {
                         mysqli_stmt_execute($stmt);
-                        mysqli_stmt_bind_result($stmt, $id_users, $nome, $ativo, $email, $data_criacao, $cargo);
+                        mysqli_stmt_bind_result($stmt, $nome, $id_evento, $data, $desc,$categoria, $data_criacao);
 
                         while (mysqli_stmt_fetch($stmt)) { ?>
 
                             <tr>
-                                <td><?= $id_users ?></td>
-                                <td><?php if ($ativo == 0) {
-                                        echo '<i class="fa fa-ban fa-fw"></i>';
-                                    }
-                                    echo $nome;
-                                    ?></td>
-                                <td><?= $email ?></td>
+                                <td><?= $id_evento ?></td>
+                                <td><?= $data ?></td>
+                                <td><strong><?= $nome ?></strong></td>
+                                <td><?= $categoria ?></td>
                                 <td><?= $data_criacao ?></td>
-                                <td><?= $cargo ?></td>
-                                <td><a href='users_edit.php?id=<?= $id_users ?>' <i
+                                <td><a href='eventos_edit.php?id=<?= $id_evento ?>' <i
                                             class="fa fa-edit fa-fw"></i></a></td>
                             </tr>
                             <?php
