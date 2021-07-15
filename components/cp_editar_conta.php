@@ -163,6 +163,12 @@ if (mysqli_stmt_prepare($stmt, $query)) {
                                 <input type="text" class="form-control forminfo formconta" id="whatsapp"
                                        value="<?= $whatsapp ?>" name="whatsapp">
                             </div>
+
+                            <div class="mb-3">
+                                <a href="cargos.php" class="mb-1 btn btn-pequeno w-100"> Alterar Cargo </a>
+                                
+                            </div>
+                            
                         </div>
                     </div>
                 </section>
