@@ -29,6 +29,45 @@ WHERE id_utilizadores = ?";
             ?>
             <div class="container-fluid">
 
+            <?php
+        if (isset($_GET["msg"])) {
+            $msg_show = true;
+            switch ($_GET["msg"]) {
+                case 0:
+                    $message = "Faltam informações do Evento";
+                    $class = "alert-danger";
+                    break;
+                case 1:
+                    $message = "Faltam informações do Artista";
+                    $class = "alert-danger";
+                    break;
+                case 2:
+                    $message = "Adicione uma foto ao evento";
+                    $class = "alert-danger";
+                    break;
+                case 3:
+                    $message = "<i class='far fa-check-circle pr-2'></i>Evento publicado com sucesso";
+                    $class = "alert-success";
+                    break;
+                case 4:
+                    $message = "Evento sem categoria definida";
+                    $class = "alert-danger";
+                    break;
+                default:
+                    $msg_show = false;
+            }
+
+            if ($msg_show) {
+                echo "<div class=\"alert $class alert-dismissible fade show\" role=\"alert\">
+" . $message . "
+  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+    <span aria-hidden=\"true\">&times;</span>
+  </button>
+</div>";
+            }
+        }
+        ?>
+
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">Gestão de utilizadores</h1>
@@ -54,11 +93,11 @@ WHERE id_utilizadores = ?";
                                     <div class="form-group">
                                         <label>Username</label>
                                         <input class="form-control" name="username"
-                                               value="<?= $username ?>">
+                                        placeholder="<?= $username ?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Email</label>
-                                        <input class="form-control" name="email" value="<?= $email ?>">
+                                        <input class="form-control" name="email" placeholder="<?= $email ?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Estado</label>
@@ -111,8 +150,8 @@ WHERE id_utilizadores = ?";
             </div>
             <?php
         } else {
-            //não existe ou o seu vendedor está desativado
-            header("Location: catalogo.php");
+            
+            header("Location: users_edit.php");
         }
         /* close statement */
         mysqli_stmt_close($stmt);
@@ -123,7 +162,7 @@ WHERE id_utilizadores = ?";
         echo "Error: " . mysqli_error($link);
     }
 } else {
-    //não existe nenhuma query string do album
+    
     header("Location: users.php");
 }
 ?>

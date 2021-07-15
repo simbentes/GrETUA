@@ -27,7 +27,7 @@ if (!empty($_POST["username"]) && !empty($_POST["email"])) {
         mysqli_stmt_bind_param($stmt, 'ssii', $username, $email, $ativo, $id_cargo);
 
         if (mysqli_stmt_execute($stmt)) {
-            header("Location: ../users_edit.php?id=" . $id_user);
+            header("Location: ../users_edit.php?msg=1");
         } else {
             echo "Error:" . mysqli_stmt_error($stmt);
         }

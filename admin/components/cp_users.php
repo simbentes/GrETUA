@@ -34,9 +34,9 @@
 
                     //query
                     $query = "SELECT id_utilizadores, CONCAT(utilizadores.nome, ' ',apelido), ativo, email, timestamp, cargo.nome
-FROM `utilizadores`
-LEFT JOIN cargo
-ON cargo.id_cargo = utilizadores.ref_id_cargo;";
+                    FROM `utilizadores`
+                    LEFT JOIN cargo
+                    ON cargo.id_cargo = utilizadores.ref_id_cargo;";
 
                     if (mysqli_stmt_prepare($stmt, $query)) {
                         mysqli_stmt_execute($stmt);
