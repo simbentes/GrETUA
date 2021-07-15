@@ -1,3 +1,8 @@
+<?php
+if (!isset($_SESSION["id_user"])):
+    header("Location: index.php");
+else:
+?>
 <div class="bilhetes-container">
     <div class="swiper-container mySwiper">
         <div class="swiper-wrapper">
@@ -35,5 +40,6 @@
 
 </div>
 
-
+<?php
+endif;
 

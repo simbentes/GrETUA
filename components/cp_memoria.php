@@ -1,10 +1,15 @@
 <?php
-require_once "connections/connection.php";
+
+
+if (!isset($_SESSION["id_user"])):
+    header("Location: index.php");
+else:
 
 
 if (isset($_GET["memoria"])) {
     $memoriaid = $_GET["memoria"];
 
+    require_once "connections/connection.php";
     $link = new_db_connection();
     $stmt = mysqli_stmt_init($link);
 
@@ -172,8 +177,8 @@ ORDER BY data_eventos.data DESC;";
     header("Location: gretua.php");
 }
 
+endif;
 
-?>
 
 
 

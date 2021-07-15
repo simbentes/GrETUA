@@ -1,3 +1,8 @@
+<?php
+if (!isset($_SESSION["id_user"])):
+    header("Location: index.php");
+else:
+?>
 <div>
     <div class="memoria-container">
         <div dir="rtl" class="swiper-container mySwiper">
@@ -79,3 +84,5 @@
         <input id="max-data" type="hidden" value="<?= $max_data ?>">
     </form>
 </section>
+<?php
+endif;

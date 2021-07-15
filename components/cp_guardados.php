@@ -1,14 +1,19 @@
-<section class="container-fluid py-5 mb-4">
-    <div class="row">
+<?php
+if (!isset($_SESSION["id_user"])):
+    header("Location: index.php");
+else:
+    ?>
+    <section class="container-fluid py-5 mb-4">
+        <div class="row">
 
-        <?php
+            <?php
 
-        require_once("connections/connection.php");
+            require_once("connections/connection.php");
 
-        $link = new_db_connection();
-        $stmt = mysqli_stmt_init($link);
+            $link = new_db_connection();
+            $stmt = mysqli_stmt_init($link);
 
-        $query = "SELECT eventos.id_eventos, DATE(data_eventos.data), DATE_FORMAT(TIME(data_eventos.data), '%H:%i'), eventos.nome, fotos_eventos.foto
+            $query = "SELECT eventos.id_eventos, DATE(data_eventos.data), DATE_FORMAT(TIME(data_eventos.data), '%H:%i'), eventos.nome, fotos_eventos.foto
 FROM eventos
 LEFT JOIN guardados_vou
 ON guardados_vou.ref_id_eventos = eventos.id_eventos
@@ -25,55 +30,54 @@ ON utilizadores.id_utilizadores = guardados_vou.ref_id_utilizadores
 WHERE (fotos_eventos.foto IS NUll OR fotos_eventos.capa = 1) AND (data_eventos.data) IN (SELECT MIN(data_eventos.data) FROM data_eventos WHERE data_eventos.data > NOW() GROUP BY data_eventos.ref_id_eventos) AND guardados = 1 AND id_utilizadores = " . $_SESSION["id_user"] . "
 ORDER BY guardados_vou.timestamp_guardados DESC;";
 
-        if (mysqli_stmt_prepare($stmt, $query)) {
+            if (mysqli_stmt_prepare($stmt, $query)) {
 
-            /* execute the prepared statement */
-            mysqli_stmt_execute($stmt);
+                /* execute the prepared statement */
+                mysqli_stmt_execute($stmt);
 
-            /* bind result variables */
-            mysqli_stmt_bind_result($stmt, $id_evento, $data_evento, $hora_evento, $nome_evento, $foto);
+                /* bind result variables */
+                mysqli_stmt_bind_result($stmt, $id_evento, $data_evento, $hora_evento, $nome_evento, $foto);
 
-            mysqli_stmt_store_result($stmt);
+                mysqli_stmt_store_result($stmt);
 
-            if (mysqli_stmt_num_rows($stmt) == 0) {
-                echo "<div class='col-12 py-5 mb-5'><h1>Não tens eventos guardados.</h1></div>";
-            } else {
-                while (mysqli_stmt_fetch($stmt)) {
+                if (mysqli_stmt_num_rows($stmt) == 0) {
+                    echo "<div class='col-12 py-5 mb-5'><h1>Não tens eventos guardados.</h1></div>";
+                } else {
+                    while (mysqli_stmt_fetch($stmt)) {
 
-                    $hora_h_evento = str_replace(":", "h", $hora_evento);
+                        $hora_h_evento = str_replace(":", "h", $hora_evento);
 
-                    ?>
-                    <div class="col-12 py-3">
-                        <a class="aevento" href="evento.php?evento=<?= $id_evento ?>">
-                            <div class="eventoperfil">
-                                <div class="evento-card-degrade"></div>
-                                <img class="img-fluid img-evento" src="img/eventos/<?= $foto ?>">
-                                <div class="desc-evento container-fluid">
-                                    <h6 class="top-right"><?= $nome_evento ?></h6>
-                                    <div class="row">
-                                        <div class="col text-cinza"><?= $data_evento ?></div>
-                                        <div class="col text-cinza text-center"><?= $hora_h_evento ?></div>
-                                        <div class="col text-cinza text-end">teatro</div>
+                        ?>
+                        <div class="col-12 py-3">
+                            <a class="aevento" href="evento.php?evento=<?= $id_evento ?>">
+                                <div class="eventoperfil">
+                                    <div class="evento-card-degrade"></div>
+                                    <img class="img-fluid img-evento" src="img/eventos/<?= $foto ?>">
+                                    <div class="desc-evento container-fluid">
+                                        <h6 class="top-right"><?= $nome_evento ?></h6>
+                                        <div class="row">
+                                            <div class="col text-cinza"><?= $data_evento ?></div>
+                                            <div class="col text-cinza text-center"><?= $hora_h_evento ?></div>
+                                            <div class="col text-cinza text-end">teatro</div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-                    <?php
+                            </a>
+                        </div>
+                        <?php
+                    }
                 }
+            } else {
+                echo "Error: " . mysqli_error($link);
             }
-        } else {
-            echo "Error: " . mysqli_error($link);
-        }
 
-        mysqli_stmt_close($stmt);
-        mysqli_close($link);
+            mysqli_stmt_close($stmt);
+            mysqli_close($link);
 
-        ?>
+            ?>
 
-    </div>
+        </div>
 
-</section>
-
-
-
+    </section>
+<?php
+endif;

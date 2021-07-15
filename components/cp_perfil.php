@@ -1,5 +1,9 @@
 <?php
 
+if (!isset($_SESSION["id_user"])):
+    header("Location: index.php");
+else:
+
 
 if (isset($_GET["id"])) {
 
@@ -248,4 +252,5 @@ WHERE id_utilizadores = ?";
 }
 
 
+endif;
 

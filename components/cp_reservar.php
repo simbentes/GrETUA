@@ -1,3 +1,8 @@
+<?php
+if (!isset($_SESSION["id_user"])):
+    header("Location: index.php");
+else:
+?>
 <section class="container-fluid pt-3 pb-2 px-3 topindexmenu fixed-top">
     <div class="row gx-0 align-items-center">
         <div class="col-auto">
@@ -65,3 +70,5 @@
     </section>
 
 </main>
+<?php
+endif;

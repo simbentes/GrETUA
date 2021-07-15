@@ -1,4 +1,8 @@
 <?php
+if (!isset($_SESSION["id_user"])):
+    header("Location: index.php");
+else:
+
 require_once "connections/connection.php";
 
 
@@ -292,5 +296,4 @@ WHERE eventos.ref_id_artistas = ?;";
 }
 
 
-?>
-
+endif;

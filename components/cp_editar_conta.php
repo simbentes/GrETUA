@@ -1,6 +1,9 @@
 <?php
 
-// We need the function!
+if (!isset($_SESSION["id_user"])):
+    header("Location: index.php");
+else:
+
 require_once("connections/connection.php");
 
 $link = new_db_connection();
@@ -178,3 +181,5 @@ if (mysqli_stmt_prepare($stmt, $query)) {
 } else {
     echo "Error: " . mysqli_error($link);
 }
+
+endif;

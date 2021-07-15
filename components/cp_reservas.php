@@ -1,3 +1,8 @@
+<?php
+if (!isset($_SESSION["id_user"])):
+    header("Location: index.php");
+else:
+?>
 <section class="container-fluid py-5 mb-4">
     <div class="row">
 
@@ -67,3 +72,5 @@
     </div>
 
 </section>
+<?php
+endif;

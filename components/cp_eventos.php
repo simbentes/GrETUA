@@ -1,5 +1,9 @@
 <?php
 
+if (!isset($_SESSION["id_user"])):
+    header("Location: index.php");
+else:
+
 require_once("connections/connection.php");
 
 $link = new_db_connection();
@@ -294,7 +298,7 @@ ORDER BY data_eventos.data;";
 mysqli_stmt_close($stmt);
 mysqli_close($link);
 
-?>
+endif;
 
 
 
