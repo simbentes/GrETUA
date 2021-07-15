@@ -6,7 +6,7 @@ else:
     <div class="container-fluid navbar-light menubottom justify-content-center fixed-bottom">
         <div class="row h-100 align-items-center text-center">
             <?php
-            if (isset($_SESSION["cargo"]) && $_SESSION["cargo"] == 1):
+            if (isset($_SESSION["cargo"]) && $_SESSION["cargo"] == 2):
                 ?>
                 <a class="col px-1" href="admin/index.php">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"

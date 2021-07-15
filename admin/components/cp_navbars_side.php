@@ -1,7 +1,7 @@
 <?php
 // Verificação de credenciais de acesso à área de administração
 session_start();
-if (isset($_SESSION["cargo"]) && $_SESSION["cargo"] == 1):
+if (isset($_SESSION["cargo"]) && $_SESSION["cargo"] == 2):
 
     $directoryURI = $_SERVER['REQUEST_URI'];
     $path = parse_url($directoryURI, PHP_URL_PATH);
