@@ -12,7 +12,7 @@
         <!-- /.panel-heading -->
         <div class="panel-body">
             <div>
-                <table id="tabelaartistas" class="table table-striped">
+                <table id="tabelaartistas" class="table table-striped dataTable no-footer" role="grid" aria-describedby="tabelaartistas_info" >
                     <thead>
                     <tr class="rowtr">
                         <th>Id</th>

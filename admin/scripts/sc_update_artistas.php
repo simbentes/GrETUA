@@ -3,31 +3,26 @@ session_start();
 require_once "../connections/connection.php";
 
 
-if (!empty($_POST["username"]) && !empty($_POST["email"])) {
-    $id_user = $_SESSION["id_user_edit"];
-    unset($_SESSION["id_user_edit"]);
+if (!empty($_POST["nome"]) && !empty($_POST["biografia"]) && !empty($_POST["paisartista"]) && isset($_GET["id_artistas"])) {
+    $id_artistas = $_GET["id_artistas"];
 
-    $username = $_POST['username'];
-    $email = $_POST['email'];
-    $id_cargo = $_POST['id_cargo'];
+    $nome = $_POST['nome'];
+    $biografia = $_POST['biografia'];
+    $paisartista = $_POST['paisartista'];
 
-    if (!isset($_POST['active'])) {
-        $ativo = 0;
-    } else {
-        $ativo = 1;
-    }
+    
 
-    //editar o user
+    //editar o artista
     $link = new_db_connection();
     $stmt = mysqli_stmt_init($link);
-    $query = "UPDATE utilizadores SET username = ?, email = ?, ativo = ?, ref_id_cargo = ? WHERE id_utilizadores = " . $id_user;
+    $query = "UPDATE artistas SET nome = ?, biografia = ?, ref_id_pais = ? WHERE id_artistas = " . $id_artistas;
 
     if (mysqli_stmt_prepare($stmt, $query)) {
 
-        mysqli_stmt_bind_param($stmt, 'ssii', $username, $email, $ativo, $id_cargo);
+        mysqli_stmt_bind_param($stmt, 'ssi', $nome, $biografia, $ref_id_pais);
 
         if (mysqli_stmt_execute($stmt)) {
-            header("Location: ../users_edit.php?id=" . $id_user);
+            header("Location: ../artistas_edit.php?msg=1");
         } else {
             echo "Error:" . mysqli_stmt_error($stmt);
         }
@@ -37,5 +32,5 @@ if (!empty($_POST["username"]) && !empty($_POST["email"])) {
     mysqli_stmt_close($stmt);
     mysqli_close($link);
 } else {
-    header("Location: ../users.php");
+    header("Location: ../artistas.php");
 }

@@ -1,38 +1,72 @@
 <?php
 require_once "connections/connection.php";
 if (isset($_GET["id"])) {
-    $id_user = $_GET["id"];
+    $id_artistas = $_GET["id"];
 
     $link = new_db_connection();
     $stmt = mysqli_stmt_init($link);
 
-    $query = "SELECT CONCAT(utilizadores.nome, ' ',apelido), ativo, username, email, timestamp, cargo.nome
-FROM `utilizadores`
-LEFT JOIN cargo
-ON cargo.id_cargo = utilizadores.ref_id_cargo
-WHERE id_utilizadores = ?";
+    $query = "SELECT artistas.nome, artistas.biografia, artistas.ref_id_pais, artistas.instagram, artistas.facebook, artistas.spotify, artistas.youtube, paises.pais
+FROM `artistas`
+LEFT JOIN paises
+ON artistas.ref_id_pais = paises.id_pais
+WHERE id_artistas = ?";
 
     if (mysqli_stmt_prepare($stmt, $query)) {
-        mysqli_stmt_bind_param($stmt, "i", $id_user);
+        mysqli_stmt_bind_param($stmt, "i", $id_artistas);
         mysqli_stmt_execute($stmt);
-        mysqli_stmt_bind_result($stmt, $nome, $ativo, $username, $email, $data_criacao, $cargo);
+        mysqli_stmt_bind_result($stmt, $nome, $biografia, $ref_id_pais, $artistas_instagram, $artistas_facebook, $artistas_spotify, $artistas_youtube, $paises_pais);
 
         if (mysqli_stmt_fetch($stmt)) {
 
-            if ($ativo == 1) {
-                $checked = "checked";
-            } else {
-                $checked = "";
+
+
+            //$_SESSION["id_user_edit"] = $id_user;
+?>
+            <div class="container-fluid">
+            <?php
+        if (isset($_GET["msg"])) {
+            $msg_show = true;
+            switch ($_GET["msg"]) {
+                case 0:
+                    $message = "Faltam informações do Evento";
+                    $class = "alert-danger";
+                    break;
+                case 1:
+                    $message = "Faltam informações do Artista";
+                    $class = "alert-danger";
+                    break;
+                case 2:
+                    $message = "Adicione uma foto ao evento";
+                    $class = "alert-danger";
+                    break;
+                case 3:
+                    $message = "<i class='far fa-check-circle pr-2'></i>Evento publicado com sucesso";
+                    $class = "alert-success";
+                    break;
+                case 4:
+                    $message = "Evento sem categoria definida";
+                    $class = "alert-danger";
+                    break;
+                default:
+                    $msg_show = false;
             }
 
-            $_SESSION["id_user_edit"] = $id_user;
-            ?>
-            <div class="container-fluid">
-
+            if ($msg_show) {
+                echo "<div class=\"alert $class alert-dismissible fade show\" role=\"alert\">
+" . $message . "
+  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+    <span aria-hidden=\"true\">&times;</span>
+  </button>
+</div>";
+            }
+        }
+        ?>
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 class="h3 mb-0 text-gray-800">Gestão de artistas</h1>
                 </div>
+
 
                 <!-- Content Row -->
                 <div class="row">
@@ -41,20 +75,19 @@ WHERE id_utilizadores = ?";
                         <div class="panel panel-default">
                             <!-- /.panel-heading -->
                             <div class="panel-body">
-                                <form role="form" method="post" action="scripts/sc_users_update.php">
+                                <form role="form" method="post" action="scripts/sc_update_artistas.php?id=<?=$id_artistas?>">
                                     <div class="form-group">
                                         <label for="inputAddress">Nome</label>
-                                        <input type="text" class="form-control" id="nome" name="nomeartista">
+                                        <input type="text" class="form-control" id="nome" name="nomeartista" placeholder="<?= $nome ?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1">Biografia</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1"
-                                                  rows="4" name="artistadesc"></textarea>
+                                        <textarea class="form-control" id="biografia" rows="4" name="biografia"><?= $biografia ?></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="paisart">País</label>
-                                        <select id="paisart" name="paisartista" class="form-control">
-                                            <option selected="">Selecionar</option>
+                                        <select id="paisartista" name="paisartista" placeholder="<?= $paises_pais ?>" class="form-control">
+                                            <option selected=""><?= $paises_pais ?></option>
                                             <?php
                                             $query = "SELECT id_pais, pais FROM `paises` ORDER BY pais";
 
@@ -77,20 +110,35 @@ WHERE id_utilizadores = ?";
                                     <div class="redes py-2">
                                         <h6 class="font-weight-bolder">Redes Sociais</h6>
                                         <div class="form-group">
+                                        <?php if ($artistas_spotify ==""){
+                                                $artistas_spotify ="Add Instagram account";
+                                            } ?>
                                             <label for="instagram">Instagram</label>
-                                            <input type="text" class="form-control" id="instagram">
+                                            <input type="text" class="form-control" id="instagram" placeholder="<?= $artistas_instagram ?>">
                                         </div>
                                         <div class="form-group">
                                             <label for="facebook">Facebook</label>
-                                            <input type="text" class="form-control" id="facebook">
-                                        </div>
+                                            <?php if ($artistas_facebook ==""){
+                                                $artistas_facebook ="Add Facebook account";
+                                            } 
+                                               ?> 
+                                               <input type="text" class="form-control" id="facebook" placeholder="<?= $artistas_facebook ?>">
+                                            
+                                            
+                                            </div>
                                         <div class="form-group">
+                                        <?php if ($artistas_spotify ==""){
+                                                $artistas_spotify ="Add Spotify account";
+                                            } ?>
                                             <label for="spotify">Spotify</label>
-                                            <input type="text" class="form-control" id="spotify">
+                                            <input type="text" class="form-control text-muted" id="spotify" placeholder="<?= $artistas_spotify ?>">
                                         </div>
                                         <div class="form-group">
+                                        <?php if ($artistas_youtube ==""){
+                                                $artistas_youtube ="Add YouTube account";
+                                            } ?>
                                             <label for="youtube">YouTube</label>
-                                            <input type="text" class="form-control" id="youtube">
+                                            <input type="text" class="form-control text-muted" id="youtube" placeholder="<?= $artistas_youtube ?>">
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-info">Submeter alterações
@@ -107,10 +155,10 @@ WHERE id_utilizadores = ?";
 
 
             </div>
-            <?php
+<?php
         } else {
-            //não existe ou o seu vendedor está desativado
-            header("Location: catalogo.php");
+            
+            header("Location: artistas_edit.php");
         }
         /* close statement */
         mysqli_stmt_close($stmt);
@@ -121,8 +169,8 @@ WHERE id_utilizadores = ?";
         echo "Error: " . mysqli_error($link);
     }
 } else {
-    //não existe nenhuma query string do album
-    header("Location: users.php");
+    
+    header("Location: artistas.php");
 }
 
 ?>
