@@ -161,8 +161,8 @@ ORDER BY data_eventos.data;";
                         ?>
 
                         <div class="evento swiper-slide">
-                            <div class="evento-card-degrade"></div>
                             <a href="evento.php?evento=<?= $id_evento ?>">
+                                <div class="evento-card-degrade"></div>
                                 <img class="img-fluid img-evento" src="img/eventos/<?= $foto ?>">
                                 <div class="desc-evento container-fluid">
                                     <h6 class="top-right"><?= $nome_evento ?></h6>
@@ -232,8 +232,8 @@ ORDER BY data_eventos.data;";
                         ?>
 
                         <div class="evento swiper-slide">
-                            <div class="evento-card-degrade"></div>
                             <a href="evento.php?evento=<?= $id_evento ?>">
+                                <div class="evento-card-degrade"></div>
                                 <img class="img-fluid img-evento" src="img/eventos/<?= $foto ?>">
                                 <div class="desc-evento container-fluid">
                                     <h6 class="top-right"><?= $nome_evento ?></h6>
