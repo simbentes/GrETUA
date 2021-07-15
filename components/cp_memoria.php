@@ -162,7 +162,7 @@ ORDER BY data_eventos.data DESC;";
 
         } else {
             //não existe ou o seu vendedor está desativado
-            header("Location: catalogo.php");
+            header("Location: memorias.php");
         }
         /* close statement */
         mysqli_stmt_close($stmt);
@@ -174,7 +174,7 @@ ORDER BY data_eventos.data DESC;";
     }
 } else {
     //não existe nenhuma query string do album
-    header("Location: gretua.php");
+    header("Location: memorias.php");
 }
 
 endif;

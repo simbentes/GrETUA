@@ -28,6 +28,6 @@ session_start();
     };
 </script>
 <script src= "js/jquery.js"></script>
-<script src= "js/script.js"></script>
+<script src="js/gretua.js"></script>
 </body>
 </html>

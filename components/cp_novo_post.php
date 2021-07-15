@@ -1,4 +1,3 @@
-
 <div class="position-relative">
     <section id="pub" class="py-4 container-fluid px-4 pub">
 
@@ -15,35 +14,35 @@
         </div>
         <h2>Nova Publicação</h2>
         <hr>
-        <form action="scripts/sc_publicar.php" method="POST">
-            <textarea id="titulopub" class="form-control textopub" name="titulopubb" aria-label="With textarea"
-                      placeholder="Título"></textarea>
+        <form action="scripts/sc_publicar.php" method="post" method="post" enctype="multipart/form-data">
+            <input id="titulopub" class="form-control textpubTitle" name="titulopub" aria-label="With textarea"
+                   placeholder="Título" maxlength="80">
             <textarea id="textopub" class="form-control textopub" name="textopub" aria-label="With textarea"
                       placeholder="Conta-nos a tua memória..."></textarea>
-        </form>
-        <div class="row">
-            <div class="col-12">
-                <img class="fotoinput d-none" id="output"/>
-            </div>
-        </div>
-        <div class="menu-pub">
-            <div class="row align-items-center submenu g-3">
-                <div class="col-auto">
-                    <div class="text-end me-2">
-                        <label for="avatar" id="maquina">
-                            <div class="d-flex align-items-center">
-                                <i class="bi bi-camera h1 mb-0"></i></div>
-                        </label>
-                    </div>
-                    <input type="file" id="avatar" class="d-none" name="avatar" accept="image/png, image/jpeg"
-                           onchange="loadFile(event)">
-                </div>
-                <div class="col-auto">
-                    <a class="btn btn-pub" href="gretua.php" type="submit">Publicar</a>
-                </div>
-            </div>
-        </div>
 
+            <div class="row">
+                <div class="col-12">
+                    <img class="fotoinput d-none" id="output"/>
+                </div>
+            </div>
+            <div class="menu-pub">
+                <div class="row align-items-center submenu g-3">
+                    <div class="col-auto">
+                        <div class="text-end me-2">
+                            <label for="avatar" id="maquina">
+                                <div class="d-flex align-items-center">
+                                    <i class="bi bi-camera h1 mb-0"></i></div>
+                            </label>
+                        </div>
+                        <input type="file" id="avatar" class="d-none" name="foto" accept="image/png, image/jpeg"
+                               onchange="loadFile(event)">
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-pub">Publicar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
 
     </section>
 

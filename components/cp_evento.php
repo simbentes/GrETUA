@@ -279,8 +279,8 @@ WHERE eventos.ref_id_artistas = ?;";
             <?php
 
         } else {
-            //não existe ou o seu vendedor está desativado
-            header("Location: catalogo.php");
+            //não existe ou o evento caducou
+            header("Location: eventos.php");
         }
         /* close statement */
         mysqli_stmt_close($stmt);
@@ -291,9 +291,8 @@ WHERE eventos.ref_id_artistas = ?;";
         echo "Error: " . mysqli_error($link);
     }
 } else {
-    //não existe nenhuma query string do album
-    header("Location: gretua.php");
+    //não existe nenhuma query string
+    header("Location: eventos.php");
 }
-
 
 endif;

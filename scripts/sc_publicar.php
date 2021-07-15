@@ -1,36 +1,48 @@
 <?php
-$user_id = $_SESSION["id_user"];
 session_start();
-require_once "../connections/connection.php";
 
-if(empty($_POST['textopub']) || empty($_POST['titulopub']))
-{
-    header("Location: ../gretua.php");
-}
-else
-{
+if (!empty($_POST["titulopub"]) && !empty($_POST["textopub"])) {
+
     $texto = $_POST['textopub'];
     $titulo = $_POST['titulopub'];
-    $link = new_db_connection();
-    $stmt = mysqli_stmt_init($link);
 
-    $query = "INSERT INTO publicacoes  (ref_id_utilizadores, timestamp,titulo, texto) values($user_id, CURRENT_TIMESTAMP, $titulo, $texto)";
+    if (strlen($texto) > 1000) {
+        header("Location: ../gretua.php");
+    } else {
 
-    if (mysqli_stmt_prepare($stmt, $query)) {
+        //upload foto
+        include_once "sc_upload_imagem.php";
+        if (!empty($_FILES["foto"]["name"])) {
+            $nome_img = uploadImagem($_FILES["foto"], "pub", 1080);
+        } else {
+            $nome_img = null;
+        }
 
-        mysqli_stmt_bind_param($stmt, 'isss', $user_id, CURRENT_TIMESTAMP, $titulo, $texto);
-        
-        if (mysqli_stmt_execute($stmt)) {
-            header("Location: ../gretua.php");
-            echo "success";
-        } else {echo "error";}
+        //editar o user
+        require_once "../connections/connection.php";
 
+        $link = new_db_connection();
+        $stmt = mysqli_stmt_init($link);
+
+        $query = "INSERT INTO publicacoes (titulo, texto, foto, ref_id_utilizadores) VALUES (?,?,?,?)";
+
+
+        if (mysqli_stmt_prepare($stmt, $query)) {
+
+            mysqli_stmt_bind_param($stmt, 'sssi', $titulo, $texto, $nome_img, $_SESSION["id_user"]);
+
+            if (mysqli_stmt_execute($stmt)) {
+                header("Location: ../gretua.php");
+            } else {
+                echo "Error:" . mysqli_stmt_error($stmt);
+            }
+        } else {
+            echo "Error:" . mysqli_error($link);
+        }
+
+        mysqli_stmt_close($stmt);
+        mysqli_close($link);
     }
-    mysqli_stmt_close($stmt);
-    mysqli_close($link);
+} else {
+    header("Location: ../gretua.php");
 }
-
-//não está a dar por alguma razão ?? (devo ter um erro algures ou entao nao é a forma mais inteligente)
-//ainda falta ver a inserção das imagens nos posts
-//vou ver a melhor estratégia para o feed
-?>

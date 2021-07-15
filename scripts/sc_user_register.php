@@ -31,7 +31,7 @@ if (!empty($_POST['nome']) && !empty($_POST['apelido']) && !empty($_POST['passwo
 
         if (mysqli_stmt_num_rows($stmt) != 0) {
             //já existe uma conta com este mail ou com este username
-            header("Location: ../criarconta.php?msg=1");
+            header("Location: ../index.php?msg=1");
         } else {
             //vamos criar uma nova conta
             $nome = $_POST['nome'];
@@ -39,6 +39,12 @@ if (!empty($_POST['nome']) && !empty($_POST['apelido']) && !empty($_POST['passwo
             $apelido = $_POST['apelido'];
 
             if ($_POST['password'] !== $_POST['password2']) {
+                header("Location: ../criarconta.php?msg=1");
+                die;
+            } else if (strpos($username, '@') != false) {
+                header("Location: ../criarconta.php?msg=2");
+                die;
+            } else if (strlen($_POST['password']) < 8) {
                 header("Location: ../criarconta.php?msg=3");
                 die;
             }

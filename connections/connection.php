@@ -17,7 +17,7 @@ function new_db_connection()
     }
 
     // Define charset to avoid special chars errors
-    mysqli_set_charset($local_link, "utf8");
+    mysqli_set_charset($local_link, "utf8mb4");
 
     // Return the link
     return $local_link;

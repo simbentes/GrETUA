@@ -1,3 +1,39 @@
+<?php
+if (isset($_GET["msg"])) {
+    $msg_show = true;
+    switch ($_GET["msg"]) {
+        case 0:
+            $message = "Preenche todos os campos.";
+            $class = "alert-danger";
+            break;
+        case 1:
+            $message = "Palavras-passe não coincidem.";
+            $class = "alert-danger";
+            break;
+        case 2:
+            $message = "Username inválido.";
+            $class = "alert-danger";
+            break;
+        case 3:
+            $message = "A sua password tem de ter mais de 8 caracteres.";
+            $class = "alert-danger";
+            break;
+        default:
+            $msg_show = false;
+    }
+
+    if ($msg_show) {
+        echo '<div class="container-fluid caixaalert"><div class="row justify-content-center"><div class="col-auto"><div id="aviso" class="alert ' . $class . ' alert-dismissible fade show" role="alert">' . $message . '</div></div></div></div>';
+        echo "<script>
+            setTimeout(function () {
+                var myAlert = document.getElementById('aviso')
+                var bsAlert = new bootstrap.Alert(myAlert)
+                bsAlert.close()
+            }, 3000)
+        </script>";
+    }
+}
+?>
 <main class="login">
 
 
@@ -63,12 +99,12 @@
                 <input type="email" class="form-control forminfo formlogin" name="email" placeholder="Email" required>
             </div>
             <div class="mb-3">
-                <input type="password" class="form-control forminfo formlogin" name="password" placeholder="Password"
+                <input type="password" class="form-control forminfo formlogin" name="password" placeholder="Password" minlength="8"
                        required>
             </div>
             <div class="mb-3">
                 <input type="password" class="form-control forminfo formlogin" name="password2"
-                       placeholder="Confirmar Password"
+                       placeholder="Confirmar Password" minlength="8"
                        required>
             </div>
             <div>

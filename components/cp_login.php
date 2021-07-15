@@ -7,7 +7,7 @@ if (isset($_GET["msg"])) {
             $class = "alert-danger";
             break;
         case 1:
-            $message = "Estão efetuadas.";
+            $message = "Já existe uma conta com este e-mail ou username.";
             $class = "alert-danger";
             break;
         default:
