@@ -1,5 +1,4 @@
 document.getElementById("botaomaquina").onclick = function () {
-    console.log("ola")
     document.getElementById("maquinabottom").classList.toggle("animamaquina");
 }
 
