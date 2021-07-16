@@ -60,8 +60,10 @@ LIMIT 0,?";
 
                 if (isset($foto)) {
                     $foto_pub = ' <img src="img/pub/' . $foto . '" class="card-img-top" alt="...">';
+                    $btn_style = "";
                 } else {
                     $foto_pub = "";
+                    $btn_style = "btn-like-semtxt";
                 }
 
                 if (isset($like)) {
@@ -71,7 +73,7 @@ LIMIT 0,?";
                 }
 
                 // enviar dados das publicacoes para serem renderizados em js
-                $pubs[] = ["tipo" => "pub", "unix_tempo" => $unix_data, "id_user" => $id_user, "nome_user" => $nome_user, "fperfil_user" => $fperfil_user, "foto" => $foto_pub, "titulo" => $titulo, "texto" => $texto, "ref_id_eventos" => $ref_id_eventos, "fperfil_session" => $_SESSION["fperfil"], "lastdata" => $lastdata, "repeticoes" => $numrows + $_GET['ordem'][1] + $_GET['ordem'][2]];
+                $pubs[] = ["tipo" => "pub", "id_pub" => $id_pub, "unix_tempo" => $unix_data, "id_user" => $id_user, "nome_user" => $nome_user, "fperfil_user" => $fperfil_user, "foto" => $foto_pub, "titulo" => $titulo, "btn_style" => $btn_style, "texto" => $texto, "ref_id_eventos" => $ref_id_eventos, "fperfil_session" => $_SESSION["fperfil"], "lastdata" => $lastdata, "repeticoes" => $numrows + $_GET['ordem'][1] + $_GET['ordem'][2]];
 
 
             }

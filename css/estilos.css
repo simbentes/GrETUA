@@ -590,6 +590,10 @@ small, .small {
     color: var(--cor-tema);
 }
 
+.btn-like-semtxt {
+    top: 50px;
+}
+
 
 .btn-transparente {
     color: white;
