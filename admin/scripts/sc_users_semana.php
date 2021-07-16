@@ -1,7 +1,7 @@
 <?php
 // Verificação de credenciais de acesso à área de administração
 session_start();
-if (isset($_SESSION["cargo"]) && $_SESSION["cargo"] == 1):
+if (isset($_SESSION["cargo"]) && $_SESSION["cargo"] == 2):
     require_once "../connections/connection.php";
 
     $link = new_db_connection();
