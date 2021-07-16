@@ -57,7 +57,7 @@ WHERE ref_id_eventos = ? AND ";
                             ?>
                             <h1 class="ps-3 pt-6">Datas</h1>
                             <p></p>
-                            <form action="scripts/sc_reservar.php" method="post" class="px-0 pt-6">
+                            <form action="scripts/sc_reservar.php" method="post" class="px-0 pt-6" autocomplete="off">
                                 <div class="mb-3">
                                     <label for="instagram" class="mb-1">Instagram <small>(username)</small></label>
                                     <input type="text" class="form-control forminfo formconta" id="instagram"

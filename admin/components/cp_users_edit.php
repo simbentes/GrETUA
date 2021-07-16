@@ -80,7 +80,7 @@ WHERE id_utilizadores = ?";
                         <div class="panel panel-default">
                             <!-- /.panel-heading -->
                             <div class="panel-body">
-                                <form role="form" method="post" action="scripts/sc_users_update.php">
+                                <form role="form" method="post" action="scripts/sc_users_update.php" autocomplete="off">
                                     <input type="hidden" name="id_users" value="{$id_users}">
                                     <div class="form-group">
                                         <label>ID do utilizador</label>

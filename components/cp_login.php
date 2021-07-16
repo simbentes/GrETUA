@@ -73,7 +73,7 @@ if (isset($_GET["msg"])) {
                 </div>
             </div>
             <div class="col-md-6 col-xl-5">
-                <form action="scripts/sc_user_login.php" method="post">
+                <form action="scripts/sc_user_login.php" method="post" autocomplete="off">
                     <div class="mb-3">
                         <input type="text" class="form-control forminfo formlogin" id="formGroupExampleInput"
                                placeholder="Email ou username" name="email"

@@ -57,7 +57,7 @@ if (mysqli_stmt_prepare($stmt, $query)) {
         }
 
         ?>
-        <form action="scripts/sc_editar_info_conta.php" method="post" enctype="multipart/form-data" class="px-0 mb-5">
+        <form action="scripts/sc_editar_info_conta.php" method="post" enctype="multipart/form-data" class="px-0 mb-5" autocomplete="off">
 
             <section class="container-fluid pt-3 pb-2 px-3 topindexmenu">
                 <div class="row align-content-center justify-content-between">

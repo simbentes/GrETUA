@@ -81,7 +81,7 @@ if (isset($_GET["msg"])) {
             <h1 class="logintitulo mb-0">vamos começar.</h1>
         </div>
 
-        <form action="scripts/sc_user_register.php" method="post">
+        <form action="scripts/sc_user_register.php" method="post" autocomplete="off">
             <div class="row mb-3 g-2">
                 <div class="col">
                     <input type="text" class="form-control forminfo formlogin" name="nome" placeholder="Nome" required>

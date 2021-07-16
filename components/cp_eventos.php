@@ -11,7 +11,7 @@ $stmt = mysqli_stmt_init($link);
 ?>
 
 <section id="pesquisa-bg" class="container py-3">
-    <form action="eventos.php" autocomplete="off" style="position: relative; z-index: 9999;">
+    <form action="eventos.php" autocomplete="off" style="position: relative; z-index: 9999;" autocomplete="off">
         <input type="text" id="search-bar" name="pesquisa"
                class="form-control forminfo barrapesquisa"
                placeholder="Pesquisar">

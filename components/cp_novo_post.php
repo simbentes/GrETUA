@@ -14,7 +14,7 @@
         </div>
         <h2>Nova Publicação</h2>
         <hr>
-        <form action="scripts/sc_publicar.php" method="post" method="post" enctype="multipart/form-data">
+        <form action="scripts/sc_publicar.php" method="post" method="post" enctype="multipart/form-data" autocomplete="off">
             <input id="titulopub" class="form-control textpubTitle" name="titulopub" aria-label="With textarea"
                    placeholder="Título" maxlength="80">
             <textarea id="textopub" class="form-control textopub" name="textopub" aria-label="With textarea"

@@ -22,7 +22,7 @@ if (isset($_GET['carregar']) && isset($_GET['data']) && isset($_GET['ordem'])) {
         $ultima_data = "";
     }
 
-    $query = "SELECT id_publicacoes, publicacoes.timestamp, titulo, texto, foto, ref_id_eventos, CONCAT(utilizadores.nome, ' ', apelido), utilizadores.foto_perfil, UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(publicacoes.timestamp)
+    $query = "SELECT id_publicacoes, publicacoes.timestamp, titulo, texto, foto, ref_id_eventos, id_utilizadores, CONCAT(utilizadores.nome, ' ', apelido), utilizadores.foto_perfil, UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(publicacoes.timestamp)
 FROM publicacoes
 INNER JOIN utilizadores
 ON id_utilizadores = ref_id_utilizadores
@@ -45,7 +45,7 @@ LIMIT 0,?";
         }
 
         mysqli_stmt_execute($stmt);
-        mysqli_stmt_bind_result($stmt, $id_pub, $lastdata, $titulo, $texto, $foto, $ref_id_eventos, $nome_user, $fperfil_user, $unix_data);
+        mysqli_stmt_bind_result($stmt, $id_pub, $lastdata, $titulo, $texto, $foto, $ref_id_eventos, $id_user, $nome_user, $fperfil_user, $unix_data);
         mysqli_stmt_store_result($stmt);
 
         $numrows = mysqli_stmt_num_rows($stmt);
@@ -71,7 +71,7 @@ LIMIT 0,?";
                 }
 
                 // enviar dados das publicacoes para serem renderizados em js
-                $pubs[] = ["tipo" => "pub", "unix_tempo" => $unix_data, "nome_user" => $nome_user, "fperfil_user" => $fperfil_user, "foto" => $foto_pub, "titulo" => $titulo, "texto" => $texto, "ref_id_eventos" => $ref_id_eventos, "fperfil_session" => $_SESSION["fperfil"], "lastdata" => $lastdata, "repeticoes" => $numrows + $_GET['ordem'][1] + $_GET['ordem'][2]];
+                $pubs[] = ["tipo" => "pub", "unix_tempo" => $unix_data, "id_user" => $id_user, "nome_user" => $nome_user, "fperfil_user" => $fperfil_user, "foto" => $foto_pub, "titulo" => $titulo, "texto" => $texto, "ref_id_eventos" => $ref_id_eventos, "fperfil_session" => $_SESSION["fperfil"], "lastdata" => $lastdata, "repeticoes" => $numrows + $_GET['ordem'][1] + $_GET['ordem'][2]];
 
 
             }
@@ -133,32 +133,62 @@ LIMIT 1;";
                     if (!mysqli_stmt_fetch($stmt)) {
                         echo "Error: " . mysqli_stmt_error($stmt);
                     } else {
-                        $query = "SELECT COUNT(vou) FROM `guardados_vou` WHERE vou = 1 AND guardados_vou.ref_id_eventos =" . $id_evento;
 
+                        //DATA escrita
+                        $query = "SELECT DATE_FORMAT(MIN(DATE(data)), '%d-%m'), DATE_FORMAT(MIN(DATE(data)), '%Y'), DATE_FORMAT(MAX(DATE(data)), '%d-%m'), DATE_FORMAT(MAX(DATE(data)), '%Y')  FROM `data_eventos` WHERE ref_id_eventos = ? AND data > NOW();";
                         if (mysqli_stmt_prepare($stmt, $query)) {
-
+                            mysqli_stmt_bind_param($stmt, "i", $id_evento);
                             mysqli_stmt_execute($stmt);
-                            mysqli_stmt_bind_result($stmt, $n_pessoas);
+                            mysqli_stmt_bind_result($stmt, $min_data, $min_ano, $max_data, $max_ano);
 
                             if (mysqli_stmt_fetch($stmt)) {
+                                $meses = array("-01", "-02", "-03", "-04", "-05", "-06", "-07", "-08", "-09", "-10", "-11", "-12");
+                                $str_meses = array(" JAN", "FEV", " MAR", " ABR", " MAI", " JUN", " JUL", " AGO", " SET", " OUT", " NOV", " DEZ");
 
-                                if ($n_pessoas == 1) {
-                                    $texto = "pessoa vai";
+                                $min_data_str = str_replace($meses, $str_meses, $min_data);
+                                $max_data_str = str_replace($meses, $str_meses, $max_data);
+
+                                if ($min_data == $max_data) {
+                                    $data_str = $min_data_str;
                                 } else {
-                                    $texto = "pessoas vão";
-                                }
-                                $pessoas = $n_pessoas . ' ' . $texto;
+                                    if ($min_ano == $max_ano) {
+                                        $data_str = "<small>DE</small> " . $min_data_str . " <small>A</small>  " . $max_data_str;
+                                    } else {
+                                        $data_str = "<small>DE</small> " . $min_data_str . " " . $min_ano . " <small>A</small>  " . $max_data_str . " " . $max_ano;
 
-                            } else {
-                                echo "Error: " . mysqli_stmt_error($stmt);
+                                    }
+                                }
                             }
-                        } else {
-                            echo "Error: " . mysqli_error($link);
+
+
+                            //numero de pessoas que "vão"
+                            $query = "SELECT COUNT(vou) FROM `guardados_vou` WHERE vou = 1 AND guardados_vou.ref_id_eventos =" . $id_evento;
+
+                            if (mysqli_stmt_prepare($stmt, $query)) {
+
+                                mysqli_stmt_execute($stmt);
+                                mysqli_stmt_bind_result($stmt, $n_pessoas);
+
+                                if (mysqli_stmt_fetch($stmt)) {
+
+                                    if ($n_pessoas == 1) {
+                                        $texto = "pessoa vai";
+                                    } else {
+                                        $texto = "pessoas vão";
+                                    }
+                                    $pessoas = $n_pessoas . ' ' . $texto;
+
+                                } else {
+                                    echo "Error: " . mysqli_stmt_error($stmt);
+                                }
+                            } else {
+                                echo "Error: " . mysqli_error($link);
+                            }
                         }
 
-                        $pubs[] = ["tipo" => "evento", "id_evento" => $id_evento, "nome_evento" => $nome_evento, "foto" => $foto, "tipo_evento" => $tipo_evento, "pessoas" => $pessoas];
-                    }
+                        $pubs[] = ["tipo" => "evento", "id_evento" => $id_evento, "nome_evento" => $nome_evento, "foto" => $foto, "tipo_evento" => $tipo_evento, "data_str" => $data_str, "pessoas" => $pessoas];
 
+                    }
                 } else {
                     echo "Error: " . mysqli_error($link);
                 }

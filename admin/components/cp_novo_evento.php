@@ -54,7 +54,7 @@ $stmt = mysqli_stmt_init($link);
             está a criar uma memória.</p>
 
         <!-- DataTales Example -->
-        <form action="scripts/sc_criar_evento.php" method="post" enctype="multipart/form-data" class="mb-4">
+        <form action="scripts/sc_criar_evento.php" method="post" enctype="multipart/form-data" class="mb-4" autocomplete="off">
             <div class="row justify-content-center">
 
                 <div id="container-evento" class="col-lg-10">

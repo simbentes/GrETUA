@@ -41,7 +41,7 @@ WHERE eventos.id_eventos = ?";
                         <div class="panel panel-default">
                             <!-- /.panel-heading -->
                             <div class="panel-body">
-                                <form action="scripts/sc_criar_evento.php" method="post" enctype="multipart/form-data">
+                                <form action="scripts/sc_criar_evento.php" method="post" enctype="multipart/form-data" autocomplete="off">
 
                                     <div class="form-group">
                                         <label for="inputAddress">Nome</label>

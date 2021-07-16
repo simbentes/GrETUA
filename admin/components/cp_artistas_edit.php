@@ -75,7 +75,7 @@ WHERE id_artistas = ?";
                         <div class="panel panel-default">
                             <!-- /.panel-heading -->
                             <div class="panel-body">
-                                <form role="form" method="post" action="scripts/sc_update_artistas.php?id=<?=$id_artistas?>">
+                                <form role="form" method="post" action="scripts/sc_update_artistas.php?id=<?=$id_artistas?>" autocomplete="off">
                                     <div class="form-group">
                                         <label for="inputAddress">Nome</label>
                                         <input type="text" class="form-control" id="nome" name="nomeartista" placeholder="<?= $nome ?>">

@@ -44,6 +44,9 @@ if (!empty($_POST['nome']) && !empty($_POST['apelido']) && !empty($_POST['passwo
             } else if (strpos($username, '@') != false) {
                 header("Location: ../criarconta.php?msg=2");
                 die;
+            } else if (strpos($username, ' ') != false) {
+                header("Location: ../criarconta.php?msg=2");
+                die;
             } else if (strlen($_POST['password']) < 8) {
                 header("Location: ../criarconta.php?msg=3");
                 die;

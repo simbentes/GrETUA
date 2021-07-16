@@ -1149,7 +1149,7 @@ a:hover {
     text-decoration: none;
 }
 
-.pubs a {
+.pubs a, .pubfeed a {
     color: white;
     text-decoration: none;
 }

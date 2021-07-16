@@ -41,7 +41,7 @@
 
             <!-- Begin Page Content -->
             <div class="container">
-                <form action="scripts/teste.php" method="post" enctype="multipart/form-data" class="mb-4">
+                <form action="scripts/teste.php" method="post" enctype="multipart/form-data" class="mb-4" autocomplete="off">
                     <label for="files">Fotos do Evento: </label>
                     <input id="files" name="fotos[]" type="file" multiple/>
                     <button type="submit"></button>
