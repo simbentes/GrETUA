@@ -8,6 +8,7 @@ require_once("connections/connection.php");
 
 $link = new_db_connection();
 $stmt = mysqli_stmt_init($link);
+$id_user=$_SESSION["id_user"];
 
 //posso concatenar, visto que o parametro não foi colocado pelo user
 $query = "SELECT utilizadores.nome, utilizadores.apelido, foto_perfil, utilizadores.biografia, instagram, whatsapp
@@ -164,10 +165,55 @@ if (mysqli_stmt_prepare($stmt, $query)) {
                                        value="<?= $whatsapp ?>" name="whatsapp">
                             </div>
 
-                            <div class="mb-3">
-                                <a href="cargos.php" class="mb-1 btn btn-pequeno w-100"> Alterar Cargo </a>
+
+                            <div class="mb-3 ">
+                            <label for="cargo" class="mb-1">Selecionar Cargo </label>
+                                </br>
+                                <div class=" form-check">
+
+                            <?php 
+                                $cargoatual = "SELECT id_cargo, cargo.nome, color FROM cargo INNER JOIN utilizadores ON id_utilizadores = $id_user WHERE id_cargo = utilizadores.ref_id_cargo" ;
+                                if (mysqli_stmt_prepare($stmt, $cargoatual)) {
+
+                                    mysqli_stmt_execute($stmt);
+        
+                                    mysqli_stmt_bind_result($stmt, $id_cargoatual, $nome_cargoatual, $cor_cargoatual);
+        
+                                    mysqli_stmt_store_result($stmt);
+                                    $checked = "checked";
+                                    while (mysqli_stmt_fetch($stmt)){
+                                        ?>      
+                                <input type="radio" class="btn-check" name="cargo" id="<?= $id_cargoatual ?>" autocomplete="off" value="<?= $id_cargoatual ?>" required checked>
+                                <label class="m-2 btn btn-secondary bg-<?=$cor_cargoatual?>" for="<?= $id_cargoatual ?>"><?=$nome_cargoatual?></label>
+                               
+                              <?php
+                                }}
+                            
+                                $query2 = "SELECT id_cargo, cargo.nome, color, utilizadores.ref_id_cargo FROM cargo INNER JOIN utilizadores ON id_utilizadores = $id_user WHERE id_cargo != utilizadores.ref_id_cargo AND id_cargo != 2";
+                                if (mysqli_stmt_prepare($stmt, $query2)) {
+
+                                mysqli_stmt_execute($stmt);
+    
+                                mysqli_stmt_bind_result($stmt, $id_cargo, $nome_cargo, $cor_cargo, $antigo_cargo);
+    
+                                mysqli_stmt_store_result($stmt);
+                                $checked = "checked";
+                                while (mysqli_stmt_fetch($stmt)){
+                                    ?>      
+                            <input type="radio" class="btn-check" name="cargo" id="<?= $id_cargo ?>" autocomplete="off" value="<?= $id_cargo ?>" required>
+                            <label class="m-2 btn btn-secondary bg-<?=$cor_cargo?>" for="<?= $id_cargo ?>"><?=$nome_cargo?></label>
+                            <?php $checked = " "; //só é necessário na primeira iteração ?>
+                          <?php
+                            }}
+                            ?>
+                            
+                              </div>
+                        </div>
+                       
                                 
                             </div>
+
+                            
                             
                         </div>
                     </div>

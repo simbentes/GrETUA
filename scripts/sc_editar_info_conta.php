@@ -16,6 +16,7 @@ if (!empty($_POST["nome"]) && !empty($_POST["apelido"])) {
 
         $instagram = $_POST['instagram'];
         $whatsapp = $_POST['whatsapp'];
+        $cargo = $_POST['cargo'];
 
 
         include_once "sc_upload_imagem.php";
@@ -32,12 +33,12 @@ if (!empty($_POST["nome"]) && !empty($_POST["apelido"])) {
         $link = new_db_connection();
         $stmt = mysqli_stmt_init($link);
 
-        $query = "UPDATE utilizadores SET nome = ?, apelido = ?, biografia = ?, foto_perfil = ?, instagram = ?, whatsapp = ? WHERE id_utilizadores = " . $_SESSION["id_user"];
+        $query = "UPDATE utilizadores SET nome = ?, apelido = ?, biografia = ?, foto_perfil = ?, instagram = ?, whatsapp = ?, ref_id_cargo = ? WHERE id_utilizadores = " . $_SESSION["id_user"];
 
 
         if (mysqli_stmt_prepare($stmt, $query)) {
 
-            mysqli_stmt_bind_param($stmt, 'ssssss', $nome, $apelido, $biografia, $nome_img, $instagram, $whatsapp);
+            mysqli_stmt_bind_param($stmt, 'ssssssi', $nome, $apelido, $biografia, $nome_img, $instagram, $whatsapp, $cargo);
 
             if (mysqli_stmt_execute($stmt)) {
                 // Informação atualizada
@@ -46,6 +47,7 @@ if (!empty($_POST["nome"]) && !empty($_POST["apelido"])) {
                 session_start();
                 $_SESSION["nome"] = $nome . " " . $apelido;
                 $_SESSION["fperfil"] = $nome_img;
+                $_SESSION["cargo"] = $cargo;
                 header("Location: ../conta.php?msg=0");
             } else {
                 echo "Error:" . mysqli_stmt_error($stmt);

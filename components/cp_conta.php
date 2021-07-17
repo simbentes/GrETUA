@@ -8,6 +8,7 @@ require_once("connections/connection.php");
 
 $link = new_db_connection();
 $stmt = mysqli_stmt_init($link);
+$cargo = $_SESSION["cargo"] ;
 
 //posso concatenar, visto que o parametro não foi colocado pelo user
 $query = "SELECT username, foto_perfil, utilizadores.biografia, instagram, whatsapp, DATE_FORMAT(DATE(utilizadores.timestamp), '%d%m%Y')
@@ -122,7 +123,19 @@ if (mysqli_stmt_prepare($stmt, $query)) {
                 </div>
                 <div class="col-auto">
                     <h2 class="mb-0"><?= $_SESSION["nome"] ?></h2>
-                    <span class="badge bg-success">ENCENADORA</span>
+                    <?php 
+                    $cargoatual = "SELECT nome, color FROM cargo WHERE id_cargo = $cargo";
+                    if (mysqli_stmt_prepare($stmt, $cargoatual)) {
+
+                        mysqli_stmt_execute($stmt);
+
+                        mysqli_stmt_bind_result($stmt, $nome, $color);
+
+                        mysqli_stmt_store_result($stmt);
+                        while (mysqli_stmt_fetch($stmt)){
+                            ?>   
+                    <span class="badge bg-<?=$color?>"><?=$nome?></span>
+                    <?php }}?>
                 </div>
             </div>
 
