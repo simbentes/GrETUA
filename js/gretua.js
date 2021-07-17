@@ -26,7 +26,7 @@ $(window).scroll(function () {
 window.onload = function () {
     lastdata = "";
     carregarPubs(pubAleatoria());
-
+    proximo = false;
 
 }
 
@@ -110,10 +110,10 @@ function carregarPubs(tipo_pubs) {
                     div.setAttribute('class', 'col-12 py-3');
                     if (pubs[i].tipo == "pub") {
                         if (pubs[i].texto.length > 170) {
-                            pubs[i].texto = pubs[i].texto.substring(0, 170) + "... <a href='publicacao.php?id=" + pubs[i].id_pub + "' class='text-primary fw-bold'>Ler Mais</a>";
+                            pubs[i].texto = pubs[i].texto.substring(0, 170) + "... <a href='pub.php?id=" + pubs[i].id_pub + "' class='text-primary fw-bold'>Ler Mais</a>";
                         }
                         lastdata = pubs[i].lastdata;
-                        div.innerHTML = '<div class="card pubfeed"> <div class="card-body"> <div class="row justify-content-between align-items-center"> <div class="col-auto"> <a href="perfil.php?id=' + pubs[i].id_user + '"><div class="infouser"> <img src="img/users/' + pubs[i].fperfil_user + '" class="userbubble"> <span class="utilizador">' + pubs[i].nome_user + '</span> </div> </a></div><div class="col-auto infotime">' + tempo_str + '</div> </div> </div> ' + pubs[i].foto + ' <input id="likeinput-' + pubs[i].id_pub + '" value="' + pubs[i].id_pub + '" class="btn-vou" type="checkbox" onclick="likePub(this.checked, this.value)" ' + checked + '> <label id="like' + pubs[i].id_pub + '" class="btn btn-like ' + pubs[i].btn_style + '" for="likeinput-' + pubs[i].id_pub + '">' + btn_svg + '</label><div class="card-body"> <h5 class="card-title">' + pubs[i].titulo + '</h5> <p class="card-text">' + pubs[i].texto + '</p> <div class="row"> <div class="col-auto pe-0"> <img src="img/users/' + pubs[i].fperfil_session + '" class="userbubble"> </div> <div class="col"> <form method="POST" action="sc_comentar.php?id=' + pubs[i].id_pub + '"> <input type="text" name="comentario" class="form-control comentar" id="comentarios-' + pubs[i].id_pub + '" placeholder="Comentar"> </form> </div> </div> </div> </div>'
+                        div.innerHTML = '<div class="card pubfeed"> <div class="card-body"> <div class="row justify-content-between align-items-center"> <div class="col-auto"> <a href="perfil.php?id=' + pubs[i].id_user + '"><div class="infouser"> <img src="img/users/' + pubs[i].fperfil_user + '" class="userbubble"> <span class="utilizador">' + pubs[i].nome_user + '</span> </div> </a></div><div class="col-auto infotime">' + tempo_str + '</div> </div> </div> <a href="pub.php?id=' + pubs[i].id_pub + '">' + pubs[i].foto + '</a> <input id="likeinput-' + pubs[i].id_pub + '" value="' + pubs[i].id_pub + '" class="btn-vou" type="checkbox" onclick="likePub(this.checked, this.value)" ' + checked + '> <label id="like' + pubs[i].id_pub + '" class="btn btn-like ' + pubs[i].btn_style + '" for="likeinput-' + pubs[i].id_pub + '">' + btn_svg + '</label><div class="card-body"> <h5 class="card-title">' + pubs[i].titulo + '</h5> <p class="card-text">' + pubs[i].texto + '</p> <div class="row"> <div class="col-auto pe-0"> <img src="img/users/' + pubs[i].fperfil_session + '" class="userbubble"> </div> <div class="col"> <form method="POST" action="sc_comentar.php?id=' + pubs[i].id_pub + '"> <input type="text" name="comentario" class="form-control comentar" id="comentarios-' + pubs[i].id_pub + '" placeholder="Comentar"> </form> </div> </div> </div> </div>'
                     } else if (pubs[i].tipo == "memoria") {
                         if (pubs[i].desc_curta.length > 170) {
                             pubs[i].desc_curta = pubs[i].desc_curta.substring(0, 170) + "... <a href='memoria.php?memoria=" + pubs[i].id_memoria + "' class='text-primary fw-bold'>Ler Mais</a>";

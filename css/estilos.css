@@ -35,6 +35,15 @@ body {
     right: 0;
 }
 
+.pagpub-text {
+    position: absolute;
+    top: calc(100vw / 1.6);
+    border-radius: 0 0 8px 8px;
+    background-color: var(--pub-cor);
+    left: 0;
+    right: 0;
+}
+
 .artista-info {
     position: absolute;
     top: 315px;
@@ -732,6 +741,10 @@ footer {
     background-color: var(--corsite);
 }
 
+.bg-pub {
+    background-color: var(--pub-cor);
+}
+
 .iconsh {
     height: 24px;
     width: auto;
@@ -821,6 +834,18 @@ footer {
     position: relative;
     width: 100%;
     min-height: 400px;
+    background-attachment: fixed;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
+
+
+.framefotopagpub {
+    position: relative;
+    width: 100vw;
+    min-height: calc(100vw / 1.6);
+    border-radius: 0 0 8px 8px;
     background-attachment: fixed;
     background-position: top;
     background-repeat: no-repeat;

@@ -22,13 +22,33 @@ if (isset($_GET['carregar']) && isset($_GET['data']) && isset($_GET['ordem'])) {
         $ultima_data = "";
     }
 
+
+    //se o pedido vier de um perfil ou conta de um user
+    if (isset($_GET["perfil"])) {
+
+        if ($_GET["perfil"] == "undefined") {
+            $id_user_pub = $_SESSION["id_user"];
+        } else {
+            $id_user_pub = $_GET["perfil"];
+        }
+
+        if (!empty($ultima_data)) {
+            $perfil_pub = " AND id_utilizadores = " . $id_user_pub;
+        } else {
+            $perfil_pub = "WHERE id_utilizadores = " . $id_user_pub;
+        }
+    } else {
+        $perfil_pub = "";
+    }
+
+
     $query = "SELECT id_publicacoes, publicacoes.timestamp, titulo, texto, foto, ref_id_eventos, id_utilizadores, CONCAT(utilizadores.nome, ' ', apelido), utilizadores.foto_perfil, UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(publicacoes.timestamp), gostos.ref_id_utilizadores
 FROM publicacoes
 INNER JOIN utilizadores
 ON id_utilizadores = ref_id_utilizadores
 LEFT JOIN gostos
 ON gostos.ref_id_publicacoes = id_publicacoes AND gostos.ref_id_utilizadores = " . $_SESSION["id_user"] . "
-" . $ultima_data . "
+$ultima_data $perfil_pub
 ORDER BY publicacoes.timestamp DESC
 LIMIT 0,?";
 
@@ -198,8 +218,22 @@ LIMIT 1;";
                 }
             }
 
+            if ($pubs[2]["tipo"] != "pub") {
+                if (rand(0, 1) > 0.5) {
+                    $pubs_final[] = $pubs[0];
+                    $pubs_final[] = $pubs[1];
+                    $pubs_final[] = $pubs[2];
+                } else {
+                    $pubs_final[] = $pubs[0];
+                    $pubs_final[] = $pubs[2];
+                    $pubs_final[] = $pubs[1];
+                }
+            } else {
+                $pubs_final = $pubs;
+            }
 
-            die(json_encode($pubs));
+
+            die(json_encode($pubs_final));
         } else {
             die("fim");
         }

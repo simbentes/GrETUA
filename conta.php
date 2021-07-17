@@ -18,13 +18,11 @@ session_start();
 
 <script type="text/javascript">
     document.getElementById("botaoperfil").onclick = function () {
-        console.log("clickads")
         document.getElementById("perfilbottom").classList.toggle("animaperfil");
 
     }
-
-
 </script>
+<script src="js/pubs_conta_perfil.js"></script>
 </body>
 
 </html>

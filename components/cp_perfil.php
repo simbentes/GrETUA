@@ -4,7 +4,6 @@ if (!isset($_SESSION["id_user"])):
     header("Location: index.php");
 else:
 
-
     if (isset($_GET["id"])) {
 
         if ($_GET["id"] != $_SESSION["id_user"]) {
@@ -159,75 +158,16 @@ WHERE id_utilizadores = ?";
                             <h3 class="text-center mb-0"><?= $data_mes_criacao ?></h3>
                         </div>
                     </section>
-                    <div class="container-fluid py-3">
-                        <h3>Eventos a que fui</h3>
+                    <div class="container-fluid pt-3">
+                        <h3 class="mb-0">Atividade</h3>
                     </div>
+                    <div class="pb-5">
+                        <section class="container-fluid pb-4">
+                            <div id="atividade" class="row">
 
-                    <!-- Swiper -->
-                    <div class="swiper-container mySwiper">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <a href="evento.php">
-                                    <div class="eventoperfil">
-                                        <img class="img-fluid img-evento" src="img/eventos/ruinas3.jpg">
-                                        <div class="desc-evento container-fluid">
-                                            <h6 class="top-right">Ruínas</h6>
-                                            <div class="row">
-                                                <div class="col text-cinza">28 abril</div>
-                                                <div class="col text-cinza text-center">22h30</div>
-                                                <div class="col text-cinza text-end">teatro</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
                             </div>
-                            <div class="swiper-slide">
-                                <a href="evento.php">
-                                    <div class="eventoperfil">
-                                        <img class="img-fluid img-evento" src="img/eventos/palmieres.jpg">
-                                        <div class="desc-evento container-fluid">
-                                            <h6 class="top-right">P A L M I E R E S</h6>
-                                            <div class="row">
-                                                <div class="col text-cinza">1 junho</div>
-                                                <div class="col text-cinza text-center">22h30</div>
-                                                <div class="col text-cinza text-end">concerto</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="swiper-slide">
-                                <a href="evento.php">
-                                    <div class="eventoperfil">
-                                        <img class="img-fluid img-evento" src="img/eventos/ninguem.jpg">
-                                        <div class="desc-evento container-fluid">
-                                            <h6 class="top-right">Ninguém, de Deeogo Oliveira</h6>
-                                            <div class="row">
-                                                <div class="col text-cinza">8 junho</div>
-                                                <div class="col text-cinza text-center">22h30</div>
-                                                <div class="col text-cinza text-end">concerto</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="swiper-scrollbar"></div>
+                        </section>
                     </div>
-
-                    <!-- Swiper JS -->
-                    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-
-                    <!-- Initialize Swiper -->
-                    <script>
-                        var swiper = new Swiper(".mySwiper", {
-                            scrollbar: {
-                                el: ".swiper-scrollbar",
-                                hide: true,
-                            },
-                        });
-                    </script>
-
 
                     <?php
                 } else {
