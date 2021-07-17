@@ -1,8 +1,6 @@
 window.onload = function () {
 
 
-
-
     if (document.getElementById("guardado").checked == true) {
         document.getElementById("textbtnguardado").innerHTML = "Guardado";
         document.getElementById("iconbtnguardado").classList.remove("bi-bookmark");
@@ -20,8 +18,6 @@ window.onload = function () {
         document.getElementById("iconbtnvou").classList.add("bi-star");
         document.getElementById("iconbtnvou").classList.remove("bi-star-fill");
     }
-
-
 
 
 }

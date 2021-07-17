@@ -1,7 +1,6 @@
 document.getElementById("novapub").onclick = function () {
     document.getElementById("pub").classList.add("animapub");
     document.getElementById("titulopub").focus();
-
 }
 
 document.getElementById("btnfechar").onclick = function () {
@@ -27,6 +26,8 @@ $(window).scroll(function () {
 window.onload = function () {
     lastdata = "";
     carregarPubs(pubAleatoria());
+
+
 }
 
 
@@ -76,6 +77,7 @@ function pubAleatoria() {
         arraypubs.push(0)
     }
 
+
     return arraypubs;
 }
 
@@ -90,6 +92,15 @@ function carregarPubs(tipo_pubs) {
 
                 for (let i = 0; i < pubs[0].repeticoes; i++) {
 
+                    if (pubs[i].like == 1) {
+                        var checked = 'checked'
+                        var btn_svg = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/></svg>';
+
+                    } else {
+                        var checked = ''
+                        var btn_svg = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16"> <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/> </svg>';
+                    }
+
 
                     var tempo_str = diferencaTempo(pubs[i].unix_tempo)
 
@@ -102,7 +113,7 @@ function carregarPubs(tipo_pubs) {
                             pubs[i].texto = pubs[i].texto.substring(0, 170) + "... <a href='publicacao.php?id=" + pubs[i].id_pub + "' class='text-primary fw-bold'>Ler Mais</a>";
                         }
                         lastdata = pubs[i].lastdata;
-                        div.innerHTML = '<div class="card pubfeed"> <div class="card-body"> <div class="row justify-content-between align-items-center"> <div class="col-auto"> <a href="perfil.php?id=' + pubs[i].id_user + '"><div class="infouser"> <img src="img/users/' + pubs[i].fperfil_user + '" class="userbubble"> <span class="utilizador">' + pubs[i].nome_user + '</span> </div> </a></div><div class="col-auto infotime">' + tempo_str + '</div> </div> </div> ' + pubs[i].foto + ' <input id="like' + pubs[i].id_pub + '" value="' + pubs[i].id_pub + '" class="btn-vou" type="checkbox" onclick="vouEvento(this.checked,this.value)"> <label class="btn btn-like ' + pubs[i].btn_style + '" for="like' + pubs[i].id_pub + '"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16"> <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/> </svg></label><div class="card-body"> <h5 class="card-title">' + pubs[i].titulo + '</h5> <p class="card-text">' + pubs[i].texto + '</p> <div class="row"> <div class="col-auto pe-0"> <img src="img/users/' + pubs[i].fperfil_session + '" class="userbubble"> </div> <div class="col"> <form method="POST" action="sc_comentar.php?id=' + pubs[i].id_pub + '"> <input type="text" name="comentario" class="form-control comentar" id="exampleInputEmail1" placeholder="Comentar"> </form> </div> </div> </div> </div>'
+                        div.innerHTML = '<div class="card pubfeed"> <div class="card-body"> <div class="row justify-content-between align-items-center"> <div class="col-auto"> <a href="perfil.php?id=' + pubs[i].id_user + '"><div class="infouser"> <img src="img/users/' + pubs[i].fperfil_user + '" class="userbubble"> <span class="utilizador">' + pubs[i].nome_user + '</span> </div> </a></div><div class="col-auto infotime">' + tempo_str + '</div> </div> </div> ' + pubs[i].foto + ' <input id="likeinput-' + pubs[i].id_pub + '" value="' + pubs[i].id_pub + '" class="btn-vou" type="checkbox" onclick="likePub(this.checked, this.value)" ' + checked + '> <label id="like' + pubs[i].id_pub + '" class="btn btn-like ' + pubs[i].btn_style + '" for="likeinput-' + pubs[i].id_pub + '">' + btn_svg + '</label><div class="card-body"> <h5 class="card-title">' + pubs[i].titulo + '</h5> <p class="card-text">' + pubs[i].texto + '</p> <div class="row"> <div class="col-auto pe-0"> <img src="img/users/' + pubs[i].fperfil_session + '" class="userbubble"> </div> <div class="col"> <form method="POST" action="sc_comentar.php?id=' + pubs[i].id_pub + '"> <input type="text" name="comentario" class="form-control comentar" id="comentarios-' + pubs[i].id_pub + '" placeholder="Comentar"> </form> </div> </div> </div> </div>'
                     } else if (pubs[i].tipo == "memoria") {
                         if (pubs[i].desc_curta.length > 170) {
                             pubs[i].desc_curta = pubs[i].desc_curta.substring(0, 170) + "... <a href='memoria.php?memoria=" + pubs[i].id_memoria + "' class='text-primary fw-bold'>Ler Mais</a>";
@@ -129,10 +140,17 @@ function carregarPubs(tipo_pubs) {
 
 
 //adicionar pub aos favoritos
-function likePub() {
+function likePub(estado, publicacao) {
+
+    if (estado) {
+        document.getElementById("like" + publicacao).innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/></svg>';
+    } else {
+        document.getElementById("like" + publicacao).innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16"> <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/> </svg>';
+    }
+
     //vamos enviar por ajax o produto e estado do botao(checkbox), para saber se o user "guardou" ou "removeu dos guardados"
     var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET", "scripts/sc_guardar_pub.php?guardado=" + estado + "&produto=" + produto, true);
+    xmlhttp.open("GET", "scripts/sc_like_pub.php?like=" + estado + "&pub=" + publicacao, true);
     xmlhttp.send();
 
 }

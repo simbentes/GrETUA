@@ -179,6 +179,10 @@ small, .small {
     font-size: .8em;
 }
 
+.noti-text {
+    font-size: .85em;
+}
+
 .icon-evento {
     font-size: 2rem;
 }

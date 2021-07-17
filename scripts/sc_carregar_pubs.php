@@ -22,10 +22,12 @@ if (isset($_GET['carregar']) && isset($_GET['data']) && isset($_GET['ordem'])) {
         $ultima_data = "";
     }
 
-    $query = "SELECT id_publicacoes, publicacoes.timestamp, titulo, texto, foto, ref_id_eventos, id_utilizadores, CONCAT(utilizadores.nome, ' ', apelido), utilizadores.foto_perfil, UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(publicacoes.timestamp)
+    $query = "SELECT id_publicacoes, publicacoes.timestamp, titulo, texto, foto, ref_id_eventos, id_utilizadores, CONCAT(utilizadores.nome, ' ', apelido), utilizadores.foto_perfil, UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(publicacoes.timestamp), gostos.ref_id_utilizadores
 FROM publicacoes
 INNER JOIN utilizadores
 ON id_utilizadores = ref_id_utilizadores
+LEFT JOIN gostos
+ON gostos.ref_id_publicacoes = id_publicacoes AND gostos.ref_id_utilizadores = " . $_SESSION["id_user"] . "
 " . $ultima_data . "
 ORDER BY publicacoes.timestamp DESC
 LIMIT 0,?";
@@ -45,7 +47,7 @@ LIMIT 0,?";
         }
 
         mysqli_stmt_execute($stmt);
-        mysqli_stmt_bind_result($stmt, $id_pub, $lastdata, $titulo, $texto, $foto, $ref_id_eventos, $id_user, $nome_user, $fperfil_user, $unix_data);
+        mysqli_stmt_bind_result($stmt, $id_pub, $lastdata, $titulo, $texto, $foto, $ref_id_eventos, $id_user, $nome_user, $fperfil_user, $unix_data, $like);
         mysqli_stmt_store_result($stmt);
 
         $numrows = mysqli_stmt_num_rows($stmt);
@@ -67,13 +69,14 @@ LIMIT 0,?";
                 }
 
                 if (isset($like)) {
-                    $guardadoChecked = "checked";
+                    $like = 1;
                 } else {
-                    $guardadoChecked = "";
+                    $like = 0;
                 }
 
+
                 // enviar dados das publicacoes para serem renderizados em js
-                $pubs[] = ["tipo" => "pub", "id_pub" => $id_pub, "unix_tempo" => $unix_data, "id_user" => $id_user, "nome_user" => $nome_user, "fperfil_user" => $fperfil_user, "foto" => $foto_pub, "titulo" => $titulo, "btn_style" => $btn_style, "texto" => $texto, "ref_id_eventos" => $ref_id_eventos, "fperfil_session" => $_SESSION["fperfil"], "lastdata" => $lastdata, "repeticoes" => $numrows + $_GET['ordem'][1] + $_GET['ordem'][2]];
+                $pubs[] = ["tipo" => "pub", "id_pub" => $id_pub, "unix_tempo" => $unix_data, "id_user" => $id_user, "nome_user" => $nome_user, "fperfil_user" => $fperfil_user, "foto" => $foto_pub, "titulo" => $titulo, "btn_style" => $btn_style, "texto" => $texto, "ref_id_eventos" => $ref_id_eventos, "fperfil_session" => $_SESSION["fperfil"], "like" => $like, "lastdata" => $lastdata, "repeticoes" => $numrows + $_GET['ordem'][1] + $_GET['ordem'][2]];
 
 
             }
@@ -161,7 +164,6 @@ LIMIT 1;";
                                     }
                                 }
                             }
-
 
                             //numero de pessoas que "vão"
                             $query = "SELECT COUNT(vou) FROM `guardados_vou` WHERE vou = 1 AND guardados_vou.ref_id_eventos =" . $id_evento;

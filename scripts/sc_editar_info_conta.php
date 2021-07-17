@@ -47,7 +47,6 @@ if (!empty($_POST["nome"]) && !empty($_POST["apelido"])) {
                 session_start();
                 $_SESSION["nome"] = $nome . " " . $apelido;
                 $_SESSION["fperfil"] = $nome_img;
-                $_SESSION["cargo"] = $cargo;
                 header("Location: ../conta.php?msg=0");
             } else {
                 echo "Error:" . mysqli_stmt_error($stmt);

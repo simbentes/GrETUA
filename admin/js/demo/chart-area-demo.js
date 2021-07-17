@@ -68,7 +68,7 @@ function verSemanaUsers() {
 
 
 // Area Chart Example
-            var ctx = document.getElementById("graficoUsers");
+            var ctx = document.getElementById("myAreaChart");
             var myLineChart = new Chart(ctx, {
                 type: 'line',
                 data: {
@@ -162,7 +162,6 @@ function verSemanaUsers() {
     xmlhttp.open("GET", "scripts/sc_users_semana.php", true);
     xmlhttp.send();
 }
-
 
 
 
