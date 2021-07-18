@@ -225,20 +225,23 @@ LIMIT 1;";
                 }
             }
 
-            if ($pubs[2]["tipo"] != "pub") {
-                if (rand(0, 1) > 0.5) {
-                    $pubs_final[] = $pubs[0];
-                    $pubs_final[] = $pubs[1];
-                    $pubs_final[] = $pubs[2];
+            if (isset($pubs[2]["tipo"])) {
+                if ($pubs[2]["tipo"] != "pub") {
+                    if (rand(0, 1) > 0.5) {
+                        $pubs_final[] = $pubs[0];
+                        $pubs_final[] = $pubs[1];
+                        $pubs_final[] = $pubs[2];
+                    } else {
+                        $pubs_final[] = $pubs[0];
+                        $pubs_final[] = $pubs[2];
+                        $pubs_final[] = $pubs[1];
+                    }
                 } else {
-                    $pubs_final[] = $pubs[0];
-                    $pubs_final[] = $pubs[2];
-                    $pubs_final[] = $pubs[1];
+                    $pubs_final = $pubs;
                 }
             } else {
                 $pubs_final = $pubs;
             }
-
 
             die(json_encode($pubs_final));
         } else {

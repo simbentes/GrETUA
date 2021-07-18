@@ -20,37 +20,8 @@ session_start();
     </div>
 </section>
 <main>
-    <section class="container-fluid py-5 mb-4">
-        <div class="row">
-            <div class="col-12 py-3">
-                <a class="aevento" href="evento.php">
-                    <div class="eventoindex">
-                        <img class="img-fluid img-evento" src="img/eventos/ninguem.jpg">
-                        <div class="desc-evento container-fluid gx-3">
-                            <h2 class="top-right mb-0">Ninguém, Deeogo Oliveira</h2>
-                            <div class="row">
-                                <div class="col text-cinza">8 junho</div>
-                                <div class="col text-cinza text-center">22h30</div>
-                                <div class="col text-cinza text-end">concerto</div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-                <div class="row pt-3 justify-content-between align-items-center gx-0">
-                    <div class="col-auto">
-                        <h6 class="mb-0 ps-2"><strong>Detalhes de Faturação</strong></h6>
-                    </div>
-                    <div class="col-auto">
-                        <a href="Tickets_9430097.pdf" target="_blank" class="btn btn-memoriafeed">Bilhete Digital</a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-    </section>
+    <?php include_once "components/cp_reservas.php" ?>
 </main>
-
 <?php include_once "components/cp_tab_bar.php" ?>
 
 <!-- Javascript -->

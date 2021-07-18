@@ -32,7 +32,7 @@ WHERE data_eventos.id_data_eventos = ? AND reservas.ref_id_utilizadores = " . $_
                     <div>
                         <h3>Reserva efetuada!</h3>
                         <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=<?= $nome_evento ?>&dates=<?= $data_qs ?>/<?= $data_fim_qs ?>&details=<?= $descricao_qs ?>&location=GrETUA,+3810-502+Aveiro,+Portugal&sf=true&output=xml"
-                           target="_blank" class="btn btn-grande btn-google w-75"><img
+                           class="btn btn-grande btn-google w-75"><img
                                     src="img/g_calendar.svg" class="logo">Adicionar ao Google Calendar
                         </a>
                     </div>

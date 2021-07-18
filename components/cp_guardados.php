@@ -49,7 +49,7 @@ ORDER BY guardados_vou.timestamp_guardados DESC;";
 
                         ?>
                         <div class="col-12 py-3">
-                            <a class="aevento" href="evento.php?evento=<?= $id_evento ?>">
+                            <a class="evento" href="evento.php?evento=<?= $id_evento ?>">
                                 <div class="eventoperfil">
                                     <div class="evento-card-degrade"></div>
                                     <img class="img-fluid img-evento" src="img/eventos/<?= $foto ?>">
@@ -75,9 +75,7 @@ ORDER BY guardados_vou.timestamp_guardados DESC;";
             mysqli_close($link);
 
             ?>
-
         </div>
-
     </section>
 <?php
 endif;
