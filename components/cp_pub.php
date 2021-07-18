@@ -36,7 +36,7 @@ WHERE id_publicacoes = ?";
                 mysqli_stmt_fetch($stmt);
                 ?>
                 <main>
-                    <div class="pagpub">
+                    <div class="pagpub mb-6">
                         <a id="voltar" href="gretua.php" class="voltar"><i
                                     class="bi bi-chevron-left p-1 mb-0 h2"></i></a>
 

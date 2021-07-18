@@ -345,7 +345,6 @@ small, .small {
 }
 
 
-
 .confirmar-icon {
     color: var(--cor-tema);
 }
@@ -933,6 +932,10 @@ footer {
 
 .pt-6, .py-6 {
     padding-top: 5rem !important;
+}
+
+.mb-6 {
+    margin-bottom: 5rem !important;
 }
 
 /*Scroll bar */
