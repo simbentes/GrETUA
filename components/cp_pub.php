@@ -52,13 +52,14 @@ WHERE id_publicacoes = ?";
                             echo "checked";
                         } ?>> <label
 
-                                id="like24" class="btn btn-like " for="likeinput-<?= $id_pub ?>">
+                                id="like<?= $id_pub ?>" class="btn btn-like " for="likeinput-<?= $id_pub ?>">
                             <?php if ($gosto == 1): ?>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                      class="bi bi-heart-fill" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
                                           d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
                                 </svg>
+
                             <?php else: ?>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                      class="bi bi-heart-fill" viewBox="0 0 16 16">
@@ -81,15 +82,20 @@ WHERE id_publicacoes = ?";
                             <p class="card-text"><?= $texto ?></p>
                             <div class="row">
                                 <div class="col-auto pe-0"><img
-                                            src="img/users/4c150d13840805f07d586f3314cd648a.webp"
+                                            src="img/users/<?= $_SESSION["fperfil"] ?>"
                                             class="userbubble"></div>
                                 <div class="col">
-                                    <form method="POST" action="sc_comentar.php?id=24"><input type="text"
-                                                                                              name="comentario"
-                                                                                              class="form-control comentar"
-                                                                                              id="comentarios-24"
-                                                                                              placeholder="Comentar">
-                                    </form>
+                                    <div class="comentarform">
+                                        <form method="POST" action="scripts/sc_comentar.php?id=<?= $id_pub ?>">
+                                            <div class="position-relative">
+                                                <input type="text" name="comentario" class="form-control comentar"
+                                                       id="<?= $id_pub ?>" placeholder="Comentar"
+                                                       onkeyup="mostrarSubmit(this.value, this.id)">
+                                                <button type="submit" style="display: none"
+                                                        id="submit<?= $id_pub ?>"><i
+                                                            class="bi bi-caret-right-fill"></i></i></button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -109,44 +115,43 @@ WHERE ref_id_publicacoes = ?
 ORDER BY comentarios.timestamp DESC";
 
                             if (mysqli_stmt_prepare($stmt, $query)) {
-                            mysqli_stmt_bind_param($stmt, "i", $id_pub);
-                            mysqli_stmt_execute($stmt);
-                            mysqli_stmt_bind_result($stmt, $id_user, $nome_user, $fperfil, $comentario, $data_comentario);
-                            mysqli_stmt_store_result($stmt);
+                                mysqli_stmt_bind_param($stmt, "i", $id_pub);
+                                mysqli_stmt_execute($stmt);
+                                mysqli_stmt_bind_result($stmt, $id_user, $nome_user, $fperfil, $comentario, $data_comentario);
+                                mysqli_stmt_store_result($stmt);
 
-                            if (mysqli_stmt_num_rows($stmt) != 0) {
-                            while (mysqli_stmt_fetch($stmt)) {
+                                if (mysqli_stmt_num_rows($stmt) != 0) {
+                                    while (mysqli_stmt_fetch($stmt)) {
+                                        ?>
+                                        <div class="col-12 py-2">
+                                            <div class="row align-items-center">
+                                                <div class="col-auto pe-1">
+                                                    <a href="perfil.php?id=<?= $id_user ?>">
+                                                        <img src="img/users/<?= $fperfil ?>"
+                                                             class="userbubble me-2">
+                                                    </a>
+                                                </div>
+                                                <div class="col ps-1 noti-text">
+                                                    <strong class="pe-1">
+                                                        <a href="perfil.php?id=<?= $id_user ?>"><?= $nome_user ?></a>
+                                                    </strong><?= $comentario ?>
+                                                    <div class="small text-muted"><?= $data_comentario ?></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <?php
+                                    }
+                                }
+                            } else {
+                                echo "Error: " . mysqli_error($link);
+                            }
+
                             ?>
-                            <div class="col-12 py-2">
-                                <div class="row align-items-center">
-                                    <div class="col-auto pe-1">
-                                        <a href="perfil.php?id=<?= $id_user ?>">
-                                            <img src="img/users/<?= $fperfil ?>"
-                                                 class="userbubble me-2">
-                                        </a>
-                                    </div>
-                                    <div class="col ps-1 noti-text">
-                                        <strong class="pe-2"><?= $nome_user ?></strong><?= $comentario ?>
-                                        <div class="small text-muted"><?= $data_comentario ?></div>
-                                    </div>
-                                </div>
-                            </div>
 
 
-
-
-
-                        <?php
-                        }
-                        }
-                        } else {
-                            echo "Error: " . mysqli_error($link);
-                        }
-
-                        ?>
-
-
-                    </div>
+                        </div>
                     </div>
                 </main>
                 <?php

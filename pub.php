@@ -58,6 +58,17 @@ session_start();
     }
 
     document.getElementById("diferencatempo").innerHTML = diferencaTempo(<?= $unix_ts ?>)
+
+
+    function mostrarSubmit(valor, id) {
+        if (valor == "") {
+            document.getElementById("submit" + id).style.display = "none";
+        } else {
+            document.getElementById("submit" + id).style.display = "block";
+        }
+    }
+
+
 </script>
 </body>
 </html>

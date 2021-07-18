@@ -101,9 +101,32 @@ LIMIT 0,?";
                     $like = 0;
                 }
 
+                $n_comentarios = '';
+
+                $stmt2 = mysqli_stmt_init($link);
+                //numero de pessoas que comentaram
+                $query2 = "SELECT COUNT(id_comentarios) FROM `comentarios` WHERE ref_id_publicacoes =" . $id_pub;
+
+                if (mysqli_stmt_prepare($stmt2, $query2)) {
+                    mysqli_stmt_execute($stmt2);
+                    mysqli_stmt_bind_result($stmt2, $n_com);
+                    if (mysqli_stmt_fetch($stmt2)) {
+
+                        if ($n_com > 0) {
+                            ($n_com == 1) ? $s = "" : $s = "s";
+                            $n_comentarios = '<div class="text-center pb-2 mb-1" style="font-size: 14.5px;"><a href="pub.php?id=' . $id_pub . '" class="text-primary fw-bold">Ver ' . $n_com . ' comentário' . $s . '</a></div>';
+                        }
+
+                    } else {
+                        echo "Error: " . mysqli_stmt_error($stmt2);
+                    }
+                } else {
+                    echo "Error: " . mysqli_error($link);
+                }
+                mysqli_stmt_close($stmt2);
 
                 // enviar dados das publicacoes para serem renderizados em js
-                $pubs[] = ["tipo" => "pub", "id_pub" => $id_pub, "unix_tempo" => $unix_data, "id_user" => $id_user, "nome_user" => $nome_user, "fperfil_user" => $fperfil_user, "foto" => $foto_pub, "titulo" => $titulo, "btn_style" => $btn_style, "texto" => $texto, "delete_pub" => $btn_delete, "ref_id_eventos" => $ref_id_eventos, "fperfil_session" => $_SESSION["fperfil"], "like" => $like, "lastdata" => $lastdata, "repeticoes" => $numrows + $_GET['ordem'][1] + $_GET['ordem'][2]];
+                $pubs[] = ["tipo" => "pub", "id_pub" => $id_pub, "unix_tempo" => $unix_data, "id_user" => $id_user, "nome_user" => $nome_user, "fperfil_user" => $fperfil_user, "foto" => $foto_pub, "titulo" => $titulo, "btn_style" => $btn_style, "n_comentarios" => $n_comentarios, "texto" => $texto, "delete_pub" => $btn_delete, "ref_id_eventos" => $ref_id_eventos, "fperfil_session" => $_SESSION["fperfil"], "like" => $like, "lastdata" => $lastdata, "repeticoes" => $numrows + $_GET['ordem'][1] + $_GET['ordem'][2]];
 
 
             }
