@@ -44,6 +44,10 @@ body {
     right: 0;
 }
 
+.dropdown-menu {
+    min-width: 7rem;
+}
+
 .artista-info {
     position: absolute;
     top: 315px;
@@ -111,6 +115,7 @@ body {
 .caixaalert {
     position: fixed;
     bottom: 55px;
+    z-index: 999999999999999;
 }
 
 
@@ -895,10 +900,15 @@ footer {
 }
 
 /*Scroll bar */
-h1, h2, h3, h4 {
+.h0, h1, h2, h3, h4 {
     letter-spacing: -0.02em;
     font-weight: 700;
 }
+
+.h0 {
+    font-size: 2.5rem;
+}
+
 
 .text-pesquisa {
     letter-spacing: -0.02em;
@@ -1120,6 +1130,25 @@ a:hover {
     z-index: 999;
 }
 
+.bg-barra-1 {
+    background-color: #0b9c11;
+}
+
+.bg-barra-2 {
+    background-color: #8eb82d;
+}
+
+.bg-barra-3 {
+    background-color: #fcae11;
+}
+
+.bg-barra-4 {
+    background-color: #e85b0f;
+}
+
+.bg-barra-5 {
+    background-color: #d03e37;
+}
 
 .maquina.animamaquina {
     transform: translateY(-365px);
@@ -1128,6 +1157,27 @@ a:hover {
 
 .list-group-flush a {
     color: white;
+}
+
+
+.success-container {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    text-align: center;
+}
+
+.success-container i {
+    color: var(--cor-tema);
+}
+
+.success-container a:hover {
+    color: var(--cor-tema);
 }
 
 .maquinatempo {
@@ -1603,6 +1653,14 @@ input[type="radio" i]:focus {
     box-shadow: none;
 }
 
+
+.numberinput {
+    text-align: center;
+    font-weight: 800;
+    height: 50px;
+    font-size: 1.9rem;
+    padding: 0;
+}
 
 .formlogin {
     height: calc(1.2em + 1.8rem + 2px);

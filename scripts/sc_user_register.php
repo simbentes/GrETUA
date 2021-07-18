@@ -75,7 +75,7 @@ if (!empty($_POST['nome']) && !empty($_POST['apelido']) && !empty($_POST['passwo
                     $_SESSION["fperfil"] = "default.webp";
                     header("Location: ../gretua.php");
                 } else {
-                    echo $nome . "; " . $apelido . "; " . $email . "; " . $password;
+                    echo "Error: " . mysqli_stmt_error($stmt);
                 }
 
 

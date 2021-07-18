@@ -88,6 +88,13 @@ LIMIT 0,?";
                     $btn_style = "btn-like-semtxt";
                 }
 
+
+                if ($id_user == $_SESSION["id_user"]) {
+                    $btn_delete = '<a href="scripts/sc_delete_pub.php?id=' . $id_pub . '" class="h3 mb-0 ps-2 text-danger"><i class="bi bi-dash-circle-fill"></i></a>';
+                } else {
+                    $btn_delete = "";
+                }
+
                 if (isset($like)) {
                     $like = 1;
                 } else {
@@ -96,7 +103,7 @@ LIMIT 0,?";
 
 
                 // enviar dados das publicacoes para serem renderizados em js
-                $pubs[] = ["tipo" => "pub", "id_pub" => $id_pub, "unix_tempo" => $unix_data, "id_user" => $id_user, "nome_user" => $nome_user, "fperfil_user" => $fperfil_user, "foto" => $foto_pub, "titulo" => $titulo, "btn_style" => $btn_style, "texto" => $texto, "ref_id_eventos" => $ref_id_eventos, "fperfil_session" => $_SESSION["fperfil"], "like" => $like, "lastdata" => $lastdata, "repeticoes" => $numrows + $_GET['ordem'][1] + $_GET['ordem'][2]];
+                $pubs[] = ["tipo" => "pub", "id_pub" => $id_pub, "unix_tempo" => $unix_data, "id_user" => $id_user, "nome_user" => $nome_user, "fperfil_user" => $fperfil_user, "foto" => $foto_pub, "titulo" => $titulo, "btn_style" => $btn_style, "texto" => $texto, "delete_pub" => $btn_delete, "ref_id_eventos" => $ref_id_eventos, "fperfil_session" => $_SESSION["fperfil"], "like" => $like, "lastdata" => $lastdata, "repeticoes" => $numrows + $_GET['ordem'][1] + $_GET['ordem'][2]];
 
 
             }

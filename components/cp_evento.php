@@ -210,48 +210,85 @@ WHERE eventos.ref_id_artistas = ?;";
                                     } ?></strong>
                             </div>
                         </div>
-                        <div class="container-fluid py-3">
-                            <h3>Disponiblidade</h3>
-                            <div class="col-lg-5">
-                                <div class="row justify-content-between">
-                                    <div class="col-auto">
-                                        <h6>Estado</h6>
-                                    </div>
-                                    <div class="col-auto">
-                                        <h6><?= $lotacao ?></h6>
-                                    </div>
-                                </div>
-                                <?php
-                                switch ($lotacao) {
-                                    case 1:
-                                        $cor_barra = "bg-barra-1";
-                                        $size = "100";
-                                        break;
-                                    case 2:
-                                        $cor_barra = "bg-barra-2";
-                                        $size = "75";
-                                        break;
-                                    case 3:
-                                        $cor_barra = "bg-barra-3";
-                                        $size = "50";
-                                        break;
-                                    case 4:
-                                        $cor_barra = "bg-barra-4";
-                                        $size = "25";
-                                        break;
-                                    default:
-                                        $cor_barra = "bg-barra-5";
-                                        $size = "10";
+
+                        <?php
+
+                        //so mostramos a lotação se existir apenas uma data
+                        $query = "SELECT id_data_eventos FROM data_eventos WHERE ref_id_eventos = ? AND data_eventos.data > NOW();";
+
+                        if (mysqli_stmt_prepare($stmt, $query)) {
+                            mysqli_stmt_bind_param($stmt, "i", $eventoid);
+                            mysqli_stmt_execute($stmt);
+                            mysqli_stmt_bind_result($stmt, $id_data_eventos);
+                            mysqli_stmt_store_result($stmt);
+
+                            if (mysqli_stmt_num_rows($stmt) == 1) {
+                                mysqli_stmt_fetch($stmt);
+                                //após verificar se existe apenas uma data, vamos desenhar uma barra de lotação
+
+                                $query = "SELECT eventos.lotacao, 1 - (eventos.lotacao - SUM(reservas.quantidade)) / eventos.lotacao
+FROM `reservas`
+INNER JOIN data_eventos
+ON id_data_eventos = reservas.ref_id_data_eventos
+INNER JOIN eventos
+ON eventos.id_eventos = data_eventos.ref_id_eventos
+WHERE id_data_eventos = ?";
+
+                                if (mysqli_stmt_prepare($stmt, $query)) {
+                                    mysqli_stmt_bind_param($stmt, "i", $id_data_eventos);
+                                    mysqli_stmt_execute($stmt);
+                                    mysqli_stmt_bind_result($stmt, $lotacao, $percentagem_ocupacao);
+
+                                    if (!mysqli_stmt_fetch($stmt)) {
+                                        echo "Error: " . mysqli_stmt_error($stmt);
+                                    }
+                                } else {
+                                    echo "Error: " . mysqli_error($link);
                                 }
 
-                                echo "<div class='progress'>
-                                    <div class='progress-bar progress-bar $cor_barra' role='progressbar'
-                                         style='width: $size%' aria-valuenow='$size' aria-valuemin='0'
-                                         aria-valuemax='$size'></div>
-                                </div>"
-                                ?>
-                            </div>
-                        </div>
+                                $size = 100 * $percentagem_ocupacao;
+
+                                if ($size == 0) {
+                                } else {
+
+                                    if ($size < 10) {
+                                        $cor_barra = "bg-barra-1";
+                                    } else if ($size < 25) {
+                                        $cor_barra = "bg-barra-2";
+                                    } else if ($size < 50) {
+                                        $cor_barra = "bg-barra-3";
+                                    } else if ($size < 75) {
+                                        $cor_barra = "bg-barra-4";
+                                    } else {
+                                        $cor_barra = "bg-barra-5";
+                                    }
+                                    ?>
+                                    <div class="container-fluid py-3">
+                                        <h3>Lotação</h3>
+                                        <div class="col-lg-5">
+                                            <div class="row justify-content-end">
+                                                <div class="col-auto">
+                                                    <h6><?= $size ?>%</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class='progress'>
+                                            <div class='progress-bar progress-bar <?= $cor_barra ?>'
+                                                 role='progressbar'
+                                                 style='width: <?= $size ?>%' aria-valuenow='<?= $size ?>'
+                                                 aria-valuemin='0'
+                                                 aria-valuemax='100'></div>
+                                        </div>
+
+                                    </div>
+                                    <?php
+                                }
+                            }
+                        } else {
+                            echo "Error: " . mysqli_error($link);
+                        }
+                        ?>
+
                         <div class="container-fluid py-4 mb-5">
                             <h3>Ficha Técnica</h3>
                             <p class="ficha"><?= $ficha_tecnica ?></p>
