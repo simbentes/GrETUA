@@ -11,7 +11,6 @@ session_start();
 <body>
 
 <?php include_once "components/cp_pub.php" ?>
-
 <?php include_once "components/cp_tab_bar.php" ?>
 
 <!-- Javascript -->

@@ -48,12 +48,11 @@ WHERE id_publicacoes = ?";
                         endif;
                         ?>
                         <input id="likeinput-<?= $id_pub ?>" value="<?= $id_pub ?>" class="btn-vou"
-                               type="checkbox" onclick="likePub(this.checked, this.value)" <?php if ($gosto == 1) {
+                               type="checkbox" onclick="likePub(this.checked, this.value)" <?php if (isset($gosto)) {
                             echo "checked";
                         } ?>> <label
-
                                 id="like<?= $id_pub ?>" class="btn btn-like " for="likeinput-<?= $id_pub ?>">
-                            <?php if ($gosto == 1): ?>
+                            <?php if (isset($gosto)) : ?>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                      class="bi bi-heart-fill" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
@@ -69,7 +68,7 @@ WHERE id_publicacoes = ?";
                         </label>
                         <div class="card-body">
                             <div class="row justify-content-between align-items-center">
-                                <div class="col-auto <?= $ps5 ?>"><a href="perfil.php?id=22">
+                                <div class="col-auto <?= $ps5 ?>"><a href="perfil.php?id=<?= $id_user ?>">
                                         <div class="infouser"><img
                                                     src="img/users/<?= $fperfil_user ?>"
                                                     class="userbubble"> <span
