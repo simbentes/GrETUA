@@ -36,12 +36,8 @@ body {
 }
 
 .pagpub-text {
-    position: absolute;
-    top: calc(100vw / 1.6);
     border-radius: 0 0 8px 8px;
     background-color: var(--pub-cor);
-    left: 0;
-    right: 0;
 }
 
 .dropdown-menu {
@@ -327,12 +323,25 @@ small, .small {
     color: #FFF;
     font-size: 14px;
     border-radius: 50px;
+    padding-right: 22px;
     border: 0;
     box-shadow: rgba(0, 0, 0, 0.16) 0 2px 8px;
 }
 
-.comentarform {
-    width: 100%;
+.comentarform button {
+    position: absolute;
+    right: 3px;
+    top: 6px;
+    color: white;
+    background-color: transparent;
+    border: 0;
+    -webkit-appearance: none;
+}
+
+.comentarform button i {
+    color: var(--cor-tema);
+    font-size: 26px;
+    line-height: 26px;
 }
 
 .confirmar-icon {
@@ -362,6 +371,31 @@ small, .small {
     border-radius: 8px;
     background-color: var(--pub-cor);
     width: 100% !important;
+}
+
+.pagpub {
+    border-radius: 0 0 8px 8px;
+    background-color: var(--pub-cor);
+    width: 100% !important;
+}
+
+.pagpub a {
+    color: white;
+}
+
+.pagpub a:hover {
+    color: white;
+}
+
+.pub-img-top {
+    border-radius: 0 0 8px 8px;
+    height: 264px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.pagpub .btn-like {
+    top: 210px;
 }
 
 .uploadfotoperfil {
