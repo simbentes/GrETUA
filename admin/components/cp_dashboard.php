@@ -28,7 +28,7 @@ $stmt = mysqli_stmt_init($link);
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                 <?php
-                                $query = "SELECT COUNT(id_utilizadores) FROM `utilizadores` WHERE ativo = 1;";
+                                $query = "SELECT COUNT(*) FROM `utilizadores` WHERE ativo = 1;";
 
                                 if (mysqli_stmt_prepare($stmt, $query)) {
 
@@ -44,7 +44,6 @@ $stmt = mysqli_stmt_init($link);
                                     echo "Error: " . mysqli_error($link);
                                 }
                                 ?>
-
                             </div>
                         </div>
                         <div class="col-auto">
@@ -61,13 +60,29 @@ $stmt = mysqli_stmt_init($link);
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings
-                                (Monthly)
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Publicações</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                <?php
+                                $query = "SELECT COUNT(*) FROM `publicacoes`;";
+
+                                if (mysqli_stmt_prepare($stmt, $query)) {
+
+                                    mysqli_stmt_execute($stmt);
+
+                                    mysqli_stmt_bind_result($stmt, $countpubs);
+
+                                    if (mysqli_stmt_fetch($stmt)) {
+                                        /* fetch values */
+                                        echo $countpubs;
+                                    }
+                                } else {
+                                    echo "Error: " . mysqli_error($link);
+                                }
+                                ?>
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            <i class="far fa-newspaper fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -80,13 +95,32 @@ $stmt = mysqli_stmt_init($link);
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Earnings
-                                (Annual)
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Reservas Ativas</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                <?php
+                                $query = "SELECT COUNT(*) FROM `reservas`
+INNER JOIN data_eventos
+on id_data_eventos = reservas.ref_id_data_eventos
+INNER JOIN eventos
+ON eventos.id_eventos = data_eventos.ref_id_eventos
+WHERE data_eventos.data > NOW();";
+
+                                if (mysqli_stmt_prepare($stmt, $query)) {
+                                    mysqli_stmt_execute($stmt);
+                                    mysqli_stmt_bind_result($stmt, $countreservas);
+
+                                    if (mysqli_stmt_fetch($stmt)) {
+                                        /* fetch values */
+                                        echo $countreservas;
+                                    }
+                                } else {
+                                    echo "Error: " . mysqli_error($link);
+                                }
+                                ?>
                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                            <i class="fas fa-book fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -99,18 +133,54 @@ $stmt = mysqli_stmt_init($link);
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks</div>
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Eventos (este mês)</div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                        <?php
+                                        $query = "SELECT COUNT(*) FROM `data_eventos` WHERE MONTH(data) = MONTH(NOW()) AND YEAR(data) = YEAR(NOW());";
+
+                                        if (mysqli_stmt_prepare($stmt, $query)) {
+                                            mysqli_stmt_execute($stmt);
+                                            mysqli_stmt_bind_result($stmt, $counteventos);
+
+                                            if (mysqli_stmt_fetch($stmt)) {
+                                                echo $counteventos;
+                                            } else {
+                                                echo "Error: " . mysqli_stmt_error($stmt);
+                                            }
+                                        } else {
+                                            echo "Error: " . mysqli_error($link);
+                                        }
+
+                                        $query = "SELECT COUNT(*) FROM `data_eventos` WHERE MONTH(data) = MONTH(NOW()) AND YEAR(data) = YEAR(NOW()) AND data < NOW();";
+
+                                        if (mysqli_stmt_prepare($stmt, $query)) {
+                                            mysqli_stmt_execute($stmt);
+                                            mysqli_stmt_bind_result($stmt, $counteventospassados);
+
+                                            if (!mysqli_stmt_fetch($stmt)) {
+                                                echo "Error: " . mysqli_stmt_error($stmt);
+                                            }
+                                        } else {
+                                            echo "Error: " . mysqli_error($link);
+                                        }
+
+                                        $eventopassadospercentagem = $counteventospassados / $counteventos * 100
+
+                                        ?>
+                                    </div>
                                 </div>
                                 <div class="col">
                                     <div class="progress progress-sm mr-2">
                                         <div class="progress-bar bg-info" role="progressbar"
-                                             style="width: 50%" aria-valuenow="50" aria-valuemin="0"
+                                             style="width: <?= $eventopassadospercentagem ?>%"
+                                             aria-valuenow="<?= $eventopassadospercentagem ?>"
+                                             aria-valuemin="0"
                                              aria-valuemax="100"></div>
                                     </div>
                                 </div>
+                                <small><?= $eventopassadospercentagem ?>%</small>
                             </div>
                         </div>
                         <div class="col-auto">

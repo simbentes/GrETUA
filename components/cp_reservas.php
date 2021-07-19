@@ -27,7 +27,7 @@ INNER JOIN artistas
 ON artistas.id_artistas = eventos.ref_id_artistas
 INNER JOIN utilizadores
 ON utilizadores.id_utilizadores = reservas.ref_id_utilizadores
-WHERE (fotos_eventos.foto IS NUll OR fotos_eventos.capa = 1) AND id_utilizadores = " . $_SESSION["id_user"] . "
+WHERE (fotos_eventos.foto IS NUll OR fotos_eventos.capa = 1) AND id_utilizadores = " . $_SESSION["id_user"] . " AND data_eventos.data > NOW()
 ORDER BY reservas.timestamp DESC";
 
             if (mysqli_stmt_prepare($stmt, $query)) {
