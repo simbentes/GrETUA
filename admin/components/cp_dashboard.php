@@ -133,7 +133,9 @@ WHERE data_eventos.data > NOW();";
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Eventos (este mês)</div>
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Datas eventos (este
+                                mês)
+                            </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
@@ -165,13 +167,14 @@ WHERE data_eventos.data > NOW();";
                                         } else {
                                             echo "Error: " . mysqli_error($link);
                                         }
-
                                         $eventopassadospercentagem = $counteventospassados / $counteventos * 100
-
                                         ?>
                                     </div>
                                 </div>
                                 <div class="col">
+                                    <div class="small text-right mt-1 mr-1 pr-1"><?= $counteventospassados . " terminados (" . round($eventopassadospercentagem); ?>
+                                        %)
+                                    </div>
                                     <div class="progress progress-sm mr-2">
                                         <div class="progress-bar bg-info" role="progressbar"
                                              style="width: <?= $eventopassadospercentagem ?>%"
@@ -180,7 +183,6 @@ WHERE data_eventos.data > NOW();";
                                              aria-valuemax="100"></div>
                                     </div>
                                 </div>
-                                <small><?= $eventopassadospercentagem ?>%</small>
                             </div>
                         </div>
                         <div class="col-auto">
@@ -218,7 +220,7 @@ WHERE data_eventos.data > NOW();";
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Interações (este mês)</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -250,55 +252,54 @@ WHERE data_eventos.data > NOW();";
             <!-- Color System -->
             <div class="row">
                 <div class="col-lg-6 mb-4">
-                    <div class="card bg-primary text-white shadow">
+                    <div class="card text-white shadow" style="background-color: #007AFF">
                         <div class="card-body">
-                            Primary
-                            <div class="text-white-50 small">#4e73df</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-success text-white shadow">
-                        <div class="card-body">
-                            Success
-                            <div class="text-white-50 small">#1cc88a</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-info text-white shadow">
-                        <div class="card-body">
-                            Info
-                            <div class="text-white-50 small">#36b9cc</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-warning text-white shadow">
-                        <div class="card-body">
-                            Warning
-                            <div class="text-white-50 small">#f6c23e</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 mb-4">
-                    <div class="card bg-danger text-white shadow">
-                        <div class="card-body">
-                            Danger
-                            <div class="text-white-50 small">#e74a3b</div>
+                            Tema
+                            <div class="text-white-50 small">#007AFF</div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6 mb-4">
                     <div class="card bg-secondary text-white shadow">
                         <div class="card-body">
-                            Secondary
+                            Secundária
                             <div class="text-white-50 small">#858796</div>
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card bg-success text-white shadow">
+                        <div class="card-body">
+                            Sucesso
+                            <div class="text-white-50 small">#F6C23E</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card text-white shadow" style="background-color: #2d2d2f">
+                        <div class="card-body">
+                            Cards
+                            <div class="text-white-50 small">#2D2D2F</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card bg-danger text-white shadow">
+                        <div class="card-body">
+                            Cancelar/Eliminar
+                            <div class="text-white-50 small">#E74A3B</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mb-4">
+                    <div class="card text-white shadow" style="background-color: #1c1c1e">
+                        <div class="card-body">
+                            Menu
+                            <div class="text-white-50 small">#1C1C1E</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
         </div>
 
         <div class="col-lg-6 mb-4">
@@ -306,18 +307,40 @@ WHERE data_eventos.data > NOW();";
             <!-- Illustrations -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Utilizadores mais ativos</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Próximos eventos</h6>
                 </div>
                 <div class="card-body">
-                    <div class="text-center">
-                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                             src="img/undraw_posting_photo.svg" alt="">
-                    </div>
-                    <p>Add some quality, svg illustrations to your project courtesy beautiful svg images that you can
-                        use completely
-                        free and without attribution!</p>
-                    <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
-                        unDraw &rarr;</a>
+                    <?php
+                    $query = "SELECT id_eventos, DATE_FORMAT(data, '%d-%m-%Y %Hh%i'), nome FROM `data_eventos`
+INNER JOIN eventos
+ON data_eventos.ref_id_eventos = id_eventos
+WHERE data > NOW()
+ORDER BY `data_eventos`.`data`
+LIMIT 3;";
+
+                    if (mysqli_stmt_prepare($stmt, $query)) {
+                        mysqli_stmt_execute($stmt);
+                        mysqli_stmt_bind_result($stmt, $id_eventos, $data, $nome);
+
+                        while (mysqli_stmt_fetch($stmt)) {
+                            ?>
+                            <div class="row align-items-center">
+                                <div class="col-sm">
+                                    <h5 class="font-weight-bold mb-0"><?= $data ?></h5>
+                                    <h3><?= $nome ?></h3>
+                                </div>
+                                <div class="col-sm-auto">
+                                    <a href="../evento.php?evento=<?= $id_eventos ?>" class="font-weight-bold">Ver na
+                                        app<i class="fas fa-chevron-right pl-1"></i></a>
+                                </div>
+                            </div>
+                            <hr>
+                            <?php
+                        }
+                    } else {
+                        echo "Error: " . mysqli_error($link);
+                    }
+                    ?>
                 </div>
             </div>
 

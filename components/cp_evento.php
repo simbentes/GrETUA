@@ -195,7 +195,8 @@ WHERE eventos.ref_id_artistas = ?;";
                                             class="d-block">Guardar</span></label>
                             </div>
                             <div class="col-12 pt-2">
-                                <button class="btn btn-grande w-100">Adquirir Bilhete</button>
+                                <a href="comprar.php?evento=<?= $eventoid ?>" class="btn btn-grande w-100">Adquirir
+                                    Bilhete</a>
                             </div>
                         </div>
                         <div class="row py-3">
@@ -268,7 +269,7 @@ WHERE id_data_eventos = ?";
                                         <div class="col-lg-5">
                                             <div class="row justify-content-end">
                                                 <div class="col-auto">
-                                                    <h6><?= $size ?>%</h6>
+                                                    <h6><?= round($size) ?>%</h6>
                                                 </div>
                                             </div>
                                         </div>

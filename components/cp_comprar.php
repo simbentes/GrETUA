@@ -10,7 +10,7 @@ else:
                             class="bi bi-chevron-left p-1 mb-0 h5"></i></a>
             </div>
             <div class="col-auto ps-3">
-                <h3 class="mb-0">Reservar</h3>
+                <h3 class="mb-0">Adquirir Bilhetes</h3>
             </div>
         </div>
     </section>
@@ -53,14 +53,15 @@ WHERE ref_id_eventos = ? AND id_data_eventos = ?";
                             <h3 class="mt-5"><?= $evento_nome ?></h3>
                             <p><?= $data . " " . $hora ?></p>
                         </div>
-                        <form action="scripts/sc_reservar.php" method="post" class="px-0 pt-3" autocomplete="off">
+                        <form action="scripts/sc_comprar.php" method="POST" id="comprar-form" class="px-0 pt-3"
+                              autocomplete="off">
                             <div class="mb-3">
                                 <label for="nreservas" class="mb-1">Em nome de</label>
                                 <div class="h0"><?= $_SESSION["nome"] ?></div>
                             </div>
                             <div class="row mb-4 align-items-center">
                                 <div class="col mb-0 pe-1">
-                                    <label for="nreservas" class="mb-1">Número de reservas</label>
+                                    <label for="nreservas" class="mb-1">Número de bilhetes</label>
                                 </div>
                                 <div class="col-5 ps-1">
                                     <input type="number" id="nreservas" class="form-control forminfo numberinput"
@@ -70,7 +71,10 @@ WHERE ref_id_eventos = ? AND id_data_eventos = ?";
                                 <input type="hidden" name="data_evento" value="<?= $_GET["data"] ?>">
                             </div>
                             <div>
-                                <button type="submit" class="btn btn-grande w-100">Reservar</button>
+
+                                <button type="submit" id="comprar-btn" class="btn btn-grande w-100">
+                                    Comprar
+                                </button>
                             </div>
                         </form>
 
@@ -110,7 +114,7 @@ WHERE ref_id_eventos = ? AND id_data_eventos = ?";
                             header("Location: eventos.php");
                         } elseif (mysqli_stmt_num_rows($stmt) == 1) {
                             mysqli_stmt_fetch($stmt);
-                            header("Location: reservar.php?evento=" . $eventoid . "&data=" . $id_data);
+                            header("Location: comprar.php?evento=" . $eventoid . "&data=" . $id_data);
                         } else {
                             while (mysqli_stmt_fetch($stmt)) {
                                 ?>
@@ -121,9 +125,9 @@ WHERE ref_id_eventos = ? AND id_data_eventos = ?";
                                             <?= $data . "<span class='ps-4'>" . $hora . "</span>" ?>
                                         </div>
                                         <div class="col-auto pe-0">
-                                            <a href="reservar.php?evento=<?= $eventoid ?>&data=<?= $id_data ?>"
+                                            <a href="comprar.php?evento=<?= $eventoid ?>&data=<?= $id_data ?>"
                                                class="btn btn-azul-reserva w-100"><i
-                                                        class="bi bi-pen d-block"></i></a>
+                                                        class="bi bi-cart d-block"></i></a>
                                         </div>
                                     </div>
                                 </div>

@@ -3,8 +3,6 @@
 }
 
 
-
-
 textarea {
     resize: none;
 }
@@ -51,6 +49,7 @@ textarea {
     line-height: 1.5;
     border-radius: .2rem;
 }
+
 .buttons-pdf:hover {
     background-color: #3f58ac;
     border-color: #405bad;
