@@ -17,6 +17,7 @@
                     <tr class="rowtr">
                         <th>Reserva nº</th>
                         <th>Reservado por</th>
+                        <th>Nº entradas</th>
                         <th>Evento</th>
                         <th>Data</th>
                     </tr>
@@ -31,22 +32,29 @@
                     $stmt = mysqli_stmt_init($link);
 
                     //query
-                    $query = "SELECT id_utilizadores, CONCAT(utilizadores.nome, ' ',apelido), ativo, email, timestamp, cargo.nome
-FROM `utilizadores`
-LEFT JOIN cargo
-ON cargo.id_cargo = utilizadores.ref_id_cargo;";
+                    $query = "SELECT id_reservas, CONCAT(utilizadores.nome, ' ',apelido), eventos.nome, data_eventos.data, reservas.quantidade
+FROM `reservas`
+INNER JOIN utilizadores
+ON id_utilizadores = reservas.ref_id_utilizadores
+INNER JOIN data_eventos
+ON id_data_eventos = reservas.ref_id_data_eventos
+INNER JOIN eventos
+ON eventos.id_eventos = data_eventos.ref_id_eventos
+WHERE data_eventos.data > NOW()
+ORDER BY data_eventos.data;";
 
                     if (mysqli_stmt_prepare($stmt, $query)) {
                         mysqli_stmt_execute($stmt);
-                        mysqli_stmt_bind_result($stmt, $id_users, $nome, $ativo, $email, $data_criacao, $cargo);
+                        mysqli_stmt_bind_result($stmt, $id_reservas, $nome_user, $nome_evento, $data_evento, $quantidade);
 
                         while (mysqli_stmt_fetch($stmt)) { ?>
 
                             <tr>
-                                <td><?= $id_users ?></td>
-                                <td><?= $nome; ?></td>
-                                <td><?= $email ?></td>
-                                <td><?= $data_criacao ?></td>
+                                <td><?= $id_reservas ?></td>
+                                <td><?= $nome_user ?></td>
+                                <td><?= $quantidade ?></td>
+                                <td><?= $nome_evento ?></td>
+                                <td><?= $data_evento ?></td>
                             </tr>
                             <?php
                         }

@@ -9,7 +9,7 @@ session_start();
 
     <?php include_once "helpers/help_meta.php"; ?>
 
-    <title>GrETUA Admin - Dashboard</title>
+    <title>GrETUA Admin - Utilizadores</title>
 
     <?php include_once "helpers/help_link.php"; ?>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.25/b-1.7.1/b-html5-1.7.1/datatables.min.css"/>

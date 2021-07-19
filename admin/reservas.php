@@ -11,7 +11,7 @@ session_start();
     include_once "helpers/help_meta.php";
     ?>
 
-    <title>GrETUA Admin - Dashboard</title>
+    <title>GrETUA Admin - Reservas</title>
 
     <?php
     include_once "helpers/help_link.php";
