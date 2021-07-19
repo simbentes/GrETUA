@@ -21,7 +21,7 @@ if (!empty($_POST["nomeevento"]) && !empty($_POST["artista"]) && !empty($_POST["
         if (!empty($_POST["nomeartista"]) && !empty($_POST["artistadesc"]) && !empty($_POST["paisartista"])) {
 
 
-            echo "!!!!!!!!!!!" . $_POST["paisartista"] . "!!!!!!!!!!!!!";
+
             //se não estão preenchidos, ficam a null
             !empty($_POST["instagram"]) ? $instagram = $_POST["instagram"] : $instagram = null;
             !empty($_POST["facebook"]) ? $facebook = $_POST["facebook"] : $facebook = null;
