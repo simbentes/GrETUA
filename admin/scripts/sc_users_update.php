@@ -2,7 +2,6 @@
 session_start();
 require_once "../connections/connection.php";
 
-
 if (!empty($_POST["username"]) && !empty($_POST["email"])) {
     $id_user = $_SESSION["id_user_edit"];
     unset($_SESSION["id_user_edit"]);
@@ -27,9 +26,10 @@ if (!empty($_POST["username"]) && !empty($_POST["email"])) {
         mysqli_stmt_bind_param($stmt, 'ssii', $username, $email, $ativo, $id_cargo);
 
         if (mysqli_stmt_execute($stmt)) {
-            header("Location: ../users_edit.php?msg=1");
+            header("Location: ../users_edit.php?id=" . $id_user . "&msg=0");
         } else {
             echo "Error:" . mysqli_stmt_error($stmt);
+            header("Location: ../users_edit.php?id=" . $id_user . "&msg=1");
         }
     } else {
         echo "Error:" . mysqli_error($link);

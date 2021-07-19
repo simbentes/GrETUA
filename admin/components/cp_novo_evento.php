@@ -54,7 +54,8 @@ $stmt = mysqli_stmt_init($link);
             está a criar uma memória.</p>
 
         <!-- DataTales Example -->
-        <form action="scripts/sc_criar_evento.php" method="post" enctype="multipart/form-data" class="mb-4" autocomplete="off">
+        <form action="scripts/sc_criar_evento.php" method="post" enctype="multipart/form-data" class="mb-4"
+              autocomplete="off">
             <div class="row justify-content-center">
 
                 <div id="container-evento" class="col-lg-10">
@@ -155,7 +156,8 @@ $stmt = mysqli_stmt_init($link);
                                     </div>
                                     <div class="form-group col-lg-2">
                                         <label for="classetaria">C/ Etária</label>
-                                        <input type="number" name="cetaria" class="form-control" id="classetaria" min="0"
+                                        <input type="number" name="cetaria" class="form-control" id="classetaria"
+                                               min="0"
                                                max="10000" required>
                                     </div>
                                     <div class="form-group col-md-12 col-lg-4">
@@ -201,7 +203,8 @@ $stmt = mysqli_stmt_init($link);
                                         <select id="fotocapa" name="fotocapa" class="form-control" required></select>
                                     </div>
                                     <div class="d-flex justify-content-end">
-                                        <button type="submit" class="btn btn-primary py-2 px-4">Publicar</button>
+                                        <button type="submit" class="btn btn-info">Submeter alterações
+                                        </button>
                                     </div>
                                 </div>
                             </div>

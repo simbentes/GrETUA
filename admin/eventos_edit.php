@@ -1,3 +1,7 @@
+<?php
+ob_start();
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -60,6 +64,7 @@
 <?php
 include_once "helpers/help_js.php";
 ?>
+<script src="js/evento_edit.js"></script>
 
 </body>
 

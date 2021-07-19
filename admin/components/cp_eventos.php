@@ -1,5 +1,26 @@
 <div class="container-fluid">
+    <?php
+    if (isset($_GET["msg"])) {
+        $msg_show = true;
+        switch ($_GET["msg"]) {
+            case 0:
+                $message = "Evento eliminado.";
+                $class = "alert-warning";
+                break;
+            default:
+                $msg_show = false;
+        }
 
+        if ($msg_show) {
+            echo "<div class=\"alert $class alert-dismissible fade show\" role=\"alert\">
+" . $message . "
+  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+    <span aria-hidden=\"true\">&times;</span>
+  </button>
+</div>";
+        }
+    }
+    ?>
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between">
         <h1 class="h3 mb-0 text-gray-800">Eventos/Memórias registados</h1>
@@ -40,7 +61,7 @@ ORDER BY `data_eventos`.`data`  DESC";
 
                     if (mysqli_stmt_prepare($stmt, $query)) {
                         mysqli_stmt_execute($stmt);
-                        mysqli_stmt_bind_result($stmt, $nome, $id_evento, $data, $desc,$categoria, $data_criacao);
+                        mysqli_stmt_bind_result($stmt, $nome, $id_evento, $data, $desc, $categoria, $data_criacao);
 
                         while (mysqli_stmt_fetch($stmt)) { ?>
 

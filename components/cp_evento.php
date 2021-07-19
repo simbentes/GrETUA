@@ -95,7 +95,7 @@ GROUP BY data_eventos.ref_id_eventos)";
                                                 $min_data_str = str_replace($meses, $str_meses, $min_data);
                                                 $max_data_str = str_replace($meses, $str_meses, $max_data);
 
-                                                if ($min_data == $max_data) {
+                                                if ($min_data == $max_data && $min_ano == $max_ano) {
                                                     echo $min_data_str;
                                                 } else {
                                                     if ($min_ano == $max_ano) {

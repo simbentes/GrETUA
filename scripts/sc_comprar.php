@@ -16,7 +16,7 @@ if (!empty($_POST['numreservas']) && !empty($_POST['data_evento']) && isset($_SE
 
     header('Content-Type: application/json');
 
-    $YOUR_DOMAIN = 'http://localhost:4242/gretua';
+    $YOUR_DOMAIN = 'https://labmm.clients.ua.pt/deca_20L4/deca_20L4_33/';
 
     $checkout_session = \Stripe\Checkout\Session::create([
         'customer_email' => 'jose@asd.com',
@@ -27,14 +27,15 @@ if (!empty($_POST['numreservas']) && !empty($_POST['data_evento']) && isset($_SE
                 'unit_amount' => 2000,
                 'product_data' => [
                     'name' => $id_data_evento,
-                    'images' => ["https://i.imgur.com/EHyR2nP.png"],
+                    'description' => $descricao,
+
                 ],
             ],
             'quantity' => 1,
         ]],
         'mode' => 'payment',
         'success_url' => $YOUR_DOMAIN . '/success.html',
-        'cancel_url' => $YOUR_DOMAIN . '/cancel.html',
+        'cancel_url' => $YOUR_DOMAIN . '/eventos.php',
     ]);
 
     header("HTTP/1.1 303 See Other");
