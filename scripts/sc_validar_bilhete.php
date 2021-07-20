@@ -1,6 +1,6 @@
 <?php
 
-if ($_GET["token"]) {
-    echo $_GET["token"];
+if ($_GET["hash"]) {
+    echo $_GET["hash"];
     die();
 }

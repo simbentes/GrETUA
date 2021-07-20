@@ -73,6 +73,7 @@ body {
     padding: 15px 20px;
 }
 
+
 .pt-6 {
     padding-top: 8rem !important;
 }
@@ -702,6 +703,17 @@ small, .small {
 }
 
 
+.btn-add {
+    background-color: var(--menu-cor);
+    padding: 6px 0;
+}
+
+.btn-add:hover {
+    background-color: var(--menu-cor);
+    padding: 6px 0;
+}
+
+
 .btn-seguir {
     height: 40px;
     font-size: 13.5px;
@@ -1302,7 +1314,7 @@ a:hover {
 
 
 .swiper-pagination {
-    bottom: 110px;
+    bottom: 70px;
     left: 0;
     width: 100%;
 }
@@ -1313,30 +1325,61 @@ a:hover {
 }
 
 .bilhetes {
+    color: #1c1c1e;
     position: relative;
     width: 90vw;
-    height: calc(90vw * 1.7);
-    font-size: 12px;
+    height: calc(90vw * 1.55);
     text-align: left;
     border-radius: 16px;
+    padding: 10px;
     text-decoration: none;
     background-color: #fad14b;
     -webkit-box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
     box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
 }
 
+.bilhetes .h5 {
+    overflow: hidden;
+    max-height: 40px;
+    line-height: 20px;
+    color: #1c294e;
+    font-size: 1.15rem;
+}
+
+.mb-50px {
+    margin-bottom: 50px;
+}
+
+.center-pagina {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+
+
+
 
 .qrcode img {
     border: 10px solid white;
-    border-radius: 8px;
-    margin-top: 240px;
-    margin-left: auto;
-    margin-right: auto;
+    border-radius: 10px;
+    margin: auto;
+    width: 73%;
 }
 
 
 .desc-bilhete {
     left: 0;
+}
+
+
+.fw-600 {
+    font-weight: 700;
 }
 
 

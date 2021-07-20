@@ -6,7 +6,7 @@ session_start();
 <head>
     <?php include_once "helpers/help_meta.php" ?>
     <?php include_once "helpers/help_link.php" ?>
-    <script src="jsQR.js"></script>
+    <script src="js/jsQR.js"></script>
     <title>GrETUA</title>
     <style>
         body {
@@ -47,7 +47,6 @@ session_start();
         }
     </style>
 </head>
-
 
 <body>
 <?php include_once "components/cp_validar_bilhetes.php" ?>
@@ -101,7 +100,6 @@ session_start();
                 drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
                 outputMessage.hidden = true;
                 outputData.parentElement.hidden = false;
-                outputData.innerText = code.data;
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function () {
                     pronto = false;

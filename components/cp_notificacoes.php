@@ -42,7 +42,7 @@ WHERE quempublica.id_utilizadores = " . $_SESSION["id_user"] . " AND quemgostou.
                         mysqli_stmt_store_result($stmt);
 
                         if (mysqli_stmt_num_rows($stmt) == 0) {
-                            echo "<div class='col-12 py-5 mb-5'><h1>Não tens notificações.</h1></div>";
+                            echo "<div class='text-center center-pagina'><h1 class='mb-50px'>Não tens notificações.</h1></div>";
                         } else {
                             while (mysqli_stmt_fetch($stmt)) {
 

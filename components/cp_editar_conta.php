@@ -35,12 +35,8 @@ WHERE id_utilizadores = " . $_SESSION["id_user"];
                         $message = "Descrição muito longa.";
                         $class = "alert-danger";
                         break;
-                    case 0:
-                        $message = "Alteraasdações efetuadas.";
-                        $class = "alert-zsuccess";
-                        break;
                     case 1:
-                        $message = "Estão efetuadas.";
+                        $message = "Efetuadas.";
                         $class = "alert-danger";
                         break;
                     default:

@@ -201,14 +201,13 @@ WHERE eventos.ref_id_artistas = ?;";
                         </div>
                         <div class="row py-3">
                             <div class="col text-cinza text-center">
-                                <strong>Preço: <?php if ($preco_reserva > 0) {
-                                        echo $preco_reserva . '€';
-                                    } else {
-                                        echo "Grátis";
-                                    }
-                                    if ($preco_porta > 0) {
-                                        echo ' | ' . $preco_porta . '€';
-                                    } ?></strong>
+                                <?php
+                                if ($preco_reserva != 0 && $preco_porta != 0) {
+                                    echo '<strong>Reserva: ' . $preco_reserva . '€ | À porta: ' . $preco_porta . '€</strong>';
+                                } else {
+                                    echo "Gratuito";
+                                }; ?>
+
                             </div>
                         </div>
 
@@ -227,7 +226,7 @@ WHERE eventos.ref_id_artistas = ?;";
                                 mysqli_stmt_fetch($stmt);
                                 //após verificar se existe apenas uma data, vamos desenhar uma barra de lotação
 
-                                $query = "SELECT eventos.lotacao, 1 - (eventos.lotacao - SUM(reservas.quantidade)) / eventos.lotacao
+                                $query = "SELECT eventos.lotacao, SUM(reservas.quantidade)
 FROM `reservas`
 INNER JOIN data_eventos
 ON id_data_eventos = reservas.ref_id_data_eventos
@@ -238,16 +237,42 @@ WHERE id_data_eventos = ?";
                                 if (mysqli_stmt_prepare($stmt, $query)) {
                                     mysqli_stmt_bind_param($stmt, "i", $id_data_eventos);
                                     mysqli_stmt_execute($stmt);
-                                    mysqli_stmt_bind_result($stmt, $lotacao, $percentagem_ocupacao);
+                                    mysqli_stmt_bind_result($stmt, $lotacao, $ocupacao_reservas);
 
                                     if (!mysqli_stmt_fetch($stmt)) {
                                         echo "Error: " . mysqli_stmt_error($stmt);
+                                    } else {
+                                        $query = "SELECT SUM(compras.quantidade)
+FROM `compras`
+INNER JOIN data_eventos
+ON id_data_eventos = compras.ref_id_data_eventos
+INNER JOIN eventos
+ON eventos.id_eventos = data_eventos.ref_id_eventos
+WHERE id_data_eventos = ?";
+
+                                        if (mysqli_stmt_prepare($stmt, $query)) {
+                                            mysqli_stmt_bind_param($stmt, "i", $id_data_eventos);
+                                            mysqli_stmt_execute($stmt);
+                                            mysqli_stmt_bind_result($stmt, $ocupacao_compras);
+
+                                            if (!mysqli_stmt_fetch($stmt)) {
+                                                echo "Error: " . mysqli_stmt_error($stmt);
+                                            } else {
+                                                if (isset($ocupacao_reservas) || isset($ocupacao_compras)) {
+                                                    $ocupacao = 1 - ($lotacao - ($ocupacao_reservas + $ocupacao_compras)) / $lotacao;
+                                                } else {
+                                                    $ocupacao = 0;
+                                                }
+                                            }
+                                        } else {
+                                            echo "Error: " . mysqli_error($link);
+                                        }
                                     }
                                 } else {
                                     echo "Error: " . mysqli_error($link);
                                 }
 
-                                $size = 100 * $percentagem_ocupacao;
+                                $size = 100 * $ocupacao;
 
                                 if ($size == 0) {
                                 } else {

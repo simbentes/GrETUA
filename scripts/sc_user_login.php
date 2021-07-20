@@ -9,7 +9,7 @@ if (!empty($_POST["email"]) && !empty($_POST["password"])) {
 
     $stmt = mysqli_stmt_init($link);
 
-    $query = "SELECT id_utilizadores, password, utilizadores.nome, apelido, foto_perfil, id_cargo FROM utilizadores 
+    $query = "SELECT id_utilizadores, password, utilizadores.nome,  apelido, email, foto_perfil, id_cargo FROM utilizadores 
 LEFT JOIN cargo
 ON cargo.id_cargo = utilizadores.ref_id_cargo
 WHERE email = ? OR username = ?;";
@@ -21,7 +21,7 @@ WHERE email = ? OR username = ?;";
 
         if (mysqli_stmt_execute($stmt)) {
 
-            mysqli_stmt_bind_result($stmt, $userid, $password_hash, $nome, $apelido, $fotoperfil, $cargo);
+            mysqli_stmt_bind_result($stmt, $userid, $password_hash, $nome, $apelido, $email_user, $fotoperfil, $cargo);
 
             if (mysqli_stmt_fetch($stmt)) {
 
@@ -31,7 +31,7 @@ WHERE email = ? OR username = ?;";
                     $_SESSION["id_user"] = $userid;
                     $_SESSION["nome"] = $nome . " " . $apelido;
                     $_SESSION["fperfil"] = $fotoperfil;
-                    $_SESSION["email"] = $email;
+                    $_SESSION["email"] = $email_user;
                     $_SESSION["nomeproprio"] = $nome;
                     $_SESSION["cargo"] = $cargo;
 
