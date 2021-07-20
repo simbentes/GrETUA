@@ -31,7 +31,7 @@ if (isset($_SESSION["data_evento_vendida"]) && isset($_SESSION["id_user"])) {
 
                 foreach ($nomebilhetes as $nome) {
                     //vamos gerar um numero para cada bilhete criado, exclusivo
-                    $numero_bilhete = bin2hex(random_bytes(64));
+                    $numero_bilhete = bin2hex(random_bytes(116));
                     // comprar
                     if (!mysqli_stmt_execute($stmt)) {
                         echo "Error: " . mysqli_stmt_error($stmt);
