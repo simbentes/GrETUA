@@ -1362,7 +1362,17 @@ a:hover {
 }
 
 
+.caixavalidar {
+    background-color: var(--menu-cor);
+    height: 250px;
+    border-radius: 15px 15px 0 0;
+}
 
+.resposta-val {
+    text-align: center;
+    font-weight: 700;
+    color: #62e262;
+}
 
 
 .qrcode img {

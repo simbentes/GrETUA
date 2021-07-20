@@ -18,6 +18,7 @@ xmlhttp.onreadystatechange = function () {
     }
 };
 
+
 xmlhttp.open("GET", "scripts/sc_hash_bilhetes.php", true);
 xmlhttp.send();
 

@@ -10,16 +10,9 @@ session_start();
     <title>GrETUA</title>
     <style>
         body {
-            color: #333;
             max-width: 640px;
             margin: 0 auto;
             position: relative;
-        }
-
-        h1 {
-            color: white;
-            margin: 10px 0;
-            font-size: 40px;
         }
 
         #loadingMessage {
@@ -31,19 +24,6 @@ session_start();
 
         #canvas {
             width: 100%;
-        }
-
-        #output {
-            color: white;
-            margin-top: 20px;
-            background: var(--pub-cor);
-            padding: 10px;
-            padding-bottom: 0;
-        }
-
-        #output div {
-            padding-bottom: 10px;
-            word-wrap: break-word;
         }
     </style>
 </head>
@@ -78,6 +58,7 @@ session_start();
     });
 
     var pronto = true;
+    var sucessoaudio = new Audio("js/validado.mp3");
 
     function tick() {
         loadingMessage.innerText = "⌛ Loading video..."
@@ -98,23 +79,28 @@ session_start();
                 drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58");
                 drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
                 drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
-                outputMessage.hidden = true;
-                outputData.parentElement.hidden = false;
                 var xmlhttp = new XMLHttpRequest();
                 xmlhttp.onreadystatechange = function () {
                     pronto = false;
                     if (this.readyState == 4 && this.status == 200) {
-                        alert(this.responseText);
+                        if (this.responseText == "valido") {
+                            sucessoaudio.load();
+                            sucessoaudio.play();
+                            document.getElementById("resposta-validacao").innerHTML = '<div class="text-success"><i class="bi bi-check-circle pe-2"></i>Bilhete válido</div>';
+                        } else if (this.responseText == "erro") {
+                            document.getElementById("resposta-validacao").innerHTML = '<div class="text-danger"><i class="bi bi-x-circle pe-2"></i>Erro.</div>';
+                        } else {
+                            document.getElementById("resposta-validacao").innerHTML = '<div class="text-danger"><i class="bi bi-x-circle pe-2"></i>Bilhete inválido</div>';
+                        }
+
+
                         setTimeout(function () {
                             pronto = true;
                         }, 3000)
                     }
                 };
-                xmlhttp.open("GET", "scripts/sc_validar_bilhete.php?token=" + code.data, true);
+                xmlhttp.open("GET", "scripts/sc_validar_bilhete.php?hash=" + code.data, true);
                 xmlhttp.send();
-            } else {
-                outputMessage.hidden = false;
-                outputData.parentElement.hidden = true;
             }
         }
         requestAnimationFrame(tick);

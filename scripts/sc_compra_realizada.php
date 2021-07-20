@@ -27,12 +27,11 @@ if (isset($_SESSION["data_evento_vendida"]) && isset($_SESSION["id_user"])) {
             $query = "INSERT INTO `bilhetes` (`nome`, `hash`, `ref_id_compras`) VALUES (?,?,?)";
 
             if (mysqli_stmt_prepare($stmt, $query)) {
-                mysqli_stmt_bind_param($stmt, 'ssi', $nome, $numero_bilhete_hash, $id_compra);
+                mysqli_stmt_bind_param($stmt, 'ssi', $nome, $numero_bilhete, $id_compra);
 
                 foreach ($nomebilhetes as $nome) {
                     //vamos gerar um numero para cada bilhete criado, exclusivo
                     $numero_bilhete = bin2hex(random_bytes(64));
-                    $numero_bilhete_hash = password_hash($numero_bilhete, PASSWORD_DEFAULT);
                     // comprar
                     if (!mysqli_stmt_execute($stmt)) {
                         echo "Error: " . mysqli_stmt_error($stmt);

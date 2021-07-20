@@ -41,7 +41,7 @@ ON id_utilizadores = compras.ref_id_utilizadores
 INNER JOIN eventos
 ON id_eventos = data_eventos.ref_id_eventos
 WHERE data_eventos.data > NOW() AND id_utilizadores = " . $_SESSION["id_user"] . "  
-ORDER BY `compras`.`timestamp`  DESC;";
+ORDER BY id_bilhetes  DESC;";
 
     if (mysqli_stmt_prepare($stmt, $query)) {
         mysqli_stmt_execute($stmt);
