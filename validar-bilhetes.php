@@ -93,10 +93,13 @@ session_start();
                             document.getElementById("resposta-validacao").innerHTML = '<div class="text-danger"><i class="bi bi-x-circle pe-2"></i>Bilhete inválido</div>';
                         }
 
-
                         setTimeout(function () {
                             pronto = true;
                         }, 3000)
+
+                        setTimeout(function () {
+                            document.getElementById("resposta-validacao").innerHTML = "";
+                        }, 6000)
                     }
                 };
                 xmlhttp.open("GET", "scripts/sc_validar_bilhete.php?hash=" + code.data, true);

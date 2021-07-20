@@ -1371,7 +1371,14 @@ a:hover {
 .resposta-val {
     text-align: center;
     font-weight: 700;
+}
+
+.text-success {
     color: #62e262;
+}
+
+.text-danger {
+    color: #e22d2d;
 }
 
 
