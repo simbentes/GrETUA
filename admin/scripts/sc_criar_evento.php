@@ -1,6 +1,6 @@
 <?php
 
-if (!empty($_POST["nomeevento"]) && !empty($_POST["artista"]) && !empty($_POST["dataevento1"]) && !empty($_POST["curtadesc"]) && !empty($_POST["desc"]) && !empty($_POST["lotacao"]) && !empty($_POST["duracao"]) && !empty($_POST["cetaria"]) && !empty($_POST["precoreserva"]) && !empty($_POST["precoporta"]) && !empty($_POST["ndatas"])) {
+if (!empty($_POST["nomeevento"]) && !empty($_POST["artista"]) && !empty($_POST["dataevento1"]) && !empty($_POST["curtadesc"]) && !empty($_POST["desc"]) && !empty($_POST["lotacao"]) && !empty($_POST["duracao"]) && isset($_POST["cetaria"]) && isset($_POST["precoreserva"]) && isset($_POST["precoporta"]) && !empty($_POST["ndatas"])) {
 
     require_once "../connections/connection.php";
 
@@ -19,7 +19,6 @@ if (!empty($_POST["nomeevento"]) && !empty($_POST["artista"]) && !empty($_POST["
     } else {
         //vamos adicionar um novo artista à nossa bd
         if (!empty($_POST["nomeartista"]) && !empty($_POST["artistadesc"]) && !empty($_POST["paisartista"])) {
-
 
 
             //se não estão preenchidos, ficam a null
@@ -227,7 +226,6 @@ if (!empty($_POST["nomeevento"]) && !empty($_POST["artista"]) && !empty($_POST["
             }
         }
     }
-
 
 
     mysqli_stmt_close($stmt);
