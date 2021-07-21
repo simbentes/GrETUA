@@ -1,9 +1,11 @@
 <?php
 session_start();
 
-if (isset($_GET['carregar']) && isset($_GET['data']) && isset($_GET['ordem'])) {
+if (isset($_GET['carregar']) && isset($_GET['data']) && isset($_GET['ordem']) && isset($_GET['aseguir'])) {
 
     $limit = $_GET['ordem'][0];
+    $aseguir = $_GET['aseguir'];
+
 
     //buscar a ultima data, para impedir que existam repeticoes
     if (isset($_GET["data"])) {
@@ -42,13 +44,26 @@ if (isset($_GET['carregar']) && isset($_GET['data']) && isset($_GET['ordem'])) {
     }
 
 
+    if ($aseguir == 1) {
+        if (!empty($ultima_data) || !empty($perfil_pub)) {
+            $aseguir_query = " AND seguidores.ref_id_utilizadores_seguir IN (SELECT ref_id_utilizadores_seguir FROM seguidores WHERE ref_id_utilizadores = " . $_SESSION["id_user"] . ")";
+        } else {
+            $aseguir_query = "WHERE seguidores.ref_id_utilizadores_seguir IN (SELECT ref_id_utilizadores_seguir FROM seguidores WHERE ref_id_utilizadores = " . $_SESSION["id_user"] . ")";
+        }
+    } else {
+        $aseguir_query = "";
+    }
+
+
     $query = "SELECT id_publicacoes, publicacoes.timestamp, titulo, texto, foto, ref_id_eventos, id_utilizadores, CONCAT(utilizadores.nome, ' ', apelido), utilizadores.foto_perfil, UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(publicacoes.timestamp), gostos.ref_id_utilizadores
 FROM publicacoes
 INNER JOIN utilizadores
 ON id_utilizadores = ref_id_utilizadores
+LEFT JOIN seguidores
+ON seguidores.ref_id_utilizadores_seguir = id_utilizadores AND seguidores.ref_id_utilizadores = " . $_SESSION["id_user"] . "
 LEFT JOIN gostos
 ON gostos.ref_id_publicacoes = id_publicacoes AND gostos.ref_id_utilizadores = " . $_SESSION["id_user"] . "
-$ultima_data $perfil_pub
+$ultima_data $perfil_pub $aseguir_query
 ORDER BY publicacoes.timestamp DESC
 LIMIT 0,?";
 
@@ -59,6 +74,7 @@ LIMIT 0,?";
 
 
     if (mysqli_stmt_prepare($stmt, $query)) {
+
 
         if (!empty($_GET["data"])) {
             mysqli_stmt_bind_param($stmt, "si", $data_query, $limit);
@@ -207,9 +223,9 @@ LIMIT 1;";
                                     $data_str = $min_data_str;
                                 } else {
                                     if ($min_ano == $max_ano) {
-                                        $data_str = "<small>DE</small> " . $min_data_str . " <small>A</small>  " . $max_data_str;
+                                        $data_str = "<small>DE</small> " . htmlspecialchars($min_data_str) . " <small>A</small>  " . htmlspecialchars($max_data_str);
                                     } else {
-                                        $data_str = "<small>DE</small> " . $min_data_str . " " . $min_ano . " <small>A</small>  " . $max_data_str . " " . $max_ano;
+                                        $data_str = "<small>DE</small> " . htmlspecialchars($min_data_str) . " " . htmlspecialchars($min_ano) . " <small>A</small>  " . htmlspecialchars($max_data_str) . " " . htmlspecialchars($max_ano);
 
                                     }
                                 }
@@ -240,7 +256,7 @@ LIMIT 1;";
                             }
                         }
 
-                        $pubs[] = ["tipo" => "evento", "id_evento" => htmlspecialchars($id_evento), "nome_evento" => htmlspecialchars($nome_evento), "foto" => htmlspecialchars($foto), "tipo_evento" => htmlspecialchars($tipo_evento), "data_str" => htmlspecialchars($data_str), "pessoas" => htmlspecialchars($pessoas)];
+                        $pubs[] = ["tipo" => "evento", "id_evento" => htmlspecialchars($id_evento), "nome_evento" => htmlspecialchars($nome_evento), "foto" => htmlspecialchars($foto), "tipo_evento" => htmlspecialchars($tipo_evento), "data_str" => $data_str, "pessoas" => htmlspecialchars($pessoas)];
 
                     }
                 } else {
@@ -268,7 +284,11 @@ LIMIT 1;";
 
             die(json_encode($pubs_final));
         } else {
-            die("fim");
+            if ($aseguir == 1 && empty($_GET["data"])) {
+                die("fimaseguir");
+            } else {
+                die("fim");
+            }
         }
 
         mysqli_stmt_close($stmt);

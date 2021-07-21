@@ -16,10 +16,12 @@ else:
             $stmt = mysqli_stmt_init($link);
 
             //posso concatenar, visto que o parametro não foi colocado pelo user
-            $query = "SELECT utilizadores.nome, utilizadores.apelido, foto_perfil, utilizadores.biografia, instagram, whatsapp, cargo.nome, cargo.color, DATE_FORMAT(DATE(utilizadores.timestamp), '%d%m%Y')
+            $query = "SELECT utilizadores.nome, utilizadores.apelido, foto_perfil, utilizadores.biografia, instagram, whatsapp, cargo.nome, cargo.color, DATE_FORMAT(DATE(utilizadores.timestamp), '%d%m%Y'), seguidores.ref_id_utilizadores AS seguindo
 FROM `utilizadores`
 INNER JOIN cargo
 ON utilizadores.ref_id_cargo = cargo.id_cargo
+LEFT JOIN seguidores
+ON seguidores.ref_id_utilizadores_seguir = id_utilizadores AND seguidores.ref_id_utilizadores = " . $_SESSION["id_user"] . "
 WHERE id_utilizadores = ?";
 
             if (mysqli_stmt_prepare($stmt, $query)) {
@@ -30,7 +32,7 @@ WHERE id_utilizadores = ?";
                 mysqli_stmt_execute($stmt);
 
                 /* bind result variables */
-                mysqli_stmt_bind_result($stmt, $nome, $apelido, $foto_perfil, $biografia, $instagram, $whatsapp, $cargo_nome, $cargo_color, $data_criacao);
+                mysqli_stmt_bind_result($stmt, $nome, $apelido, $foto_perfil, $biografia, $instagram, $whatsapp, $cargo_nome, $cargo_color, $data_criacao, $seguindo);
 
 
                 if (mysqli_stmt_fetch($stmt)) {
@@ -96,7 +98,14 @@ WHERE id_utilizadores = ?";
                         </div>
                         <div class="row g-1 justify-content-center align-content-center pt-3">
                             <div class="col-auto">
-                                <input type="submit" class="btn btn-seguir w-100" value="Seguir">
+                                <input id="seguir" value="<?= $id_perfil ?>" class="btn-seguir d-none"
+                                       type="checkbox"
+                                       onclick="seguirUser(this.checked,this.value)" <?php
+                                if (isset($seguindo)) {
+                                    echo "checked";
+                                }
+                                ?>>
+                                <label class="btn label-btn-seguir w-100" id="label-seguir" for="seguir">Seguir</label>
                             </div>
                             <?php
                             if (!empty($instagram)) { ?>

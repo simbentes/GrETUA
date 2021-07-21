@@ -12,20 +12,24 @@ document.getElementById("btnfechar").onclick = function () {
 var lastdata = "";
 var i
 var proximo = true;
+var aseguir = 0;
+var tipopubs = pubAleatoria();
 
 
 $(window).scroll(function () {
     if ($(window).scrollTop() + $(window).height() > $(document).height() - 10) {
         if (proximo) {
-            carregarPubs(pubAleatoria());
+            if (aseguir == 0) tipopubs = pubAleatoria()
+            carregarPubs(tipopubs, aseguir);
             proximo = false;
         }
     }
-});
+})
+;
 
 window.onload = function () {
     lastdata = "";
-    carregarPubs(pubAleatoria());
+    carregarPubs(pubAleatoria(), 0);
     proximo = false;
 
 }
@@ -81,10 +85,13 @@ function pubAleatoria() {
     return arraypubs;
 }
 
-function carregarPubs(tipo_pubs) {
+function carregarPubs(tipo_pubs, aseguir) {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
+            if (this.responseText == "fimaseguir") {
+                window.location.href = "gretua.php?msg=1";
+            }
 
             if (this.responseText != "fim") {
                 console.log(this.responseText)
@@ -131,10 +138,12 @@ function carregarPubs(tipo_pubs) {
                 }
                 proximo = true;
             }
+
+
         }
     };
 
-    xmlhttp.open("GET", "scripts/sc_carregar_pubs.php?carregar=1&ordem[]=" + tipo_pubs[0] + "&ordem[]=" + tipo_pubs[1] + "&ordem[]=" + tipo_pubs[2] + "&data=" + lastdata, true);
+    xmlhttp.open("GET", "scripts/sc_carregar_pubs.php?carregar=1&aseguir=" + aseguir + "&ordem[]=" + tipo_pubs[0] + "&ordem[]=" + tipo_pubs[1] + "&ordem[]=" + tipo_pubs[2] + "&data=" + lastdata, true);
     xmlhttp.send();
 
 }
@@ -163,3 +172,45 @@ function likePub(estado, publicacao) {
     xmlhttp.send();
 
 }
+
+var previousScrollPos = 0;
+window.onscroll = function () {
+    var currentScrollPos = window.pageYOffset;
+    if (130 > currentScrollPos) {
+        document.getElementById("tipofeed").style.top = "50px";
+    } else {
+        if (previousScrollPos > currentScrollPos) {
+            document.getElementById("tipofeed").style.top = "50px";
+        } else {
+            document.getElementById("tipofeed").style.top = "-100px";
+        }
+    }
+
+
+    previousScrollPos = window.pageYOffset;
+
+}
+
+
+document.getElementById("btnradio0").onclick = function () {
+    document.getElementById('feed').innerHTML = "";
+    lastdata = "";
+    aseguir = 0;
+    tipopubs = pubAleatoria();
+    carregarPubs(pubAleatoria(), aseguir);
+    proximo = false;
+}
+
+document.getElementById("btnradio1").onclick = function () {
+    document.getElementById('feed').innerHTML = "";
+    lastdata = "";
+    aseguir = 1;
+    tipopubs = [3, 0, 0];
+    carregarPubs(tipopubs, aseguir);
+    proximo = false;
+}
+
+
+
+
+

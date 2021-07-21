@@ -9,6 +9,10 @@ else:
                 $message = "Publicação eliminada.";
                 $class = "alert-danger";
                 break;
+            case 1:
+                $message = "Ainda não segues ninguém.";
+                $class = "alert-secondary";
+                break;
             default:
                 $msg_show = false;
         }
@@ -26,7 +30,19 @@ else:
     }
     ?>
     <main class="py-5">
-        <section class="container-fluid pb-2">
+        <section id="tipofeed" class="container px-3 tipofeed">
+            <div class="botaomultiplo">
+                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check d-none" name="btnradio" id="btnradio0" autocomplete="off"
+                           checked>
+                    <label class="btn btn-multiplo-primary" for="btnradio0">Todas</label>
+
+                    <input type="radio" class="btn-check d-none" name="btnradio" id="btnradio1" autocomplete="off">
+                    <label class="btn btn-multiplo-primary" for="btnradio1">A seguir</label>
+                </div>
+            </div>
+        </section>
+        <section class="container-fluid pb-2 mt-5">
             <div id="feed" class="row">
             </div>
         </section>

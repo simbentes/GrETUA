@@ -44,10 +44,10 @@ else:
     <section class="container px-3">
         <div class="botaomultiplo">
             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio0" autocomplete="off" checked>
+                <input type="radio" class="btn-check d-none" name="btnradio" id="btnradio0" autocomplete="off" checked>
                 <label class="btn btn-multiplo-primary" for="btnradio0">Todos</label>
 
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off">
+                <input type="radio" class="btn-check d-none" name="btnradio" id="btnradio1" autocomplete="off">
                 <label class="btn btn-multiplo-primary" for="btnradio1">Guardados</label>
             </div>
         </div>

@@ -8,7 +8,7 @@ var arraypubs = [3, 0, 0];
 $(window).scroll(function () {
     if ($(window).scrollTop() + $(window).height() > $(document).height() - 10) {
         if (proximo) {
-            carregarPubs(arraypubs);
+            carregarPubs(arraypubs, 0);
             proximo = false;
         }
     }
@@ -16,7 +16,7 @@ $(window).scroll(function () {
 
 window.onload = function () {
     lastdata = "";
-    carregarPubs(arraypubs);
+    carregarPubs(arraypubs, 0);
     proximo = false;
 }
 
@@ -45,11 +45,10 @@ function diferencaTempo(unix_timestamp) {
 }
 
 
-function carregarPubs(tipo_pubs) {
+function carregarPubs(tipo_pubs, aseguir) {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-
             if (this.responseText != "fim") {
 
                 var pubs = JSON.parse(this.responseText);
@@ -95,7 +94,7 @@ function carregarPubs(tipo_pubs) {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries())
 
-    xmlhttp.open("GET", "scripts/sc_carregar_pubs.php?carregar=1&ordem[]=" + tipo_pubs[0] + "&ordem[]=" + tipo_pubs[1] + "&ordem[]=" + tipo_pubs[2] + "&perfil=" + params.id + "&data= " + lastdata, true);
+    xmlhttp.open("GET", "scripts/sc_carregar_pubs.php?carregar=1&aseguir=" + aseguir + "&ordem[]=" + tipo_pubs[0] + "&ordem[]=" + tipo_pubs[1] + "&ordem[]=" + tipo_pubs[2] + "&perfil=" + params.id + "&data= " + lastdata, true);
     xmlhttp.send();
 
 }
