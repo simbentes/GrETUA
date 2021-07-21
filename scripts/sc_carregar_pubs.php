@@ -126,7 +126,7 @@ LIMIT 0,?";
                 mysqli_stmt_close($stmt2);
 
                 // enviar dados das publicacoes para serem renderizados em js
-                $pubs[] = ["tipo" => "pub", "id_pub" => $id_pub, "unix_tempo" => $unix_data, "id_user" => $id_user, "nome_user" => $nome_user, "fperfil_user" => $fperfil_user, "foto" => $foto_pub, "titulo" => $titulo, "btn_style" => $btn_style, "n_comentarios" => $n_comentarios, "texto" => $texto, "delete_pub" => $btn_delete, "ref_id_eventos" => $ref_id_eventos, "fperfil_session" => $_SESSION["fperfil"], "like" => $like, "lastdata" => $lastdata, "repeticoes" => $numrows + $_GET['ordem'][1] + $_GET['ordem'][2]];
+                $pubs[] = ["tipo" => "pub", "id_pub" => htmlspecialchars($id_pub), "unix_tempo" => $unix_data, "id_user" => htmlspecialchars($id_user), "nome_user" => htmlspecialchars($nome_user), "fperfil_user" => htmlspecialchars($fperfil_user), "foto" => htmlspecialchars($foto_pub), "titulo" => htmlspecialchars($titulo), "btn_style" => htmlspecialchars($btn_style), "n_comentarios" => htmlspecialchars($n_comentarios), "texto" => htmlspecialchars($texto), "delete_pub" => $btn_delete, "ref_id_eventos" => htmlspecialchars($ref_id_eventos), "fperfil_session" => htmlspecialchars($_SESSION["fperfil"]), "like" => $like, "lastdata" => htmlspecialchars($lastdata), "repeticoes" => $numrows + htmlspecialchars($_GET['ordem'][1]) + htmlspecialchars($_GET['ordem'][2])];
 
 
             }
@@ -155,7 +155,7 @@ LIMIT 1;";
                     if (!mysqli_stmt_fetch($stmt)) {
                         echo "Error: " . mysqli_stmt_error($stmt);
                     } else {
-                        $pubs[] = ["tipo" => "memoria", "id_memoria" => $id_memoria, "nome_memoria" => $nome_memoria, "desc_curta" => $desc_curta, "foto" => $foto];
+                        $pubs[] = ["tipo" => "memoria", "id_memoria" => htmlspecialchars($id_memoria), "nome_memoria" => htmlspecialchars($nome_memoria), "desc_curta" => htmlspecialchars($desc_curta), "foto" => htmlspecialchars($foto)];
                     }
 
                 } else {
@@ -240,7 +240,7 @@ LIMIT 1;";
                             }
                         }
 
-                        $pubs[] = ["tipo" => "evento", "id_evento" => $id_evento, "nome_evento" => $nome_evento, "foto" => $foto, "tipo_evento" => $tipo_evento, "data_str" => $data_str, "pessoas" => $pessoas];
+                        $pubs[] = ["tipo" => "evento", "id_evento" => htmlspecialchars($id_evento), "nome_evento" => htmlspecialchars($nome_evento), "foto" => htmlspecialchars($foto), "tipo_evento" => htmlspecialchars($tipo_evento), "data_str" => htmlspecialchars($data_str), "pessoas" => htmlspecialchars($pessoas)];
 
                     }
                 } else {

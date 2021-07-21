@@ -60,7 +60,7 @@ LIMIT 0, 4;";
                 $data_str = str_replace($meses, $str_meses, $data_evento);
 
                 // enviar dados dos albuns para serem renderizados em js
-                $memorias[] = ["id_evento" => $id_evento, "data_evento" => $data_completa, "data_str" => $data_str, "nome_evento" => $nome_evento, "foto" => $foto, "desc_curta" => $desc_curta, "repeticoes" => $numrows];
+                $memorias[] = ["id_evento" => htmlspecialchars($id_evento), "data_evento" => htmlspecialchars($data_completa), "data_str" => htmlspecialchars($data_str), "nome_evento" => htmlspecialchars($nome_evento), "foto" => htmlspecialchars($foto), "desc_curta" => htmlspecialchars($desc_curta), "repeticoes" => htmlspecialchars($numrows)];
             }
 
             die(json_encode($memorias));
