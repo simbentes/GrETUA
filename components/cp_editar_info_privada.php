@@ -10,11 +10,8 @@ else:
     $stmt = mysqli_stmt_init($link);
     $id_user = $_SESSION["id_user"];
 
-//posso concatenar, visto que o parametro não foi colocado pelo user
-    $query = "SELECT utilizadores.nome, utilizadores.apelido, utilizadores.biografia, instagram, whatsapp, id_cargo, cargo.nome, cargo.color
+    $query = "SELECT utilizadores.email, utilizadores.telemovel
 FROM `utilizadores`
-INNER JOIN cargo
-ON utilizadores.ref_id_cargo = cargo.id_cargo
 WHERE id_utilizadores = " . $_SESSION["id_user"];
 
     if (mysqli_stmt_prepare($stmt, $query)) {
@@ -23,7 +20,7 @@ WHERE id_utilizadores = " . $_SESSION["id_user"];
         mysqli_stmt_execute($stmt);
 
         /* bind result variables */
-        mysqli_stmt_bind_result($stmt, $nome, $apelido, $biografia, $instagram, $whatsapp, $id_cargo, $cargo_nome, $cargo_color);
+        mysqli_stmt_bind_result($stmt, $email, $telefone);
 
 
         if (mysqli_stmt_fetch($stmt)) {
@@ -32,11 +29,31 @@ WHERE id_utilizadores = " . $_SESSION["id_user"];
                 $msg_show = true;
                 switch ($_GET["msg"]) {
                     case 0:
-                        $message = "Descrição muito longa.";
+                        $message = "Palavra-passe diferentes.";
                         $class = "alert-danger";
                         break;
                     case 1:
-                        $message = "Efetuadas.";
+                        $message = "Palavra-passe igual à anterior.";
+                        $class = "alert-danger";
+                        break;
+                    case 2:
+                        $message = "Palavra-passe errada.";
+                        $class = "alert-danger";
+                        break;
+                    case 3:
+                        $message = "Email em falta.";
+                        $class = "alert-danger";
+                        break;
+                    case 4:
+                        $message = "Alterações efetuadas.";
+                        $class = "alert-success";
+                        break;
+                    case 5:
+                        $message = "Alterações efetuadas e palavra-passe alterada.";
+                        $class = "alert-success";
+                        break;
+                    case 6:
+                        $message = "Campos de alteração de password incompletos.";
                         $class = "alert-danger";
                         break;
                     default:
@@ -56,7 +73,7 @@ WHERE id_utilizadores = " . $_SESSION["id_user"];
             }
 
             ?>
-            <form action="scripts/sc_editar_info_conta.php" method="post" enctype="multipart/form-data"
+            <form action="scripts/sc_editar_info_privada.php" method="post" enctype="multipart/form-data"
                   class="px-0 mb-5" autocomplete="off">
 
                 <section class="container-fluid pt-3 pb-2 px-3 topindexmenu">
@@ -68,75 +85,78 @@ WHERE id_utilizadores = " . $_SESSION["id_user"];
                                                 class="bi bi-chevron-left p-1 mb-0 h5"></i></a>
                                 </div>
                                 <div class="col-auto ps-3">
-                                    <h3 class="mb-0">Editar Perfil</h3>
+                                    <h3 class="mb-0">Privacidade</h3>
                                 </div>
                             </div>
                         </div>
                         <div class="col-auto">
-                            <button type="submit" class="btn p-0">
+                            <button type="button" class="btn p-0" data-bs-toggle="modal"
+                                    data-bs-target="#reservarBilheteModal" id="btn-modal">
                                 <i class="bi bi-check2 confirmar-icon p-1 mb-0 h2"></i>
                             </button>
                         </div>
 
                     </div>
-
+                    <!-- Modal -->
+                    <section class="modal fade" id="reservarBilheteModal" tabindex="-1"
+                             aria-labelledby="exampleModalLabel"
+                             aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content p-0">
+                                <div class="modal-body text-center">
+                                    <h5 class="mt-3">Confirma as alterações?</h5>
+                                    <i class="bi bi-exclamation-octagon h0 text-danger"></i>
+                                    <div id="pass-confirmar"></div>
+                                    <p class="py-2 m-0">Esta ação é irreversível.</p>
+                                </div>
+                                <div class="modal-footer p-0">
+                                    <button type="submit" class="btn botaomodal py-3 m-0 w-100">CONFIRMAR</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </section>
                 <section class="pt-4 container-fluid menu_perfil">
                     <section class="container pt-2">
                         <div class="row justify-content-center align-items-center">
                             <div class="col-12">
-                                <div class="mb-3">
-                                    <label for="instagram" class="mb-1">Instagram <small>(username)</small></label>
-                                    <input type="text" class="form-control forminfo formconta" id="instagram"
-                                           value="<?= $instagram ?>" name="instagram">
 
+
+                                <div class="mb-3">
+                                    <label for="email" class="mb-1">Email</label>
+                                    <input type="email" class="form-control forminfo formconta" id="email"
+                                           value="<?= $email ?>" name="email" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="whatsapp" class="mb-1">WhatsApp <small>(Número de
-                                            telefone)</small></label>
-                                    <input type="text" class="form-control forminfo formconta" id="whatsapp"
-                                           value="<?= $whatsapp ?>" name="whatsapp">
+                                    <label for="telefone" class="mb-1">Número de
+                                        telefone</label>
+                                    <input type="tel" class="form-control forminfo formconta" id="telefone"
+                                           value="<?= $telefone ?>" name="telefone">
                                 </div>
 
 
                             </div>
+                            <hr class="my-3">
+                            <h6 class="fw-bold mb-3">Alterar Palavra-passe</h6>
+                            <div class="col-12">
+                                <div class="mb-3">
+                                    <input type="password" class="form-control forminfo formconta" id="passatual"
+                                           name="passatual" minlength="8" placeholder="Palavra-passe atual">
 
+                                </div>
+                                <div class="mb-3">
+                                    <input type="password" class="form-control forminfo formconta" id="passnova"
+                                           name="passnova" minlength="8" placeholder="Palavra-passe nova">
+                                </div>
+                                <div class="mb-3">
+                                    <input type="password" class="form-control forminfo formconta" id="passnova2"
+                                           name="passnova2" minlength="8" placeholder="Repetir a palavra-passe nova">
+                                </div>
+                            </div>
                         </div>
                     </section>
 
                 </section>
-
-                <div class="scrollcargos mb-6">
-                    <input type="radio" class="d-none btn-cargos" name="cargo"
-                           id="<?= $id_cargo ?>" autocomplete="off"
-                           value="<?= $id_cargo ?>" required checked autofocus>
-                    <label class="m-1 ms-4 badge label-cargos d-inline-block bg-<?= $cargo_color ?>"
-                           for="<?= $id_cargo ?>"><?= $cargo_nome ?>
-
-                    </label>
-
-                    <?php
-                    $query2 = "SELECT id_cargo, cargo.nome, color, utilizadores.ref_id_cargo FROM cargo INNER JOIN utilizadores ON id_utilizadores = $id_user WHERE id_cargo != utilizadores.ref_id_cargo AND id_cargo != 2 ORDER BY cargo.nome";
-                    if (mysqli_stmt_prepare($stmt, $query2)) {
-                        mysqli_stmt_execute($stmt);
-                        mysqli_stmt_bind_result($stmt, $cargo_id, $nome_cargo, $cor_cargo, $antigo_cargo);
-                        mysqli_stmt_store_result($stmt);
-
-                        while (mysqli_stmt_fetch($stmt)) {
-                            ?>
-
-                            <input type="radio" class="d-none btn-cargos" name="cargo"
-                                   id="<?= $cargo_id ?>" autocomplete="off"
-                                   value="<?= $cargo_id ?>" required>
-                            <label class="m-1 badge label-cargos d-inline-block bg-<?= $cor_cargo ?>"
-                                   for="<?= $cargo_id ?>"><?= $nome_cargo ?></label>
-
-
-                            <?php
-                        }
-                    }
-                    ?>
-                </div>
             </form>
             <?php
         } else {

@@ -11,7 +11,7 @@ else:
     $id_user = $_SESSION["id_user"];
 
 //posso concatenar, visto que o parametro não foi colocado pelo user
-    $query = "SELECT utilizadores.nome, utilizadores.apelido, utilizadores.biografia, instagram, whatsapp, id_cargo, cargo.nome, cargo.color
+    $query = "SELECT utilizadores.nome, utilizadores.apelido, username, utilizadores.biografia, instagram, whatsapp, id_cargo, cargo.nome, cargo.color
 FROM `utilizadores`
 INNER JOIN cargo
 ON utilizadores.ref_id_cargo = cargo.id_cargo
@@ -23,7 +23,7 @@ WHERE id_utilizadores = " . $_SESSION["id_user"];
         mysqli_stmt_execute($stmt);
 
         /* bind result variables */
-        mysqli_stmt_bind_result($stmt, $nome, $apelido, $biografia, $instagram, $whatsapp, $id_cargo, $cargo_nome, $cargo_color);
+        mysqli_stmt_bind_result($stmt, $nome, $apelido, $username, $biografia, $instagram, $whatsapp, $id_cargo, $cargo_nome, $cargo_color);
 
 
         if (mysqli_stmt_fetch($stmt)) {
@@ -36,7 +36,11 @@ WHERE id_utilizadores = " . $_SESSION["id_user"];
                         $class = "alert-danger";
                         break;
                     case 1:
-                        $message = "Efetuadas.";
+                        $message = "Username inválido.";
+                        $class = "alert-danger";
+                        break;
+                    case 2:
+                        $message = "Faltam informações.";
                         $class = "alert-danger";
                         break;
                     default:
@@ -129,6 +133,12 @@ WHERE id_utilizadores = " . $_SESSION["id_user"];
                                                name="apelido"
                                                value="<?= $apelido ?>" required>
                                     </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="username" class="mb-1">Username</label>
+                                    <input type="text" class="form-control forminfo formconta" id="username"
+                                           value="<?= $username ?>" name="username" required>
+
                                 </div>
                                 <div class="mb-3">
                                     <label for="biografia" class="mb-1">Biografia</label>

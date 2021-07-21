@@ -268,7 +268,7 @@ WHERE id_utilizadores = " . $_SESSION["id_user"];
                             </a>
                         </li>
                         <li class="list-group-item">
-                            <a href="guardados.php">
+                            <a href="editar-info-privada.php">
                                 <div class="row g-0 align-items-center justify-content-between">
                                     <div class="col-auto">
                                         <div class="row g-0 align-items-center">
