@@ -92,7 +92,7 @@ WHERE data_eventos.id_data_eventos = ?";
 
                     header('Content-Type: application/json');
 
-                    $YOUR_DOMAIN = 'http://localhost/gretua';
+                    $YOUR_DOMAIN = 'https://labmm.clients.ua.pt/deca_20L4/deca_20L4_33';
 
                     $preco_stripe = $preco * 100;
 
