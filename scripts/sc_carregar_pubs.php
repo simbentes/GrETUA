@@ -81,7 +81,7 @@ LIMIT 0,?";
                 }
 
                 if (isset($foto)) {
-                    $foto_pub = ' <img src="img/pub/' . $foto . '" class="card-img-top" alt="...">';
+                    $foto_pub = ' <img src="img/pub/' . htmlspecialchars($foto) . '" class="card-img-top" alt="...">';
                     $btn_style = "";
                 } else {
                     $foto_pub = "";
@@ -90,7 +90,7 @@ LIMIT 0,?";
 
 
                 if ($id_user == $_SESSION["id_user"]) {
-                    $btn_delete = '<a href="scripts/sc_delete_pub.php?id=' . $id_pub . '" class="h3 mb-0 ps-2 text-danger"><i class="bi bi-dash-circle-fill"></i></a>';
+                    $btn_delete = '<a href="scripts/sc_delete_pub.php?id=' . htmlspecialchars($id_pub) . '" class="h3 mb-0 ps-2 text-danger"><i class="bi bi-dash-circle-fill"></i></a>';
                 } else {
                     $btn_delete = "";
                 }
@@ -114,7 +114,7 @@ LIMIT 0,?";
 
                         if ($n_com > 0) {
                             ($n_com == 1) ? $s = "" : $s = "s";
-                            $n_comentarios = '<div class="text-center pb-2 mb-1" style="font-size: 14.5px;"><a href="pub.php?id=' . $id_pub . '" class="text-primary fw-bold">Ver ' . $n_com . ' comentário' . $s . '</a></div>';
+                            $n_comentarios = '<div class="text-center pb-2 mb-1" style="font-size: 14.5px;"><a href="pub.php?id=' . htmlspecialchars($id_pub) . '" class="text-primary fw-bold">Ver ' . htmlspecialchars($n_com) . ' comentário' . $s . '</a></div>';
                         }
 
                     } else {
@@ -126,7 +126,7 @@ LIMIT 0,?";
                 mysqli_stmt_close($stmt2);
 
                 // enviar dados das publicacoes para serem renderizados em js
-                $pubs[] = ["tipo" => "pub", "id_pub" => htmlspecialchars($id_pub), "unix_tempo" => $unix_data, "id_user" => htmlspecialchars($id_user), "nome_user" => htmlspecialchars($nome_user), "fperfil_user" => htmlspecialchars($fperfil_user), "foto" => htmlspecialchars($foto_pub), "titulo" => htmlspecialchars($titulo), "btn_style" => htmlspecialchars($btn_style), "n_comentarios" => htmlspecialchars($n_comentarios), "texto" => htmlspecialchars($texto), "delete_pub" => $btn_delete, "ref_id_eventos" => htmlspecialchars($ref_id_eventos), "fperfil_session" => htmlspecialchars($_SESSION["fperfil"]), "like" => $like, "lastdata" => htmlspecialchars($lastdata), "repeticoes" => $numrows + htmlspecialchars($_GET['ordem'][1]) + htmlspecialchars($_GET['ordem'][2])];
+                $pubs[] = ["tipo" => "pub", "id_pub" => htmlspecialchars($id_pub), "unix_tempo" => $unix_data, "id_user" => htmlspecialchars($id_user), "nome_user" => htmlspecialchars($nome_user), "fperfil_user" => htmlspecialchars($fperfil_user), "foto" => $foto_pub, "titulo" => htmlspecialchars($titulo), "btn_style" => htmlspecialchars($btn_style), "n_comentarios" => $n_comentarios, "texto" => htmlspecialchars($texto), "delete_pub" => $btn_delete, "ref_id_eventos" => htmlspecialchars($ref_id_eventos), "fperfil_session" => htmlspecialchars($_SESSION["fperfil"]), "like" => $like, "lastdata" => htmlspecialchars($lastdata), "repeticoes" => $numrows + htmlspecialchars($_GET['ordem'][1]) + htmlspecialchars($_GET['ordem'][2])];
 
 
             }
