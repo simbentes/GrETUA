@@ -86,7 +86,7 @@ $stmt = mysqli_stmt_init($link);
 
                                             while (mysqli_stmt_fetch($stmt)) {
                                                 /* fetch values */
-                                                echo '<option value="' . $id_artistas . '">' . $nomeartistas . '</option>';
+                                                echo '<option value="' . htmlspecialchars($id_artistas) . '">' . htmlspecialchars($nomeartistas) . '</option>';
                                             }
                                         } else {
                                             echo "Error: " . mysqli_error($link);
