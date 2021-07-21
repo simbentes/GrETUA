@@ -60,7 +60,7 @@ FROM publicacoes
 INNER JOIN utilizadores
 ON id_utilizadores = ref_id_utilizadores
 LEFT JOIN seguidores
-ON seguidores.ref_id_utilizadores_seguir = id_utilizadores
+ON seguidores.ref_id_utilizadores_seguir = id_utilizadores AND seguidores.ref_id_utilizadores = " . $_SESSION["id_user"] . "
 LEFT JOIN gostos
 ON gostos.ref_id_publicacoes = id_publicacoes AND gostos.ref_id_utilizadores = " . $_SESSION["id_user"] . "
 $ultima_data $perfil_pub $aseguir_query
