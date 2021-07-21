@@ -11,7 +11,7 @@ else:
     $id_user = $_SESSION["id_user"];
 
 //posso concatenar, visto que o parametro não foi colocado pelo user
-    $query = "SELECT utilizadores.nome, utilizadores.apelido, utilizadores.biografia, instagram, whatsapp, id_cargo, cargo.nome, cargo.color
+    $query = "SELECT utilizadores.nome, utilizadores.apelido, username, utilizadores.biografia, instagram, whatsapp, id_cargo, cargo.nome, cargo.color
 FROM `utilizadores`
 INNER JOIN cargo
 ON utilizadores.ref_id_cargo = cargo.id_cargo
@@ -23,7 +23,7 @@ WHERE id_utilizadores = " . $_SESSION["id_user"];
         mysqli_stmt_execute($stmt);
 
         /* bind result variables */
-        mysqli_stmt_bind_result($stmt, $nome, $apelido, $biografia, $instagram, $whatsapp, $id_cargo, $cargo_nome, $cargo_color);
+        mysqli_stmt_bind_result($stmt, $nome, $apelido, $username, $biografia, $instagram, $whatsapp, $id_cargo, $cargo_nome, $cargo_color);
 
 
         if (mysqli_stmt_fetch($stmt)) {
@@ -36,7 +36,11 @@ WHERE id_utilizadores = " . $_SESSION["id_user"];
                         $class = "alert-danger";
                         break;
                     case 1:
-                        $message = "Efetuadas.";
+                        $message = "Username inválido.";
+                        $class = "alert-danger";
+                        break;
+                    case 2:
+                        $message = "Faltam informações.";
                         $class = "alert-danger";
                         break;
                     default:
@@ -81,7 +85,7 @@ WHERE id_utilizadores = " . $_SESSION["id_user"];
                     </div>
 
                 </section>
-                <section class="py-4 container-fluid menu_perfil">
+                <section class="pt-4 container-fluid menu_perfil">
                     <section class="container pt-2">
                         <div class="row justify-content-center align-items-center">
                             <div class="col-auto pb-4">
@@ -131,6 +135,12 @@ WHERE id_utilizadores = " . $_SESSION["id_user"];
                                     </div>
                                 </div>
                                 <div class="mb-3">
+                                    <label for="username" class="mb-1">Username</label>
+                                    <input type="text" class="form-control forminfo formconta" id="username"
+                                           value="<?= $username ?>" name="username" required>
+
+                                </div>
+                                <div class="mb-3">
                                     <label for="biografia" class="mb-1">Biografia</label>
                                     <textarea class="form-control tainfo taconta" name="biografia" id="biografia"
                                               rows="5"
@@ -168,49 +178,47 @@ WHERE id_utilizadores = " . $_SESSION["id_user"];
                                 </div>
 
 
-                                <div class="mb-3 ">
-                                    <label for="cargo" class="mb-1">Selecionar Cargo </label>
-                                    </br>
-                                    <div class=" form-check">
-
-                                        <input type="radio" class="btn-check" name="cargo"
-                                               id="<?= $id_cargo ?>" autocomplete="off"
-                                               value="<?= $id_cargo ?>" required checked autofocus>
-                                        <label class="m-2 btn btn-secondary bg-<?= $cargo_color ?>"
-                                               for="<?= $id_cargo ?>"><?= $cargo_nome ?></label>
-
-                                        <?php
-                                        $query2 = "SELECT id_cargo, cargo.nome, color, utilizadores.ref_id_cargo FROM cargo INNER JOIN utilizadores ON id_utilizadores = $id_user WHERE id_cargo != utilizadores.ref_id_cargo AND id_cargo != 2";
-                                        if (mysqli_stmt_prepare($stmt, $query2)) {
-
-                                            mysqli_stmt_execute($stmt);
-
-                                            mysqli_stmt_bind_result($stmt, $id_cargo, $nome_cargo, $cor_cargo, $antigo_cargo);
-
-                                            mysqli_stmt_store_result($stmt);
-
-                                            while (mysqli_stmt_fetch($stmt)) {
-                                                ?>
-                                                <input type="radio" class="btn-check" name="cargo" id="<?= $id_cargo ?>"
-                                                       autocomplete="off" value="<?= $id_cargo ?>" required>
-                                                <label class="m-2 btn btn-secondary bg-<?= $cor_cargo ?>"
-                                                       for="<?= $id_cargo ?>"><?= $nome_cargo ?></label>
-                                                <?php
-                                            }
-                                        }
-                                        ?>
-
-                                    </div>
-                                </div>
-
-
+                            </div>
+                            <div class="container">
+                                <label>Selecionar Cargo</label>
                             </div>
 
-
-                        </div>
                         </div>
                     </section>
+
                 </section>
+
+                <div class="scrollcargos mb-6">
+                    <input type="radio" class="d-none btn-cargos" name="cargo"
+                           id="<?= $id_cargo ?>" autocomplete="off"
+                           value="<?= $id_cargo ?>" required checked autofocus>
+                    <label class="m-1 ms-4 badge label-cargos d-inline-block bg-<?= $cargo_color ?>"
+                           for="<?= $id_cargo ?>"><?= $cargo_nome ?>
+
+                    </label>
+
+                    <?php
+                    $query2 = "SELECT id_cargo, cargo.nome, color, utilizadores.ref_id_cargo FROM cargo INNER JOIN utilizadores ON id_utilizadores = $id_user WHERE id_cargo != utilizadores.ref_id_cargo AND id_cargo != 2 ORDER BY cargo.nome";
+                    if (mysqli_stmt_prepare($stmt, $query2)) {
+                        mysqli_stmt_execute($stmt);
+                        mysqli_stmt_bind_result($stmt, $cargo_id, $nome_cargo, $cor_cargo, $antigo_cargo);
+                        mysqli_stmt_store_result($stmt);
+
+                        while (mysqli_stmt_fetch($stmt)) {
+                            ?>
+
+                            <input type="radio" class="d-none btn-cargos" name="cargo"
+                                   id="<?= $cargo_id ?>" autocomplete="off"
+                                   value="<?= $cargo_id ?>" required>
+                            <label class="m-1 badge label-cargos d-inline-block bg-<?= $cor_cargo ?>"
+                                   for="<?= $cargo_id ?>"><?= $nome_cargo ?></label>
+
+
+                            <?php
+                        }
+                    }
+                    ?>
+                </div>
             </form>
             <?php
         } else {

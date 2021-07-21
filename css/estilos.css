@@ -234,14 +234,15 @@ small, .small {
     background-color: var(--menu-cor);
     padding: 15px 12px 5px 12px;
     position: fixed;
-    bottom: -175px;
+    bottom: -235px;
     left: 0;
+    right: 0;
     width: 100%;
     transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .animaperfil {
-    transform: translateY(-230px);
+    transform: translateY(-290px);
 }
 
 
@@ -1362,7 +1363,72 @@ a:hover {
 }
 
 
+.caixavalidar {
+    background-color: var(--menu-cor);
+    height: 250px;
+    border-radius: 15px 15px 0 0;
+}
 
+.resposta-val {
+    text-align: center;
+    font-weight: 700;
+}
+
+.text-success {
+    color: #62e262;
+}
+
+.text-danger {
+    color: #e22d2d;
+}
+
+div.scrollcargos {
+    overflow: auto;
+    white-space: nowrap;
+}
+
+div.scrollcargos label {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn-cargos {
+    position: absolute;
+}
+
+.label-cargos {
+    font-size: .9em;
+    color: #aab8c2;
+    cursor: pointer;
+    align-self: center;
+    transition: color 0.2s ease-in-out;
+}
+
+.label-cargos:hover {
+    color: grey;
+}
+
+.bg-warning {
+    background-color: #dba715 !important;
+}
+
+.label-cargos::selection {
+    color: none;
+    background: transparent;
+}
+
+.label-cargos::moz-selection {
+    color: none;
+    background: transparent;
+}
+
+.btn-cargos:checked + label {
+    color: white;
+    border: 3px #e5e5e5 solid;
+    animation: 1s cubic-bezier(.17, .89, .32, 1.49);
+}
 
 
 .qrcode img {
@@ -1474,9 +1540,6 @@ a:hover {
     left: 0;
 }
 
-input[type="radio" i]:focus {
-
-}
 
 .botaomultiplo {
     background-color: rgb(46, 46, 48);

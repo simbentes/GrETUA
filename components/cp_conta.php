@@ -211,25 +211,6 @@ WHERE id_utilizadores = " . $_SESSION["id_user"];
                 <div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">
-                            <a href="reservas.php">
-                                <div class="row g-0 align-items-center justify-content-between">
-                                    <div class="col-auto">
-                                        <div class="row g-0 align-items-center">
-                                            <div class="col-auto pe-2">
-                                                <i class="bi bi-pen h1"></i>
-                                            </div>
-                                            <div class="col-auto mb-1">
-                                                Reservas
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="bi bi-chevron-right h6"></i>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="list-group-item">
                             <a href="bilhetes.php">
                                 <div class="row g-0 align-items-center justify-content-between">
                                     <div class="col-auto">
@@ -249,6 +230,25 @@ WHERE id_utilizadores = " . $_SESSION["id_user"];
                             </a>
                         </li>
                         <li class="list-group-item">
+                            <a href="reservas.php">
+                                <div class="row g-0 align-items-center justify-content-between">
+                                    <div class="col-auto">
+                                        <div class="row g-0 align-items-center">
+                                            <div class="col-auto pe-2">
+                                                <i class="bi bi-pen h1"></i>
+                                            </div>
+                                            <div class="col-auto mb-1">
+                                                Reservas
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="bi bi-chevron-right h6"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="list-group-item">
                             <a href="guardados.php">
                                 <div class="row g-0 align-items-center justify-content-between">
                                     <div class="col-auto">
@@ -258,6 +258,25 @@ WHERE id_utilizadores = " . $_SESSION["id_user"];
                                             </div>
                                             <div class="col-auto mb-1">
                                                 Guardados
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-auto">
+                                        <i class="bi bi-chevron-right h6"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="editar-info-privada.php">
+                                <div class="row g-0 align-items-center justify-content-between">
+                                    <div class="col-auto">
+                                        <div class="row g-0 align-items-center">
+                                            <div class="col-auto pe-2">
+                                                <i class="bi bi-shield-lock h1"></i>
+                                            </div>
+                                            <div class="col-auto mb-1">
+                                                Informações Privadas
                                             </div>
                                         </div>
                                     </div>
