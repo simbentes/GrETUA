@@ -95,7 +95,7 @@ WHERE id_utilizadores = " . $_SESSION["id_user"];
                                             <div class="form-group">
                                                 <div id="upfoto" class="uploadfotoperfil position-relative">
                                                     <label for="avatar" id="maquina">
-                                                        <img src="img/users/<?= $_SESSION["fperfil"] ?>"
+                                                        <img src="img/users/<?= htmlspecialchars($_SESSION["fperfil"]) ?>"
                                                              class="fotoperfilinput"
                                                              id="output"/>
                                                     </label>
@@ -125,26 +125,26 @@ WHERE id_utilizadores = " . $_SESSION["id_user"];
                                     <div class="col">
                                         <label for="nome" class="mb-1">Nome</label>
                                         <input type="text" class="form-control forminfo formconta" id="nome" name="nome"
-                                               value="<?= $nome ?>" required>
+                                               value="<?= htmlspecialchars($nome) ?>" required>
                                     </div>
                                     <div class="col">
                                         <label for="apelido" class="mb-1">Apelido</label>
                                         <input type="text" class="form-control forminfo formconta" id="apelido"
                                                name="apelido"
-                                               value="<?= $apelido ?>" required>
+                                               value="<?= htmlspecialchars($apelido) ?>" required>
                                     </div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="username" class="mb-1">Username</label>
                                     <input type="text" class="form-control forminfo formconta" id="username"
-                                           value="<?= $username ?>" name="username" required>
+                                           value="<?= htmlspecialchars($username) ?>" name="username" required>
 
                                 </div>
                                 <div class="mb-3">
                                     <label for="biografia" class="mb-1">Biografia</label>
                                     <textarea class="form-control tainfo taconta" name="biografia" id="biografia"
                                               rows="5"
-                                              onkeydown="caixatexto()"><?= $biografia ?></textarea>
+                                              onkeydown="caixatexto()"><?= htmlspecialchars($biografia) ?></textarea>
                                     <div class="text-end"><small id="nchar"></small></div>
                                     <script>
                                         window.onload = function () {
@@ -167,14 +167,14 @@ WHERE id_utilizadores = " . $_SESSION["id_user"];
                                 <div class="mb-3">
                                     <label for="instagram" class="mb-1">Instagram <small>(username)</small></label>
                                     <input type="text" class="form-control forminfo formconta" id="instagram"
-                                           value="<?= $instagram ?>" name="instagram">
+                                           value="<?= htmlspecialchars($instagram) ?>" name="instagram">
 
                                 </div>
                                 <div class="mb-3">
                                     <label for="whatsapp" class="mb-1">WhatsApp <small>(Número de
                                             telefone)</small></label>
                                     <input type="text" class="form-control forminfo formconta" id="whatsapp"
-                                           value="<?= $whatsapp ?>" name="whatsapp">
+                                           value="<?= htmlspecialchars($whatsapp) ?>" name="whatsapp">
                                 </div>
 
 
@@ -190,10 +190,10 @@ WHERE id_utilizadores = " . $_SESSION["id_user"];
 
                 <div class="scrollcargos mb-6">
                     <input type="radio" class="d-none btn-cargos" name="cargo"
-                           id="<?= $id_cargo ?>" autocomplete="off"
-                           value="<?= $id_cargo ?>" required checked autofocus>
-                    <label class="m-1 ms-4 badge label-cargos d-inline-block bg-<?= $cargo_color ?>"
-                           for="<?= $id_cargo ?>"><?= $cargo_nome ?>
+                           id="<?= htmlspecialchars($id_cargo) ?>" autocomplete="off"
+                           value="<?= htmlspecialchars($id_cargo) ?>" required checked autofocus>
+                    <label class="m-1 ms-4 badge label-cargos d-inline-block bg-<?= htmlspecialchars($cargo_color) ?>"
+                           for="<?= htmlspecialchars($id_cargo) ?>"><?= htmlspecialchars($cargo_nome) ?>
 
                     </label>
 
@@ -208,10 +208,10 @@ WHERE id_utilizadores = " . $_SESSION["id_user"];
                             ?>
 
                             <input type="radio" class="d-none btn-cargos" name="cargo"
-                                   id="<?= $cargo_id ?>" autocomplete="off"
-                                   value="<?= $cargo_id ?>" required>
-                            <label class="m-1 badge label-cargos d-inline-block bg-<?= $cor_cargo ?>"
-                                   for="<?= $cargo_id ?>"><?= $nome_cargo ?></label>
+                                   id="<?= htmlspecialchars($cargo_id) ?>" autocomplete="off"
+                                   value="<?= htmlspecialchars($cargo_id) ?>" required>
+                            <label class="m-1 badge label-cargos d-inline-block bg-<?= htmlspecialchars($cor_cargo) ?>"
+                                   for="<?= htmlspecialchars($cargo_id) ?>"><?= htmlspecialchars($nome_cargo) ?></label>
 
 
                             <?php

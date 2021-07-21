@@ -41,11 +41,11 @@
                         while (mysqli_stmt_fetch($stmt)) { ?>
 
                             <tr>
-                                <td><?= $id_artistas ?></td>
-                                <td class="font-weight-bold"><?= $nome ?></td>
-                                <td><?= $bio ?></td>
-                                <td><?= $pais ?></td>
-                                <td><a href='artistas_edit.php?id=<?= $id_artistas ?>' <i
+                                <td><?= htmlspecialchars($id_artistas) ?></td>
+                                <td class="font-weight-bold"><?= htmlspecialchars($nome) ?></td>
+                                <td><?= htmlspecialchars($bio) ?></td>
+                                <td><?= htmlspecialchars($pais) ?></td>
+                                <td><a href='artistas_edit.php?id=<?= htmlspecialchars($id_artistas) ?>' <i
                                             class="fa fa-edit fa-fw"></i></a></td>
                             </tr>
                             <?php

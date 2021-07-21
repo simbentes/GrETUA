@@ -71,17 +71,17 @@ else:
     <form>
         <div class="row g-0 justify-content-center align-items-center g-2">
             <div class="col-auto">
-                <h4 class="mb-1"><?= $min_ano ?></h4>
+                <h4 class="mb-1"><?= htmlspecialchars($min_ano) ?></h4>
             </div>
             <div class="col-7">
                 <input type="range" class="form-range" id="temporange" value="100" step="0.1">
             </div>
             <div class="col-auto">
-                <h4 class="mb-1"><?= $max_ano ?></h4>
+                <h4 class="mb-1"><?= htmlspecialchars($max_ano) ?></h4>
             </div>
         </div>
-        <input id="min-data" type="hidden" value="<?= $min_data ?>">
-        <input id="max-data" type="hidden" value="<?= $max_data ?>">
+        <input id="min-data" type="hidden" value="<?= htmlspecialchars($min_data) ?>">
+        <input id="max-data" type="hidden" value="<?= htmlspecialchars($max_data) ?>">
     </form>
 </section>
 <?php

@@ -52,30 +52,30 @@ ORDER BY data_eventos.data ASC";
                                     <div class="row justify-content-between align-items-end">
                                         <div class="col-auto">
                                             <div class="text-uppercase mb-2"><small class="fw-bold">Reserva
-                                                    nº</small> <?= $reservas_id ?>
+                                                    nº</small> <?= htmlspecialchars($reservas_id) ?>
                                             </div>
-                                            <h3 class="card-title mb-0"><?= $nome_evento ?></h3>
+                                            <h3 class="card-title mb-0"><?= htmlspecialchars($nome_evento) ?></h3>
                                         </div>
                                     </div>
                                     <hr>
                                     <div class="row justify-content-between align-items-end">
                                         <div class="col-auto">
                                             <small>DATA</small>
-                                            <h3 class="pb-2"><?= $data_evento . " <small>" . $hora_evento . "</small>" ?></h3>
+                                            <h3 class="pb-2"><?= htmlspecialchars($data_evento) . " <small>" . htmlspecialchars($hora_evento) . "</small>" ?></h3>
                                         </div>
                                         <div class="col-auto text-end">
                                             <small>Nº ENTRADAS</small>
-                                            <h3 class="pb-2"><?= $quantidade ?></h3>
+                                            <h3 class="pb-2"><?= htmlspecialchars($quantidade) ?></h3>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row pt-2 g-0">
                                     <div class="col-6">
-                                        <a href="evento.php?evento=<?= $evento_id ?>"
+                                        <a href="evento.php?evento=<?= htmlspecialchars($evento_id) ?>"
                                            class="btn btn-memoriafeed" style="border-radius: 0 0 0 8px">Ver Evento</a>
                                     </div>
                                     <div class="col-6">
-                                        <a href="scripts/sc_delete_reserva.php?id=<?= $reservas_id ?>"
+                                        <a href="scripts/sc_delete_reserva.php?id=<?= htmlspecialchars($reservas_id) ?>"
                                            class="btn btn-memoriafeed text-danger" style="border-radius: 0 0 8px 0"><i
                                                     class="bi bi-dash-circle-fill pe-2"></i>Cancelar</a>
                                     </div>

@@ -53,7 +53,7 @@ GROUP BY data_eventos.ref_id_eventos)";
                 <div class="position-relative">
                     <section class="container px-0 frame-img">
                         <div id="framefotoevento" class="framefotoevento"
-                             style="background-image: url('img/eventos/<?= $foto ?>')">
+                             style="background-image: url('img/eventos/<?= htmlspecialchars($foto) ?>')">
                             <div class="degrade-imagem"></div>
                             <a id="voltar" href="eventos.php" class="voltar"><i
                                         class="bi bi-chevron-left p-1 mb-0 h2"></i></a>
@@ -65,8 +65,8 @@ GROUP BY data_eventos.ref_id_eventos)";
                             function partilharLink() {
                                 if (navigator.share) {
                                     navigator.share({
-                                        title: '<?= $nome_evento ?>',
-                                        text: 'Vamos a um evento juntos? <?= $nome_evento ?>',
+                                        title: '<?= htmlspecialchars($nome_evento) ?>',
+                                        text: 'Vamos a um evento juntos? <?= htmlspecialchars($nome_evento) ?>',
                                         url: window.location.href,
                                     })
                                         .then(() => console.log('Successful share'))
@@ -78,7 +78,7 @@ GROUP BY data_eventos.ref_id_eventos)";
                     <section class="container evento-text">
                         <div>
                             <div class="evento-titulo px-2">
-                                <h1><?= $nome_evento ?></h1>
+                                <h1><?= htmlspecialchars($nome_evento) ?></h1>
                                 <div class="row justify-content-between">
                                     <h6 class="col-auto text-cinza">
                                         <?php
@@ -111,12 +111,12 @@ GROUP BY data_eventos.ref_id_eventos)";
                                         }
                                         ?>
                                     </h6>
-                                    <h6 class="col-auto text-cinza text-end"><?= $tipo_evento ?></h6>
+                                    <h6 class="col-auto text-cinza text-end"><?= htmlspecialchars($tipo_evento) ?></h6>
                                 </div>
                             </div>
                             <div class="row justify-content-center align-items-center py-3">
                                 <div class="col-auto">
-                                    <a href="artista.php?artista=<?= $id_artista ?>" class="artistabtn">
+                                    <a href="artista.php?artista=<?= htmlspecialchars($id_artista) ?>" class="artistabtn">
                                         <div class="row align-items-center g-2">
                                             <div class="col-auto">
                                                 <img src="img/eventos/<?php
@@ -146,7 +146,7 @@ WHERE eventos.ref_id_artistas = ?;";
                                                 ?>" class="fotoperfilartista">
                                             </div>
                                             <div class="col-auto fw-700">
-                                                <?= $artista ?>
+                                                <?= htmlspecialchars($artista) ?>
                                                 <svg width="14" height="14" viewBox="0 0 16 16"
                                                      xmlns="http://www.w3.org/2000/svg"
                                                      xmlns:svg="http://www.w3.org/2000/svg" class="bi bi-check-circle">
@@ -169,16 +169,16 @@ WHERE eventos.ref_id_artistas = ?;";
                                     </a>
                                 </div>
                             </div>
-                            <p><?= $desc_curta ?></p>
+                            <p><?= htmlspecialchars($desc_curta) ?></p>
                         </div>
                         <div class="row">
                             <div class="col pe-1 pb-1 text-center">
-                                <a href="reservar.php?evento=<?= $eventoid ?>" class="btn btn-pequeno w-100"><i
+                                <a href="reservar.php?evento=<?= htmlspecialchars($eventoid) ?>" class="btn btn-pequeno w-100"><i
                                             class="bi bi-pen d-block"></i><span
                                             class="d-block">Reservar</span></a>
                             </div>
                             <div class="col px-1 pb-1 text-center">
-                                <input id="vou" value="<?= $eventoid ?>" class="btn-vou"
+                                <input id="vou" value="<?= htmlspecialchars($eventoid) ?>" class="btn-vou"
                                        type="checkbox"
                                        onclick="vouEvento(this.checked,this.value)" <?php if ($vou == 1) echo "checked" ?>>
                                 <label class="btn btn-pequeno w-100 label-btn-vou" for="vou"><i
@@ -186,7 +186,7 @@ WHERE eventos.ref_id_artistas = ?;";
                                                                                                  class="d-block">Vou</span></label>
                             </div>
                             <div class="col ps-1 pb-1 text-center">
-                                <input id="guardado" value="<?= $eventoid ?>" class="btn-guardado"
+                                <input id="guardado" value="<?= htmlspecialchars($eventoid) ?>" class="btn-guardado"
                                        type="checkbox"
                                        onclick="guardarEvento(this.checked,this.value)" <?php if ($guardado == 1) echo "checked" ?>>
                                 <label class="btn btn-pequeno w-100 label-btn-guardado" for="guardado"><i
@@ -195,7 +195,7 @@ WHERE eventos.ref_id_artistas = ?;";
                                             class="d-block">Guardar</span></label>
                             </div>
                             <div class="col-12 pt-2">
-                                <a href="comprar.php?evento=<?= $eventoid ?>" class="btn btn-grande w-100">Adquirir
+                                <a href="comprar.php?evento=<?= htmlspecialchars($eventoid) ?>" class="btn btn-grande w-100">Adquirir
                                     Bilhete</a>
                             </div>
                         </div>
@@ -294,14 +294,14 @@ WHERE id_data_eventos = ?";
                                         <div class="col-lg-5">
                                             <div class="row justify-content-end">
                                                 <div class="col-auto">
-                                                    <h6><?= round($size) ?>%</h6>
+                                                    <h6><?= htmlspecialchars(round($size)) ?>%</h6>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class='progress'>
-                                            <div class='progress-bar progress-bar <?= $cor_barra ?>'
+                                            <div class='progress-bar progress-bar <?= htmlspecialchars($cor_barra) ?>'
                                                  role='progressbar'
-                                                 style='width: <?= $size ?>%' aria-valuenow='<?= $size ?>'
+                                                 style='width: <?= htmlspecialchars($size) ?>%' aria-valuenow='<?= htmlspecialchars($size) ?>'
                                                  aria-valuemin='0'
                                                  aria-valuemax='100'></div>
                                         </div>
@@ -317,7 +317,7 @@ WHERE id_data_eventos = ?";
 
                         <div class="container-fluid py-4 mb-5">
                             <h3>Ficha Técnica</h3>
-                            <p class="ficha"><?= $ficha_tecnica ?></p>
+                            <p class="ficha"><?= htmlspecialchars($ficha_tecnica) ?></p>
                             <div class="row justify-content-center align-items-center py-3">
                                 <div class="col-auto row align-items-center">
                                     <div class="col-auto pe-1 ps-3">
@@ -325,7 +325,7 @@ WHERE id_data_eventos = ?";
                                     </div>
                                     <div class="col-auto ps-1 pe-3">
                                         <h6 class="mb-0 small">Duração</h6>
-                                        <h3 class="mb-0"><?= $duracao ?> <small>MIN</small></h3>
+                                        <h3 class="mb-0"><?= htmlspecialchars($duracao) ?> <small>MIN</small></h3>
                                     </div>
                                 </div>
                                 <div class="col-auto row align-items-center">
@@ -334,7 +334,7 @@ WHERE id_data_eventos = ?";
                                     </div>
                                     <div class="col-auto ps-1 pe-3">
                                         <h6 class="mb-0 small">Classificação etária</h6>
-                                        <h3 class="mb-0">M/<?= $c_etaria ?></h3>
+                                        <h3 class="mb-0">M/<?= htmlspecialchars($c_etaria) ?></h3>
                                     </div>
                                 </div>
                             </div>

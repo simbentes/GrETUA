@@ -326,11 +326,11 @@ LIMIT 3;";
                             ?>
                             <div class="row align-items-center">
                                 <div class="col-sm">
-                                    <h5 class="font-weight-bold mb-0"><?= $data ?></h5>
-                                    <h3><?= $nome ?></h3>
+                                    <h5 class="font-weight-bold mb-0"><?= htmlspecialchars($data) ?></h5>
+                                    <h3><?= htmlspecialchars($nome) ?></h3>
                                 </div>
                                 <div class="col-sm-auto">
-                                    <a href="../evento.php?evento=<?= $id_eventos ?>" class="font-weight-bold">Ver na
+                                    <a href="../evento.php?evento=<?= htmlspecialchars($id_eventos) ?>" class="font-weight-bold">Ver na
                                         app<i class="fas fa-chevron-right pl-1"></i></a>
                                 </div>
                             </div>

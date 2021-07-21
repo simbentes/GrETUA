@@ -6,7 +6,7 @@ else:
     <section class="container-fluid pt-3 pb-2 px-3 topindexmenu fixed-top">
         <div class="row gx-0 align-items-center">
             <div class="col-auto">
-                <a href="evento.php?evento=<?= $_GET["evento"] ?>" class="text-white"><i
+                <a href="evento.php?evento=<?= htmlspecialchars($_GET["evento"]) ?>" class="text-white"><i
                             class="bi bi-chevron-left p-1 mb-0 h5"></i></a>
             </div>
             <div class="col-auto ps-3">
@@ -50,13 +50,13 @@ WHERE ref_id_eventos = ? AND id_data_eventos = ?";
                         mysqli_stmt_fetch($stmt);
                         ?>
                         <div class="pt-6 mt-3">
-                            <h3 class="mt-5"><?= $evento_nome ?></h3>
-                            <p><?= $data . " " . $hora ?></p>
+                            <h3 class="mt-5"><?= htmlspecialchars($evento_nome) ?></h3>
+                            <p><?= htmlspecialchars($data) . " " . htmlspecialchars($hora) ?></p>
                         </div>
                         <form action="scripts/sc_reservar.php" method="post" class="px-0 pt-3" autocomplete="off">
                             <div class="mb-3">
                                 <label for="nreservas" class="mb-1">Em nome de</label>
-                                <div class="h0"><?= $_SESSION["nome"] ?></div>
+                                <div class="h0"><?= htmlspecialchars($_SESSION["nome"]) ?></div>
                             </div>
                             <div class="row mb-4 align-items-center">
                                 <div class="col mb-0 pe-1">
@@ -67,7 +67,7 @@ WHERE ref_id_eventos = ? AND id_data_eventos = ?";
                                            name="numreservas"
                                            min="1" max="10" value="1">
                                 </div>
-                                <input type="hidden" name="data_evento" value="<?= $_GET["data"] ?>">
+                                <input type="hidden" name="data_evento" value="<?= htmlspecialchars($_GET["data"]) ?>">
                             </div>
                             <div>
                                 <button type="submit" class="btn btn-grande w-100">Reservar</button>
@@ -118,10 +118,10 @@ WHERE ref_id_eventos = ? AND id_data_eventos = ?";
                                 <div class="col-12 text-white py-2">
                                     <div class="row justify-content-between align-items-center bg-preto">
                                         <div class="col-auto datareservar">
-                                            <?= $data . "<span class='ps-4'>" . $hora . "</span>" ?>
+                                            <?= htmlspecialchars($data) . "<span class='ps-4'>" . htmlspecialchars($hora) . "</span>" ?>
                                         </div>
                                         <div class="col-auto pe-0">
-                                            <a href="reservar.php?evento=<?= $eventoid ?>&data=<?= $id_data ?>"
+                                            <a href="reservar.php?evento=<?= htmlspecialchars($eventoid) ?>&data=<?= htmlspecialchars($id_data) ?>"
                                                class="btn btn-azul-reserva w-100"><i
                                                         class="bi bi-pen d-block"></i></a>
                                         </div>

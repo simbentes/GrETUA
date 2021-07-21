@@ -83,16 +83,16 @@ WHERE id_utilizadores = ?";
                     <section class="container-fluid perfil">
                         <div class="row justify-content-center align-items-center">
                             <div class="col-auto">
-                                <img class="img-fluid fotoperfil" src="img/users/<?= $foto_perfil ?>">
+                                <img class="img-fluid fotoperfil" src="img/users/<?= htmlspecialchars($foto_perfil) ?>">
                             </div>
                             <div class="col-auto">
-                                <h2 class="mb-0"><?= $nome . " " . $apelido ?></h2>
-                                <span class="badge bg-<?= $cargo_color ?>"><?= $cargo_nome ?></span>
+                                <h2 class="mb-0"><?= htmlspecialchars($nome) . " " . htmlspecialchars($apelido) ?></h2>
+                                <span class="badge bg-<?= htmlspecialchars($cargo_color) ?>"><?= htmlspecialchars($cargo_nome) ?></span>
                             </div>
                         </div>
 
                         <div class="pt-3">
-                            <p class="mb-0 biografia"><?= $biografia ?></p>
+                            <p class="mb-0 biografia"><?= htmlspecialchars($biografia) ?></p>
                         </div>
                         <div class="row g-1 justify-content-center align-content-center pt-3">
                             <div class="col-auto">
@@ -101,7 +101,7 @@ WHERE id_utilizadores = ?";
                             <?php
                             if (!empty($instagram)) { ?>
                                 <div class="col-auto">
-                                    <a href="https://instagram.com/<?= $instagram ?>" target="_blank">
+                                    <a href="https://instagram.com/<?= htmlspecialchars($instagram) ?>" target="_blank">
                                         <div class="redessocias">
                                             <i class="bi bi-instagram iconredes"></i>
                                         </div>
@@ -110,7 +110,7 @@ WHERE id_utilizadores = ?";
                             <?php }
                             if (!empty($whatsapp)) { ?>
                                 <div class="col-auto">
-                                    <a href="https://wa.me/00351<?= $whatsapp ?>" target="_blank">
+                                    <a href="https://wa.me/00351<?= htmlspecialchars($whatsapp) ?>" target="_blank">
                                         <div class="redessocias">
                                             <i class="bi bi-whatsapp iconredes"></i>
                                         </div>
@@ -155,7 +155,7 @@ WHERE id_utilizadores = ?";
                         </div>
                         <div class="pt-1 text-center mb-0">
                             <div class="text-center text-uppercase"><small>Membro desde</small></div>
-                            <h3 class="text-center mb-0"><?= $data_mes_criacao ?></h3>
+                            <h3 class="text-center mb-0"><?= htmlspecialchars($data_mes_criacao) ?></h3>
                         </div>
                     </section>
                     <div class="container-fluid pt-3">

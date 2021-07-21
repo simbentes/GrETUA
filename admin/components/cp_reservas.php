@@ -50,11 +50,11 @@ ORDER BY data_eventos.data;";
                         while (mysqli_stmt_fetch($stmt)) { ?>
 
                             <tr>
-                                <td><?= $id_reservas ?></td>
-                                <td><?= $nome_user ?></td>
-                                <td><?= $quantidade ?></td>
-                                <td><?= $nome_evento ?></td>
-                                <td><?= $data_evento ?></td>
+                                <td><?= htmlspecialchars($id_reservas) ?></td>
+                                <td><?= htmlspecialchars($nome_user) ?></td>
+                                <td><?= htmlspecialchars($quantidade) ?></td>
+                                <td><?= htmlspecialchars($nome_evento) ?></td>
+                                <td><?= htmlspecialchars($data_evento) ?></td>
                             </tr>
                             <?php
                         }

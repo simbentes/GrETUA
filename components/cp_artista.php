@@ -72,8 +72,8 @@ WHERE eventos.ref_id_artistas = ?;";
                             function partilharLink() {
                                 if (navigator.share) {
                                     navigator.share({
-                                        title: '<?= $nome_artista ?>',
-                                        text: 'Vamos a um evento juntos? <?= $nome_artista ?>',
+                                        title: '<?= htmlspecialchars($nome_artista) ?>',
+                                        text: 'Vamos a um evento juntos? <?= htmlspecialchars($nome_artista) ?>',
                                         url: window.location.href,
                                     })
                                         .then(() => console.log('Successful share'))
@@ -85,7 +85,7 @@ WHERE eventos.ref_id_artistas = ?;";
                     <section class="artista-info">
                         <div class="container">
                             <div class="px-1">
-                                <h1 class="text-center"><?= $nome_artista ?></h1>
+                                <h1 class="text-center"><?= htmlspecialchars($nome_artista) ?></h1>
                             </div>
                             <div class="row g-1 justify-content-center align-content-center pt-3 pb-4">
                                 <?php
@@ -100,7 +100,7 @@ WHERE eventos.ref_id_artistas = ?;";
                                 <?php }
                                 if (!empty($fb)) { ?>
                                     <div class="col-auto">
-                                        <a href="<?= $fb ?>" target="_blank">
+                                        <a href="<?= htmlspecialchars($fb) ?>" target="_blank">
                                             <div class="redessocias">
                                                 <i class="bi bi-facebook iconredes"></i>
                                             </div>
@@ -109,7 +109,7 @@ WHERE eventos.ref_id_artistas = ?;";
                                 <?php }
                                 if (!empty($spotify)) { ?>
                                     <div class="col-auto">
-                                        <a href="<?= $spotify ?>" target="_blank">
+                                        <a href="<?= htmlspecialchars($spotify) ?>" target="_blank">
                                             <div class="redessocias">
                                                 <i class="fab fa-spotify iconredes"></i>
                                             </div>
@@ -118,7 +118,7 @@ WHERE eventos.ref_id_artistas = ?;";
                                 <?php }
                                 if (!empty($yt)) { ?>
                                     <div class="col-auto">
-                                        <a href="<?= $yt ?>" target="_blank">
+                                        <a href="<?= htmlspecialchars($yt) ?>" target="_blank">
                                             <div class="redessocias">
                                                 <i class="bi bi-youtube iconredes"></i>
                                             </div>
@@ -126,7 +126,7 @@ WHERE eventos.ref_id_artistas = ?;";
                                     </div>
                                 <?php } ?>
                             </div>
-                            <p><?= $bio ?></p>
+                            <p><?= htmlspecialchars($bio) ?></p>
                             <?php
                             if (!empty($spotify)) { ?>
                                 <h3 class="mb-3">Repertório</h3>
@@ -141,7 +141,7 @@ WHERE eventos.ref_id_artistas = ?;";
                                 <?php
                                 foreach ($array_fotos as $foto) {
                                     ?>
-                                    <div class="swiper-slide fotos-artita-eventos"><img src="img/eventos/<?= $foto ?>"
+                                    <div class="swiper-slide fotos-artita-eventos"><img src="img/eventos/<?= htmlspecialchars($foto) ?>"
                                                                                         class="fotos-artista-fluid">
                                     </div>
                                     <?php

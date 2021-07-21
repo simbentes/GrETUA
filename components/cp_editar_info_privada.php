@@ -125,13 +125,13 @@ WHERE id_utilizadores = " . $_SESSION["id_user"];
                                 <div class="mb-3">
                                     <label for="email" class="mb-1">Email</label>
                                     <input type="email" class="form-control forminfo formconta" id="email"
-                                           value="<?= $email ?>" name="email" required>
+                                           value="<?= htmlspecialchars($email) ?>" name="email" required>
                                 </div>
                                 <div class="mb-3">
                                     <label for="telefone" class="mb-1">Número de
                                         telefone</label>
                                     <input type="tel" class="form-control forminfo formconta" id="telefone"
-                                           value="<?= $telefone ?>" name="telefone">
+                                           value="<?= htmlspecialchars($telefone) ?>" name="telefone">
                                 </div>
 
 

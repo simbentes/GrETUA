@@ -43,8 +43,8 @@
             <div class="w-100 item-menu">Memórias</div>
         </a>
         <a class="col px-1" href="conta.php">
-            <img class="rounded-circle fotoperfilnav " src="img/users/<?= $_SESSION["fperfil"] ?>" alt="">
-            <div class="w-100 item-menu"><?= $_SESSION["nomeproprio"] ?></div>
+            <img class="rounded-circle fotoperfilnav " src="img/users/<?= htmlspecialchars($_SESSION["fperfil"]) ?>" alt="">
+            <div class="w-100 item-menu"><?= htmlspecialchars($_SESSION["nomeproprio"]) ?></div>
         </a>
     </div>
 </div>

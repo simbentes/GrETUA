@@ -45,16 +45,16 @@
                         while (mysqli_stmt_fetch($stmt)) { ?>
 
                             <tr>
-                                <td><?= $id_users ?></td>
+                                <td><?= htmlspecialchars($id_users) ?></td>
                                 <td><?php if ($ativo == 0) {
                                         echo '<i class="fa fa-ban fa-fw"></i>';
                                     }
-                                    echo $nome;
+                                    echo htmlspecialchars($nome);
                                     ?></td>
-                                <td><?= $email ?></td>
-                                <td><?= $data_criacao ?></td>
-                                <td><?= $cargo ?></td>
-                                <td><a href='users_edit.php?id=<?= $id_users ?>' <i
+                                <td><?= htmlspecialchars($email) ?></td>
+                                <td><?= htmlspecialchars($data_criacao) ?></td>
+                                <td><?= htmlspecialchars($cargo) ?></td>
+                                <td><a href='users_edit.php?id=<?= htmlspecialchars($id_users) ?>' <i
                                             class="fa fa-edit fa-fw"></i></a></td>
                             </tr>
                             <?php

@@ -92,11 +92,11 @@ else:
                             ?>
 
                             <div class="evento swiper-slide">
-                                <a href="evento.php?evento=<?= $id_evento ?>">
+                                <a href="evento.php?evento=<?= htmlspecialchars($id_evento) ?>">
                                     <div class="evento-card-degrade"></div>
-                                    <img class="img-fluid img-evento" src="img/eventos/<?= $foto ?>">
+                                    <img class="img-fluid img-evento" src="img/eventos/<?= htmlspecialchars($foto) ?>">
                                     <div class="desc-evento container-fluid">
-                                        <h6 class="top-right"><?= $nome_evento ?></h6>
+                                        <h6 class="top-right"><?= htmlspecialchars($nome_evento) ?></h6>
                                         <div class="row">
                                             <div class="col-auto text-cinza">
                                                 <?php
@@ -118,9 +118,9 @@ else:
                                                             echo $min_data_str;
                                                         } else {
                                                             if ($min_ano == $max_ano) {
-                                                                echo "<small>DE</small> " . $min_data_str . " <small>A</small>  " . $max_data_str;
+                                                                echo "<small>DE</small> " . htmlspecialchars($min_data_str) . " <small>A</small>  " . htmlspecialchars($max_data_str);
                                                             } else {
-                                                                echo "<small>DE</small> " . $min_data_str . " " . $min_ano . " <small>A</small>  " . $max_data_str . " " . $max_ano;
+                                                                echo "<small>DE</small> " . htmlspecialchars($min_data_str) . " " . htmlspecialchars($min_ano) . " <small>A</small>  " . htmlspecialchars($max_data_str) . " " . htmlspecialchars($max_ano);
 
                                                             }
                                                         }
@@ -131,7 +131,7 @@ else:
                                                 mysqli_stmt_close($stmt2);
                                                 ?>
                                             </div>
-                                            <div class="col text-cinza text-end"><?= $tipo ?></div>
+                                            <div class="col text-cinza text-end"><?= htmlspecialchars($tipo) ?></div>
                                         </div>
                                     </div>
 
@@ -188,11 +188,11 @@ ORDER BY data_eventos.data;";
                             ?>
 
                             <div class="evento swiper-slide">
-                                <a href="evento.php?evento=<?= $id_evento ?>">
+                                <a href="evento.php?evento=<?= htmlspecialchars($id_evento) ?>">
                                     <div class="evento-card-degrade"></div>
-                                    <img class="img-fluid img-evento" src="img/eventos/<?= $foto ?>">
+                                    <img class="img-fluid img-evento" src="img/eventos/<?= htmlspecialchars($foto) ?>">
                                     <div class="desc-evento container-fluid">
-                                        <h6 class="top-right"><?= $nome_evento ?></h6>
+                                        <h6 class="top-right"><?= htmlspecialchars($nome_evento) ?></h6>
                                         <div class="row">
                                             <div class="col-auto text-cinza"><?php
                                                 $meses = array("-01", "-02", "-03", "-04", "-05", "-06", "-07", "-08", "-09", "-10", "-11", "-12");
@@ -203,7 +203,7 @@ ORDER BY data_eventos.data;";
                                                 echo $data_str;
 
                                                 ?></div>
-                                            <div class="col text-cinza text-end"><?= $tipo ?></div>
+                                            <div class="col text-cinza text-end"><?= htmlspecialchars($tipo) ?></div>
                                         </div>
                                     </div>
 
@@ -259,11 +259,11 @@ ORDER BY data_eventos.data;";
                             ?>
 
                             <div class="evento swiper-slide">
-                                <a href="evento.php?evento=<?= $id_evento ?>">
+                                <a href="evento.php?evento=<?= htmlspecialchars($id_evento) ?>">
                                     <div class="evento-card-degrade"></div>
-                                    <img class="img-fluid img-evento" src="img/eventos/<?= $foto ?>">
+                                    <img class="img-fluid img-evento" src="img/eventos/<?= htmlspecialchars($foto) ?>">
                                     <div class="desc-evento container-fluid">
-                                        <h6 class="top-right"><?= $nome_evento ?></h6>
+                                        <h6 class="top-right"><?= htmlspecialchars($nome_evento) ?></h6>
                                         <div class="row">
                                             <div class="col-auto text-cinza">
                                                 <?php
@@ -298,7 +298,7 @@ ORDER BY data_eventos.data;";
                                                 mysqli_stmt_close($stmt2);
                                                 ?>
                                             </div>
-                                            <div class="col text-cinza text-end"><?= $tipo ?></div>
+                                            <div class="col text-cinza text-end"><?= htmlspecialchars($tipo) ?></div>
                                         </div>
                                     </div>
 

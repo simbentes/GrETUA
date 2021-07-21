@@ -53,12 +53,12 @@ WHERE quempublica.id_utilizadores = " . $_SESSION["id_user"] . " AND quemgostou.
                                     <div class="row">
                                         <div class="col-auto pe-1">
                                             <a>
-                                                <img src="img/users/<?= $fperfil_quemgostou ?>" class="userbubble me-2">
+                                                <img src="img/users/<?= htmlspecialchars($fperfil_quemgostou) ?>" class="userbubble me-2">
                                             </a>
                                         </div>
                                         <div class="col ps-1 noti-text">
-                                            <strong><?= $nome_quemgostou ?></strong> gostou da tua publicação
-                                            <strong><?= $titulo ?></strong>
+                                            <strong><?= htmlspecialchars($nome_quemgostou) ?></strong> gostou da tua publicação
+                                            <strong><?= htmlspecialchars($titulo) ?></strong>
                                         </div>
                                     </div>
                                 </div>

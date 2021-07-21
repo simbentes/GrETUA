@@ -66,12 +66,12 @@ ORDER BY `data_eventos`.`data`  DESC";
                         while (mysqli_stmt_fetch($stmt)) { ?>
 
                             <tr>
-                                <td><?= $id_evento ?></td>
-                                <td><?= $data ?></td>
-                                <td><strong><?= $nome ?></strong></td>
-                                <td><?= $categoria ?></td>
-                                <td><?= $data_criacao ?></td>
-                                <td><a href='eventos_edit.php?id=<?= $id_evento ?>' <i
+                                <td><?= htmlspecialchars($id_evento) ?></td>
+                                <td><?= htmlspecialchars($data) ?></td>
+                                <td><strong><?= htmlspecialchars($nome) ?></strong></td>
+                                <td><?= htmlspecialchars($categoria) ?></td>
+                                <td><?= htmlspecialchars($data_criacao) ?></td>
+                                <td><a href='eventos_edit.php?id=<?= htmlspecialchars($id_evento) ?>' <i
                                             class="fa fa-edit fa-fw"></i></a></td>
                             </tr>
                             <?php

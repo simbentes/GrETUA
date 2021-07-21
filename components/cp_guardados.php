@@ -50,12 +50,12 @@ ORDER BY guardados_vou.timestamp_guardados DESC;";
                         <div class="col-12 py-3">
                             <div class="eventoperfil">
 
-                                <a href="evento.php?evento=<?= $id_evento ?>">
+                                <a href="evento.php?evento=<?= htmlspecialchars($id_evento) ?>">
                                     <div class="evento-card-degrade"></div>
                                     <img class="img-fluid img-evento"
-                                         src="img/eventos/<?= $foto ?>">
+                                         src="img/eventos/<?= htmlspecialchars($foto) ?>">
                                     <div class="desc-evento container-fluid">
-                                        <h6 class="top-right"><?= $nome_evento ?></h6>
+                                        <h6 class="top-right"><?= htmlspecialchars($nome_evento) ?></h6>
                                         <div class="row">
                                             <div class="col-auto text-cinza">
                                                 <?php
@@ -90,16 +90,16 @@ ORDER BY guardados_vou.timestamp_guardados DESC;";
                                                 mysqli_stmt_close($stmt2);
                                                 ?>
                                             </div>
-                                            <div class="col text-cinza text-end"><?= $tipo ?></div>
+                                            <div class="col text-cinza text-end"><?= htmlspecialchars($tipo) ?></div>
                                         </div>
                                     </div>
                                 </a>
-                                <input id="guardadoinput-<?= $id_evento ?>" value="<?= $id_evento ?>"
+                                <input id="guardadoinput-<?= htmlspecialchars($id_evento) ?>" value="<?= htmlspecialchars($id_evento) ?>"
                                        class="btn-mini-guardado" type="checkbox"
                                        onclick="guardarEvento(this.checked,this.value)"
                                        checked>
-                                <label id="guardado<?= $id_evento ?>" class="btn label-btn-mini-guardado"
-                                       for="guardadoinput-<?= $id_evento ?>">
+                                <label id="guardado<?= htmlspecialchars($id_evento) ?>" class="btn label-btn-mini-guardado"
+                                       for="guardadoinput-<?= htmlspecialchars($id_evento) ?>">
                                     <i id="iconbtnguardado" class="bi bi-bookmark-fill d-block"></i>
                                 </label>
                             </div>

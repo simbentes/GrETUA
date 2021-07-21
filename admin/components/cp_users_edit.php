@@ -71,27 +71,27 @@ WHERE id_utilizadores = ?";
                                     <input type="hidden" name="id_users" value="{$id_users}">
                                     <div class="form-group">
                                         <label>ID do utilizador</label>
-                                        <p class="form-control-static"><?= $id_user ?></p>
+                                        <p class="form-control-static"><?= htmlspecialchars($id_user) ?></p>
                                     </div>
                                     <div class="form-group">
                                         <label>Data de criação</label>
-                                        <p class="form-control-static"><?= $data_criacao ?></p>
+                                        <p class="form-control-static"><?= htmlspecialchars($data_criacao) ?></p>
                                     </div>
                                     <div class="form-group">
                                         <label>Username</label>
                                         <input class="form-control" name="username"
-                                               value="<?= $username ?>">
+                                               value="<?= htmlspecialchars($username) ?>">
                                     </div>
                                     <div class="form-group">
                                         <label>Email</label>
-                                        <input class="form-control" name="email" value="<?= $email ?>">
+                                        <input class="form-control" name="email" value="<?= htmlspecialchars($email) ?>">
                                     </div>
                                     <?php if ($id_user != $_SESSION["id_user"]): ?>
                                         <div class="form-group">
                                             <label>Estado</label>
                                             <div class="checkbox">
                                                 <label>
-                                                    <input type="checkbox" name="active" <?= $checked ?>> Activo
+                                                    <input type="checkbox" name="active" <?= htmlspecialchars($checked) ?>> Activo
                                                 </label>
                                             </div>
                                         </div>

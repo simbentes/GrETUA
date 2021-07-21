@@ -130,7 +130,7 @@ ORDER BY id_bilhetes  DESC;";
                                                 Bilhete nº
                                             </div>
                                             <div class="text-uppercase h5 mb-0">
-                                                <?= $id_bilhetes ?>
+                                                <?= htmlspecialchars($id_bilhetes) ?>
                                             </div>
                                         </div>
                                         <div class="col-4">
@@ -138,7 +138,7 @@ ORDER BY id_bilhetes  DESC;";
                                                 Hora
                                             </div>
                                             <div class="text-uppercase h5 mb-0">
-                                                <?= $hora_evento ?>
+                                                <?= htmlspecialchars($hora_evento) ?>
                                             </div>
                                         </div>
                                         <div class="col-4">
@@ -146,7 +146,7 @@ ORDER BY id_bilhetes  DESC;";
                                                 Dia
                                             </div>
                                             <div class="text-uppercase h5 mb-0">
-                                                <?= $data_str ?>
+                                                <?= htmlspecialchars($data_str) ?>
                                             </div>
                                         </div>
                                     </div>
@@ -156,7 +156,7 @@ ORDER BY id_bilhetes  DESC;";
                                                 Nome
                                             </div>
                                             <div class="text-uppercase h5 mb-0">
-                                                <?= $nome_bilhetes ?>
+                                                <?= htmlspecialchars($nome_bilhetes) ?>
                                             </div>
                                         </div>
                                     </div>
@@ -166,7 +166,7 @@ ORDER BY id_bilhetes  DESC;";
                                                 Evento
                                             </div>
                                             <div class="text-uppercase h5 mb-0">
-                                                <?= $nome_evento ?>
+                                                <?= htmlspecialchars($nome_evento) ?>
                                             </div>
                                         </div>
                                     </div>

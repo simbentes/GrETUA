@@ -41,17 +41,17 @@ WHERE id_publicacoes = ?";
                                     class="bi bi-chevron-left p-1 mb-0 h2"></i></a>
 
                         <?php if (isset($foto)): ?>
-                            <img src="img/pub/<?= $foto ?>"
+                            <img src="img/pub/<?= htmlspecialchars($foto) ?>"
                                  class="pub-img-top" alt="...">
                         <?php else:
                             $ps5 = "ps-5 ms-2";
                         endif;
                         ?>
-                        <input id="likeinput-<?= $id_pub ?>" value="<?= $id_pub ?>" class="btn-vou"
+                        <input id="likeinput-<?= htmlspecialchars($id_pub) ?>" value="<?= htmlspecialchars($id_pub) ?>" class="btn-vou"
                                type="checkbox" onclick="likePub(this.checked, this.value)" <?php if (isset($gosto)) {
                             echo "checked";
                         } ?>> <label
-                                id="like<?= $id_pub ?>" class="btn btn-like " for="likeinput-<?= $id_pub ?>">
+                                id="like<?= htmlspecialchars($id_pub) ?>" class="btn btn-like " for="likeinput-<?= htmlspecialchars($id_pub) ?>">
                             <?php if (isset($gosto)) : ?>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
                                      class="bi bi-heart-fill" viewBox="0 0 16 16">
@@ -68,30 +68,30 @@ WHERE id_publicacoes = ?";
                         </label>
                         <div class="card-body">
                             <div class="row justify-content-between align-items-center">
-                                <div class="col-auto <?= $ps5 ?>"><a href="perfil.php?id=<?= $id_user ?>">
+                                <div class="col-auto <?= $ps5 ?>"><a href="perfil.php?id=<?= htmlspecialchars($id_user) ?>">
                                         <div class="infouser"><img
-                                                    src="img/users/<?= $fperfil_user ?>"
+                                                    src="img/users/<?= htmlspecialchars($fperfil_user) ?>"
                                                     class="userbubble"> <span
-                                                    class="utilizador"><?= $nome_user ?></span></div>
+                                                    class="utilizador"><?= htmlspecialchars($nome_user) ?></span></div>
                                     </a></div>
                                 <div id="diferencatempo" class="col-auto infotime d-flex align-items-center"></div>
                             </div>
                         </div>
-                        <div class="card-body"><h5 class="card-title"><?= $titulo ?></h5>
-                            <p class="card-text"><?= $texto ?></p>
+                        <div class="card-body"><h5 class="card-title"><?= htmlspecialchars($titulo) ?></h5>
+                            <p class="card-text"><?= htmlspecialchars($texto) ?></p>
                             <div class="row">
                                 <div class="col-auto pe-0"><img
-                                            src="img/users/<?= $_SESSION["fperfil"] ?>"
+                                            src="img/users/<?= htmlspecialchars($_SESSION["fperfil"]) ?>"
                                             class="userbubble"></div>
                                 <div class="col">
                                     <div class="comentarform">
-                                        <form method="POST" action="scripts/sc_comentar.php?id=<?= $id_pub ?>">
+                                        <form method="POST" action="scripts/sc_comentar.php?id=<?= htmlspecialchars($id_pub) ?>">
                                             <div class="position-relative">
                                                 <input type="text" name="comentario" class="form-control comentar"
-                                                       id="<?= $id_pub ?>" placeholder="Comentar"
+                                                       id="<?= htmlspecialchars($id_pub) ?>" placeholder="Comentar"
                                                        onkeyup="mostrarSubmit(this.value, this.id)">
                                                 <button type="submit" style="display: none"
-                                                        id="submit<?= $id_pub ?>"><i
+                                                        id="submit<?= htmlspecialchars($id_pub) ?>"><i
                                                             class="bi bi-caret-right-fill"></i></i></button>
                                         </form>
                                     </div>
@@ -125,16 +125,16 @@ ORDER BY comentarios.timestamp DESC";
                                         <div class="col-12 py-2">
                                             <div class="row align-items-center">
                                                 <div class="col-auto pe-1">
-                                                    <a href="perfil.php?id=<?= $id_user ?>">
-                                                        <img src="img/users/<?= $fperfil ?>"
+                                                    <a href="perfil.php?id=<?= htmlspecialchars($id_user) ?>">
+                                                        <img src="img/users/<?= htmlspecialchars($fperfil) ?>"
                                                              class="userbubble me-2">
                                                     </a>
                                                 </div>
                                                 <div class="col ps-1 noti-text">
                                                     <strong class="pe-1">
-                                                        <a href="perfil.php?id=<?= $id_user ?>"><?= $nome_user ?></a>
-                                                    </strong><?= $comentario ?>
-                                                    <div class="small text-muted"><?= $data_comentario ?></div>
+                                                        <a href="perfil.php?id=<?= htmlspecialchars($id_user) ?>"><?= htmlspecialchars($nome_user) ?></a>
+                                                    </strong><?= htmlspecialchars($comentario) ?>
+                                                    <div class="small text-muted"><?= htmlspecialchars($data_comentario) ?></div>
                                                 </div>
                                             </div>
                                         </div>

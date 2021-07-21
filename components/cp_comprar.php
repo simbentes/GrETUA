@@ -6,7 +6,7 @@ else:
     <section class="container-fluid pt-3 pb-2 px-3 topindexmenu fixed-top">
         <div class="row gx-0 align-items-center">
             <div class="col-auto">
-                <a href="evento.php?evento=<?= $_GET["evento"] ?>" class="text-white"><i
+                <a href="evento.php?evento=<?= htmlspecialchars($_GET["evento"]) ?>" class="text-white"><i
                             class="bi bi-chevron-left p-1 mb-0 h5"></i></a>
             </div>
             <div class="col-auto ps-3">
@@ -50,17 +50,17 @@ WHERE ref_id_eventos = ? AND id_data_eventos = ?";
                         mysqli_stmt_fetch($stmt);
                         ?>
                         <div class="pt-5 mt-3">
-                            <h3 class="mt-5 mb-3"><?= $evento_nome ?></h3>
+                            <h3 class="mt-5 mb-3"><?= htmlspecialchars($evento_nome) ?></h3>
                             <div class="row justify-content-between align-items-center mb-4">
                                 <div class="col-auto">
-                                    <div><?= $data . " " . $hora ?></div>
+                                    <div><?= htmlspecialchars($data) . " " . htmlspecialchars($hora) ?></div>
                                 </div>
                                 <div class="col-auto">
                                     <h2 class="text-center fw-bold mb-0"><?php
                                         if ($preco_reserva == 0) {
                                             echo "Gratuito";
                                         } else {
-                                            echo $preco_reserva . "€";
+                                            echo htmlspecialchars($preco_reserva) . "€";
                                         } ?></h2>
                                 </div>
                             </div>
@@ -72,12 +72,12 @@ WHERE ref_id_eventos = ? AND id_data_eventos = ?";
                                 <label for="nreservas" class="mb-1">Nome</label>
                                 <input type="text" class="form-control forminfo formconta" id="nomebilhete1"
                                        name="nomebilhete1"
-                                       value="<?= $_SESSION["nome"] ?>" required>
+                                       value="<?= htmlspecialchars($_SESSION["nome"]) ?>" required>
                                 <div id="nomebilhetes"></div>
                             </div>
                             <div>
                                 <input type="hidden" name="quantidade" id="quantidade" value="1">
-                                <input type="hidden" name="data_evento" value="<?= $_GET["data"] ?>">
+                                <input type="hidden" name="data_evento" value="<?= htmlspecialchars($_GET["data"]) ?>">
                                 <div class="row">
                                     <div id="add-caixa" class="col-12">
                                         <div id="comprar-add" class="btn btn-grande btn-add w-100 mb-4">
@@ -140,7 +140,7 @@ WHERE ref_id_eventos = ? AND id_data_eventos = ?";
                                 <div class="col-12 text-white py-2">
                                     <div class="row justify-content-between align-items-center bg-preto">
                                         <div class="col-auto datareservar">
-                                            <?= $data . "<span class='ps-4'>" . $hora . "</span>" ?>
+                                            <?= htmlspecialchars($data) . "<span class='ps-4'>" . htmlspecialchars($hora) . "</span>" ?>
                                         </div>
                                         <?php
                                         $query = "SELECT eventos.lotacao, SUM(reservas.quantidade)
@@ -194,7 +194,7 @@ WHERE id_data_eventos = ?";
                                         ?>
 
                                         <div class="col-auto pe-0">
-                                            <a href="comprar.php?evento=<?= $eventoid ?>&data=<?= $id_data ?>"
+                                            <a href="comprar.php?evento=<?= htmlspecialchars($eventoid) ?>&data=<?= htmlspecialchars($id_data) ?>"
                                                class="btn btn-azul-reserva w-100"><i
                                                         class="bi bi-cart d-block"></i></a>
                                         </div>

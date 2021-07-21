@@ -81,13 +81,13 @@ WHERE eventos.id_eventos = ?";
                                     <div class="form-group">
                                         <label for="inputAddress">Nome</label>
                                         <input type="text" class="form-control" name="nomeevento"
-                                               value="<?= $eventos_nome ?>"
+                                               value="<?= htmlspecialchars($eventos_nome) ?>"
                                                required>
                                     </div>
                                     <div class="form-group">
                                         <label for="artista">Artista</label>
                                         <input type="text" id="artista" class="form-control"
-                                               value="<?= $artistas_nome ?>"
+                                               value="<?= htmlspecialchars($artistas_nome) ?>"
                                                disabled>
                                         </select>
                                     </div>
@@ -95,19 +95,19 @@ WHERE eventos.id_eventos = ?";
                                         <label for="textarea1">Descrição Curta</label>
                                         <textarea class="form-control" id="textarea1"
                                                   name="curtadesc" rows="2"
-                                                  required><?= $eventos_descricao_curta ?></textarea>
+                                                  required><?= htmlspecialchars($eventos_descricao_curta) ?></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="textarea1">Descrição</label>
                                         <textarea class="form-control" id="textarea1" name="desc"
                                                   rows="4"
-                                                  required><?= $eventos_descricao ?></textarea>
+                                                  required><?= htmlspecialchars($eventos_descricao) ?></textarea>
                                     </div>
                                     <hr>
                                     <div class="form-group">
                                         <label for="ftecnica">Ficha Técnica</label>
                                         <textarea class="form-control" id="ftecnica" name="ftecnica"
-                                                  rows="4"><?= $eventos_ficha_tecnica ?></textarea>
+                                                  rows="4"><?= htmlspecialchars($eventos_ficha_tecnica) ?></textarea>
                                     </div>
                                     <div class="form-row">
                                         <div class="form-group col-lg-4">
@@ -131,7 +131,7 @@ WHERE eventos.id_eventos = ?";
                                                             $selected = "";
                                                         }
                                                         /* fetch values */
-                                                        echo '<option value="' . $id_tipoevento . '" ' . $selected . '>' . $tipoeventonome . '</option>';
+                                                        echo '<option value="' . htmlspecialchars($id_tipoevento) . '" ' . $selected . '>' . htmlspecialchars($tipoeventonome) . '</option>';
                                                     }
                                                 } else {
                                                     echo "Error: " . mysqli_error($link);
@@ -149,19 +149,19 @@ WHERE eventos.id_eventos = ?";
                                             <label for="duracao">Duração (m)</label>
                                             <input type="number" name="duracao" class="form-control"
                                                    id="duracao" min="0"
-                                                   max="10000" value="<?= $eventos_duracao ?>" required>
+                                                   max="10000" value="<?= htmlspecialchars($eventos_duracao) ?>" required>
                                         </div>
                                         <div class="form-group col-lg-2">
                                             <label for="classetaria">C/ Etária</label>
                                             <input type="number" name="cetaria" class="form-control"
                                                    id="classetaria" min="0"
-                                                   max="10000" value="<?= $eventos_classificacao_etaria ?>" required>
+                                                   max="10000" value="<?= htmlspecialchars($eventos_classificacao_etaria) ?>" required>
                                         </div>
                                         <div class="form-group col-md-12 col-lg-4">
                                             <label for="lotacao">Lotação</label>
                                             <input type="number" name="lotacao" class="form-control"
                                                    id="lotacao" min="0"
-                                                   max="10000" value="<?= $eventos_lotacao ?>" required>
+                                                   max="10000" value="<?= htmlspecialchars($eventos_lotacao) ?>" required>
                                         </div>
                                         <div class="form-group col-md-6 col-lg-4">
                                             <label for="precoreserva">Preço com Reserva</label>
@@ -170,7 +170,7 @@ WHERE eventos.id_eventos = ?";
                                                     <input type="number" name="precoreserva"
                                                            class="form-control"
                                                            id="precoreserva" min="0" max="999"
-                                                           step=".01" value="<?= $eventos_preco_reserva ?>" required>
+                                                           step=".01" value="<?= htmlspecialchars($eventos_preco_reserva) ?>" required>
                                                 </div>
                                                 <div class="col-auto pl-2">
                                                     €
@@ -183,7 +183,7 @@ WHERE eventos.id_eventos = ?";
                                                 <div class="col-11 col-lg-10">
                                                     <input type="number" name="precoporta"
                                                            class="form-control"
-                                                           id="precoporta" value="<?= $eventos_preco_porta ?>" min="0"
+                                                           id="precoporta" value="<?= htmlspecialchars($eventos_preco_porta) ?>" min="0"
                                                            max="999"
                                                            step=".01" required>
                                                 </div>

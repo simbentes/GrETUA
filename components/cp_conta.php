@@ -108,7 +108,7 @@ WHERE id_utilizadores = " . $_SESSION["id_user"];
             <section class="container-fluid pt-2 maisconta">
                 <div class="row justify-content-between align-items-center g-0">
                     <div class="col-auto">
-                        <h4 class="mb-1 username"><?= $username ?></h4>
+                        <h4 class="mb-1 username"><?= htmlspecialchars($username) ?></h4>
                     </div>
                     <div class="col-auto botaoperfil">
                         <button type="button" class="btn btn-transparente" id="botaoperfil">
@@ -120,16 +120,16 @@ WHERE id_utilizadores = " . $_SESSION["id_user"];
             <section class="container-fluid perfiluser">
                 <div class="row justify-content-center align-items-center">
                     <div class="col-auto">
-                        <img class="img-fluid fotoperfil" src="img/users/<?= $_SESSION["fperfil"] ?>">
+                        <img class="img-fluid fotoperfil" src="img/users/<?= htmlspecialchars($_SESSION["fperfil"]) ?>">
                     </div>
                     <div class="col-auto">
-                        <h2 class="mb-0"><?= $_SESSION["nome"] ?></h2>
-                        <span class="badge bg-<?= $cargo_color ?>"><?= $cargo_nome ?></span>
+                        <h2 class="mb-0"><?= htmlspecialchars($_SESSION["nome"]) ?></h2>
+                        <span class="badge bg-<?= htmlspecialchars($cargo_color) ?>"><?= htmlspecialchars($cargo_nome) ?></span>
                     </div>
                 </div>
 
                 <div class="pt-3">
-                    <p class="mb-0 biografia"><?= $biografia ?></p>
+                    <p class="mb-0 biografia"><?= htmlspecialchars($biografia) ?></p>
                 </div>
                 <div class="row g-1 justify-content-center align-content-center pt-3">
                     <div class="col-auto">
@@ -139,7 +139,7 @@ WHERE id_utilizadores = " . $_SESSION["id_user"];
                     //só aparecem os icones das redes se existirem....
                     if (!empty($instagram)) { ?>
                         <div class="col-auto">
-                            <a href="https://instagram.com/<?= $instagram ?>" target="_blank">
+                            <a href="https://instagram.com/<?= htmlspecialchars($instagram) ?>" target="_blank">
                                 <div class="redessocias">
                                     <i class="bi bi-instagram iconredes"></i>
                                 </div>
@@ -148,7 +148,7 @@ WHERE id_utilizadores = " . $_SESSION["id_user"];
                     <?php }
                     if (!empty($whatsapp)) { ?>
                         <div class="col-auto">
-                            <a href="https://wa.me/00351<?= $whatsapp ?>" target="_blank">
+                            <a href="https://wa.me/00351<?= htmlspecialchars($whatsapp) ?>" target="_blank">
                                 <div class="redessocias">
                                     <i class="bi bi-whatsapp iconredes"></i>
                                 </div>
@@ -194,7 +194,7 @@ WHERE id_utilizadores = " . $_SESSION["id_user"];
                 </div>
                 <div class="text-center mb-0">
                     <div class="text-center text-uppercase"><small>Membro desde</small></div>
-                    <h3 class="text-center mb-0"><?= $data_mes_criacao ?></h3>
+                    <h3 class="text-center mb-0"><?= htmlspecialchars($data_mes_criacao) ?></h3>
                 </div>
             </section>
             <div class="container-fluid pt-3">

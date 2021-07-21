@@ -51,7 +51,7 @@ ORDER BY data_eventos.data DESC;";
                 <div class="position-relative">
                     <section class="container px-0 frame-img">
                         <div id="framefotoevento" class="framefotoevento"
-                             style="background-image: url('img/eventos/<?= $foto ?>')">
+                             style="background-image: url('img/eventos/<?= htmlspecialchars($foto) ?>')">
                             <div class="degrade-imagem"></div>
                             <a id="voltar" href="memorias.php" class="voltar"><i
                                         class="bi bi-chevron-left p-1 mb-0 h2"></i></a>
@@ -63,8 +63,8 @@ ORDER BY data_eventos.data DESC;";
                             function partilharLink() {
                                 if (navigator.share) {
                                     navigator.share({
-                                        title: '<?= $nome ?>',
-                                        text: 'memorias... <?= $nome?>',
+                                        title: '<?= htmlspecialchars($nome) ?>',
+                                        text: 'memorias... <?= htmlspecialchars($nome)?>',
                                         url: window.location.href,
                                     })
                                         .then(() => console.log('Successful share'))
@@ -77,14 +77,14 @@ ORDER BY data_eventos.data DESC;";
                             <div class="container-fluid">
                                 <div class="evento-titulo px-2">
                                     <div class="evento-titulo">
-                                        <h1><?= $nome ?></h1>
-                                        <p><?= $desc_curta ?></p>
+                                        <h1><?= htmlspecialchars($nome) ?></h1>
+                                        <p><?= htmlspecialchars($desc_curta) ?></p>
                                     </div>
 
                                 </div>
                                 <div class="row justify-content-center align-items-center py-3">
                                     <div class="col-auto">
-                                        <a href="artista.php?artista=<?= $id_artista ?>" class="artistabtn">
+                                        <a href="artista.php?artista=<?= htmlspecialchars($id_artista) ?>" class="artistabtn">
                                             <div class="row align-items-center g-2">
                                                 <div class="col-auto">
                                                     <img src="img/eventos/<?php
@@ -114,7 +114,7 @@ WHERE eventos.ref_id_artistas = ?;";
                                                     ?>" class="fotoperfilartista">
                                                 </div>
                                                 <div class="col-auto fw-700">
-                                                    <?= $artista ?>
+                                                    <?= htmlspecialchars($artista) ?>
                                                     <svg width="14" height="14" viewBox="0 0 16 16"
                                                          xmlns="http://www.w3.org/2000/svg"
                                                          xmlns:svg="http://www.w3.org/2000/svg"
@@ -170,12 +170,12 @@ WHERE eventos.ref_id_artistas = ?;";
                                     <div class="text-center text-uppercase">
                                         <small>Estreou</small>
                                     </div>
-                                    <h3 class="text-center mb-0"><?= $data_str ?></h3>
+                                    <h3 class="text-center mb-0"><?= htmlspecialchars($data_str) ?></h3>
                                 </div>
                             </div>
                             <div class="container-fluid py-3 px-4">
                                 <h3>Sobre</h3>
-                                <p class="ficha"><?= $desc ?></p>
+                                <p class="ficha"><?= htmlspecialchars($desc) ?></p>
                             </div>
                             <?php
 
@@ -201,7 +201,7 @@ WHERE id_eventos = ?;";
                                             while (mysqli_stmt_fetch($stmt)) {
                                                 ?>
                                                 <div class="swiper-slide fotos-artita-eventos"><img
-                                                            src="img/eventos/<?= $foto ?>"
+                                                            src="img/eventos/<?= htmlspecialchars($foto) ?>"
                                                             class="fotos-artista-fluid">
                                                 </div>
                                                 <?php
@@ -218,7 +218,7 @@ WHERE id_eventos = ?;";
                             ?>
                             <div class="container-fluid pt-4 px-4">
                                 <h3>Ficha Técnica</h3>
-                                <p class="ficha"><?= $f_tecnica ?></p>
+                                <p class="ficha"><?= htmlspecialchars($f_tecnica) ?></p>
                                 <div class="row justify-content-center align-items-center py-3">
                                     <div class="col-auto row align-items-center">
                                         <div class="col-auto pe-1 ps-3">
@@ -226,7 +226,7 @@ WHERE id_eventos = ?;";
                                         </div>
                                         <div class="col-auto ps-1 pe-3">
                                             <h6 class="mb-0 small">Duração</h6>
-                                            <h3 class="mb-0"><?= $duracao ?> <small>MIN</small></h3>
+                                            <h3 class="mb-0"><?= htmlspecialchars($duracao) ?> <small>MIN</small></h3>
                                         </div>
                                     </div>
                                     <div class="col-auto row align-items-center">
@@ -235,7 +235,7 @@ WHERE id_eventos = ?;";
                                         </div>
                                         <div class="col-auto ps-1 pe-3">
                                             <h6 class="mb-0 small">Classificação etária</h6>
-                                            <h3 class="mb-0">M/<?= $c_etaria ?></h3>
+                                            <h3 class="mb-0">M/<?= htmlspecialchars($c_etaria) ?></h3>
                                         </div>
                                     </div>
                                 </div>

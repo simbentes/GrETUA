@@ -67,12 +67,12 @@ WHERE id_artistas = ?";
                                     <div class="form-group">
                                         <label for="inputAddress">Nome</label>
                                         <input type="text" class="form-control" id="nome" name="nomeartista"
-                                               value="<?= $nome ?>">
+                                               value="<?= htmlspecialchars($nome) ?>">
                                     </div>
                                     <div class="form-group">
                                         <label for="exampleFormControlTextarea1">Biografia</label>
                                         <textarea class="form-control" id="biografia" rows="4"
-                                                  name="biografia"><?= $biografia ?></textarea>
+                                                  name="biografia"><?= htmlspecialchars($biografia) ?></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="paisart">País</label>
@@ -93,7 +93,7 @@ WHERE id_artistas = ?";
                                                     } else {
                                                         $selected = "";
                                                     }
-                                                    echo '<option value="' . $id_pais . '" ' . $selected . '>' . $pais . '</option>';
+                                                    echo '<option value="' . htmlspecialchars($id_pais) . '" ' . $selected . '>' . htmlspecialchars($pais) . '</option>';
                                                 }
                                             } else {
                                                 echo "Error: " . mysqli_error($link);
@@ -112,7 +112,7 @@ WHERE id_artistas = ?";
                                             } ?>
                                             <label for="instagram">Instagram</label>
                                             <input type="text" class="form-control" name="instagram"
-                                            <?= $atributo ?>="<?= $artistas_instagram ?>">
+                                            <?= $atributo ?>="<?= htmlspecialchars($artistas_instagram) ?>">
                                         </div>
                                         <div class="form-group">
                                             <label for="facebook">Facebook</label>
@@ -123,7 +123,7 @@ WHERE id_artistas = ?";
                                                 $atributo = "value";
                                             } ?>
                                             <input type="text" class="form-control" name="facebook"
-                                            <?= $atributo ?>="<?= $artistas_facebook ?>">
+                                            <?= $atributo ?>="<?= htmlspecialchars($artistas_facebook) ?>">
 
 
                                         </div>
@@ -136,7 +136,7 @@ WHERE id_artistas = ?";
                                             } ?>
                                             <label for="spotify">Spotify</label>
                                             <input type="text" class="form-control text-muted" name="spotify"
-                                            <?= $atributo ?>="<?= $artistas_spotify ?>">
+                                            <?= $atributo ?>="<?= htmlspecialchars($artistas_spotify) ?>">
                                         </div>
                                         <div class="form-group">
                                             <?php if ($artistas_youtube == "") {
@@ -147,7 +147,7 @@ WHERE id_artistas = ?";
                                             } ?>
                                             <label for="youtube">YouTube</label>
                                             <input type="text" class="form-control text-muted" name="youtube"
-                                            <?= $atributo ?>="<?= $artistas_youtube ?>">
+                                            <?= $atributo ?>="<?= htmlspecialchars($artistas_youtube) ?>">
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-info">Submeter alterações
