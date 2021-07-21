@@ -18,6 +18,28 @@ window.onload = function () {
     lastdata = "";
     carregarPubs(arraypubs, 0);
     proximo = false;
+
+    if (document.getElementById("seguir").checked == false) {
+        document.getElementById("label-seguir").innerHTML = "Seguir";
+    } else {
+        document.getElementById("label-seguir").innerHTML = '<i class="bi bi-check h5 mb-0"></i> A seguir';
+    }
+}
+
+
+function seguirUser(estado, user) {
+
+    if (!estado) {
+        document.getElementById("label-seguir").innerHTML = "Seguir";
+    } else {
+        document.getElementById("label-seguir").innerHTML = '<i class="bi bi-check h5 mb-0"></i>A seguir';
+    }
+
+    //vamos enviar por ajax o produto e estado do botao(checkbox), para saber se o user "guardou" ou "removeu dos guardados"
+    var ajaxseguir = new XMLHttpRequest();
+    ajaxseguir.open("GET", "scripts/sc_seguir.php?seguir=" + estado + "&user=" + user, true);
+    ajaxseguir.send();
+
 }
 
 
@@ -53,8 +75,8 @@ function carregarPubs(tipo_pubs, aseguir) {
 
                 var pubs = JSON.parse(this.responseText);
 
-                for (let i = 0; i < pubs[0].repeticoes; i++) {
 
+                for (let i = 0; i < pubs[0].repeticoes; i++) {
                     if (pubs[i].like == 1) {
                         var checked = 'checked'
                         var btn_svg = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/></svg>';

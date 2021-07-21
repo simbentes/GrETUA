@@ -14,7 +14,6 @@ else:
         </div>
     </section>
     <section id="info_notificacoes" class="py-4 container-fluid px-3 menu_perfil">
-        <h6 class="notdias pt-2">Novo</h6>
         <div class="row">
             <div class="col-12">
                 <div class="row align-items-center justify-content-between">
@@ -48,16 +47,17 @@ WHERE quempublica.id_utilizadores = " . $_SESSION["id_user"] . " AND quemgostou.
 
 
                                 ?>
-
                                 <div class="col-12 py-2">
                                     <div class="row">
                                         <div class="col-auto pe-1">
                                             <a>
-                                                <img src="img/users/<?= htmlspecialchars($fperfil_quemgostou) ?>" class="userbubble me-2">
+                                                <img src="img/users/<?= htmlspecialchars($fperfil_quemgostou) ?>"
+                                                     class="userbubble me-2">
                                             </a>
                                         </div>
                                         <div class="col ps-1 noti-text">
-                                            <strong><?= htmlspecialchars($nome_quemgostou) ?></strong> gostou da tua publicação
+                                            <strong><?= htmlspecialchars($nome_quemgostou) ?></strong> gostou da tua
+                                            publicação
                                             <strong><?= htmlspecialchars($titulo) ?></strong>
                                         </div>
                                     </div>

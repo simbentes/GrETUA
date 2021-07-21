@@ -334,7 +334,7 @@ small, .small {
     color: #FFF;
     font-size: 14px;
     border-radius: 50px;
-    padding-right: 22px;
+    padding-right: 45px;
     border: 0;
     box-shadow: rgba(0, 0, 0, 0.16) 0 2px 8px;
 }
@@ -655,7 +655,10 @@ small, .small {
 }
 
 .btn-like-semtxt {
-    top: 50px;
+    top: initial;
+    bottom: 62px;
+    right: 9px;
+    z-index: 999;
 }
 
 
@@ -979,6 +982,10 @@ footer {
     background-position: top;
     background-repeat: no-repeat;
     background-size: 100% auto;
+}
+
+.btn-like-pub-semtxt {
+    top: 48px !important;
 }
 
 

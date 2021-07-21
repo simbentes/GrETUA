@@ -55,7 +55,7 @@ if (isset($_GET['carregar']) && isset($_GET['data']) && isset($_GET['ordem']) &&
     }
 
 
-    $query = "SELECT id_publicacoes, publicacoes.timestamp, titulo, texto, foto, ref_id_eventos, id_utilizadores, CONCAT(utilizadores.nome, ' ', apelido), utilizadores.foto_perfil, UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(publicacoes.timestamp), gostos.ref_id_utilizadores
+    $query = "SELECT id_publicacoes, publicacoes.timestamp, titulo, texto, foto, id_utilizadores, CONCAT(utilizadores.nome, ' ', apelido), utilizadores.foto_perfil, UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(publicacoes.timestamp), gostos.ref_id_utilizadores
 FROM publicacoes
 INNER JOIN utilizadores
 ON id_utilizadores = ref_id_utilizadores
@@ -83,7 +83,7 @@ LIMIT 0,?";
         }
 
         mysqli_stmt_execute($stmt);
-        mysqli_stmt_bind_result($stmt, $id_pub, $lastdata, $titulo, $texto, $foto, $ref_id_eventos, $id_user, $nome_user, $fperfil_user, $unix_data, $like);
+        mysqli_stmt_bind_result($stmt, $id_pub, $lastdata, $titulo, $texto, $foto, $id_user, $nome_user, $fperfil_user, $unix_data, $like);
         mysqli_stmt_store_result($stmt);
 
         $numrows = mysqli_stmt_num_rows($stmt);
@@ -92,9 +92,6 @@ LIMIT 0,?";
 
             while (mysqli_stmt_fetch($stmt)) {
 
-                if (!isset($ref_id_eventos)) {
-                    $ref_id_eventos = "";
-                }
 
                 if (isset($foto)) {
                     $foto_pub = ' <img src="img/pub/' . htmlspecialchars($foto) . '" class="card-img-top" alt="...">';
@@ -142,7 +139,7 @@ LIMIT 0,?";
                 mysqli_stmt_close($stmt2);
 
                 // enviar dados das publicacoes para serem renderizados em js
-                $pubs[] = ["tipo" => "pub", "id_pub" => htmlspecialchars($id_pub), "unix_tempo" => $unix_data, "id_user" => htmlspecialchars($id_user), "nome_user" => htmlspecialchars($nome_user), "fperfil_user" => htmlspecialchars($fperfil_user), "foto" => $foto_pub, "titulo" => htmlspecialchars($titulo), "btn_style" => htmlspecialchars($btn_style), "n_comentarios" => $n_comentarios, "texto" => htmlspecialchars($texto), "delete_pub" => $btn_delete, "ref_id_eventos" => htmlspecialchars($ref_id_eventos), "fperfil_session" => htmlspecialchars($_SESSION["fperfil"]), "like" => $like, "lastdata" => htmlspecialchars($lastdata), "repeticoes" => $numrows + htmlspecialchars($_GET['ordem'][1]) + htmlspecialchars($_GET['ordem'][2])];
+                $pubs[] = ["tipo" => "pub", "id_pub" => htmlspecialchars($id_pub), "unix_tempo" => $unix_data, "id_user" => htmlspecialchars($id_user), "nome_user" => htmlspecialchars($nome_user), "fperfil_user" => htmlspecialchars($fperfil_user), "foto" => $foto_pub, "titulo" => htmlspecialchars($titulo), "btn_style" => htmlspecialchars($btn_style), "n_comentarios" => $n_comentarios, "texto" => htmlspecialchars($texto), "delete_pub" => $btn_delete, "fperfil_session" => htmlspecialchars($_SESSION["fperfil"]), "like" => $like, "lastdata" => htmlspecialchars($lastdata), "repeticoes" => $numrows + htmlspecialchars($_GET['ordem'][1]) + htmlspecialchars($_GET['ordem'][2])];
 
 
             }

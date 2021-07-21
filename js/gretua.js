@@ -1,10 +1,31 @@
+const params = new URLSearchParams(window.location.search);
+
+if (params.get('publicar') == 'true') {
+    if (params.has('title')) {
+        abrirNovaPub(params.get('title'));
+    } else {
+        abrirNovaPub();
+    }
+}
+
 document.getElementById("novapub").onclick = function () {
-    document.getElementById("pub").classList.add("animapub");
-    document.getElementById("titulopub").focus();
+    abrirNovaPub();
 }
 
 document.getElementById("btnfechar").onclick = function () {
     document.getElementById("pub").classList.remove("animapub");
+}
+
+
+function abrirNovaPub(title = null) {
+    if (title != null) {
+        document.getElementById("titulopub").value = title;
+        document.getElementById("textopub").focus();
+    } else {
+        document.getElementById("titulopub").focus();
+
+    }
+    document.getElementById("pub").classList.add("animapub");
 }
 
 
@@ -80,7 +101,6 @@ function pubAleatoria() {
         arraypubs.push(0)
         arraypubs.push(0)
     }
-
 
     return arraypubs;
 }

@@ -142,57 +142,6 @@ WHERE ref_id_eventos = ? AND id_data_eventos = ?";
                                         <div class="col-auto datareservar">
                                             <?= htmlspecialchars($data) . "<span class='ps-4'>" . htmlspecialchars($hora) . "</span>" ?>
                                         </div>
-                                        <?php
-                                        $query = "SELECT eventos.lotacao, SUM(reservas.quantidade)
-FROM `reservas`
-RIGHT JOIN data_eventos
-ON id_data_eventos = reservas.ref_id_data_eventos
-INNER JOIN eventos
-ON eventos.id_eventos = data_eventos.ref_id_eventos
-WHERE id_data_eventos = ?";
-
-                                        if (mysqli_stmt_prepare($stmt, $query)) {
-                                            mysqli_stmt_bind_param($stmt, "i", $id_data_eventos);
-                                            mysqli_stmt_execute($stmt);
-                                            mysqli_stmt_bind_result($stmt, $lotacao, $ocupacao_reservas);
-
-                                            if (!mysqli_stmt_fetch($stmt)) {
-                                                echo "Error: " . mysqli_stmt_error($stmt);
-                                            } else {
-                                                $query = "SELECT SUM(compras.quantidade)
-FROM `compras`
-RIGHT JOIN data_eventos
-ON id_data_eventos = compras.ref_id_data_eventos
-INNER JOIN eventos
-ON eventos.id_eventos = data_eventos.ref_id_eventos
-WHERE id_data_eventos = ?";
-
-                                                if (mysqli_stmt_prepare($stmt, $query)) {
-                                                    mysqli_stmt_bind_param($stmt, "i", $id_data_eventos);
-                                                    mysqli_stmt_execute($stmt);
-                                                    mysqli_stmt_bind_result($stmt, $ocupacao_compras);
-
-                                                    if (!mysqli_stmt_fetch($stmt)) {
-                                                        echo "Error: " . mysqli_stmt_error($stmt);
-                                                    } else {
-
-                                                        if (isset($ocupacao_reservas) || isset($ocupacao_compras)) {
-                                                            $ocupacao = 1 - ($lotacao - ($ocupacao_reservas + $ocupacao_compras)) / $lotacao;
-                                                        } else {
-                                                            $ocupacao = 0;
-                                                        }
-
-                                                        echo '<div class="col-auto"><div style="background-color: red; width: 32px; height: 32px;" class="rounded-circle"></div>';
-                                                    }
-                                                } else {
-                                                    echo "Error: " . mysqli_error($link);
-                                                }
-                                            }
-                                        } else {
-                                            echo "Error: " . mysqli_error($link);
-                                        }
-                                        ?>
-
                                         <div class="col-auto pe-0">
                                             <a href="comprar.php?evento=<?= htmlspecialchars($eventoid) ?>&data=<?= htmlspecialchars($id_data) ?>"
                                                class="btn btn-azul-reserva w-100"><i

@@ -257,11 +257,11 @@ WHERE eventos.ref_id_artistas = ?;";
 
                                 $query = "SELECT eventos.lotacao, SUM(reservas.quantidade)
 FROM `reservas`
-INNER JOIN data_eventos
+RIGHT JOIN data_eventos
 ON id_data_eventos = reservas.ref_id_data_eventos
 INNER JOIN eventos
 ON eventos.id_eventos = data_eventos.ref_id_eventos
-WHERE id_data_eventos = ?";
+WHERE id_data_eventos = ?;";
 
                                 if (mysqli_stmt_prepare($stmt, $query)) {
                                     mysqli_stmt_bind_param($stmt, "i", $id_data_eventos);
@@ -287,7 +287,7 @@ WHERE id_data_eventos = ?";
                                             if (!mysqli_stmt_fetch($stmt)) {
                                                 echo "Error: " . mysqli_stmt_error($stmt);
                                             } else {
-                                                if (isset($ocupacao_reservas) || isset($ocupacao_compras)) {
+                                                if (!empty($ocupacao_reservas) || !empty($ocupacao_compras) || $ocupacao_reservas == 0 || $ocupacao_compras == 0) {
                                                     $ocupacao = 1 - ($lotacao - ($ocupacao_reservas + $ocupacao_compras)) / $lotacao;
                                                 } else {
                                                     $ocupacao = 0;

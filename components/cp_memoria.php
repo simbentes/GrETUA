@@ -84,7 +84,8 @@ ORDER BY data_eventos.data DESC;";
                                 </div>
                                 <div class="row justify-content-center align-items-center py-3">
                                     <div class="col-auto">
-                                        <a href="artista.php?artista=<?= htmlspecialchars($id_artista) ?>" class="artistabtn">
+                                        <a href="artista.php?artista=<?= htmlspecialchars($id_artista) ?>"
+                                           class="artistabtn">
                                             <div class="row align-items-center g-2">
                                                 <div class="col-auto">
                                                     <img src="img/eventos/<?php
@@ -241,8 +242,9 @@ WHERE id_eventos = ?;";
                                 </div>
                             </div>
                             <section class="container-fluid px-4 mt-4 mb-6">
-                                <h5 class="text-center">conta-nos as tuas memórias</h5>
-                                <button class="btn btn-grande w-100">Publicar</button>
+                                <h5 class="text-center">Queremos o teu contributo</h5>
+                                <a href="gretua.php?publicar=true&title=<?= htmlspecialchars($nome) ?>"
+                                   class="btn btn-grande w-100">Publicar</a>
                             </section>
 
                         </section>
