@@ -35,6 +35,16 @@ body {
     right: 0;
 }
 
+
+
+.memoria-text {
+    position: absolute;
+    top: 315px;
+    left: 0;
+    right: 0;
+}
+
+
 .pagpub-text {
     border-radius: 0 0 8px 8px;
     background-color: var(--pub-cor);
@@ -809,6 +819,52 @@ footer {
 }
 
 
+.btn-mini-guardado {
+    display: none;
+}
+
+.label-btn-mini-guardado {
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    border-radius: 50rem;
+    display: flex;
+    height: 40px;
+    width: 40px;
+    top: 9px;
+    right: 8px;
+    cursor: pointer;
+    align-self: center;
+    transition: color 0.2s ease-in-out;
+}
+
+
+.label-btn-mini-guardado::selection {
+    color: none;
+    background: transparent;
+}
+
+.label-btn-mini-guardado::moz-selection {
+    color: none;
+    background: transparent;
+}
+
+.btn-mini-guardado:checked + label {
+    color: white;
+    background-color: var(--cor-tema);
+    will-change: font-size;
+    animation: color 1s ease-in-out;
+}
+
+.btn-mini-guardado:hover + label {
+    color: white;
+    background-color: var(--cor-tema);
+    will-change: font-size;
+    animation: color 1s ease-in-out;
+}
+
+
 .btn-guardado {
     position: absolute;
     left: -100vw;
@@ -1431,11 +1487,27 @@ div.scrollcargos label {
 }
 
 
+.qrcode-container {
+
+}
+
+.qrcode {
+    border: 10px solid white;
+    border-radius: 10px;
+    background-color: white;
+    margin: 0;
+    width: 73%;
+    width: 230px;
+    height: 230px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .qrcode img {
     border: 10px solid white;
     border-radius: 10px;
-    margin: auto;
-    width: 73%;
+    margin: 0;
 }
 
 
@@ -1484,15 +1556,15 @@ div.scrollcargos label {
 
 
 .eventoperfil {
-    position: relative;
     margin: auto;
-    width: 90vw;
-    height: calc(90vw / 1.6);
+    position: relative;
+    width: 85vw;
+    height: calc(85vw / 1.6);
+    color: white;
     font-size: 12px;
     text-align: left;
     border-radius: 16px;
     text-decoration: none;
-    background-color: white;
     -webkit-box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
     box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.3);
 }
@@ -1511,6 +1583,16 @@ div.scrollcargos label {
 }
 
 
+.eventoindex a {
+    color: white;
+}
+
+
+.eventoindex a:hover {
+    color: white;
+}
+
+
 .evento-card-degrade {
     background: linear-gradient(180deg, rgb(0 0 0 / 0%) 0%, rgb(6 6 8) 110%);
     width: 100%;
@@ -1519,7 +1601,7 @@ div.scrollcargos label {
     bottom: 0;
 }
 
-.evento h6, .eventoindex h6 {
+.evento h6, .eventoindex h6, .eventoperfil h6 {
     font-weight: 600;
     font-size: 18px;
     color: white;

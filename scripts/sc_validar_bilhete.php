@@ -7,7 +7,12 @@ if (isset($_GET["hash"])) {
     $link = new_db_connection();
     $stmt = mysqli_stmt_init($link);
 
-    $query = "SELECT * FROM bilhetes WHERE bilhetes.hash = ? AND ativo = 1";
+    $query = "SELECT * FROM bilhetes
+INNER JOIN compras
+ON id_compras = bilhetes.ref_id_compras
+INNER JOIN data_eventos
+ON data_eventos.id_data_eventos = compras.ref_id_data_eventos
+WHERE bilhetes.hash = ? AND ativo = 1 AND NOW() < DATE_ADD(data, INTERVAL 2 HOUR)";
 
     if (mysqli_stmt_prepare($stmt, $query)) {
 

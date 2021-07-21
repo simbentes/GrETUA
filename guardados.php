@@ -29,5 +29,20 @@ session_start();
 </html>
 <!-- Javascript -->
 <?php include_once "helpers/help_js.php" ?>
+<script>
+    function guardarEvento(estado, evento) {
+        //vamos enviar por ajax o produto e estado do botao(checkbox), para saber se o user "guardou" ou "removeu dos guardados"
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                location.reload();
+            }
+        }
+
+        xmlhttp.open("GET", "scripts/sc_guardar_vou_evento.php?guardado=" + estado + "&evento=" + evento, true);
+        xmlhttp.send();
+
+    }
+</script>
 </body>
 </html>

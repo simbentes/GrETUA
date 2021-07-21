@@ -1,4 +1,3 @@
-
 const img = new Image();
 img.onload = function () {
     if (this.width > this.height) {
@@ -29,6 +28,17 @@ window.onscroll = function () {
         document.getElementById("share").style.top = "-100px";
     }
 }
+
+
+var proximos = new Swiper(".mySwiper", {
+    slidesPerView: "auto",
+    centeredSlides: true,
+    spaceBetween: 15,
+    pagination: {
+        el: ".swiper-scrollbar",
+        clickable: true,
+    },
+});
 
 
 

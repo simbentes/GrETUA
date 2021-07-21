@@ -2,7 +2,7 @@ var xmlhttp = new XMLHttpRequest();
 xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
 
-        var hash_bilhetes = JSON.parse(this.responseText);
+        hash_bilhetes = JSON.parse(this.responseText);
         for (let i = 1; i <= hash_bilhetes.length; i++) {
             var qrcode = new QRCode(document.getElementById("qrcode" + i), {
                 text: hash_bilhetes[i - 1],

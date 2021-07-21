@@ -13,7 +13,7 @@ else:
             $link = new_db_connection();
             $stmt = mysqli_stmt_init($link);
 
-            $query = "SELECT eventos.id_eventos, DATE(data_eventos.data), DATE_FORMAT(TIME(data_eventos.data), '%H:%i'), eventos.nome, fotos_eventos.foto
+            $query = "SELECT eventos.id_eventos, eventos.nome, fotos_eventos.foto, tipo_eventos.nome
 FROM eventos
 LEFT JOIN guardados_vou
 ON guardados_vou.ref_id_eventos = eventos.id_eventos
@@ -36,7 +36,7 @@ ORDER BY guardados_vou.timestamp_guardados DESC;";
                 mysqli_stmt_execute($stmt);
 
                 /* bind result variables */
-                mysqli_stmt_bind_result($stmt, $id_evento, $data_evento, $hora_evento, $nome_evento, $foto);
+                mysqli_stmt_bind_result($stmt, $id_evento, $nome_evento, $foto, $tipo);
 
                 mysqli_stmt_store_result($stmt);
 
@@ -45,25 +45,67 @@ ORDER BY guardados_vou.timestamp_guardados DESC;";
                 } else {
                     while (mysqli_stmt_fetch($stmt)) {
 
-                        $hora_h_evento = str_replace(":", "h", $hora_evento);
 
                         ?>
                         <div class="col-12 py-3">
-                            <a class="evento" href="evento.php?evento=<?= $id_evento ?>">
-                                <div class="eventoperfil">
+                            <div class="eventoperfil">
+
+                                <a href="evento.php?evento=<?= $id_evento ?>">
                                     <div class="evento-card-degrade"></div>
-                                    <img class="img-fluid img-evento" src="img/eventos/<?= $foto ?>">
+                                    <img class="img-fluid img-evento"
+                                         src="img/eventos/<?= $foto ?>">
                                     <div class="desc-evento container-fluid">
                                         <h6 class="top-right"><?= $nome_evento ?></h6>
                                         <div class="row">
-                                            <div class="col text-cinza"><?= $data_evento ?></div>
-                                            <div class="col text-cinza text-center"><?= $hora_h_evento ?></div>
-                                            <div class="col text-cinza text-end">teatro</div>
+                                            <div class="col-auto text-cinza">
+                                                <?php
+                                                $stmt2 = mysqli_stmt_init($link);
+                                                $query = "SELECT DATE_FORMAT(MIN(DATE(data)), '%d-%m'), DATE_FORMAT(MIN(DATE(data)), '%Y'), DATE_FORMAT(MAX(DATE(data)), '%d-%m'), DATE_FORMAT(MAX(DATE(data)), '%Y')  FROM `data_eventos` WHERE ref_id_eventos = ? AND data > NOW();";
+                                                if (mysqli_stmt_prepare($stmt2, $query)) {
+                                                    mysqli_stmt_bind_param($stmt2, "i", $id_evento);
+                                                    mysqli_stmt_execute($stmt2);
+                                                    mysqli_stmt_bind_result($stmt2, $min_data, $min_ano, $max_data, $max_ano);
+
+                                                    if (mysqli_stmt_fetch($stmt2)) {
+                                                        $meses = array("-01", "-02", "-03", "-04", "-05", "-06", "-07", "-08", "-09", "-10", "-11", "-12");
+                                                        $str_meses = array(" JAN", " FEV", " MAR", " ABR", " MAI", " JUN", " JUL", " AGO", " SET", " OUT", " NOV", " DEZ");
+
+                                                        $min_data_str = str_replace($meses, $str_meses, $min_data);
+                                                        $max_data_str = str_replace($meses, $str_meses, $max_data);
+
+                                                        if ($min_data == $max_data && $min_ano == $max_ano) {
+                                                            echo $min_data_str;
+                                                        } else {
+                                                            if ($min_ano == $max_ano) {
+                                                                echo "<small>DE</small> " . $min_data_str . " <small>A</small>  " . $max_data_str;
+                                                            } else {
+                                                                echo "<small>DE</small> " . $min_data_str . " " . $min_ano . " <small>A</small>  " . $max_data_str . " " . $max_ano;
+
+                                                            }
+                                                        }
+                                                    }
+                                                } else {
+                                                    echo "Error: " . mysqli_error($link);
+                                                }
+                                                mysqli_stmt_close($stmt2);
+                                                ?>
+                                            </div>
+                                            <div class="col text-cinza text-end"><?= $tipo ?></div>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
+                                </a>
+                                <input id="guardadoinput-<?= $id_evento ?>" value="<?= $id_evento ?>"
+                                       class="btn-mini-guardado" type="checkbox"
+                                       onclick="guardarEvento(this.checked,this.value)"
+                                       checked>
+                                <label id="guardado<?= $id_evento ?>" class="btn label-btn-mini-guardado"
+                                       for="guardadoinput-<?= $id_evento ?>">
+                                    <i id="iconbtnguardado" class="bi bi-bookmark-fill d-block"></i>
+                                </label>
+                            </div>
                         </div>
+
+
                         <?php
                     }
                 }

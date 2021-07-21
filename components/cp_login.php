@@ -10,6 +10,10 @@ if (isset($_GET["msg"])) {
             $message = "Já existe uma conta com este e-mail ou username.";
             $class = "alert-danger";
             break;
+        case 2:
+            $message = "A sua conta encontra-se suspensa.";
+            $class = "alert-danger";
+            break;
         default:
             $msg_show = false;
     }

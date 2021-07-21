@@ -170,7 +170,9 @@ ORDER BY id_bilhetes  DESC;";
                                             </div>
                                         </div>
                                     </div>
-                                    <div id="qrcode<?= $n ?>" class="qrcode"></div>
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <div id="qrcode<?= $n ?>" class="qrcode"></div>
+                                    </div>
                                 </div>
                             </div>
                         <?php } ?>

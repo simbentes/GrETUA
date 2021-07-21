@@ -91,37 +91,6 @@ WHERE eventos.id_eventos = ?";
                                                disabled>
                                         </select>
                                     </div>
-                                    <div class="form-group" id="dataevento">
-                                        <label for="meeting-time" id="labeldata">Data</label>
-                                        <?php
-                                        $query = "SELECT DATE_FORMAT(data, '%Y-%m-%dT%H:%i:%s') FROM `data_eventos` WHERE ref_id_eventos = ?";
-
-                                        if (mysqli_stmt_prepare($stmt, $query)) {
-                                            mysqli_stmt_bind_param($stmt, "i", $id_evento);
-                                            mysqli_stmt_execute($stmt);
-
-                                            mysqli_stmt_bind_result($stmt, $data);
-
-                                            $countdatas = 0;
-                                            while (mysqli_stmt_fetch($stmt)) {
-                                                $countdatas++
-                                                ?>
-                                                <input type="datetime-local" class="form-control my-2"
-                                                       id="data<?= $countdatas ?>"
-                                                       name="dataevento<?= $countdatas ?>" value="<?= $data ?>"
-                                                       required>
-                                                <?php
-                                            }
-                                        } else {
-                                            echo "Error: " . mysqli_error($link);
-                                        }
-                                        ?>
-                                    </div>
-                                    <div id="adicionardata" class="btn btn-primary mb-3">Adicionar
-                                        Data
-                                    </div>
-                                    <div id="removerdata"></div>
-                                    <input type="hidden" id="numdatas" name="ndatas" value="<?= $countdatas ?>">
                                     <div class="form-group">
                                         <label for="textarea1">Descrição Curta</label>
                                         <textarea class="form-control" id="textarea1"

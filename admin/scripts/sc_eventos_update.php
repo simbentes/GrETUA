@@ -7,7 +7,7 @@ if (isset($_SESSION["id_evento_edit"])) {
     header("Location: ../eventos.php");
     die;
 }
-if (!empty($_POST["nomeevento"]) && !empty($_POST["dataevento1"]) && !empty($_POST["curtadesc"]) && !empty($_POST["desc"]) && !empty($_POST["lotacao"]) && !empty($_POST["duracao"]) && !empty($_POST["cetaria"]) && !empty($_POST["precoreserva"]) && !empty($_POST["precoporta"]) && !empty($_POST["ndatas"])) {
+if (!empty($_POST["nomeevento"]) && !empty($_POST["curtadesc"]) && !empty($_POST["desc"]) && !empty($_POST["lotacao"]) && !empty($_POST["duracao"]) && !empty($_POST["cetaria"]) && !empty($_POST["precoreserva"]) && !empty($_POST["precoporta"])) {
 
 
     require_once "../connections/connection.php";
@@ -17,7 +17,6 @@ if (!empty($_POST["nomeevento"]) && !empty($_POST["dataevento1"]) && !empty($_PO
 
     $apagartipoevento = 0;
     $apagarevento = 0;
-    $apagardatas = 0;
 
 
     //se for escolhido um estlo que já está na base de dados, já podemos atribuir o id
@@ -61,53 +60,15 @@ if (!empty($_POST["nomeevento"]) && !empty($_POST["dataevento1"]) && !empty($_PO
     $cetaria = $_POST["cetaria"];
     $ftecnica = $_POST["ftecnica"];
 
-
     $query = "UPDATE `eventos` SET `nome` = ?, `descricao` = ?, `descricao_curta` = ?, `ref_id_tipo_eventos` = ?, `lotacao` = ?, `preco_reserva` = ?, `preco_porta` = ?, duracao = ?, classificacao_etaria = ?, ficha_tecnica = ? WHERE id_eventos = ?";
     if (mysqli_stmt_prepare($stmt, $query)) {
         mysqli_stmt_bind_param($stmt, 'sssiiiiiisi', $nomeevento, $desc, $curtadesc, $id_tipoevento, $lotacao, $precoreserva, $precoporta, $duracao, $cetaria, $ftecnica, $id_evento);
         if (mysqli_stmt_execute($stmt)) {
 
 
-            //apagar todas as datas
-
-            $query = "DELETE FROM data_eventos WHERE ref_id_eventos = ?";
-
-            if (mysqli_stmt_prepare($stmt, $query)) {
-
-                mysqli_stmt_bind_param($stmt, 'i', $id_evento);
-                /* execute the prepared statement */
-                if (!mysqli_stmt_execute($stmt)) {
-                    echo "Error: " . mysqli_stmt_error($stmt);
-                }
-            }
-
-            //ver quantos inputs de datas existem. depois repetimos o execute conforme o número de datas que existirem
-            $ndatas = $_POST["ndatas"];
+            header("Location: ../eventos_edit.php?id=" . $id_evento . "&msg=0");
 
 
-            $query = "INSERT INTO data_eventos (data, ref_id_eventos) VALUES (?, ?)";
-
-            if (mysqli_stmt_prepare($stmt, $query)) {
-
-                mysqli_stmt_bind_param($stmt, 'si', $data_evento, $id_evento);
-
-                //vamos relacionar as datas ao evento
-                for ($i = 1; $i <= $ndatas; $i++) {
-                    $data_evento = date("Y-m-d H:i:s", strtotime($_POST["dataevento" . $i]));
-                    if (!mysqli_stmt_execute($stmt)) {
-                        echo "Error4: " . mysqli_stmt_error($stmt);
-                    } else {
-                        $id_datas[] = mysqli_insert_id($link);
-                    }
-                }
-
-
-                header("Location: ../eventos_edit.php?id=" . $id_evento . "&msg=0");
-
-
-            } else {
-                echo "Error:" . mysqli_error($link);
-            }
         } else {
             echo "Error: " . mysqli_stmt_error($stmt);
         }

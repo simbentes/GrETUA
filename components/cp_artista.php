@@ -88,9 +88,6 @@ WHERE eventos.ref_id_artistas = ?;";
                                 <h1 class="text-center"><?= $nome_artista ?></h1>
                             </div>
                             <div class="row g-1 justify-content-center align-content-center pt-3 pb-4">
-                                <div class="col-auto">
-                                    <input type="submit" class="btn btn-seguir w-100" value="Seguir">
-                                </div>
                                 <?php
                                 if (!empty($insta)) { ?>
                                     <div class="col-auto">

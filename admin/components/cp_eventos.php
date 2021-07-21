@@ -54,7 +54,7 @@
                     $stmt = mysqli_stmt_init($link);
 
                     //query
-                    $query = "SELECT eventos.nome, id_eventos, data, descricao_curta, tipo_eventos.nome, timestamp  FROM `eventos` INNER JOIN data_eventos ON data_eventos.ref_id_eventos = id_eventos
+                    $query = "SELECT DISTINCT eventos.nome, id_eventos, data, descricao_curta, tipo_eventos.nome, timestamp  FROM `eventos` INNER JOIN data_eventos ON data_eventos.ref_id_eventos = id_eventos
 INNER JOIN tipo_eventos ON tipo_eventos.id_tipo_eventos = ref_id_tipo_eventos
 WHERE (data_eventos.data) IN (SELECT MIN(data_eventos.data) FROM data_eventos GROUP BY data_eventos.ref_id_eventos)  
 ORDER BY `data_eventos`.`data`  DESC";
