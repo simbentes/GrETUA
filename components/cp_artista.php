@@ -73,7 +73,7 @@ WHERE eventos.ref_id_artistas = ?;";
                                 if (navigator.share) {
                                     navigator.share({
                                         title: '<?= htmlspecialchars($nome_artista) ?>',
-                                        text: 'Vamos a um evento juntos? <?= htmlspecialchars($nome_artista) ?>',
+                                        text: 'Artista GrETUA: <?= htmlspecialchars($nome_artista) ?>',
                                         url: window.location.href,
                                     })
                                         .then(() => console.log('Successful share'))

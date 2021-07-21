@@ -64,7 +64,7 @@ ORDER BY data_eventos.data DESC;";
                                 if (navigator.share) {
                                     navigator.share({
                                         title: '<?= htmlspecialchars($nome) ?>',
-                                        text: 'memorias... <?= htmlspecialchars($nome)?>',
+                                        text: 'Uma memória do GrETUA: <?= htmlspecialchars($nome)?>',
                                         url: window.location.href,
                                     })
                                         .then(() => console.log('Successful share'))
