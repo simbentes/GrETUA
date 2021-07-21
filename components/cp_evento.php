@@ -116,7 +116,8 @@ GROUP BY data_eventos.ref_id_eventos)";
                             </div>
                             <div class="row justify-content-center align-items-center py-3">
                                 <div class="col-auto">
-                                    <a href="artista.php?artista=<?= htmlspecialchars($id_artista) ?>" class="artistabtn">
+                                    <a href="artista.php?artista=<?= htmlspecialchars($id_artista) ?>"
+                                       class="artistabtn">
                                         <div class="row align-items-center g-2">
                                             <div class="col-auto">
                                                 <img src="img/eventos/<?php
@@ -169,11 +170,38 @@ WHERE eventos.ref_id_artistas = ?;";
                                     </a>
                                 </div>
                             </div>
-                            <p><?= htmlspecialchars($desc_curta) ?></p>
+                            <p class="mb-2"><?= htmlspecialchars($desc_curta) ?></p>
+                            <h4 class="text-center mb-3">
+                                <?php
+                                $query = "SELECT COUNT(vou) FROM `guardados_vou` WHERE vou = 1 AND guardados_vou.ref_id_eventos =" . $eventoid;
+
+                                if (mysqli_stmt_prepare($stmt, $query)) {
+
+                                    mysqli_stmt_execute($stmt);
+                                    mysqli_stmt_bind_result($stmt, $n_pessoas);
+
+                                    if (mysqli_stmt_fetch($stmt)) {
+                                        if ($n_pessoas > 0) {
+                                            if ($n_pessoas == 1) {
+                                                $texto = "pessoa vai";
+                                            } else {
+                                                $texto = "pessoas vão";
+                                            }
+                                            echo htmlspecialchars($n_pessoas) . ' ' . $texto;
+                                        }
+                                    } else {
+                                        echo "Error: " . mysqli_stmt_error($stmt);
+                                    }
+                                } else {
+                                    echo "Error: " . mysqli_error($link);
+                                }
+                                ?>
+                            </h4>
                         </div>
                         <div class="row">
                             <div class="col pe-1 pb-1 text-center">
-                                <a href="reservar.php?evento=<?= htmlspecialchars($eventoid) ?>" class="btn btn-pequeno w-100"><i
+                                <a href="reservar.php?evento=<?= htmlspecialchars($eventoid) ?>"
+                                   class="btn btn-pequeno w-100"><i
                                             class="bi bi-pen d-block"></i><span
                                             class="d-block">Reservar</span></a>
                             </div>
@@ -195,7 +223,8 @@ WHERE eventos.ref_id_artistas = ?;";
                                             class="d-block">Guardar</span></label>
                             </div>
                             <div class="col-12 pt-2">
-                                <a href="comprar.php?evento=<?= htmlspecialchars($eventoid) ?>" class="btn btn-grande w-100">Adquirir
+                                <a href="comprar.php?evento=<?= htmlspecialchars($eventoid) ?>"
+                                   class="btn btn-grande w-100">Adquirir
                                     Bilhete</a>
                             </div>
                         </div>
@@ -301,7 +330,8 @@ WHERE id_data_eventos = ?";
                                         <div class='progress'>
                                             <div class='progress-bar progress-bar <?= htmlspecialchars($cor_barra) ?>'
                                                  role='progressbar'
-                                                 style='width: <?= htmlspecialchars($size) ?>%' aria-valuenow='<?= htmlspecialchars($size) ?>'
+                                                 style='width: <?= htmlspecialchars($size) ?>%'
+                                                 aria-valuenow='<?= htmlspecialchars($size) ?>'
                                                  aria-valuemin='0'
                                                  aria-valuemax='100'></div>
                                         </div>

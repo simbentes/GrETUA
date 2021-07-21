@@ -4,7 +4,7 @@
     --bkg-cor: #060608;
     --card-cor: #ffffff;
     --corsite: #192dcd;
-    --cor-tema: #007AFF;
+    --cor-tema: #007aff;
     --pub-cor: rgb(24, 24, 26);
 }
 
@@ -34,7 +34,6 @@ body {
     left: 0;
     right: 0;
 }
-
 
 
 .memoria-text {
@@ -725,25 +724,6 @@ small, .small {
 }
 
 
-.btn-seguir {
-    height: 40px;
-    font-size: 13.5px;
-    background-color: var(--cor-tema);
-    color: white;
-    border-radius: 5px;
-    padding: 0 50px;
-    font-weight: 500;
-}
-
-
-.btn-seguir:hover {
-    background-color: var(--cor-tema);
-    color: white;
-    border-radius: 5px;
-    font-weight: 500;
-}
-
-
 .btn-editar-perfil {
     height: 40px;
     font-size: 13.5px;
@@ -919,6 +899,46 @@ footer {
 .btn-vou:checked + label {
     color: white;
     background-color: var(--cor-tema);
+    will-change: font-size;
+    animation: color 1s ease-in-out;
+}
+
+
+.btn-seguir {
+    position: absolute;
+    left: -100vw;
+}
+
+.label-btn-seguir {
+    cursor: pointer;
+    align-self: center;
+    transition: color 0.2s ease-in-out;
+    height: 40px;
+    font-size: 13.5px;
+    color: white !important;
+    background-color: var(--cor-tema);
+    border-radius: 5px;
+    width: 144px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+}
+
+
+.label-btn-seguir::selection {
+    color: none;
+    background: transparent;
+}
+
+.label-btn-seguir::moz-selection {
+    color: none;
+    background: transparent;
+}
+
+.btn-seguir:checked + label {
+    color: white;
+    background-color: var(--menu-cor);
     will-change: font-size;
     animation: color 1s ease-in-out;
 }
@@ -1265,6 +1285,19 @@ a:hover {
 
 .list-group-flush a {
     color: white;
+}
+
+
+.tipofeed {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    right: 0;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    z-index: 99;
+    background-color: var(--bkg-cor);
+    transition: top 0.5s ease-out;
 }
 
 
