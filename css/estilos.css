@@ -238,7 +238,7 @@ small, .small {
 }
 
 .perfil-bottom {
-    z-index: 8;
+    z-index: 999;
     border-radius: 15px 15px 0 0;
     background-color: var(--menu-cor);
     padding: 15px 12px 5px 12px;
@@ -251,7 +251,7 @@ small, .small {
 }
 
 .animaperfil {
-    transform: translateY(-290px);
+    transform: translateY(calc(-288px - env(safe-area-inset-bottom)));
 }
 
 
@@ -1185,8 +1185,9 @@ a:hover {
 
 /*MENU BOTTOM*/
 .menubottom {
-    height: 60px;
     background-color: var(--menu-cor);
+    padding-top: 7px;
+    padding-bottom: max(env(safe-area-inset-bottom),7px);
 }
 
 .menubottom a {
@@ -1286,7 +1287,7 @@ a:hover {
 }
 
 .maquina.animamaquina {
-    transform: translateY(-365px);
+    transform: translateY(calc(-362px - env(safe-area-inset-bottom)));
 }
 
 

@@ -5,8 +5,8 @@
       <webServer id="f27fa226-d331-4443-b0e1-19f35565254b" name="ola" url="http://localhost/">
         <fileTransfer accessType="LOCAL" port="0" />
       </webServer>
-      <webServer id="c6ca9310-4b08-4f32-845d-d9bd8eecd470" name="server_lab" url="http://labmm.clients.ua.pt">
-        <fileTransfer rootFolder="/deca_20L4/deca_20L4_33/" host="labmm.clients.ua.pt" port="21">
+      <webServer id="652406e2-692d-4fbf-9205-585f1c9186ab" name="simao.me" url="http://81.88.52.228">
+        <fileTransfer host="81.88.52.228" port="21">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
