@@ -1,4 +1,5 @@
 <?php
+
 if (!isset($_SESSION["id_user"])):
     header("Location: index.php");
 else:
@@ -27,6 +28,7 @@ ON artistas.id_artistas = eventos.ref_id_artistas
 WHERE (fotos_eventos.foto IS NUll OR fotos_eventos.capa = 1) AND (data_eventos.data) IN (SELECT MIN(data_eventos.data) FROM data_eventos WHERE data_eventos.data > NOW() AND id_eventos = ?
 GROUP BY data_eventos.ref_id_eventos)";
 
+
         if (mysqli_stmt_prepare($stmt, $query)) {
 
 
@@ -49,7 +51,6 @@ GROUP BY data_eventos.ref_id_eventos)";
                 }
                 // $hora_h = str_replace(":", "h", $hora);
                 ?>
-
                 <div class="position-relative">
                     <section class="container px-0 frame-img">
                         <div id="framefotoevento" class="framefotoevento"
