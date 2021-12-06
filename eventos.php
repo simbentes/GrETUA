@@ -7,7 +7,6 @@ session_start();
     <?php include_once "helpers/help_meta.php" ?>
     <?php include_once "helpers/help_link.php" ?>
     <title>GrETUA</title>
-
 </head>
 <body>
 

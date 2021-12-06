@@ -3,10 +3,15 @@
 function new_db_connection()
 {
     // Variables for the database connection
-    $hostname = 'gretua.simao.me';
-    $username = "dz4n7gsw_admingretua";
-    $password = "Admingretua8";
-    $dbname = "dz4n7gsw_gretua";
+    //$hostname = 'gretua.simao.me';
+    //$username = "dz4n7gsw_admingretua";
+    //$password = "Admingretua8";
+    //$dbname = "dz4n7gsw_gretua";
+
+    $hostname = 'localhost';
+    $username = "root";
+    $password = "root";
+    $dbname = "gretua";
 
     // Makes the connection
     $local_link = mysqli_connect($hostname, $username, $password, $dbname);
