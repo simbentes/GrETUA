@@ -80,7 +80,7 @@ function uploadImagem($nome, $pasta, $px)
         move_uploaded_file($nome["tmp_name"], $target_file);
         $pathimagem = $target_dir . $nome["name"];
         $nomefinal = md5(uniqid()) . '.webp';
-        imagewebp(resizeImage($pathimagem, $px, $px, $imageFileType), $target_dir . $nomefinal, 50);
+        imagewebp(resizeImage($pathimagem, $px, $px, $imageFileType), $target_dir . $nomefinal, 10);
         unlink($pathimagem);
         return $nomefinal;
     }
