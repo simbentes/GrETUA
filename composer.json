@@ -1,5 +1,6 @@
 {
     "require": {
-        "stripe/stripe-php": "^7.89"
+        "stripe/stripe-php": "^7.89",
+        "aws/aws-sdk-php": "3.0"
     }
 }
