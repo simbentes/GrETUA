@@ -85,16 +85,16 @@ WHERE id_utilizadores = " . $_SESSION["id_user"];
                     $mes = " agosto ";
                     break;
                 case "09":
-                    $mes = " setembro";
+                    $mes = " setembro ";
                     break;
                 case "10":
-                    $mes = " outubro";
+                    $mes = " outubro ";
                     break;
                 case "11":
-                    $mes = " novembro";
+                    $mes = " novembro ";
                     break;
                 case "12":
-                    $mes = " dezembro";
+                    $mes = " dezembro ";
                     break;
                 default:
                     $data_mes_criacao = "";
