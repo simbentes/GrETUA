@@ -226,8 +226,12 @@ small, .small {
     margin-bottom: 60px;
 }
 
+.swiper-container {
+    overflow: hidden;
+}
 
 .memoria-container {
+    overflow: hidden;
     position: relative;
     display: flex;
     justify-content: center;
@@ -1752,7 +1756,7 @@ div.scrollcargos label {
 
 .linha-memorias {
     position: absolute;
-    bottom: 63px;
+    bottom: 17.7%;
     left: 0;
     right: 0;
     z-index: -3000;

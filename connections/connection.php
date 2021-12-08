@@ -2,17 +2,16 @@
 
 function new_db_connection()
 {
-    $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
-    $hostname = $url["host"];
-    $username = $url["user"];
-    $password = $url["pass"];
-    $dbname = substr($url["path"], 1);
+    //$hostname = 'gretua.underneth.net';
+    //$username = 'undernet_gretua';
+    //$password = 'aY;QLQYCMw.k';
+    //$dbname = 'undernet_gretua';
 
-    //$hostname = 'localhost';
-    //$username = "root";
-    //$password = "root";
-    //$dbname = "gretua";
+    $hostname = 'localhost';
+    $username = "root";
+    $password = "root";
+    $dbname = "gretua";
 
     // Makes the connection
     $local_link = mysqli_connect($hostname, $username, $password, $dbname);
