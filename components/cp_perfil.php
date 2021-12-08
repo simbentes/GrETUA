@@ -63,16 +63,16 @@ WHERE id_utilizadores = ?";
                             $mes = " agosto ";
                             break;
                         case "09":
-                            $mes = " setembro";
+                            $mes = " setembro ";
                             break;
                         case "10":
-                            $mes = " outubro";
+                            $mes = " outubro ";
                             break;
                         case "11":
-                            $mes = " novembro";
+                            $mes = " novembro ";
                             break;
                         case "12":
-                            $mes = " dezembro";
+                            $mes = " dezembro ";
                             break;
                         default:
                             $data_mes_criacao = "";
@@ -194,11 +194,11 @@ WHERE id_utilizadores = ?";
 
         } else {
             //se o id na query string for igual ao meu id, eu quero ir para a minha conta.. não me quero ver como "terceiros" veem
-            header("Location:conta.php");
+            header("Location: conta.php");
         }
 
     } else {
-        header("Location:gretua.php");
+        header("Location: gretua.php");
     }
 
 

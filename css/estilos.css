@@ -231,7 +231,6 @@ small, .small {
 }
 
 .memoria-container {
-    overflow: hidden;
     position: relative;
     display: flex;
     justify-content: center;
@@ -1755,8 +1754,8 @@ div.scrollcargos label {
 }
 
 .linha-memorias {
-    position: absolute;
-    bottom: 17.7%;
+    position: relative;
+    bottom: 86px;
     left: 0;
     right: 0;
     z-index: -3000;
