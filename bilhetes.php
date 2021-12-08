@@ -28,6 +28,7 @@ session_start();
 
 <!-- Javascript -->
 <?php include_once "helpers/help_js.php" ?>
+<script src="js/qrcode.min.js"></script>
 <script src="js/bilhetes.js"></script>
 </body>
 </html>
