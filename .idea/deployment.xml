@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="simao.me" remoteFilesAllowedToDisappearOnAutoupload="false">
+  <component name="PublishConfigData" serverName="Servidores UA" remoteFilesAllowedToDisappearOnAutoupload="false">
     <serverData>
+      <paths name="Servidores UA">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="ola">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/gretua" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="simao.me">
-        <serverdata>
-          <mappings>
-            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

@@ -5,8 +5,8 @@
       <webServer id="f27fa226-d331-4443-b0e1-19f35565254b" name="ola" url="http://localhost/">
         <fileTransfer accessType="LOCAL" port="0" />
       </webServer>
-      <webServer id="652406e2-692d-4fbf-9205-585f1c9186ab" name="simao.me" url="http://ftp.underneth.net">
-        <fileTransfer host="ftp.underneth.net" port="21">
+      <webServer id="59a4fa03-419d-4daa-8c82-1dbffd0fbcc6" name="Servidores UA" url="http://labmm.clients.ua.pt">
+        <fileTransfer rootFolder="/deca_21L4/deca_21L4_50/" host="labmm.clients.ua.pt" port="21">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>

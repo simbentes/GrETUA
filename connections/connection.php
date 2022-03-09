@@ -2,16 +2,11 @@
 
 function new_db_connection()
 {
-
-    //$hostname = 'gretua.underneth.net';
-    //$username = 'undernet_gretua';
-    //$password = 'aY;QLQYCMw.k';
-    //$dbname = 'undernet_gretua';
-
-    $hostname = 'localhost';
-    $username = "root";
-    $password = "root";
-    $dbname = "gretua";
+    // Variables for the database connection
+    $hostname = 'labmm.clients.ua.pt';
+    $username = "deca_21L4_50_dbo";
+    $password = "Tkt4tiS8";
+    $dbname = "deca_21l4_50";
 
     // Makes the connection
     $local_link = mysqli_connect($hostname, $username, $password, $dbname);
